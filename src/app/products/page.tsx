@@ -7,6 +7,10 @@ import { Button } from '@/components/ui/button'
 import { products, productCategories } from '@/lib/products-data'
 import { Product } from '@/types'
 import { formatPrice } from '@/lib/utils'
+import { ProductImage } from '@/components/optimization/image-optimizer'
+import { VirtualGrid } from '@/components/performance/virtual-list'
+import { useRoutePerformance } from '@/components/performance/performance-init'
+import { useDebounce } from '@/hooks/use-debounce'
 
 const sortOptions = [
   { value: 'name', label: 'Name A-Z' },
@@ -27,10 +31,16 @@ export default function ProductsPage() {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([])
   const [sortBy, setSortBy] = useState('name')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+  
+  // Performance tracking
+  useRoutePerformance('products')
+  
+  // Debounce search for better performance
+  const debouncedSearchTerm = useDebounce(searchTerm, 300)
 
   const filteredProducts = products.filter((product) => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         product.description.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesSearch = product.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+                         product.description.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
     const matchesCategory = selectedCategory === 'all' || product.category.id === selectedCategory
     const matchesFilters = selectedFilters.every(filter => 
       product[filter as keyof Product] === true
@@ -192,8 +202,16 @@ export default function ProductsPage() {
               whileHover={{ y: -5 }}
             >
               {/* Product Image */}
-              <div className={`${viewMode === 'list' ? 'w-48 flex-shrink-0' : 'aspect-square'} bg-gradient-to-br from-primary-100 to-primary-200 relative overflow-hidden`}>
-                <div className="absolute inset-0 flex items-center justify-center">
+              <div className={`${viewMode === 'list' ? 'w-48 flex-shrink-0' : 'aspect-square'} relative overflow-hidden`}>
+                <ProductImage
+                  productId={product.id}
+                  alt={product.name}
+                  variant={viewMode === 'list' ? 'thumbnail' : 'card'}
+                  priority={index < 4} // Prioritize first 4 images
+                />
+                
+                {/* Fallback for missing images */}
+                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary-100 to-primary-200 opacity-0 hover:opacity-90 transition-opacity">
                   <span className="text-brown-800 font-bold text-lg">
                     {product.name}
                   </span>

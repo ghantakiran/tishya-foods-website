@@ -11,6 +11,9 @@ import { PaymentProvider } from "@/contexts/payment-context";
 import { LoadingProvider } from "@/contexts/loading-context";
 import { ToastProvider } from "@/components/providers/toast-provider";
 import { ErrorBoundary } from "@/components/error/error-boundary";
+import { PerformanceInit } from "@/components/performance/performance-init";
+import { SubscriptionProvider } from "@/contexts/subscription-context";
+import { LoyaltyProvider } from "@/contexts/loyalty-context";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -42,6 +45,22 @@ export const metadata: Metadata = {
     title: "Tishya Foods - ProNatural Protein Rich Foods",
     description: "Where nature's goodness is lovingly crafted into the purest and most wholesome protein-rich foods.",
   },
+  manifest: "/manifest.json",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+    themeColor: "#8B4513",
+  },
+  other: {
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
+    "apple-mobile-web-app-title": "Tishya Foods",
+    "mobile-web-app-capable": "yes",
+    "msapplication-TileColor": "#8B4513",
+    "msapplication-config": "/browserconfig.xml",
+  },
 };
 
 export default function RootLayout({
@@ -67,13 +86,19 @@ export default function RootLayout({
             <AuthProvider>
               <CartProvider>
                 <PaymentProvider>
-                  <Header />
-                  <main className="min-h-screen">
-                    {children}
-                  </main>
-                  <Footer />
-                  <NutritionAssistant />
-                  <ToastProvider />
+                  <SubscriptionProvider>
+                    <LoyaltyProvider>
+                      <PerformanceInit>
+                        <Header />
+                        <main className="min-h-screen">
+                          {children}
+                        </main>
+                        <Footer />
+                        <NutritionAssistant />
+                        <ToastProvider />
+                      </PerformanceInit>
+                    </LoyaltyProvider>
+                  </SubscriptionProvider>
                 </PaymentProvider>
               </CartProvider>
             </AuthProvider>
