@@ -18,6 +18,7 @@ const navigation = [
   { name: 'Compare', href: '/compare' },
   { name: 'Subscription', href: '/subscription' },
   { name: 'Rewards', href: '/loyalty' },
+  { name: 'Blog', href: '/blog' },
   { name: 'Nutrition', href: '/nutrition' },
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },

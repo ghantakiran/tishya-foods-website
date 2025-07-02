@@ -14,6 +14,8 @@ import { ErrorBoundary } from "@/components/error/error-boundary";
 import { PerformanceInit } from "@/components/performance/performance-init";
 import { SubscriptionProvider } from "@/contexts/subscription-context";
 import { LoyaltyProvider } from "@/contexts/loyalty-context";
+import { AnalyticsProvider } from "@/components/analytics/analytics-provider";
+import { PageViewTracker } from "@/components/analytics/page-view-tracker";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -88,15 +90,37 @@ export default function RootLayout({
                 <PaymentProvider>
                   <SubscriptionProvider>
                     <LoyaltyProvider>
-                      <PerformanceInit>
-                        <Header />
-                        <main className="min-h-screen">
-                          {children}
-                        </main>
-                        <Footer />
-                        <NutritionAssistant />
-                        <ToastProvider />
-                      </PerformanceInit>
+                      <AnalyticsProvider
+                        config={{
+                          googleAnalytics: {
+                            measurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '',
+                            config: {
+                              anonymize_ip: true,
+                              allow_google_signals: false,
+                              allow_ad_personalization_signals: false
+                            }
+                          },
+                          customAnalytics: {
+                            apiEndpoint: '/api/analytics/events',
+                            config: {
+                              batchSize: 10,
+                              batchTimeout: 5000
+                            }
+                          },
+                          enableConsoleLogging: process.env.NODE_ENV === 'development'
+                        }}
+                      >
+                        <PageViewTracker />
+                        <PerformanceInit>
+                          <Header />
+                          <main className="min-h-screen">
+                            {children}
+                          </main>
+                          <Footer />
+                          <NutritionAssistant />
+                          <ToastProvider />
+                        </PerformanceInit>
+                      </AnalyticsProvider>
                     </LoyaltyProvider>
                   </SubscriptionProvider>
                 </PaymentProvider>

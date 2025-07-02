@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react'
 import { toast } from 'react-hot-toast'
 import { Cart, CartItem, CartState, CartActions } from '@/types/cart'
+import { useAnalytics } from '@/hooks/use-analytics'
 
 type CartContextType = CartState & CartActions
 
@@ -163,8 +164,9 @@ const initialState: CartState = {
   error: null,
 }
 
-export function CartProvider({ children }: { children: React.ReactNode }) {
+function CartProviderInner({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, initialState)
+  const analytics = useAnalytics()
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -191,11 +193,34 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const addItem = (item: Omit<CartItem, 'id'>) => {
     dispatch({ type: 'ADD_ITEM', payload: item })
     toast.success(`${item.name} added to cart!`)
+    
+    // Track add to cart event
+    analytics.trackProductAddToCart(
+      item.productId,
+      item.name,
+      item.category || 'Unknown',
+      item.price,
+      item.quantity
+    )
   }
 
   const removeItem = (itemId: string) => {
+    // Find the item before removing to track analytics
+    const item = state.cart?.items.find(i => i.id === itemId)
+    
     dispatch({ type: 'REMOVE_ITEM', payload: itemId })
     toast.success('Item removed from cart')
+    
+    // Track remove from cart event
+    if (item) {
+      analytics.trackProductRemoveFromCart(
+        item.productId,
+        item.name,
+        item.category || 'Unknown',
+        item.price,
+        item.quantity
+      )
+    }
   }
 
   const updateQuantity = (itemId: string, quantity: number) => {
@@ -205,6 +230,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' })
     toast.success('Cart cleared')
+    
+    // Track cart clear event
+    analytics.trackUserAction('click', {
+      element_type: 'button',
+      additional_data: {
+        action: 'clear_cart',
+        items_count: state.cart?.items.length || 0
+      }
+    })
   }
 
   const applyCoupon = async (couponCode: string): Promise<boolean> => {
@@ -220,9 +254,23 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       if (validCoupons.includes(couponCode.toUpperCase())) {
         dispatch({ type: 'APPLY_COUPON', payload: couponCode.toUpperCase() })
         toast.success('Coupon applied successfully!')
+        
+        // Track coupon application
+        analytics.trackUserAction('form_submit', {
+          element_type: 'coupon_form',
+          additional_data: {
+            coupon_code: couponCode.toUpperCase(),
+            success: true
+          }
+        })
+        
         return true
       } else {
         toast.error('Invalid coupon code')
+        
+        // Track failed coupon attempt
+        analytics.trackFormError('coupon_form', 'Invalid coupon code', 'coupon_code')
+        
         return false
       }
     } catch (error) {
@@ -260,6 +308,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       {children}
     </CartContext.Provider>
   )
+}
+
+export function CartProvider({ children }: { children: React.ReactNode }) {
+  return <CartProviderInner>{children}</CartProviderInner>
 }
 
 export function useCart() {
