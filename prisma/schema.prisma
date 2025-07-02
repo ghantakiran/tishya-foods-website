@@ -1,0 +1,225 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id                String             @id @default(cuid())
+  name              String
+  description       String
+  price             Int                // Price in cents
+  categoryId        String
+  category          ProductCategory    @relation(fields: [categoryId], references: [id])
+  images            String[]
+  ingredients       String[]
+  isGlutenFree      Boolean            @default(false)
+  isVegan           Boolean            @default(false)
+  isOrganic         Boolean            @default(false)
+  stock             Int                @default(0)
+  featured          Boolean            @default(false)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  
+  // Nutritional Information
+  protein           Float              @default(0)
+  carbs             Float              @default(0)
+  fat               Float              @default(0)
+  fiber             Float              @default(0)
+  calories          Int                @default(0)
+  servingSize       String             @default("30g")
+  
+  // Relations
+  reviews           Review[]
+  orderItems        OrderItem[]
+  cartItems         CartItem[]
+  recommendations   AIRecommendation[]
+
+  @@map("products")
+}
+
+model ProductCategory {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  description String
+  image       String?
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("product_categories")
+}
+
+model Review {
+  id           String   @id @default(cuid())
+  customerName String
+  rating       Int      // 1-5 stars
+  comment      String
+  productId    String?
+  product      Product? @relation(fields: [productId], references: [id])
+  verified     Boolean  @default(false)
+  helpful      Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("reviews")
+}
+
+model Recipe {
+  id              String   @id @default(cuid())
+  title           String
+  description     String
+  image           String?
+  prepTime        String   // e.g., "15 min"
+  servings        Int
+  difficulty      String   // Easy, Medium, Hard
+  rating          Float    @default(0)
+  category        String   // Breakfast, Lunch, Dinner, Snacks
+  ingredients     String[]
+  instructions    String[]
+  tags            String[]
+  
+  // Nutritional Information
+  calories        Int      @default(0)
+  protein         Float    @default(0)
+  carbs           Float    @default(0)
+  fat             Float    @default(0)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("recipes")
+}
+
+model User {
+  id                String             @id @default(cuid())
+  email             String             @unique
+  firstName         String?
+  lastName          String?
+  phone             String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  
+  // Relations
+  orders            Order[]
+  cart              Cart?
+  aiRecommendations AIRecommendation[]
+  contactSubmissions ContactSubmission[]
+
+  @@map("users")
+}
+
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id])
+  items     CartItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@map("carts")
+}
+
+model CartItem {
+  id        String  @id @default(cuid())
+  cartId    String
+  cart      Cart    @relation(fields: [cartId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int     @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([cartId, productId])
+  @@map("cart_items")
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  userId          String
+  user            User        @relation(fields: [userId], references: [id])
+  status          OrderStatus @default(PENDING)
+  totalAmount     Int         // Amount in cents
+  shippingAddress String
+  contactEmail    String
+  contactPhone    String?
+  items           OrderItem[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int     @default(1)
+  price     Int     // Price at time of order (in cents)
+  createdAt DateTime @default(now())
+
+  @@map("order_items")
+}
+
+model AIRecommendation {
+  id              String   @id @default(cuid())
+  userId          String?
+  user            User?    @relation(fields: [userId], references: [id])
+  productId       String
+  product         Product  @relation(fields: [productId], references: [id])
+  goal            String   // weight-loss, muscle-building, etc.
+  ageGroup        String   // young-adult, adult, senior
+  activityLevel   String   // sedentary, light, moderate, very-active
+  dietaryRestrictions String[] // vegan, gluten-free, etc.
+  mealTimes       String[] // breakfast, lunch, dinner, snacks
+  matchScore      Int      // 0-100
+  reason          String
+  benefits        String[]
+  createdAt       DateTime @default(now())
+
+  @@map("ai_recommendations")
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  responded Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("contact_submissions")
+}
+
+model NewsletterSubscription {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("newsletter_subscriptions")
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
