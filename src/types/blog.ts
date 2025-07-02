@@ -1,3 +1,5 @@
+export type BlogPostStatus = 'draft' | 'published' | 'scheduled' | 'archived'
+
 export interface Author {
   id: string
   name: string
@@ -38,7 +40,7 @@ export interface BlogPost {
   excerpt: string
   content: string
   featuredImage?: string
-  status: 'draft' | 'published' | 'scheduled' | 'archived'
+  status: BlogPostStatus
   publishedAt?: string
   scheduledAt?: string
   createdAt: string

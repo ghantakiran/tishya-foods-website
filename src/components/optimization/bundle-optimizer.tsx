@@ -147,8 +147,7 @@ export function preloadRouteComponents(route: string) {
       () => import('@/components/nutrition/nutrition-tracker')
     ],
     '/checkout': [
-      () => import('@/features/checkout/checkout-flow'),
-      () => import('@/features/payment/payment-methods')
+      () => import('@/features/checkout/checkout-flow')
     ],
     '/orders': [
       () => import('@/features/orders/order-list'),

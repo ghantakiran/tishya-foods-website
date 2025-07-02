@@ -156,7 +156,13 @@ export default function BlogPage() {
             {/* Filters Sidebar */}
             <div className="lg:col-span-1">
               <div className="sticky top-8">
-                <BlogFilters />
+                <BlogFilters 
+                  filters={{}}
+                  categories={featuredCategories}
+                  tags={[]}
+                  onFilterChange={() => {}}
+                  onClear={() => {}}
+                />
               </div>
             </div>
 

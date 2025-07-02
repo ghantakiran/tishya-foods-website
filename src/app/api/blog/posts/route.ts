@@ -156,7 +156,7 @@ export async function POST(request: NextRequest) {
       content: data.content,
       featuredImage: data.featuredImage,
       status: data.status || 'draft',
-      publishedAt: data.status === 'published' ? new Date().toISOString() : null,
+      publishedAt: data.status === 'published' ? new Date().toISOString() : undefined,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       author: {

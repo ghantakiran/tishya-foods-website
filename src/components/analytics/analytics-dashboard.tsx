@@ -166,8 +166,8 @@ export function AnalyticsDashboard() {
           <CardContent>
             <div className="text-2xl font-bold">{formatNumber(data?.pageViews.total || 0)}</div>
             <p className="text-xs text-muted-foreground">
-              <span className={data?.pageViews.growth >= 0 ? 'text-green-600' : 'text-red-600'}>
-                {data?.pageViews.growth >= 0 ? '+' : ''}{data?.pageViews.growth.toFixed(1)}%
+              <span className={(data?.pageViews.growth || 0) >= 0 ? 'text-green-600' : 'text-red-600'}>
+                {(data?.pageViews.growth || 0) >= 0 ? '+' : ''}{(data?.pageViews.growth || 0).toFixed(1)}%
               </span>{' '}
               from last period
             </p>

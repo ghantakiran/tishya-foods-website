@@ -60,10 +60,11 @@ const mockPosts: BlogPost[] = [
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const post = mockPosts.find(p => p.id === params.id)
+    const { id } = await params
+    const post = mockPosts.find(p => p.id === id)
     
     if (!post) {
       return NextResponse.json(
@@ -84,11 +85,12 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const data = await request.json()
-    const postIndex = mockPosts.findIndex(p => p.id === params.id)
+    const postIndex = mockPosts.findIndex(p => p.id === id)
     
     if (postIndex === -1) {
       return NextResponse.json(
@@ -103,7 +105,7 @@ export async function PUT(
     const updatedPost: BlogPost = {
       ...existingPost,
       ...data,
-      id: params.id, // Ensure ID doesn't change
+      id, // Ensure ID doesn't change
       updatedAt: new Date().toISOString(),
       publishedAt: data.status === 'published' && !existingPost.publishedAt 
         ? new Date().toISOString() 
@@ -129,10 +131,11 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const postIndex = mockPosts.findIndex(p => p.id === params.id)
+    const { id } = await params
+    const postIndex = mockPosts.findIndex(p => p.id === id)
     
     if (postIndex === -1) {
       return NextResponse.json(
@@ -159,11 +162,12 @@ export async function DELETE(
 // Increment view count
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const { action } = await request.json()
-    const postIndex = mockPosts.findIndex(p => p.id === params.id)
+    const postIndex = mockPosts.findIndex(p => p.id === id)
     
     if (postIndex === -1) {
       return NextResponse.json(

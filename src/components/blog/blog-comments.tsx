@@ -105,7 +105,7 @@ export function BlogComments({ postId }: BlogCommentsProps) {
     setComments([comment, ...comments])
     setNewComment('')
     
-    analytics.trackUserAction('submit', {
+    analytics.trackUserAction('form_submit', {
       element_type: 'blog_comment',
       additional_data: {
         post_id: postId,
@@ -139,7 +139,7 @@ export function BlogComments({ postId }: BlogCommentsProps) {
     setReplyContent('')
     setReplyingTo(null)
     
-    analytics.trackUserAction('submit', {
+    analytics.trackUserAction('form_submit', {
       element_type: 'blog_comment_reply',
       additional_data: {
         post_id: postId,

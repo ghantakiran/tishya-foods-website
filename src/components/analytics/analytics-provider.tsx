@@ -60,10 +60,7 @@ export function AnalyticsProvider({ children, config }: AnalyticsProviderProps) 
   useEffect(() => {
     const handleError = (event: ErrorEvent) => {
       analytics.trackError('javascript', event.message, {
-        error_stack: event.error?.stack,
-        filename: event.filename,
-        line_number: event.lineno,
-        column_number: event.colno
+        error_stack: event.error?.stack
       })
     }
 

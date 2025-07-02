@@ -160,7 +160,7 @@ export function BlogSidebar({ currentPost }: BlogSidebarProps) {
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (email.trim()) {
-      analytics.trackUserAction('subscribe', {
+      analytics.trackUserAction('form_submit', {
         element_type: 'newsletter_signup',
         additional_data: {
           email_domain: email.split('@')[1],

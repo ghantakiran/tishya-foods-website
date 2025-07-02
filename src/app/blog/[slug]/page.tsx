@@ -4,9 +4,9 @@ import { BlogPost } from '@/components/blog/blog-post'
 import { BlogProvider } from '@/contexts/blog-context'
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 // This would typically fetch from your CMS or API
@@ -122,7 +122,8 @@ async function getPost(slug: string) {
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = await getPost(params.slug)
+  const { slug } = await params
+  const post = await getPost(slug)
 
   if (!post) {
     return {
@@ -153,7 +154,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await getPost(params.slug)
+  const { slug } = await params
+  const post = await getPost(slug)
 
   if (!post) {
     notFound()
