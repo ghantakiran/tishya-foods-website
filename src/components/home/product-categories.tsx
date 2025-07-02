@@ -126,14 +126,24 @@ export default function ProductCategories() {
                     </div>
                   </div>
 
-                  {/* CTA Button */}
-                  <Button
-                    variant="outline"
-                    className="w-full group-hover:bg-brown-800 group-hover:text-white group-hover:border-brown-800 transition-all duration-300"
-                  >
-                    Explore Products
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
+                  {/* CTA Buttons */}
+                  <div className="flex space-x-2">
+                    <Button
+                      variant="outline"
+                      className="flex-1 group-hover:bg-brown-800 group-hover:text-white group-hover:border-brown-800 transition-all duration-300"
+                    >
+                      Explore
+                      <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                    <Button 
+                      variant="ghost"
+                      size="sm"
+                      className="text-xs px-2"
+                      onClick={() => window.location.href = '/compare'}
+                    >
+                      Compare
+                    </Button>
+                  </div>
                 </div>
               </div>
             </motion.div>

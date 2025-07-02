@@ -5,6 +5,12 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import NutritionAssistant from "@/components/ai/nutrition-assistant";
 import { StructuredData } from "@/components/seo/structured-data";
+import { CartProvider } from "@/contexts/cart-context";
+import { AuthProvider } from "@/contexts/auth-context";
+import { PaymentProvider } from "@/contexts/payment-context";
+import { LoadingProvider } from "@/contexts/loading-context";
+import { ToastProvider } from "@/components/providers/toast-provider";
+import { ErrorBoundary } from "@/components/error/error-boundary";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -56,12 +62,23 @@ export default function RootLayout({
         />
       </head>
       <body className={`${montserrat.variable} ${inter.variable} font-sans antialiased`}>
-        <Header />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
-        <NutritionAssistant />
+        <ErrorBoundary>
+          <LoadingProvider>
+            <AuthProvider>
+              <CartProvider>
+                <PaymentProvider>
+                  <Header />
+                  <main className="min-h-screen">
+                    {children}
+                  </main>
+                  <Footer />
+                  <NutritionAssistant />
+                  <ToastProvider />
+                </PaymentProvider>
+              </CartProvider>
+            </AuthProvider>
+          </LoadingProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

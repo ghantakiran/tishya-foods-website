@@ -2,23 +2,32 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ShoppingCart, Search, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { useCart } from '@/contexts/cart-context'
+import { useAuth } from '@/contexts/auth-context'
+import { CartDrawer } from '@/features/cart/cart-drawer'
+import { AuthModal } from '@/features/auth/auth-modal'
 
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Products', href: '/products' },
+  { name: 'Compare', href: '/compare' },
+  { name: 'Nutrition', href: '/nutrition' },
   { name: 'About', href: '/about' },
-  { name: 'Recipes', href: '/recipes' },
-  { name: 'AI Recommendations', href: '/recommendations' },
   { name: 'Contact', href: '/contact' },
 ]
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isCartOpen, setIsCartOpen] = useState(false)
+  const [isAuthOpen, setIsAuthOpen] = useState(false)
+  const { cart } = useCart()
+  const { user, isAuthenticated, logout } = useAuth()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,15 +52,21 @@ export default function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-brown-800 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">T</span>
+          <Link href="/" className="flex items-center space-x-3">
+            <div className="relative w-12 h-12 lg:w-14 lg:h-14">
+              <Image
+                src="/logo.png"
+                alt="Tishya Foods Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
             <div className="flex flex-col">
-              <span className="text-brown-800 font-bold text-lg font-montserrat">
+              <span className="text-brown-800 font-bold text-lg lg:text-xl font-montserrat">
                 Tishya Foods
               </span>
-              <span className="text-primary-600 text-xs -mt-1">
+              <span className="text-primary-600 text-xs lg:text-sm -mt-1">
                 Health At Home!
               </span>
             </div>
@@ -76,14 +91,47 @@ export default function Header() {
             <Button variant="ghost" size="icon">
               <Search className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon">
-              <User className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="relative">
+            {isAuthenticated ? (
+              <div className="relative">
+                <Button variant="ghost" size="icon" className="relative">
+                  <User className="h-5 w-5" />
+                  <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full"></span>
+                </Button>
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden group-hover:block">
+                  <Link href="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    Profile
+                  </Link>
+                  <Link href="/orders" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    Orders
+                  </Link>
+                  <Link href="/preferences" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    Preferences
+                  </Link>
+                  <button
+                    onClick={logout}
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)}>
+                <User className="h-5 w-5" />
+              </Button>
+            )}
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="relative"
+              onClick={() => setIsCartOpen(true)}
+            >
               <ShoppingCart className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-accent-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                0
-              </span>
+              {cart && cart.totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-accent-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                  {cart.totalItems}
+                </span>
+              )}
             </Button>
             <Button className="ml-4">
               Shop Now
@@ -134,14 +182,28 @@ export default function Header() {
                   <Button variant="ghost" size="icon">
                     <Search className="h-5 w-5" />
                   </Button>
-                  <Button variant="ghost" size="icon">
-                    <User className="h-5 w-5" />
-                  </Button>
-                  <Button variant="ghost" size="icon" className="relative">
+                  {isAuthenticated ? (
+                    <Button variant="ghost" size="icon" className="relative">
+                      <User className="h-5 w-5" />
+                      <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full"></span>
+                    </Button>
+                  ) : (
+                    <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)}>
+                      <User className="h-5 w-5" />
+                    </Button>
+                  )}
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="relative"
+                    onClick={() => setIsCartOpen(true)}
+                  >
                     <ShoppingCart className="h-5 w-5" />
-                    <span className="absolute -top-1 -right-1 bg-accent-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                      0
-                    </span>
+                    {cart && cart.totalItems > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-accent-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                        {cart.totalItems}
+                      </span>
+                    )}
                   </Button>
                 </div>
                 <Button>
@@ -152,6 +214,12 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Cart Drawer */}
+      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      
+      {/* Auth Modal */}
+      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
     </motion.header>
   )
 }
