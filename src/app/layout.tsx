@@ -71,7 +71,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="dark scroll-smooth">
       <head>
         <StructuredData 
           type="Organization" 
@@ -82,7 +82,7 @@ export default function RootLayout({
           data={{}} 
         />
       </head>
-      <body className={`${montserrat.variable} ${inter.variable} font-sans antialiased`}>
+      <body className={`${montserrat.variable} ${inter.variable} font-sans antialiased bg-gray-900 text-gray-100`}>
         <ErrorBoundary>
           <LoadingProvider>
             <AuthProvider>

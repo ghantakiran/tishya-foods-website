@@ -45,7 +45,7 @@ export default function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-lg'
+          ? 'bg-gray-900/90 backdrop-blur-md shadow-lg'
           : 'bg-transparent'
       )}
       initial={{ y: -100 }}
@@ -66,7 +66,7 @@ export default function Header() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-brown-800 font-bold text-lg lg:text-xl font-montserrat">
+              <span className="text-gray-100 font-bold text-lg lg:text-xl font-montserrat">
                 Tishya Foods
               </span>
               <span className="text-primary-600 text-xs lg:text-sm -mt-1">
@@ -81,52 +81,52 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-brown-800 hover:text-primary-600 font-medium transition-colors duration-200 relative group"
+                className="text-gray-100 hover:text-primary-400 font-medium transition-colors duration-200 relative group"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-400 transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </nav>
 
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" className="text-gray-100 hover:text-primary-400 hover:bg-gray-800">
               <Search className="h-5 w-5" />
             </Button>
             {isAuthenticated ? (
               <div className="relative">
-                <Button variant="ghost" size="icon" className="relative">
+                <Button variant="ghost" size="icon" className="relative text-gray-100 hover:text-primary-400 hover:bg-gray-800">
                   <User className="h-5 w-5" />
                   <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full"></span>
                 </Button>
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden group-hover:block">
-                  <Link href="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 hidden group-hover:block border border-gray-700">
+                  <Link href="/profile" className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">
                     Profile
                   </Link>
-                  <Link href="/orders" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  <Link href="/orders" className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">
                     Orders
                   </Link>
-                  <Link href="/preferences" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  <Link href="/preferences" className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">
                     Preferences
                   </Link>
                   <button
                     onClick={logout}
-                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
                   >
                     Sign Out
                   </button>
                 </div>
               </div>
             ) : (
-              <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)}>
+              <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)} className="text-gray-100 hover:text-primary-400 hover:bg-gray-800">
                 <User className="h-5 w-5" />
               </Button>
             )}
             <Button 
               variant="ghost" 
               size="icon" 
-              className="relative"
+              className="relative text-gray-100 hover:text-primary-400 hover:bg-gray-800"
               onClick={() => setIsCartOpen(true)}
             >
               <ShoppingCart className="h-5 w-5" />
@@ -145,7 +145,7 @@ export default function Header() {
           <Button
             variant="ghost"
             size="icon"
-            className="lg:hidden"
+            className="lg:hidden text-gray-100 hover:text-primary-400 hover:bg-gray-800"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
@@ -161,7 +161,7 @@ export default function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="lg:hidden bg-white/95 backdrop-blur-md border-t"
+            className="lg:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-700"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -173,32 +173,32 @@ export default function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-brown-800 hover:text-primary-600 font-medium py-2 transition-colors duration-200"
+                    className="text-gray-100 hover:text-primary-400 font-medium py-2 transition-colors duration-200"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
                 ))}
               </nav>
-              <div className="flex items-center justify-between mt-6 pt-6 border-t">
+              <div className="flex items-center justify-between mt-6 pt-6 border-t border-gray-700">
                 <div className="flex items-center space-x-4">
-                  <Button variant="ghost" size="icon">
+                  <Button variant="ghost" size="icon" className="text-gray-100 hover:text-primary-400 hover:bg-gray-800">
                     <Search className="h-5 w-5" />
                   </Button>
                   {isAuthenticated ? (
-                    <Button variant="ghost" size="icon" className="relative">
+                    <Button variant="ghost" size="icon" className="relative text-gray-100 hover:text-primary-400 hover:bg-gray-800">
                       <User className="h-5 w-5" />
                       <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full"></span>
                     </Button>
                   ) : (
-                    <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)}>
+                    <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)} className="text-gray-100 hover:text-primary-400 hover:bg-gray-800">
                       <User className="h-5 w-5" />
                     </Button>
                   )}
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="relative"
+                    className="relative text-gray-100 hover:text-primary-400 hover:bg-gray-800"
                     onClick={() => setIsCartOpen(true)}
                   >
                     <ShoppingCart className="h-5 w-5" />
