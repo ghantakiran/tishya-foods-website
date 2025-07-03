@@ -308,7 +308,7 @@ export default function ComparePage() {
               All our products are crafted with premium ingredients for optimal nutrition.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="px-8">
+              <Button variant="outline" size="lg" className="px-8">
                 Shop All Products
                 <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
