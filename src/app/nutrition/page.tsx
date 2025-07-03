@@ -226,7 +226,7 @@ export default function NutritionPage() {
               Start your journey today with our comprehensive nutrition tools and high-quality protein products.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="px-8">
+              <Button variant="outline" size="lg" className="px-8">
                 Shop Protein Products
               </Button>
               <Button variant="outline" size="lg" className="px-8">
