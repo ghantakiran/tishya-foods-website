@@ -77,22 +77,22 @@ export default function ComparePage() {
           >
             <div className="flex items-center justify-center mb-4">
               <Scale className="h-12 w-12 text-yellow-400 mr-3" />
-              <h1 className="text-4xl md:text-5xl font-bold">
+              <h1 className="text-4xl md:text-5xl font-bold text-white">
                 Product Comparison
               </h1>
             </div>
-            <p className="text-xl md:text-2xl text-primary-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto">
               Make informed decisions with our comprehensive product comparison tool. 
               Compare nutrition, ingredients, and value across our protein-rich product range.
             </p>
             <div className="flex items-center justify-center space-x-4">
-              <Badge variant="secondary" className="text-sm px-3 py-1">
+              <Badge className="text-sm px-3 py-1 bg-white/20 text-white border-white/30">
                 Nutrition Analysis
               </Badge>
-              <Badge variant="secondary" className="text-sm px-3 py-1">
+              <Badge className="text-sm px-3 py-1 bg-white/20 text-white border-white/30">
                 Smart Highlighting
               </Badge>
-              <Badge variant="secondary" className="text-sm px-3 py-1">
+              <Badge className="text-sm px-3 py-1 bg-white/20 text-white border-white/30">
                 Value Assessment
               </Badge>
             </div>
