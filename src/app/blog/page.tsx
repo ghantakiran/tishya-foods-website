@@ -88,6 +88,8 @@ const featuredCategories = [
   }
 ]
 
+'use client'
+
 export default function BlogPage() {
   return (
     <BlogProvider>
