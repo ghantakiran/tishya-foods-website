@@ -320,7 +320,7 @@ export function LazyImage({
   })
 
   return (
-    <div ref={ref} className={cn('relative', className)}>
+    <div ref={ref as any} className={cn('relative', className)}>
       {isVisible ? (
         <OptimizedImage src={src} alt={alt} fill className="object-cover" />
       ) : (
