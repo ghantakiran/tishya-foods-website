@@ -119,7 +119,7 @@ export default function InstagramFeed() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-full mb-4">
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-purple-600 text-cream-100 px-4 py-2 rounded-full mb-4">
             <Instagram className="h-4 w-4" />
             <span className="text-sm font-semibold">@tishyafoods</span>
           </div>
@@ -160,7 +160,7 @@ export default function InstagramFeed() {
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                 >
-                  <div className="text-white text-center">
+                  <div className="text-cream-100 text-center">
                     <div className="flex items-center justify-center space-x-6 mb-4">
                       <div className="flex items-center space-x-2">
                         <Heart className="h-5 w-5 fill-current" />
@@ -218,7 +218,7 @@ export default function InstagramFeed() {
           <div className="inline-flex flex-col sm:flex-row items-center gap-4">
             <Button
               size="lg"
-              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0"
+              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-cream-100 border-0"
             >
               <Instagram className="mr-2 h-5 w-5" />
               Follow @tishyafoods
