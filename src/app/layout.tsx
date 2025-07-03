@@ -110,7 +110,7 @@ export default function RootLayout({
                           enableConsoleLogging: process.env.NODE_ENV === 'development'
                         }}
                       >
-                        <PageViewTracker />
+                        {/* <PageViewTracker /> */}
                         <PerformanceInit>
                           <Header />
                           <main className="min-h-screen">
