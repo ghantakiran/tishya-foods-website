@@ -105,11 +105,11 @@ export function BlogPost({ post }: BlogPostProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-earth-900">
       <ReadingProgress progress={readingProgress} />
       
       {/* Header */}
-      <div className="bg-gray-800 border-b">
+      <div className="bg-earth-800 border-b">
         <div className="container mx-auto px-4 py-6">
           <Link href="/blog" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-6">
             <ArrowLeft className="h-4 w-4" />
@@ -127,11 +127,11 @@ export function BlogPost({ post }: BlogPostProps) {
               ))}
             </div>
 
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-100 mb-6 leading-tight">
+            <h1 className="text-4xl lg:text-5xl font-bold text-cream-100 mb-6 leading-tight">
               {post.title}
             </h1>
 
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            <p className="text-xl text-earth-600 mb-8 leading-relaxed">
               {post.excerpt}
             </p>
 

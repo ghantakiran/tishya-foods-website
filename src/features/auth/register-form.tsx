@@ -105,12 +105,12 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
       transition={{ duration: 0.5 }}
       className="w-full max-w-md mx-auto"
     >
-      <div className="bg-gray-800 rounded-lg shadow-lg p-6">
+      <div className="bg-earth-800 rounded-lg shadow-lg p-6">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-brown-800 font-montserrat">
+          <h2 className="text-2xl font-bold text-earth-800 font-montserrat">
             Join Tishya Foods
           </h2>
-          <p className="text-gray-600 mt-2">
+          <p className="text-earth-600 mt-2">
             Create your account for healthy living
           </p>
         </div>
@@ -119,12 +119,12 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
           {/* Name Fields */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="firstName" className="block text-sm font-medium text-earth-700 mb-1">
                 First Name
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="h-5 w-5 text-gray-400" />
+                  <User className="h-5 w-5 text-earth-400" />
                 </div>
                 <Input
                   id="firstName"
@@ -142,7 +142,7 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
             </div>
 
             <div>
-              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="lastName" className="block text-sm font-medium text-earth-700 mb-1">
                 Last Name
               </label>
               <Input
@@ -162,12 +162,12 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
 
           {/* Email Field */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="email" className="block text-sm font-medium text-earth-700 mb-1">
               Email Address
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Mail className="h-5 w-5 text-gray-400" />
+                <Mail className="h-5 w-5 text-earth-400" />
               </div>
               <Input
                 id="email"
@@ -186,12 +186,12 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
 
           {/* Phone Field */}
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="phone" className="block text-sm font-medium text-earth-700 mb-1">
               Phone Number (Optional)
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Phone className="h-5 w-5 text-gray-400" />
+                <Phone className="h-5 w-5 text-earth-400" />
               </div>
               <Input
                 id="phone"
@@ -210,12 +210,12 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
 
           {/* Password Field */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="password" className="block text-sm font-medium text-earth-700 mb-1">
               Password
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="h-5 w-5 text-gray-400" />
+                <Lock className="h-5 w-5 text-earth-400" />
               </div>
               <Input
                 id="password"
@@ -232,9 +232,9 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (
-                  <EyeOff className="h-5 w-5 text-gray-400" />
+                  <EyeOff className="h-5 w-5 text-earth-400" />
                 ) : (
-                  <Eye className="h-5 w-5 text-gray-400" />
+                  <Eye className="h-5 w-5 text-earth-400" />
                 )}
               </button>
             </div>
@@ -245,12 +245,12 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
 
           {/* Confirm Password Field */}
           <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="confirmPassword" className="block text-sm font-medium text-earth-700 mb-1">
               Confirm Password
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="h-5 w-5 text-gray-400" />
+                <Lock className="h-5 w-5 text-earth-400" />
               </div>
               <Input
                 id="confirmPassword"
@@ -267,9 +267,9 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               >
                 {showConfirmPassword ? (
-                  <EyeOff className="h-5 w-5 text-gray-400" />
+                  <EyeOff className="h-5 w-5 text-earth-400" />
                 ) : (
-                  <Eye className="h-5 w-5 text-gray-400" />
+                  <Eye className="h-5 w-5 text-earth-400" />
                 )}
               </button>
             </div>
@@ -286,9 +286,9 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
                 type="checkbox"
                 checked={acceptTerms}
                 onChange={(e) => setAcceptTerms(e.target.checked)}
-                className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-600 rounded mt-1"
+                className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-earth-600 rounded mt-1"
               />
-              <label htmlFor="terms" className="ml-2 block text-sm text-gray-100">
+              <label htmlFor="terms" className="ml-2 block text-sm text-cream-100">
                 I agree to the{' '}
                 <button
                   type="button"
@@ -325,10 +325,10 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
         <div className="mt-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-600" />
+              <div className="w-full border-t border-earth-600" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-gray-800 text-gray-500">Or continue with</span>
+              <span className="px-2 bg-earth-800 text-earth-500">Or continue with</span>
             </div>
           </div>
 
@@ -373,7 +373,7 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
 
         {/* Switch to Login */}
         <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-earth-600">
             Already have an account?{' '}
             <button
               type="button"

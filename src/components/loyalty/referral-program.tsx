@@ -183,9 +183,9 @@ export function ReferralProgram({
       case 'registered':
         return <Users className="h-4 w-4 text-yellow-500" />
       case 'pending':
-        return <Clock className="h-4 w-4 text-gray-500" />
+        return <Clock className="h-4 w-4 text-earth-500" />
       default:
-        return <Clock className="h-4 w-4 text-gray-500" />
+        return <Clock className="h-4 w-4 text-earth-500" />
     }
   }
 
@@ -198,9 +198,9 @@ export function ReferralProgram({
       case 'registered':
         return 'bg-yellow-100 text-yellow-800'
       case 'pending':
-        return 'bg-gray-100 text-gray-100'
+        return 'bg-cream-100 text-cream-100'
       default:
-        return 'bg-gray-100 text-gray-100'
+        return 'bg-cream-100 text-cream-100'
     }
   }
 
@@ -215,7 +215,7 @@ export function ReferralProgram({
       {/* Header */}
       <div className="text-center">
         <motion.h1 
-          className="text-3xl font-bold text-brown-800 mb-4"
+          className="text-3xl font-bold text-earth-800 mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -223,7 +223,7 @@ export function ReferralProgram({
           Refer Friends, Earn Rewards
         </motion.h1>
         <motion.p 
-          className="text-brown-600 max-w-2xl mx-auto"
+          className="text-earth-600 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -242,26 +242,26 @@ export function ReferralProgram({
       >
         <Card className="p-6 text-center">
           <Users className="h-8 w-8 text-blue-500 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-brown-800">{stats.totalReferrals}</div>
-          <div className="text-sm text-brown-600">Total Referrals</div>
+          <div className="text-2xl font-bold text-earth-800">{stats.totalReferrals}</div>
+          <div className="text-sm text-earth-600">Total Referrals</div>
         </Card>
         
         <Card className="p-6 text-center">
           <CheckCircle className="h-8 w-8 text-green-500 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-brown-800">{stats.successfulReferrals}</div>
-          <div className="text-sm text-brown-600">Successful</div>
+          <div className="text-2xl font-bold text-earth-800">{stats.successfulReferrals}</div>
+          <div className="text-sm text-earth-600">Successful</div>
         </Card>
         
         <Card className="p-6 text-center">
           <Coins className="h-8 w-8 text-yellow-500 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-brown-800">{stats.totalEarned}</div>
-          <div className="text-sm text-brown-600">Points Earned</div>
+          <div className="text-2xl font-bold text-earth-800">{stats.totalEarned}</div>
+          <div className="text-sm text-earth-600">Points Earned</div>
         </Card>
         
         <Card className="p-6 text-center">
           <TrendingUp className="h-8 w-8 text-purple-500 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-brown-800">{stats.referralRate}%</div>
-          <div className="text-sm text-brown-600">Success Rate</div>
+          <div className="text-2xl font-bold text-earth-800">{stats.referralRate}%</div>
+          <div className="text-sm text-earth-600">Success Rate</div>
         </Card>
       </motion.div>
 
@@ -278,15 +278,15 @@ export function ReferralProgram({
                 <Award className="h-6 w-6" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-brown-800">{currentTier.name}</h3>
-                <p className="text-brown-600">
+                <h3 className="text-lg font-semibold text-earth-800">{currentTier.name}</h3>
+                <p className="text-earth-600">
                   {currentTier.bonusMultiplier}x bonus multiplier
                 </p>
               </div>
             </div>
             {nextTier && (
               <div className="text-right">
-                <p className="text-sm text-brown-600">
+                <p className="text-sm text-earth-600">
                   {nextTier.minReferrals - stats.successfulReferrals} more referrals to {nextTier.name}
                 </p>
               </div>
@@ -297,7 +297,7 @@ export function ReferralProgram({
             {currentTier.specialRewards.map((reward, index) => (
               <div key={index} className="flex items-center space-x-2">
                 <CheckCircle className="h-4 w-4 text-green-500" />
-                <span className="text-sm text-brown-700">{reward}</span>
+                <span className="text-sm text-earth-700">{reward}</span>
               </div>
             ))}
           </div>
@@ -305,7 +305,7 @@ export function ReferralProgram({
       </motion.div>
 
       {/* Navigation Tabs */}
-      <div className="border-b border-gray-600">
+      <div className="border-b border-earth-600">
         <nav className="-mb-px flex space-x-8">
           {tabs.map((tab) => {
             const Icon = tab.icon
@@ -316,8 +316,8 @@ export function ReferralProgram({
                 className={cn(
                   'flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm transition-colors',
                   activeTab === tab.id
-                    ? 'border-brown-800 text-brown-800'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-600'
+                    ? 'border-earth-800 text-earth-800'
+                    : 'border-transparent text-earth-500 hover:text-earth-700 hover:border-earth-600'
                 )}
               >
                 <Icon className="h-4 w-4" />
@@ -338,27 +338,27 @@ export function ReferralProgram({
         >
           {/* How It Works */}
           <Card className="p-6">
-            <h3 className="text-lg font-semibold text-brown-800 mb-4">How It Works</h3>
+            <h3 className="text-lg font-semibold text-earth-800 mb-4">How It Works</h3>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
-                <div className="w-8 h-8 bg-brown-800 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
+                <div className="w-8 h-8 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
                 <div>
-                  <h4 className="font-medium text-brown-800">Share Your Code</h4>
-                  <p className="text-sm text-brown-600">Send your unique referral code to friends and family</p>
+                  <h4 className="font-medium text-earth-800">Share Your Code</h4>
+                  <p className="text-sm text-earth-600">Send your unique referral code to friends and family</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
-                <div className="w-8 h-8 bg-brown-800 text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
+                <div className="w-8 h-8 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
                 <div>
-                  <h4 className="font-medium text-brown-800">They Save Money</h4>
-                  <p className="text-sm text-brown-600">Your friends get ₹200 off their first order</p>
+                  <h4 className="font-medium text-earth-800">They Save Money</h4>
+                  <p className="text-sm text-earth-600">Your friends get ₹200 off their first order</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
-                <div className="w-8 h-8 bg-brown-800 text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
+                <div className="w-8 h-8 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
                 <div>
-                  <h4 className="font-medium text-brown-800">You Earn Points</h4>
-                  <p className="text-sm text-brown-600">Get 300 points when they complete their first order</p>
+                  <h4 className="font-medium text-earth-800">You Earn Points</h4>
+                  <p className="text-sm text-earth-600">Get 300 points when they complete their first order</p>
                 </div>
               </div>
             </div>
@@ -366,7 +366,7 @@ export function ReferralProgram({
 
           {/* Referral Code */}
           <Card className="p-6">
-            <h3 className="text-lg font-semibold text-brown-800 mb-4">Your Referral Code</h3>
+            <h3 className="text-lg font-semibold text-earth-800 mb-4">Your Referral Code</h3>
             <div className="flex items-center space-x-2 mb-4">
               <Input value={referralCode} readOnly className="font-mono" />
               <Button onClick={copyReferralCode} variant="outline">
@@ -418,11 +418,11 @@ export function ReferralProgram({
           transition={{ duration: 0.3 }}
         >
           <Card className="p-6 max-w-2xl mx-auto">
-            <h3 className="text-lg font-semibold text-brown-800 mb-4">Invite Friends via Email</h3>
+            <h3 className="text-lg font-semibold text-earth-800 mb-4">Invite Friends via Email</h3>
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-brown-800 mb-2">
+                <label className="block text-sm font-medium text-earth-800 mb-2">
                   Friend's Email Addresses
                 </label>
                 <Textarea
@@ -431,13 +431,13 @@ export function ReferralProgram({
                   placeholder="Enter email addresses separated by commas..."
                   rows={3}
                 />
-                <p className="text-xs text-brown-600 mt-1">
+                <p className="text-xs text-earth-600 mt-1">
                   Separate multiple emails with commas
                 </p>
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-brown-800 mb-2">
+                <label className="block text-sm font-medium text-earth-800 mb-2">
                   Personal Message
                 </label>
                 <Textarea
@@ -447,7 +447,7 @@ export function ReferralProgram({
                 />
               </div>
               
-              <Button className="w-full bg-brown-800 hover:bg-brown-900">
+              <Button className="w-full bg-earth-800 hover:bg-earth-900">
                 <Mail className="h-4 w-4 mr-2" />
                 Send Invitations
               </Button>
@@ -463,7 +463,7 @@ export function ReferralProgram({
           transition={{ duration: 0.3 }}
         >
           <Card className="p-6">
-            <h3 className="text-lg font-semibold text-brown-800 mb-6">Your Referrals</h3>
+            <h3 className="text-lg font-semibold text-earth-800 mb-6">Your Referrals</h3>
             
             <div className="space-y-4">
               {mockReferrals.map((referral) => (
@@ -471,9 +471,9 @@ export function ReferralProgram({
                   <div className="flex items-center space-x-4">
                     {getStatusIcon(referral.status)}
                     <div>
-                      <p className="font-medium text-brown-800">{referral.friendName}</p>
-                      <p className="text-sm text-brown-600">{referral.friendEmail}</p>
-                      <p className="text-xs text-brown-500">
+                      <p className="font-medium text-earth-800">{referral.friendName}</p>
+                      <p className="text-sm text-earth-600">{referral.friendEmail}</p>
+                      <p className="text-xs text-earth-500">
                         Referred {referral.dateReferred.toLocaleDateString()}
                       </p>
                     </div>

@@ -92,9 +92,9 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
   if (error || !order) {
     return (
       <div className="text-center py-12">
-        <Package className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-lg font-medium text-gray-100 mb-2">Order not found</h3>
-        <p className="text-gray-600">{error || 'The order you are looking for does not exist.'}</p>
+        <Package className="h-16 w-16 text-cream-300 mx-auto mb-4" />
+        <h3 className="text-lg font-medium text-cream-100 mb-2">Order not found</h3>
+        <p className="text-earth-600">{error || 'The order you are looking for does not exist.'}</p>
       </div>
     )
   }
@@ -105,11 +105,11 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       {/* Header */}
-      <div className="bg-gray-800 rounded-lg shadow-sm border p-6">
+      <div className="bg-earth-800 rounded-lg shadow-sm border p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-2xl font-bold text-gray-100">Order Tracking</h1>
-            <p className="text-gray-600">Track your order status and delivery progress</p>
+            <h1 className="text-2xl font-bold text-cream-100">Order Tracking</h1>
+            <p className="text-earth-600">Track your order status and delivery progress</p>
           </div>
           <Badge variant={order.status === OrderStatus.DELIVERED ? 'success' : 'default'} className="text-sm">
             {order.status}
@@ -118,7 +118,7 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="space-y-1">
-            <p className="text-sm text-gray-600">Order Number</p>
+            <p className="text-sm text-earth-600">Order Number</p>
             <div className="flex items-center space-x-2">
               <p className="font-mono font-semibold">{order.orderNumber}</p>
               <Button
@@ -133,12 +133,12 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
           </div>
 
           <div className="space-y-1">
-            <p className="text-sm text-gray-600">Order Date</p>
+            <p className="text-sm text-earth-600">Order Date</p>
             <p className="font-semibold">{new Date(order.createdAt).toLocaleDateString()}</p>
           </div>
 
           <div className="space-y-1">
-            <p className="text-sm text-gray-600">Total Amount</p>
+            <p className="text-sm text-earth-600">Total Amount</p>
             <p className="font-semibold text-primary-600">{formatPrice(order.total)}</p>
           </div>
         </div>
@@ -159,12 +159,12 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
       </div>
 
       {/* Tracking Timeline */}
-      <div className="bg-gray-800 rounded-lg shadow-sm border p-6">
+      <div className="bg-earth-800 rounded-lg shadow-sm border p-6">
         <h2 className="text-lg font-semibold mb-6">Tracking Progress</h2>
         
         <div className="relative">
           {/* Progress Line */}
-          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200" />
+          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-cream-200" />
           <div 
             className="absolute left-6 top-0 w-0.5 bg-green-500 transition-all duration-1000"
             style={{ height: `${(currentStepIndex / trackingSteps.length) * 100}%` }}
@@ -184,7 +184,7 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
                 <div className={`relative z-10 flex items-center justify-center w-12 h-12 rounded-full border-4 transition-all duration-300 ${
                   step.isCompleted
                     ? 'bg-green-500 border-green-500 text-white'
-                    : 'bg-gray-800 border-gray-600 text-gray-400'
+                    : 'bg-earth-800 border-earth-600 text-earth-400'
                 }`}>
                   {step.isCompleted ? (
                     <CheckCircle className="h-6 w-6" />
@@ -196,11 +196,11 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
                 {/* Step Content */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
-                    <h3 className={`font-medium ${step.isCompleted ? 'text-gray-100' : 'text-gray-500'}`}>
+                    <h3 className={`font-medium ${step.isCompleted ? 'text-cream-100' : 'text-earth-500'}`}>
                       {step.label}
                     </h3>
                     {step.trackingInfo && (
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-earth-500">
                         {new Date(step.trackingInfo.timestamp).toLocaleString()}
                       </p>
                     )}
@@ -208,9 +208,9 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
                   
                   {step.trackingInfo && (
                     <div className="mt-1 space-y-1">
-                      <p className="text-sm text-gray-600">{step.trackingInfo.message}</p>
+                      <p className="text-sm text-earth-600">{step.trackingInfo.message}</p>
                       {step.trackingInfo.location && (
-                        <div className="flex items-center space-x-1 text-xs text-gray-500">
+                        <div className="flex items-center space-x-1 text-xs text-earth-500">
                           <MapPin className="h-3 w-3" />
                           <span>{step.trackingInfo.location}</span>
                         </div>
@@ -225,7 +225,7 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
       </div>
 
       {/* Order Items */}
-      <div className="bg-gray-800 rounded-lg shadow-sm border p-6">
+      <div className="bg-earth-800 rounded-lg shadow-sm border p-6">
         <h2 className="text-lg font-semibold mb-4">Order Items</h2>
         <div className="space-y-4">
           {order.items.map((item) => (
@@ -236,9 +236,9 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
                 className="w-16 h-16 object-cover rounded-md"
               />
               <div className="flex-1">
-                <h3 className="font-medium text-gray-100">{item.name}</h3>
-                <p className="text-sm text-gray-600">{item.description}</p>
-                <div className="flex items-center space-x-4 mt-1 text-xs text-gray-500">
+                <h3 className="font-medium text-cream-100">{item.name}</h3>
+                <p className="text-sm text-earth-600">{item.description}</p>
+                <div className="flex items-center space-x-4 mt-1 text-xs text-earth-500">
                   <span>{item.nutritionalInfo.protein}g protein</span>
                   <span>{item.nutritionalInfo.calories} cal</span>
                   <span>Qty: {item.quantity}</span>
@@ -246,7 +246,7 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
               </div>
               <div className="text-right">
                 <p className="font-semibold">{formatPrice(item.price * item.quantity)}</p>
-                <p className="text-sm text-gray-500">{formatPrice(item.price)} each</p>
+                <p className="text-sm text-earth-500">{formatPrice(item.price)} each</p>
               </div>
             </div>
           ))}
@@ -254,12 +254,12 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
       </div>
 
       {/* Delivery Address */}
-      <div className="bg-gray-800 rounded-lg shadow-sm border p-6">
+      <div className="bg-earth-800 rounded-lg shadow-sm border p-6">
         <h2 className="text-lg font-semibold mb-4 flex items-center">
           <MapPin className="h-5 w-5 mr-2" />
           Delivery Address
         </h2>
-        <div className="text-gray-700">
+        <div className="text-earth-700">
           <p className="font-medium">
             {order.shippingAddress.firstName} {order.shippingAddress.lastName}
           </p>

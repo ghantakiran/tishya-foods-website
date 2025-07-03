@@ -52,7 +52,7 @@ const mockData: MockLoyaltyData = {
 
 const tierColors = {
   'Bronze Member': 'bg-amber-600',
-  'Silver Member': 'bg-gray-400',
+  'Silver Member': 'bg-earth-400',
   'Gold Member': 'bg-yellow-500',
   'Platinum Elite': 'bg-purple-600'
 }
@@ -113,7 +113,7 @@ export function LoyaltyWidget({
   const progressPercentage = (mockData.currentPoints / (mockData.currentPoints + mockData.pointsToNextTier)) * 100
 
   const TierIcon = tierIcons[mockData.currentTier as keyof typeof tierIcons] || Star
-  const tierColor = tierColors[mockData.currentTier as keyof typeof tierColors] || 'bg-gray-400'
+  const tierColor = tierColors[mockData.currentTier as keyof typeof tierColors] || 'bg-earth-400'
 
   if (!isVisible) return null
 
@@ -186,7 +186,7 @@ export function LoyaltyWidget({
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
             >
-              <Card className="w-80 bg-gray-800/95 backdrop-blur-sm border shadow-xl">
+              <Card className="w-80 bg-earth-800/95 backdrop-blur-sm border shadow-xl">
                 {/* Header */}
                 <div className="flex items-center justify-between p-4 border-b">
                   <div className="flex items-center space-x-3">
@@ -194,10 +194,10 @@ export function LoyaltyWidget({
                       <TierIcon className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-brown-800 text-sm">
+                      <h3 className="font-semibold text-earth-800 text-sm">
                         {mockData.currentTier}
                       </h3>
-                      <p className="text-xs text-brown-600">
+                      <p className="text-xs text-earth-600">
                         {mockData.currentPoints.toLocaleString()} points
                       </p>
                     </div>
@@ -225,15 +225,15 @@ export function LoyaltyWidget({
                 {/* Progress to Next Tier */}
                 <div className="p-4 border-b">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-xs font-medium text-brown-800">
+                    <span className="text-xs font-medium text-earth-800">
                       Progress to {mockData.nextTier}
                     </span>
-                    <span className="text-xs text-brown-600">
+                    <span className="text-xs text-earth-600">
                       {mockData.pointsToNextTier} points to go
                     </span>
                   </div>
                   <Progress value={progressPercentage} className="h-2 mb-2" />
-                  <p className="text-xs text-brown-600">
+                  <p className="text-xs text-earth-600">
                     Earn {mockData.pointsToNextTier} more points to unlock better benefits!
                   </p>
                 </div>
@@ -242,14 +242,14 @@ export function LoyaltyWidget({
                 <div className="p-4 border-b">
                   <div className="grid grid-cols-2 gap-4 text-center">
                     <div>
-                      <div className="text-lg font-bold text-brown-800">
+                      <div className="text-lg font-bold text-earth-800">
                         {mockData.currentPoints}
                       </div>
-                      <div className="text-xs text-brown-600">Available Points</div>
+                      <div className="text-xs text-earth-600">Available Points</div>
                     </div>
                     <div>
-                      <div className="text-lg font-bold text-brown-800">15%</div>
-                      <div className="text-xs text-brown-600">Current Discount</div>
+                      <div className="text-lg font-bold text-earth-800">15%</div>
+                      <div className="text-xs text-earth-600">Current Discount</div>
                     </div>
                   </div>
                 </div>
@@ -260,7 +260,7 @@ export function LoyaltyWidget({
                     <Button
                       variant="outline"
                       size="sm"
-                      className="w-full text-xs h-8 hover:bg-brown-50"
+                      className="w-full text-xs h-8 hover:bg-earth-50"
                     >
                       <Gift className="h-3 w-3 mr-2" />
                       View Rewards
@@ -272,7 +272,7 @@ export function LoyaltyWidget({
                     <Button
                       variant="outline"
                       size="sm"
-                      className="w-full text-xs h-8 hover:bg-brown-50"
+                      className="w-full text-xs h-8 hover:bg-earth-50"
                     >
                       <TrendingUp className="h-3 w-3 mr-2" />
                       Full Dashboard
@@ -282,22 +282,22 @@ export function LoyaltyWidget({
                 </div>
 
                 {/* Tier Benefits Preview */}
-                <div className="p-4 bg-brown-50 border-t">
-                  <h4 className="text-xs font-semibold text-brown-800 mb-2">
+                <div className="p-4 bg-earth-50 border-t">
+                  <h4 className="text-xs font-semibold text-earth-800 mb-2">
                     Your Benefits
                   </h4>
                   <div className="space-y-1">
                     <div className="flex items-center space-x-2 text-xs">
                       <Star className="h-3 w-3 text-gold" />
-                      <span className="text-brown-700">8% off all orders</span>
+                      <span className="text-earth-700">8% off all orders</span>
                     </div>
                     <div className="flex items-center space-x-2 text-xs">
                       <Gift className="h-3 w-3 text-blue-500" />
-                      <span className="text-brown-700">Free shipping on ₹599+</span>
+                      <span className="text-earth-700">Free shipping on ₹599+</span>
                     </div>
                     <div className="flex items-center space-x-2 text-xs">
                       <Zap className="h-3 w-3 text-purple-500" />
-                      <span className="text-brown-700">Early access to sales</span>
+                      <span className="text-earth-700">Early access to sales</span>
                     </div>
                   </div>
                 </div>

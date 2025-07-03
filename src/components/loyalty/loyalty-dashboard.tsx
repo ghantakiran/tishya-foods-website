@@ -127,7 +127,7 @@ const loyaltyTiers: LoyaltyTier[] = [
     id: 'silver',
     name: 'Silver Member',
     minPoints: 1000,
-    color: 'bg-gray-400',
+    color: 'bg-earth-400',
     icon: Trophy,
     benefits: {
       discountPercentage: 8,
@@ -339,7 +339,7 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
   return (
     <div className="max-w-6xl mx-auto space-y-6">
       {/* Header with Tier Status */}
-      <Card className="p-6 bg-gradient-to-r from-brown-50 to-primary-50">
+      <Card className="p-6 bg-gradient-to-r from-earth-50 to-primary-50">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-center space-x-4 mb-4 lg:mb-0">
             <div className={cn(
@@ -349,10 +349,10 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
               {currentTier?.icon && <currentTier.icon className="h-8 w-8" />}
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-brown-800">
+              <h1 className="text-2xl font-bold text-earth-800">
                 {currentTier?.name}
               </h1>
-              <p className="text-brown-600">
+              <p className="text-earth-600">
                 {member.currentPoints.toLocaleString()} points available
               </p>
             </div>
@@ -360,20 +360,20 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
             <div>
-              <div className="text-2xl font-bold text-brown-800">{member.totalOrders}</div>
-              <div className="text-xs text-brown-600">Orders</div>
+              <div className="text-2xl font-bold text-earth-800">{member.totalOrders}</div>
+              <div className="text-xs text-earth-600">Orders</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-brown-800">{formatPrice(member.totalSpent)}</div>
-              <div className="text-xs text-brown-600">Spent</div>
+              <div className="text-2xl font-bold text-earth-800">{formatPrice(member.totalSpent)}</div>
+              <div className="text-xs text-earth-600">Spent</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-brown-800">{member.referrals}</div>
-              <div className="text-xs text-brown-600">Referrals</div>
+              <div className="text-2xl font-bold text-earth-800">{member.referrals}</div>
+              <div className="text-xs text-earth-600">Referrals</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-brown-800">{member.streakDays}</div>
-              <div className="text-xs text-brown-600">Day Streak</div>
+              <div className="text-2xl font-bold text-earth-800">{member.streakDays}</div>
+              <div className="text-xs text-earth-600">Day Streak</div>
             </div>
           </div>
         </div>
@@ -382,10 +382,10 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
         {nextTier && (
           <div className="mt-6">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm font-medium text-brown-800">
+              <span className="text-sm font-medium text-earth-800">
                 Progress to {nextTier.name}
               </span>
-              <span className="text-sm text-brown-600">
+              <span className="text-sm text-earth-600">
                 {member.pointsToNextTier} points to go
               </span>
             </div>
@@ -395,7 +395,7 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
       </Card>
 
       {/* Navigation Tabs */}
-      <div className="border-b border-gray-200">
+      <div className="border-b border-earth-200">
         <nav className="-mb-px flex space-x-8">
           {tabs.map((tab) => {
             const Icon = tab.icon
@@ -406,8 +406,8 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
                 className={cn(
                   'flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm transition-colors',
                   activeTab === tab.id
-                    ? 'border-brown-800 text-brown-800'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    ? 'border-earth-800 text-earth-800'
+                    : 'border-transparent text-earth-500 hover:text-earth-700 hover:border-earth-300'
                 )}
               >
                 <Icon className="h-4 w-4" />
@@ -432,7 +432,7 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
           >
             {/* Current Tier Benefits */}
             <Card className="p-6">
-              <h3 className="text-lg font-semibold text-brown-800 mb-4 flex items-center">
+              <h3 className="text-lg font-semibold text-earth-800 mb-4 flex items-center">
                 <Crown className="h-5 w-5 mr-2" />
                 Your Benefits
               </h3>
@@ -440,7 +440,7 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
                 {currentTier?.perks.map((perk, index) => (
                   <div key={index} className="flex items-start space-x-2">
                     <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm text-brown-700">{perk}</span>
+                    <span className="text-sm text-earth-700">{perk}</span>
                   </div>
                 ))}
               </div>
@@ -448,7 +448,7 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
 
             {/* Quick Actions */}
             <Card className="p-6">
-              <h3 className="text-lg font-semibold text-brown-800 mb-4">
+              <h3 className="text-lg font-semibold text-earth-800 mb-4">
                 Quick Actions
               </h3>
               <div className="grid grid-cols-2 gap-3">
@@ -473,7 +473,7 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
 
             {/* Recent Activity */}
             <Card className="p-6 lg:col-span-2">
-              <h3 className="text-lg font-semibold text-brown-800 mb-4">
+              <h3 className="text-lg font-semibold text-earth-800 mb-4">
                 Recent Activity
               </h3>
               <div className="space-y-3">
@@ -483,8 +483,8 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
                       <Coins className="h-4 w-4 text-white" />
                     </div>
                     <div>
-                      <p className="font-medium text-brown-800">Earned 150 points</p>
-                      <p className="text-sm text-brown-600">Order #TF-12345 • 2 days ago</p>
+                      <p className="font-medium text-earth-800">Earned 150 points</p>
+                      <p className="text-sm text-earth-600">Order #TF-12345 • 2 days ago</p>
                     </div>
                   </div>
                   <Badge className="bg-green-100 text-green-800">+150</Badge>
@@ -496,8 +496,8 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
                       <Trophy className="h-4 w-4 text-white" />
                     </div>
                     <div>
-                      <p className="font-medium text-brown-800">Achievement unlocked</p>
-                      <p className="text-sm text-brown-600">Big Spender • 5 days ago</p>
+                      <p className="font-medium text-earth-800">Achievement unlocked</p>
+                      <p className="text-sm text-earth-600">Big Spender • 5 days ago</p>
                     </div>
                   </div>
                   <Badge className="bg-blue-100 text-blue-800">+500</Badge>
@@ -522,28 +522,28 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
                   key={reward.id} 
                   className={cn(
                     'p-6 transition-all duration-200 cursor-pointer hover:shadow-lg',
-                    canRedeemReward(reward) ? 'border-green-200' : 'border-gray-200 opacity-75'
+                    canRedeemReward(reward) ? 'border-green-200' : 'border-earth-200 opacity-75'
                   )}
                   onClick={() => setSelectedReward(reward)}
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center space-x-2">
                       {getRewardCategoryIcon(reward.category)}
-                      <h4 className="font-semibold text-brown-800">{reward.name}</h4>
+                      <h4 className="font-semibold text-earth-800">{reward.name}</h4>
                     </div>
                     {canRedeemReward(reward) ? (
                       <Unlock className="h-4 w-4 text-green-500" />
                     ) : (
-                      <Lock className="h-4 w-4 text-gray-400" />
+                      <Lock className="h-4 w-4 text-earth-400" />
                     )}
                   </div>
                   
-                  <p className="text-sm text-brown-600 mb-4">{reward.description}</p>
+                  <p className="text-sm text-earth-600 mb-4">{reward.description}</p>
                   
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-1">
-                      <Coins className="h-4 w-4 text-brown-600" />
-                      <span className="font-bold text-brown-800">{reward.pointsCost}</span>
+                      <Coins className="h-4 w-4 text-earth-600" />
+                      <span className="font-bold text-earth-800">{reward.pointsCost}</span>
                     </div>
                     <Badge variant="outline">{reward.availability} left</Badge>
                   </div>
@@ -582,7 +582,7 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
                   key={achievement.id} 
                   className={cn(
                     'p-6 transition-all duration-200',
-                    achievement.unlocked ? 'border-gold bg-yellow-50' : 'border-gray-200'
+                    achievement.unlocked ? 'border-gold bg-yellow-50' : 'border-earth-200'
                   )}
                 >
                   <div className="text-center">
@@ -592,15 +592,15 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
                     )}>
                       {achievement.icon}
                     </div>
-                    <h4 className="font-semibold text-brown-800 mb-2">
+                    <h4 className="font-semibold text-earth-800 mb-2">
                       {achievement.name}
                     </h4>
-                    <p className="text-sm text-brown-600 mb-4">
+                    <p className="text-sm text-earth-600 mb-4">
                       {achievement.description}
                     </p>
                     <div className="flex items-center justify-center space-x-2">
-                      <Coins className="h-4 w-4 text-brown-600" />
-                      <span className="font-bold text-brown-800">
+                      <Coins className="h-4 w-4 text-earth-600" />
+                      <span className="font-bold text-earth-800">
                         {achievement.points} points
                       </span>
                     </div>
@@ -630,7 +630,7 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
             transition={{ duration: 0.3 }}
           >
             <Card className="p-6">
-              <h3 className="text-lg font-semibold text-brown-800 mb-6">
+              <h3 className="text-lg font-semibold text-earth-800 mb-6">
                 Points History
               </h3>
               <div className="space-y-4">
@@ -648,10 +648,10 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
                         )}
                       </div>
                       <div>
-                        <p className="font-medium text-brown-800">
+                        <p className="font-medium text-earth-800">
                           {i % 2 === 0 ? 'Points earned from order' : 'Points redeemed for reward'}
                         </p>
-                        <p className="text-sm text-brown-600">
+                        <p className="text-sm text-earth-600">
                           {new Date(Date.now() - i * 24 * 60 * 60 * 1000).toLocaleDateString()}
                         </p>
                       </div>

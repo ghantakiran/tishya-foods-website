@@ -93,9 +93,9 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="pt-20 min-h-screen bg-gray-900">
+    <div className="pt-20 min-h-screen bg-earth-900">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
+      <section className="py-20 bg-gradient-to-br from-earth-900 to-earth-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center max-w-3xl mx-auto"
@@ -103,10 +103,10 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-100 mb-6 font-montserrat">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-cream-100 mb-6 font-montserrat">
               Get In Touch
             </h1>
-            <p className="text-xl text-gray-300 leading-relaxed">
+            <p className="text-xl text-cream-300 leading-relaxed">
               Have questions about our products or need help with your order? 
               We&apos;re here to help! Reach out to our friendly customer service team.
             </p>
@@ -121,7 +121,7 @@ export default function ContactPage() {
             {contactInfo.map((info, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-800 rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-all duration-300"
+                className="bg-earth-800 rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-all duration-300"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -129,11 +129,11 @@ export default function ContactPage() {
                 whileHover={{ y: -5 }}
               >
                 <div className="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <info.icon className="h-8 w-8 text-gray-100" />
+                  <info.icon className="h-8 w-8 text-cream-100" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-100 mb-2">{info.title}</h3>
+                <h3 className="text-xl font-bold text-cream-100 mb-2">{info.title}</h3>
                 <div className="text-lg font-semibold text-primary-600 mb-3">{info.details}</div>
-                <p className="text-gray-300 text-sm leading-relaxed">{info.description}</p>
+                <p className="text-cream-300 text-sm leading-relaxed">{info.description}</p>
               </motion.div>
             ))}
           </div>
@@ -151,16 +151,16 @@ export default function ContactPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <div className="bg-gray-800 rounded-2xl p-8 shadow-lg">
+              <div className="bg-earth-800 rounded-2xl p-8 shadow-lg">
                 <div className="flex items-center mb-6">
                   <MessageCircle className="h-6 w-6 text-primary-600 mr-3" />
-                  <h2 className="text-2xl font-bold text-gray-100">Send us a Message</h2>
+                  <h2 className="text-2xl font-bold text-cream-100">Send us a Message</h2>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-semibold text-gray-100 mb-2">
+                      <label htmlFor="name" className="block text-sm font-semibold text-cream-100 mb-2">
                         Full Name *
                       </label>
                       <input
@@ -170,12 +170,12 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
+                        className="w-full px-4 py-3 border border-earth-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
                         placeholder="Your full name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-gray-100 mb-2">
+                      <label htmlFor="email" className="block text-sm font-semibold text-cream-100 mb-2">
                         Email Address *
                       </label>
                       <input
@@ -185,7 +185,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
+                        className="w-full px-4 py-3 border border-earth-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
                         placeholder="your.email@example.com"
                       />
                     </div>
@@ -193,7 +193,7 @@ export default function ContactPage() {
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-gray-100 mb-2">
+                      <label htmlFor="phone" className="block text-sm font-semibold text-cream-100 mb-2">
                         Phone Number
                       </label>
                       <input
@@ -202,12 +202,12 @@ export default function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
+                        className="w-full px-4 py-3 border border-earth-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
                         placeholder="+91 12345 67890"
                       />
                     </div>
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-semibold text-gray-100 mb-2">
+                      <label htmlFor="subject" className="block text-sm font-semibold text-cream-100 mb-2">
                         Subject *
                       </label>
                       <select
@@ -216,7 +216,7 @@ export default function ContactPage() {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
+                        className="w-full px-4 py-3 border border-earth-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
                       >
                         <option value="">Select a subject</option>
                         <option value="product-inquiry">Product Inquiry</option>
@@ -229,7 +229,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-semibold text-gray-100 mb-2">
+                    <label htmlFor="message" className="block text-sm font-semibold text-cream-100 mb-2">
                       Message *
                     </label>
                     <textarea
@@ -239,7 +239,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors resize-none"
+                      className="w-full px-4 py-3 border border-earth-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors resize-none"
                       placeholder="Tell us how we can help you..."
                     />
                   </div>
@@ -270,21 +270,21 @@ export default function ContactPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-2xl font-bold text-gray-100 mb-8">Frequently Asked Questions</h2>
+              <h2 className="text-2xl font-bold text-cream-100 mb-8">Frequently Asked Questions</h2>
               
               <div className="space-y-4">
                 {faqs.map((faq, index) => (
                   <motion.div
                     key={index}
-                    className="bg-gray-800 rounded-lg border border-gray-200 overflow-hidden"
+                    className="bg-earth-800 rounded-lg border border-earth-200 overflow-hidden"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
                     <details className="group">
-                      <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-900 transition-colors">
-                        <h3 className="font-semibold text-gray-100 pr-4">{faq.question}</h3>
+                      <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-earth-900 transition-colors">
+                        <h3 className="font-semibold text-cream-100 pr-4">{faq.question}</h3>
                         <span className="text-primary-600 group-open:rotate-180 transition-transform duration-200">
                           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -292,7 +292,7 @@ export default function ContactPage() {
                         </span>
                       </summary>
                       <div className="px-6 pb-6">
-                        <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
+                        <p className="text-cream-300 leading-relaxed">{faq.answer}</p>
                       </div>
                     </details>
                   </motion.div>
@@ -300,8 +300,8 @@ export default function ContactPage() {
               </div>
 
               <div className="mt-8 p-6 bg-primary-100 rounded-lg">
-                <h3 className="font-semibold text-gray-100 mb-2">Still have questions?</h3>
-                <p className="text-gray-300 text-sm">
+                <h3 className="font-semibold text-cream-100 mb-2">Still have questions?</h3>
+                <p className="text-cream-300 text-sm">
                   Can&apos;t find the answer you&apos;re looking for? Feel free to reach out to our 
                   customer service team using the contact form or any of the methods above.
                 </p>

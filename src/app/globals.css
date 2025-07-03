@@ -9,6 +9,28 @@
   --secondary-color: #eab308;
   --earth-color: #a0845c;
   --fresh-color: #10b981;
+  
+  /* Brand Colors */
+  --primary-500: #22c55e;
+  --primary-600: #16a34a;
+  --emerald-900: #064e3b;
+  --emerald-800: #065f46;
+  --emerald-600: #059669;
+  --emerald-500: #10b981;
+  --emerald-400: #34d399;
+  --lime-500: #84cc16;
+  --lime-400: #a3e635;
+  --yellow-400: #facc15;
+  --orange-500: #f97316;
+  --orange-400: #fb923c;
+  --red-500: #ef4444;
+  --red-400: #f87171;
+  --purple-500: #a855f7;
+  --pink-500: #ec4899;
+  --teal-900: #134e4a;
+  --teal-600: #0d9488;
+  --teal-500: #14b8a6;
+  --green-800: #166534;
 }
 
 @theme inline {

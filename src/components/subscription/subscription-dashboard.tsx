@@ -143,7 +143,7 @@ export function SubscriptionDashboard({
       case 'cancelled':
         return <XCircle className="h-5 w-5 text-red-500" />
       default:
-        return <AlertCircle className="h-5 w-5 text-gray-500" />
+        return <AlertCircle className="h-5 w-5 text-earth-500" />
     }
   }
 
@@ -156,7 +156,7 @@ export function SubscriptionDashboard({
       case 'cancelled':
         return 'bg-red-100 text-red-800'
       default:
-        return 'bg-gray-100 text-gray-100'
+        return 'bg-cream-100 text-cream-100'
     }
   }
 
@@ -171,7 +171,7 @@ export function SubscriptionDashboard({
       case 'failed':
         return 'bg-red-100 text-red-800'
       default:
-        return 'bg-gray-100 text-gray-100'
+        return 'bg-cream-100 text-cream-100'
     }
   }
 
@@ -202,7 +202,7 @@ export function SubscriptionDashboard({
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-brown-800 mb-2">
+          <h1 className="text-2xl font-bold text-earth-800 mb-2">
             My Subscription
           </h1>
           <div className="flex items-center space-x-3">
@@ -210,7 +210,7 @@ export function SubscriptionDashboard({
             <Badge className={getStatusColor(subscription.status)}>
               {subscription.status.charAt(0).toUpperCase() + subscription.status.slice(1)}
             </Badge>
-            <span className="text-brown-600">{subscription.planName}</span>
+            <span className="text-earth-600">{subscription.planName}</span>
           </div>
         </div>
         
@@ -232,7 +232,7 @@ export function SubscriptionDashboard({
 
       {/* Quick Actions */}
       <Card className="p-6">
-        <h3 className="text-lg font-semibold text-brown-800 mb-4">Quick Actions</h3>
+        <h3 className="text-lg font-semibold text-earth-800 mb-4">Quick Actions</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Button
             variant="outline"
@@ -273,7 +273,7 @@ export function SubscriptionDashboard({
       </Card>
 
       {/* Tabs */}
-      <div className="border-b border-gray-600">
+      <div className="border-b border-earth-600">
         <nav className="-mb-px flex space-x-8">
           {tabs.map((tab) => {
             const Icon = tab.icon
@@ -284,8 +284,8 @@ export function SubscriptionDashboard({
                 className={cn(
                   'flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm transition-colors',
                   activeTab === tab.id
-                    ? 'border-brown-800 text-brown-800'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-600'
+                    ? 'border-earth-800 text-earth-800'
+                    : 'border-transparent text-earth-500 hover:text-earth-700 hover:border-earth-600'
                 )}
               >
                 <Icon className="h-4 w-4" />
@@ -310,26 +310,26 @@ export function SubscriptionDashboard({
           >
             {/* Next Delivery */}
             <Card className="p-6">
-              <h3 className="text-lg font-semibold text-brown-800 mb-4 flex items-center">
+              <h3 className="text-lg font-semibold text-earth-800 mb-4 flex items-center">
                 <Truck className="h-5 w-5 mr-2" />
                 Next Delivery
               </h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-brown-600">Date:</span>
+                  <span className="text-earth-600">Date:</span>
                   <span className="font-semibold">{formatDate(subscription.nextDelivery)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-brown-600">Frequency:</span>
+                  <span className="text-earth-600">Frequency:</span>
                   <span className="font-semibold capitalize">{subscription.frequency}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-brown-600">Items:</span>
+                  <span className="text-earth-600">Items:</span>
                   <span className="font-semibold">{subscription.products.length} products</span>
                 </div>
                 <div className="flex justify-between items-center pt-3 border-t">
-                  <span className="text-brown-600">Total:</span>
-                  <span className="text-xl font-bold text-brown-800">
+                  <span className="text-earth-600">Total:</span>
+                  <span className="text-xl font-bold text-earth-800">
                     {formatPrice(subscription.totalPrice)}
                   </span>
                 </div>
@@ -338,7 +338,7 @@ export function SubscriptionDashboard({
 
             {/* Payment Method */}
             <Card className="p-6">
-              <h3 className="text-lg font-semibold text-brown-800 mb-4 flex items-center">
+              <h3 className="text-lg font-semibold text-earth-800 mb-4 flex items-center">
                 <CreditCard className="h-5 w-5 mr-2" />
                 Payment Method
               </h3>
@@ -357,10 +357,10 @@ export function SubscriptionDashboard({
 
             {/* Delivery Address */}
             <Card className="p-6">
-              <h3 className="text-lg font-semibold text-brown-800 mb-4">
+              <h3 className="text-lg font-semibold text-earth-800 mb-4">
                 Delivery Address
               </h3>
-              <div className="text-brown-600">
+              <div className="text-earth-600">
                 <p>{subscription.deliveryAddress.street}</p>
                 <p>
                   {subscription.deliveryAddress.city}, {subscription.deliveryAddress.state} {subscription.deliveryAddress.zipCode}
@@ -373,12 +373,12 @@ export function SubscriptionDashboard({
 
             {/* Preferences */}
             <Card className="p-6">
-              <h3 className="text-lg font-semibold text-brown-800 mb-4">
+              <h3 className="text-lg font-semibold text-earth-800 mb-4">
                 Preferences
               </h3>
               <div className="space-y-3">
                 <div>
-                  <span className="text-brown-600 text-sm">Dietary Restrictions:</span>
+                  <span className="text-earth-600 text-sm">Dietary Restrictions:</span>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {subscription.preferences.dietaryRestrictions.map((restriction) => (
                       <Badge key={restriction} variant="secondary" className="text-xs">
@@ -388,13 +388,13 @@ export function SubscriptionDashboard({
                   </div>
                 </div>
                 <div>
-                  <span className="text-brown-600 text-sm">Nutrition Goal:</span>
-                  <p className="text-brown-800 capitalize">{subscription.preferences.nutritionGoal}</p>
+                  <span className="text-earth-600 text-sm">Nutrition Goal:</span>
+                  <p className="text-earth-800 capitalize">{subscription.preferences.nutritionGoal}</p>
                 </div>
                 {subscription.preferences.specialInstructions && (
                   <div>
-                    <span className="text-brown-600 text-sm">Special Instructions:</span>
-                    <p className="text-brown-800 text-sm">{subscription.preferences.specialInstructions}</p>
+                    <span className="text-earth-600 text-sm">Special Instructions:</span>
+                    <p className="text-earth-800 text-sm">{subscription.preferences.specialInstructions}</p>
                   </div>
                 )}
               </div>
@@ -413,7 +413,7 @@ export function SubscriptionDashboard({
           >
             <Card className="p-6">
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-lg font-semibold text-brown-800">
+                <h3 className="text-lg font-semibold text-earth-800">
                   Subscription Products
                 </h3>
                 <Button variant="outline">
@@ -425,14 +425,14 @@ export function SubscriptionDashboard({
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {subscription.products.map((item, index) => (
                   <div key={index} className="border rounded-lg p-4">
-                    <h4 className="font-semibold text-brown-800 mb-2">
+                    <h4 className="font-semibold text-earth-800 mb-2">
                       {item.product.name}
                     </h4>
-                    <p className="text-sm text-brown-600 mb-3">
+                    <p className="text-sm text-earth-600 mb-3">
                       Quantity: {item.quantity}
                     </p>
                     <div className="flex justify-between items-center">
-                      <span className="font-bold text-brown-800">
+                      <span className="font-bold text-earth-800">
                         {formatPrice(item.product.price * item.quantity)}
                       </span>
                       <Button variant="ghost" size="sm">
@@ -456,14 +456,14 @@ export function SubscriptionDashboard({
             transition={{ duration: 0.3 }}
           >
             <Card className="p-6">
-              <h3 className="text-lg font-semibold text-brown-800 mb-6">
+              <h3 className="text-lg font-semibold text-earth-800 mb-6">
                 Delivery Schedule
               </h3>
               
               <div className="space-y-6">
                 {/* Frequency Settings */}
                 <div>
-                  <h4 className="font-medium text-brown-800 mb-3">Delivery Frequency</h4>
+                  <h4 className="font-medium text-earth-800 mb-3">Delivery Frequency</h4>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {['weekly', 'biweekly', 'monthly', 'quarterly'].map((freq) => (
                       <Button
@@ -480,7 +480,7 @@ export function SubscriptionDashboard({
                 
                 {/* Upcoming Deliveries */}
                 <div>
-                  <h4 className="font-medium text-brown-800 mb-3">Upcoming Deliveries</h4>
+                  <h4 className="font-medium text-earth-800 mb-3">Upcoming Deliveries</h4>
                   <div className="space-y-2">
                     {Array.from({ length: 3 }).map((_, i) => {
                       const date = new Date(subscription.nextDelivery)
@@ -490,7 +490,7 @@ export function SubscriptionDashboard({
                         <div key={i} className="flex items-center justify-between p-3 border rounded-lg">
                           <div>
                             <span className="font-medium">{formatDate(date)}</span>
-                            <span className="text-sm text-brown-600 ml-2">
+                            <span className="text-sm text-earth-600 ml-2">
                               {i === 0 ? '(Next)' : ''}
                             </span>
                           </div>
@@ -518,7 +518,7 @@ export function SubscriptionDashboard({
             transition={{ duration: 0.3 }}
           >
             <Card className="p-6">
-              <h3 className="text-lg font-semibold text-brown-800 mb-6">
+              <h3 className="text-lg font-semibold text-earth-800 mb-6">
                 Delivery History
               </h3>
               
@@ -536,7 +536,7 @@ export function SubscriptionDashboard({
                     </div>
                     
                     {delivery.trackingNumber && (
-                      <div className="text-sm text-brown-600">
+                      <div className="text-sm text-earth-600">
                         Tracking: {delivery.trackingNumber}
                       </div>
                     )}
@@ -571,13 +571,13 @@ export function SubscriptionDashboard({
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-gray-800 rounded-lg p-6 max-w-md w-mx-4"
+              className="bg-earth-800 rounded-lg p-6 max-w-md w-mx-4"
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-lg font-semibold text-brown-800 mb-4">
+              <h3 className="text-lg font-semibold text-earth-800 mb-4">
                 Cancel Subscription
               </h3>
-              <p className="text-brown-600 mb-6">
+              <p className="text-earth-600 mb-6">
                 Are you sure you want to cancel your subscription? This action cannot be undone.
               </p>
               <div className="flex space-x-3">

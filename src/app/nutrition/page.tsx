@@ -82,8 +82,8 @@ export default function NutritionPage() {
               <div className="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mx-auto mb-4">
                 <Bot className="h-8 w-8 text-blue-600" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-100 mb-2">AI Nutrition Assistant</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold text-cream-100 mb-2">AI Nutrition Assistant</h2>
+              <p className="text-earth-600 max-w-2xl mx-auto">
                 Chat with our intelligent nutrition assistant to get personalized advice, meal suggestions, 
                 and answers to your health questions using Tishya Foods products.
               </p>
@@ -91,10 +91,10 @@ export default function NutritionPage() {
             
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-8">
               <div className="text-center">
-                <p className="text-lg text-gray-700 mb-4">
+                <p className="text-lg text-earth-700 mb-4">
                   Ready to start your nutrition journey? Our AI assistant is available 24/7 to help you make informed decisions.
                 </p>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-earth-600">
                   Look for the chat icon in the bottom-right corner to begin your conversation.
                 </p>
               </div>
@@ -114,7 +114,7 @@ export default function NutritionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-earth-900">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-primary-600 to-primary-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -151,10 +151,10 @@ export default function NutritionPage() {
       {/* Benefits Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-100 mb-4">
+          <h2 className="text-3xl font-bold text-cream-100 mb-4">
             Why Choose Our Nutrition Hub?
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-earth-600 max-w-2xl mx-auto">
             Experience the future of nutrition with our comprehensive suite of tools designed to help you achieve your health goals.
           </p>
         </div>
@@ -171,14 +171,14 @@ export default function NutritionPage() {
               <div className="flex items-center justify-center w-12 h-12 bg-primary-100 rounded-full mx-auto mb-4">
                 <benefit.icon className="h-6 w-6 text-primary-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-100 mb-2">{benefit.title}</h3>
-              <p className="text-gray-600">{benefit.description}</p>
+              <h3 className="text-lg font-semibold text-cream-100 mb-2">{benefit.title}</h3>
+              <p className="text-earth-600">{benefit.description}</p>
             </motion.div>
           ))}
         </div>
 
         {/* Tab Navigation */}
-        <div className="bg-gray-800 rounded-lg shadow-sm border overflow-hidden">
+        <div className="bg-earth-800 rounded-lg shadow-sm border overflow-hidden">
           <div className="border-b">
             <nav className="flex">
               {tabs.map((tab) => (
@@ -188,14 +188,14 @@ export default function NutritionPage() {
                   className={`flex-1 px-6 py-4 text-left transition-colors ${
                     activeTab === tab.id
                       ? `${tab.bgColor} ${tab.color} border-b-2 border-current`
-                      : 'text-gray-600 hover:text-gray-100 hover:bg-gray-900'
+                      : 'text-earth-600 hover:text-cream-100 hover:bg-earth-900'
                   }`}
                 >
                   <div className="flex items-center space-x-3">
-                    <tab.icon className={`h-5 w-5 ${activeTab === tab.id ? tab.color : 'text-gray-400'}`} />
+                    <tab.icon className={`h-5 w-5 ${activeTab === tab.id ? tab.color : 'text-earth-400'}`} />
                     <div>
                       <div className="font-medium">{tab.label}</div>
-                      <div className="text-sm text-gray-500">{tab.description}</div>
+                      <div className="text-sm text-earth-500">{tab.description}</div>
                     </div>
                   </div>
                 </button>
@@ -219,10 +219,10 @@ export default function NutritionPage() {
         {/* Call to Action */}
         <div className="mt-16 text-center">
           <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-100 mb-4">
+            <h3 className="text-2xl font-bold text-cream-100 mb-4">
               Ready to Transform Your Nutrition?
             </h3>
-            <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
+            <p className="text-lg text-earth-600 mb-6 max-w-2xl mx-auto">
               Start your journey today with our comprehensive nutrition tools and high-quality protein products.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

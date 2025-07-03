@@ -83,7 +83,7 @@ export function TableOfContents({ items }: TableOfContentsProps) {
               <button
                 key={item.id}
                 onClick={() => scrollToHeading(item.id)}
-                className={`block w-full text-left text-sm py-1 px-2 rounded transition-colors hover:bg-gray-100 ${
+                className={`block w-full text-left text-sm py-1 px-2 rounded transition-colors hover:bg-cream-100 ${
                   activeId === item.id 
                     ? 'text-primary font-medium bg-primary/10' 
                     : 'text-muted-foreground'

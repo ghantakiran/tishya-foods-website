@@ -32,7 +32,7 @@ export default function LoyaltyPage() {
   ]
 
   return (
-    <div className="pt-20 min-h-screen bg-gray-900">
+    <div className="pt-20 min-h-screen bg-earth-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Header */}
         <motion.div
@@ -41,10 +41,10 @@ export default function LoyaltyPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-100 mb-4 font-montserrat">
+          <h1 className="text-4xl sm:text-5xl font-bold text-cream-100 mb-4 font-montserrat">
             Tishya Rewards
           </h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-cream-300 max-w-2xl mx-auto">
             Earn points with every purchase, unlock exclusive rewards, and enjoy member-only benefits. 
             The more you shop, the more you save!
           </p>
@@ -57,7 +57,7 @@ export default function LoyaltyPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <div className="bg-gray-800 rounded-2xl p-2 shadow-lg border">
+          <div className="bg-earth-800 rounded-2xl p-2 shadow-lg border">
             <div className="flex space-x-1">
               {views.map((view) => {
                 const Icon = view.icon
@@ -68,8 +68,8 @@ export default function LoyaltyPage() {
                     className={cn(
                       'flex items-center space-x-3 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200',
                       activeView === view.id
-                        ? 'bg-brown-800 text-white shadow-md'
-                        : 'text-gray-300 hover:bg-brown-50'
+                        ? 'bg-earth-800 text-white shadow-md'
+                        : 'text-cream-300 hover:bg-earth-50'
                     )}
                   >
                     <Icon className="h-5 w-5" />
@@ -113,52 +113,52 @@ export default function LoyaltyPage() {
 
         {/* Benefits Overview */}
         <motion.div 
-          className="mt-16 bg-gradient-to-r from-brown-50 to-primary-50 rounded-2xl p-8"
+          className="mt-16 bg-gradient-to-r from-earth-50 to-primary-50 rounded-2xl p-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <h2 className="text-2xl font-bold text-gray-100 mb-6 text-center">
+          <h2 className="text-2xl font-bold text-cream-100 mb-6 text-center">
             Why Join Tishya Rewards?
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="text-center">
-              <div className="bg-gray-800 rounded-full p-4 w-20 h-20 flex items-center justify-center mx-auto mb-4">
+              <div className="bg-earth-800 rounded-full p-4 w-20 h-20 flex items-center justify-center mx-auto mb-4">
                 <TrendingUp className="h-10 w-10 text-green-500" />
               </div>
-              <h3 className="font-semibold text-gray-100 mb-2">Earn While You Shop</h3>
-              <p className="text-sm text-gray-300">
+              <h3 className="font-semibold text-cream-100 mb-2">Earn While You Shop</h3>
+              <p className="text-sm text-cream-300">
                 Get points for every purchase and watch your savings grow
               </p>
             </div>
             
             <div className="text-center">
-              <div className="bg-gray-800 rounded-full p-4 w-20 h-20 flex items-center justify-center mx-auto mb-4">
+              <div className="bg-earth-800 rounded-full p-4 w-20 h-20 flex items-center justify-center mx-auto mb-4">
                 <Gift className="h-10 w-10 text-purple-500" />
               </div>
-              <h3 className="font-semibold text-gray-100 mb-2">Exclusive Rewards</h3>
-              <p className="text-sm text-gray-300">
+              <h3 className="font-semibold text-cream-100 mb-2">Exclusive Rewards</h3>
+              <p className="text-sm text-cream-300">
                 Redeem points for discounts, free products, and special experiences
               </p>
             </div>
             
             <div className="text-center">
-              <div className="bg-gray-800 rounded-full p-4 w-20 h-20 flex items-center justify-center mx-auto mb-4">
+              <div className="bg-earth-800 rounded-full p-4 w-20 h-20 flex items-center justify-center mx-auto mb-4">
                 <Trophy className="h-10 w-10 text-gold" />
               </div>
-              <h3 className="font-semibold text-gray-100 mb-2">Tier Benefits</h3>
-              <p className="text-sm text-gray-300">
+              <h3 className="font-semibold text-cream-100 mb-2">Tier Benefits</h3>
+              <p className="text-sm text-cream-300">
                 Unlock higher tiers for bigger discounts and premium perks
               </p>
             </div>
             
             <div className="text-center">
-              <div className="bg-gray-800 rounded-full p-4 w-20 h-20 flex items-center justify-center mx-auto mb-4">
+              <div className="bg-earth-800 rounded-full p-4 w-20 h-20 flex items-center justify-center mx-auto mb-4">
                 <Users className="h-10 w-10 text-blue-500" />
               </div>
-              <h3 className="font-semibold text-gray-100 mb-2">Refer & Earn</h3>
-              <p className="text-sm text-gray-300">
+              <h3 className="font-semibold text-cream-100 mb-2">Refer & Earn</h3>
+              <p className="text-sm text-cream-300">
                 Share with friends and earn bonus points for every referral
               </p>
             </div>
@@ -172,29 +172,29 @@ export default function LoyaltyPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h3 className="text-xl font-bold text-gray-100 mb-6">
+          <h3 className="text-xl font-bold text-cream-100 mb-6">
             Ready to Start Earning Rewards?
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <div className="flex items-start space-x-3">
-              <div className="w-8 h-8 bg-brown-800 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
+              <div className="w-8 h-8 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
               <div className="text-left">
-                <h4 className="font-semibold text-gray-100">Shop & Earn</h4>
-                <p className="text-sm text-gray-300">Make purchases and automatically earn points</p>
+                <h4 className="font-semibold text-cream-100">Shop & Earn</h4>
+                <p className="text-sm text-cream-300">Make purchases and automatically earn points</p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <div className="w-8 h-8 bg-brown-800 text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
+              <div className="w-8 h-8 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
               <div className="text-left">
-                <h4 className="font-semibold text-gray-100">Unlock Tiers</h4>
-                <p className="text-sm text-gray-300">Accumulate points to reach higher tiers with better benefits</p>
+                <h4 className="font-semibold text-cream-100">Unlock Tiers</h4>
+                <p className="text-sm text-cream-300">Accumulate points to reach higher tiers with better benefits</p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <div className="w-8 h-8 bg-brown-800 text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
+              <div className="w-8 h-8 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
               <div className="text-left">
-                <h4 className="font-semibold text-gray-100">Redeem Rewards</h4>
-                <p className="text-sm text-gray-300">Use points for discounts, free products, and exclusive experiences</p>
+                <h4 className="font-semibold text-cream-100">Redeem Rewards</h4>
+                <p className="text-sm text-cream-300">Use points for discounts, free products, and exclusive experiences</p>
               </div>
             </div>
           </div>

@@ -236,7 +236,7 @@ export function NutritionTracker() {
 
   const getMealColor = (mealType: string) => {
     const meal = mealTypes.find(m => m.id === mealType)
-    return meal ? meal.color : 'bg-gray-9000'
+    return meal ? meal.color : 'bg-earth-9000'
   }
 
   return (
@@ -244,8 +244,8 @@ export function NutritionTracker() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-100">Nutrition Tracker</h1>
-          <p className="text-gray-600">Track your daily nutrition and reach your health goals</p>
+          <h1 className="text-3xl font-bold text-cream-100">Nutrition Tracker</h1>
+          <p className="text-earth-600">Track your daily nutrition and reach your health goals</p>
         </div>
         <div className="flex items-center space-x-4">
           <Input
@@ -263,20 +263,20 @@ export function NutritionTracker() {
 
       {/* Daily Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-gray-800 rounded-lg shadow-sm border p-4">
+        <div className="bg-earth-800 rounded-lg shadow-sm border p-4">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-2">
               <Flame className="h-5 w-5 text-orange-500" />
-              <span className="font-medium text-gray-100">Calories</span>
+              <span className="font-medium text-cream-100">Calories</span>
             </div>
             <Badge variant={dayTotals.calories >= goals.calories ? 'success' : 'secondary'}>
               {Math.round((dayTotals.calories / goals.calories) * 100)}%
             </Badge>
           </div>
-          <div className="text-2xl font-bold text-gray-100 mb-1">
+          <div className="text-2xl font-bold text-cream-100 mb-1">
             {dayTotals.calories}
           </div>
-          <div className="text-sm text-gray-600 mb-3">
+          <div className="text-sm text-earth-600 mb-3">
             of {goals.calories} goal
           </div>
           <Progress 
@@ -285,20 +285,20 @@ export function NutritionTracker() {
           />
         </div>
 
-        <div className="bg-gray-800 rounded-lg shadow-sm border p-4">
+        <div className="bg-earth-800 rounded-lg shadow-sm border p-4">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-2">
               <Target className="h-5 w-5 text-blue-500" />
-              <span className="font-medium text-gray-100">Protein</span>
+              <span className="font-medium text-cream-100">Protein</span>
             </div>
             <Badge variant={dayTotals.protein >= goals.protein ? 'success' : 'secondary'}>
               {Math.round((dayTotals.protein / goals.protein) * 100)}%
             </Badge>
           </div>
-          <div className="text-2xl font-bold text-gray-100 mb-1">
+          <div className="text-2xl font-bold text-cream-100 mb-1">
             {Math.round(dayTotals.protein)}g
           </div>
-          <div className="text-sm text-gray-600 mb-3">
+          <div className="text-sm text-earth-600 mb-3">
             of {goals.protein}g goal
           </div>
           <Progress 
@@ -307,20 +307,20 @@ export function NutritionTracker() {
           />
         </div>
 
-        <div className="bg-gray-800 rounded-lg shadow-sm border p-4">
+        <div className="bg-earth-800 rounded-lg shadow-sm border p-4">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-2">
               <Activity className="h-5 w-5 text-green-500" />
-              <span className="font-medium text-gray-100">Fiber</span>
+              <span className="font-medium text-cream-100">Fiber</span>
             </div>
             <Badge variant={dayTotals.fiber >= goals.fiber ? 'success' : 'secondary'}>
               {Math.round((dayTotals.fiber / goals.fiber) * 100)}%
             </Badge>
           </div>
-          <div className="text-2xl font-bold text-gray-100 mb-1">
+          <div className="text-2xl font-bold text-cream-100 mb-1">
             {Math.round(dayTotals.fiber)}g
           </div>
-          <div className="text-sm text-gray-600 mb-3">
+          <div className="text-sm text-earth-600 mb-3">
             of {goals.fiber}g goal
           </div>
           <Progress 
@@ -329,20 +329,20 @@ export function NutritionTracker() {
           />
         </div>
 
-        <div className="bg-gray-800 rounded-lg shadow-sm border p-4">
+        <div className="bg-earth-800 rounded-lg shadow-sm border p-4">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-2">
               <Droplets className="h-5 w-5 text-blue-400" />
-              <span className="font-medium text-gray-100">Water</span>
+              <span className="font-medium text-cream-100">Water</span>
             </div>
             <Badge variant={waterIntake >= goals.water ? 'success' : 'secondary'}>
               {Math.round((waterIntake / goals.water) * 100)}%
             </Badge>
           </div>
-          <div className="text-2xl font-bold text-gray-100 mb-1">
+          <div className="text-2xl font-bold text-cream-100 mb-1">
             {waterIntake}ml
           </div>
-          <div className="text-sm text-gray-600 mb-3">
+          <div className="text-sm text-earth-600 mb-3">
             of {goals.water}ml goal
           </div>
           <div className="flex items-center space-x-1">
@@ -371,9 +371,9 @@ export function NutritionTracker() {
       </div>
 
       {/* Weekly Progress Chart */}
-      <div className="bg-gray-800 rounded-lg shadow-sm border p-6">
+      <div className="bg-earth-800 rounded-lg shadow-sm border p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-100">Weekly Progress</h3>
+          <h3 className="text-lg font-semibold text-cream-100">Weekly Progress</h3>
           <div className="flex items-center space-x-4 text-sm">
             <div className="flex items-center space-x-2">
               <div className="w-3 h-3 bg-blue-500 rounded"></div>
@@ -405,7 +405,7 @@ export function NutritionTracker() {
                     className="bg-green-500 w-4 rounded-t"
                   />
                 </div>
-                <div className="text-xs text-gray-600 text-center">
+                <div className="text-xs text-earth-600 text-center">
                   {new Date(day.date).toLocaleDateString([], { weekday: 'short' })}
                 </div>
               </div>
@@ -428,15 +428,15 @@ export function NutritionTracker() {
           const IconComponent = mealType.icon
 
           return (
-            <div key={mealType.id} className="bg-gray-800 rounded-lg shadow-sm border p-4">
+            <div key={mealType.id} className="bg-earth-800 rounded-lg shadow-sm border p-4">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-3">
                   <div className={`w-8 h-8 ${mealType.color} rounded-lg flex items-center justify-center`}>
                     <IconComponent className="h-4 w-4 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-100">{mealType.label}</h3>
-                    <p className="text-xs text-gray-500">
+                    <h3 className="font-medium text-cream-100">{mealType.label}</h3>
+                    <p className="text-xs text-earth-500">
                       {mealTotals.calories} cal • {Math.round(mealTotals.protein)}g protein
                     </p>
                   </div>
@@ -456,15 +456,15 @@ export function NutritionTracker() {
 
               <div className="space-y-2">
                 {mealEntries.length === 0 ? (
-                  <p className="text-sm text-gray-500 text-center py-4">
+                  <p className="text-sm text-earth-500 text-center py-4">
                     No items logged for {mealType.label.toLowerCase()}
                   </p>
                 ) : (
                   mealEntries.map((entry) => (
-                    <div key={entry.id} className="flex items-center justify-between bg-gray-900 rounded p-2">
+                    <div key={entry.id} className="flex items-center justify-between bg-earth-900 rounded p-2">
                       <div>
                         <p className="text-sm font-medium">{entry.productName}</p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-earth-500">
                           {entry.servings}x serving • {entry.calories} cal • {Math.round(entry.protein)}g protein
                         </p>
                       </div>
@@ -491,7 +491,7 @@ export function NutritionTracker() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-gray-800 rounded-lg p-6 w-full max-w-md"
+            className="bg-earth-800 rounded-lg p-6 w-full max-w-md"
           >
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold">
@@ -514,7 +514,7 @@ export function NutritionTracker() {
                     <h4 className="font-medium">{product.name}</h4>
                     <Badge variant="secondary">{product.servingSize}</Badge>
                   </div>
-                  <p className="text-sm text-gray-600 mb-3">
+                  <p className="text-sm text-earth-600 mb-3">
                     {product.calories} cal • {product.protein}g protein • {product.fiber}g fiber
                   </p>
                   <div className="flex items-center space-x-2">

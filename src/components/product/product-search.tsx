@@ -121,7 +121,7 @@ export function ProductSearch({ onOpenFilters, showFilters = true }: ProductSear
       {/* Search Input */}
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <Search className="h-5 w-5 text-gray-400" />
+          <Search className="h-5 w-5 text-earth-400" />
         </div>
         
         <Input
@@ -148,7 +148,7 @@ export function ProductSearch({ onOpenFilters, showFilters = true }: ProductSear
               variant="ghost"
               size="sm"
               onClick={clearSearch}
-              className="h-8 w-8 p-0 hover:bg-gray-100"
+              className="h-8 w-8 p-0 hover:bg-cream-100"
             >
               <X className="h-4 w-4" />
             </Button>
@@ -179,10 +179,10 @@ export function ProductSearch({ onOpenFilters, showFilters = true }: ProductSear
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 mt-2 bg-gray-800 rounded-lg shadow-lg border z-50 max-h-80 overflow-y-auto"
+            className="absolute top-full left-0 right-0 mt-2 bg-earth-800 rounded-lg shadow-lg border z-50 max-h-80 overflow-y-auto"
           >
             <div className="p-2">
-              <div className="text-xs font-medium text-gray-500 mb-2 px-2">
+              <div className="text-xs font-medium text-earth-500 mb-2 px-2">
                 Search Suggestions
               </div>
               
@@ -190,24 +190,24 @@ export function ProductSearch({ onOpenFilters, showFilters = true }: ProductSear
                 <button
                   key={`${suggestion.type}-${suggestion.value}-${index}`}
                   onClick={() => handleSuggestionClick(suggestion)}
-                  className="w-full flex items-center space-x-3 px-3 py-2 text-left hover:bg-gray-900 rounded-md transition-colors"
+                  className="w-full flex items-center space-x-3 px-3 py-2 text-left hover:bg-earth-900 rounded-md transition-colors"
                 >
-                  <div className="text-gray-400">
+                  <div className="text-earth-400">
                     {getSuggestionIcon(suggestion.type)}
                   </div>
                   
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2">
-                      <span className="font-medium text-gray-100 truncate">
+                      <span className="font-medium text-cream-100 truncate">
                         {suggestion.label}
                       </span>
                       {suggestion.count && (
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-earth-500">
                           ({suggestion.count})
                         </span>
                       )}
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-earth-500">
                       {getSuggestionTypeLabel(suggestion.type)}
                     </div>
                   </div>
@@ -219,7 +219,7 @@ export function ProductSearch({ onOpenFilters, showFilters = true }: ProductSear
       </AnimatePresence>
 
       {/* Results Summary */}
-      <div className="flex items-center justify-between mt-4 text-sm text-gray-600">
+      <div className="flex items-center justify-between mt-4 text-sm text-earth-600">
         <div>
           Showing {filteredCount.toLocaleString()} of {totalProducts.toLocaleString()} products
         </div>
@@ -237,7 +237,7 @@ export function ProductSearch({ onOpenFilters, showFilters = true }: ProductSear
       {/* Quick Filter Tags */}
       {filters.search.length === 0 && (
         <div className="mt-4">
-          <div className="text-xs font-medium text-gray-500 mb-2">Popular searches:</div>
+          <div className="text-xs font-medium text-earth-500 mb-2">Popular searches:</div>
           <div className="flex flex-wrap gap-2">
             {[
               { label: 'High Protein', action: () => updateFilters({ nutritionalGoals: ['high-protein'] }) },
@@ -250,7 +250,7 @@ export function ProductSearch({ onOpenFilters, showFilters = true }: ProductSear
               <button
                 key={tag.label}
                 onClick={tag.action}
-                className="px-3 py-1 text-xs bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
+                className="px-3 py-1 text-xs bg-cream-100 hover:bg-cream-200 rounded-full transition-colors"
               >
                 {tag.label}
               </button>

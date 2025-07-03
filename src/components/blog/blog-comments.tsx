@@ -212,7 +212,7 @@ export function BlogComments({ postId }: BlogCommentsProps) {
             </span>
           </div>
           
-          <p className="text-sm text-gray-700 mb-3 leading-relaxed">
+          <p className="text-sm text-earth-700 mb-3 leading-relaxed">
             {comment.content}
           </p>
           

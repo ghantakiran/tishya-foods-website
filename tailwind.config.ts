@@ -107,6 +107,39 @@ const config: Config = {
           800: '#a08568',
           900: '#6b4423',
         },
+        // Semantic colors for consistent component styling
+        card: {
+          DEFAULT: '#ffffff',
+          foreground: '#14532d',
+        },
+        background: {
+          DEFAULT: '#f0fdf4',
+          secondary: '#dcfce7',
+        },
+        foreground: {
+          DEFAULT: '#14532d',
+          secondary: '#166534',
+        },
+        muted: {
+          DEFAULT: '#f2e8e5',
+          foreground: '#6b4423',
+        },
+        border: {
+          DEFAULT: '#eaddd7',
+          input: '#d2bab0',
+        },
+        input: {
+          DEFAULT: '#ffffff',
+          border: '#d2bab0',
+        },
+        ring: {
+          DEFAULT: '#22c55e',
+          offset: '#f0fdf4',
+        },
+        destructive: {
+          DEFAULT: '#dc2626',
+          foreground: '#ffffff',
+        },
       },
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],

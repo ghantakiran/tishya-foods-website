@@ -249,7 +249,7 @@ export function BlogSidebar({ currentPost }: BlogSidebarProps) {
           </CardHeader>
           <CardContent className="space-y-4">
             {relatedPosts.map((post) => (
-              <div key={post.id} className="border-b border-gray-100 last:border-0 pb-4 last:pb-0">
+              <div key={post.id} className="border-b border-cream-100 last:border-0 pb-4 last:pb-0">
                 <Link 
                   href={`/blog/${post.slug}`}
                   onClick={() => handlePostClick(post.id, post.title, 'related')}
@@ -338,7 +338,7 @@ export function BlogSidebar({ currentPost }: BlogSidebarProps) {
               <Link
                 key={category.id}
                 href={`/blog/category/${category.slug}`}
-                className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-gray-900 transition-colors group"
+                className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-earth-900 transition-colors group"
               >
                 <span className="text-sm group-hover:text-primary">{category.name}</span>
                 <Badge variant="secondary" className="text-xs">

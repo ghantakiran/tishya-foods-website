@@ -223,8 +223,8 @@ export default function ProductRecommendations() {
         return (
           <div className="space-y-6">
             <div className="text-center">
-              <h3 className="text-2xl font-bold text-brown-800 mb-2">What&apos;s your primary health goal?</h3>
-              <p className="text-brown-600">This helps us recommend the best products for you</p>
+              <h3 className="text-2xl font-bold text-earth-800 mb-2">What&apos;s your primary health goal?</h3>
+              <p className="text-earth-600">This helps us recommend the best products for you</p>
             </div>
             
             <div className="grid grid-cols-2 gap-4">
@@ -234,16 +234,16 @@ export default function ProductRecommendations() {
                   onClick={() => updatePreferences('goal', goal.id)}
                   className={`p-4 rounded-xl border-2 transition-all ${
                     preferences.goal === goal.id
-                      ? 'border-brown-800 bg-brown-50'
-                      : 'border-gray-600 hover:border-primary-300'
+                      ? 'border-earth-800 bg-earth-50'
+                      : 'border-earth-600 hover:border-primary-300'
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <goal.icon className={`h-8 w-8 mx-auto mb-2 ${
-                    preferences.goal === goal.id ? 'text-brown-800' : 'text-gray-600'
+                    preferences.goal === goal.id ? 'text-earth-800' : 'text-earth-600'
                   }`} />
-                  <div className="font-semibold text-brown-800">{goal.label}</div>
+                  <div className="font-semibold text-earth-800">{goal.label}</div>
                 </motion.button>
               ))}
             </div>
@@ -254,8 +254,8 @@ export default function ProductRecommendations() {
         return (
           <div className="space-y-6">
             <div className="text-center">
-              <h3 className="text-2xl font-bold text-brown-800 mb-2">What&apos;s your age group?</h3>
-              <p className="text-brown-600">Age helps us tailor nutritional recommendations</p>
+              <h3 className="text-2xl font-bold text-earth-800 mb-2">What&apos;s your age group?</h3>
+              <p className="text-earth-600">Age helps us tailor nutritional recommendations</p>
             </div>
             
             <div className="space-y-3">
@@ -265,13 +265,13 @@ export default function ProductRecommendations() {
                   onClick={() => updatePreferences('age', age.id)}
                   className={`w-full p-4 rounded-xl border-2 transition-all text-left ${
                     preferences.age === age.id
-                      ? 'border-brown-800 bg-brown-50'
-                      : 'border-gray-600 hover:border-primary-300'
+                      ? 'border-earth-800 bg-earth-50'
+                      : 'border-earth-600 hover:border-primary-300'
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="font-semibold text-brown-800">{age.label}</div>
+                  <div className="font-semibold text-earth-800">{age.label}</div>
                 </motion.button>
               ))}
             </div>
@@ -282,8 +282,8 @@ export default function ProductRecommendations() {
         return (
           <div className="space-y-6">
             <div className="text-center">
-              <h3 className="text-2xl font-bold text-brown-800 mb-2">How active are you?</h3>
-              <p className="text-brown-600">Activity level affects your nutritional needs</p>
+              <h3 className="text-2xl font-bold text-earth-800 mb-2">How active are you?</h3>
+              <p className="text-earth-600">Activity level affects your nutritional needs</p>
             </div>
             
             <div className="space-y-3">
@@ -293,13 +293,13 @@ export default function ProductRecommendations() {
                   onClick={() => updatePreferences('activityLevel', level.id)}
                   className={`w-full p-4 rounded-xl border-2 transition-all text-left ${
                     preferences.activityLevel === level.id
-                      ? 'border-brown-800 bg-brown-50'
-                      : 'border-gray-600 hover:border-primary-300'
+                      ? 'border-earth-800 bg-earth-50'
+                      : 'border-earth-600 hover:border-primary-300'
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="font-semibold text-brown-800">{level.label}</div>
+                  <div className="font-semibold text-earth-800">{level.label}</div>
                 </motion.button>
               ))}
             </div>
@@ -310,8 +310,8 @@ export default function ProductRecommendations() {
         return (
           <div className="space-y-6">
             <div className="text-center">
-              <h3 className="text-2xl font-bold text-brown-800 mb-2">Any dietary preferences?</h3>
-              <p className="text-brown-600">Select all that apply (optional)</p>
+              <h3 className="text-2xl font-bold text-earth-800 mb-2">Any dietary preferences?</h3>
+              <p className="text-earth-600">Select all that apply (optional)</p>
             </div>
             
             <div className="grid grid-cols-2 gap-3">
@@ -321,13 +321,13 @@ export default function ProductRecommendations() {
                   onClick={() => toggleArrayValue('dietaryRestrictions', option.id)}
                   className={`p-3 rounded-xl border-2 transition-all ${
                     preferences.dietaryRestrictions.includes(option.id)
-                      ? 'border-brown-800 bg-brown-50'
-                      : 'border-gray-600 hover:border-primary-300'
+                      ? 'border-earth-800 bg-earth-50'
+                      : 'border-earth-600 hover:border-primary-300'
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="font-semibold text-brown-800 text-sm">{option.label}</div>
+                  <div className="font-semibold text-earth-800 text-sm">{option.label}</div>
                 </motion.button>
               ))}
             </div>
@@ -338,8 +338,8 @@ export default function ProductRecommendations() {
         return (
           <div className="space-y-6">
             <div className="text-center">
-              <h3 className="text-2xl font-bold text-brown-800 mb-2">When do you usually eat?</h3>
-              <p className="text-brown-600">Select your preferred meal times</p>
+              <h3 className="text-2xl font-bold text-earth-800 mb-2">When do you usually eat?</h3>
+              <p className="text-earth-600">Select your preferred meal times</p>
             </div>
             
             <div className="grid grid-cols-2 gap-3">
@@ -349,13 +349,13 @@ export default function ProductRecommendations() {
                   onClick={() => toggleArrayValue('preferredMealTimes', time.id)}
                   className={`p-3 rounded-xl border-2 transition-all ${
                     preferences.preferredMealTimes.includes(time.id)
-                      ? 'border-brown-800 bg-brown-50'
-                      : 'border-gray-600 hover:border-primary-300'
+                      ? 'border-earth-800 bg-earth-50'
+                      : 'border-earth-600 hover:border-primary-300'
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="font-semibold text-brown-800 text-sm">{time.label}</div>
+                  <div className="font-semibold text-earth-800 text-sm">{time.label}</div>
                 </motion.button>
               ))}
             </div>
@@ -366,15 +366,15 @@ export default function ProductRecommendations() {
         return (
           <div className="space-y-6">
             <div className="text-center">
-              <h3 className="text-2xl font-bold text-brown-800 mb-2">Your Personalized Recommendations</h3>
-              <p className="text-brown-600">Based on your preferences, here are the best Tishya Foods products for you</p>
+              <h3 className="text-2xl font-bold text-earth-800 mb-2">Your Personalized Recommendations</h3>
+              <p className="text-earth-600">Based on your preferences, here are the best Tishya Foods products for you</p>
             </div>
 
             <div className="space-y-4">
               {recommendations.map((rec, index) => (
                 <motion.div
                   key={rec.product.id}
-                  className="bg-gray-800 rounded-xl p-6 border border-gray-600 shadow-sm"
+                  className="bg-earth-800 rounded-xl p-6 border border-earth-600 shadow-sm"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -382,38 +382,38 @@ export default function ProductRecommendations() {
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
                       <div className="flex items-center mb-2">
-                        <h4 className="text-lg font-bold text-brown-800">{rec.product.name}</h4>
-                        <div className="ml-2 bg-brown-800 text-white text-xs px-2 py-1 rounded-full">
+                        <h4 className="text-lg font-bold text-earth-800">{rec.product.name}</h4>
+                        <div className="ml-2 bg-earth-800 text-white text-xs px-2 py-1 rounded-full">
                           {rec.matchScore}% match
                         </div>
                       </div>
-                      <p className="text-brown-600 text-sm mb-3">{rec.reason}</p>
+                      <p className="text-earth-600 text-sm mb-3">{rec.reason}</p>
                     </div>
                     <div className="text-right">
-                      <div className="text-xl font-bold text-brown-800">{formatPrice(rec.product.price)}</div>
+                      <div className="text-xl font-bold text-earth-800">{formatPrice(rec.product.price)}</div>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-3 gap-4 mb-4 text-center">
                     <div className="bg-primary-50 rounded-lg p-2">
-                      <div className="font-bold text-brown-800">{rec.product.nutritionalInfo.calories}</div>
-                      <div className="text-xs text-brown-600">Calories</div>
+                      <div className="font-bold text-earth-800">{rec.product.nutritionalInfo.calories}</div>
+                      <div className="text-xs text-earth-600">Calories</div>
                     </div>
                     <div className="bg-primary-50 rounded-lg p-2">
-                      <div className="font-bold text-brown-800">{rec.product.nutritionalInfo.protein}g</div>
-                      <div className="text-xs text-brown-600">Protein</div>
+                      <div className="font-bold text-earth-800">{rec.product.nutritionalInfo.protein}g</div>
+                      <div className="text-xs text-earth-600">Protein</div>
                     </div>
                     <div className="bg-primary-50 rounded-lg p-2">
-                      <div className="font-bold text-brown-800">{rec.product.nutritionalInfo.fiber}g</div>
-                      <div className="text-xs text-brown-600">Fiber</div>
+                      <div className="font-bold text-earth-800">{rec.product.nutritionalInfo.fiber}g</div>
+                      <div className="text-xs text-earth-600">Fiber</div>
                     </div>
                   </div>
 
                   <div className="mb-4">
-                    <p className="text-sm font-semibold text-brown-800 mb-2">Why this is perfect for you:</p>
+                    <p className="text-sm font-semibold text-earth-800 mb-2">Why this is perfect for you:</p>
                     <ul className="space-y-1">
                       {rec.benefits.map((benefit, i) => (
-                        <li key={i} className="text-sm text-brown-600 flex items-center">
+                        <li key={i} className="text-sm text-earth-600 flex items-center">
                           <div className="w-1.5 h-1.5 bg-primary-500 rounded-full mr-2"></div>
                           {benefit}
                         </li>
@@ -440,10 +440,10 @@ export default function ProductRecommendations() {
   }
 
   return (
-    <div className="bg-gray-800 rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
+    <div className="bg-earth-800 rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
       {/* Header with AI branding */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-brown-800 to-primary-600 text-white px-4 py-2 rounded-full mb-4">
+        <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-earth-800 to-primary-600 text-white px-4 py-2 rounded-full mb-4">
           <Sparkles className="h-4 w-4" />
           <span className="text-sm font-semibold">AI-Powered Recommendations</span>
         </div>
@@ -452,13 +452,13 @@ export default function ProductRecommendations() {
       {/* Progress bar */}
       {step < 6 && (
         <div className="mb-8">
-          <div className="flex justify-between text-sm text-brown-600 mb-2">
+          <div className="flex justify-between text-sm text-earth-600 mb-2">
             <span>Step {step} of 5</span>
             <span>{Math.round((step / 5) * 100)}% complete</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-cream-200 rounded-full h-2">
             <motion.div
-              className="bg-brown-800 h-2 rounded-full"
+              className="bg-earth-800 h-2 rounded-full"
               initial={{ width: '0%' }}
               animate={{ width: `${(step / 5) * 100}%` }}
               transition={{ duration: 0.3 }}
@@ -471,14 +471,14 @@ export default function ProductRecommendations() {
       {isGenerating ? (
         <div className="text-center py-12">
           <motion.div
-            className="w-16 h-16 bg-brown-800 rounded-full flex items-center justify-center mx-auto mb-4"
+            className="w-16 h-16 bg-earth-800 rounded-full flex items-center justify-center mx-auto mb-4"
             animate={{ rotate: 360 }}
             transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
           >
             <Sparkles className="h-8 w-8 text-white" />
           </motion.div>
-          <h3 className="text-xl font-bold text-brown-800 mb-2">Analyzing Your Preferences</h3>
-          <p className="text-brown-600">Our AI is finding the perfect products for you...</p>
+          <h3 className="text-xl font-bold text-earth-800 mb-2">Analyzing Your Preferences</h3>
+          <p className="text-earth-600">Our AI is finding the perfect products for you...</p>
         </div>
       ) : (
         <>

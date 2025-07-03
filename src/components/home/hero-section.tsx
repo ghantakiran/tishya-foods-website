@@ -220,9 +220,9 @@ export default function HeroSection() {
         >
           <defs>
             <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#065f46" />
-              <stop offset="50%" stopColor="#047857" />
-              <stop offset="100%" stopColor="#0d9488" />
+              <stop offset="0%" stopColor="var(--emerald-600)" />
+              <stop offset="50%" stopColor="var(--emerald-500)" />
+              <stop offset="100%" stopColor="var(--teal-600)" />
             </linearGradient>
           </defs>
           <path

@@ -146,7 +146,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed right-0 top-0 h-full w-full max-w-md bg-gray-800 shadow-xl z-50 flex flex-col"
+            className="fixed right-0 top-0 h-full w-full max-w-md bg-earth-800 shadow-xl z-50 flex flex-col"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -182,7 +182,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                   className="flex items-center justify-between w-full text-left"
                 >
                   <div className="flex items-center space-x-2">
-                    <DollarSign className="h-4 w-4 text-gray-500" />
+                    <DollarSign className="h-4 w-4 text-earth-500" />
                     <span className="font-medium">Price Range</span>
                   </div>
                   {sections.find(s => s.id === 'price')?.isExpanded ? (
@@ -202,7 +202,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                     >
                       <div className="flex items-center space-x-4">
                         <div className="flex-1">
-                          <label className="block text-xs text-gray-500 mb-1">Min</label>
+                          <label className="block text-xs text-earth-500 mb-1">Min</label>
                           <input
                             type="number"
                             value={filters.priceRange[0]}
@@ -212,7 +212,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                           />
                         </div>
                         <div className="flex-1">
-                          <label className="block text-xs text-gray-500 mb-1">Max</label>
+                          <label className="block text-xs text-earth-500 mb-1">Max</label>
                           <input
                             type="number"
                             value={filters.priceRange[1]}
@@ -255,7 +255,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                   className="flex items-center justify-between w-full text-left"
                 >
                   <div className="flex items-center space-x-2">
-                    <Leaf className="h-4 w-4 text-gray-500" />
+                    <Leaf className="h-4 w-4 text-earth-500" />
                     <span className="font-medium">Dietary Preferences</span>
                   </div>
                   {sections.find(s => s.id === 'dietary')?.isExpanded ? (
@@ -279,11 +279,11 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                             type="checkbox"
                             checked={filters.dietaryRestrictions.includes(option.id)}
                             onChange={() => handleDietaryChange(option.id)}
-                            className="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-600 rounded"
+                            className="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-earth-600 rounded"
                           />
                           <div>
                             <div className="text-sm font-medium">{option.label}</div>
-                            <div className="text-xs text-gray-500">{option.description}</div>
+                            <div className="text-xs text-earth-500">{option.description}</div>
                           </div>
                         </label>
                       ))}
@@ -299,7 +299,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                   className="flex items-center justify-between w-full text-left"
                 >
                   <div className="flex items-center space-x-2">
-                    <Award className="h-4 w-4 text-gray-500" />
+                    <Award className="h-4 w-4 text-earth-500" />
                     <span className="font-medium">Nutritional Goals</span>
                   </div>
                   {sections.find(s => s.id === 'nutrition')?.isExpanded ? (
@@ -323,11 +323,11 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                             type="checkbox"
                             checked={filters.nutritionalGoals.includes(goal.id)}
                             onChange={() => handleNutritionalGoalChange(goal.id)}
-                            className="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-600 rounded"
+                            className="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-earth-600 rounded"
                           />
                           <div>
                             <div className="text-sm font-medium">{goal.label}</div>
-                            <div className="text-xs text-gray-500">{goal.description}</div>
+                            <div className="text-xs text-earth-500">{goal.description}</div>
                           </div>
                         </label>
                       ))}
@@ -343,7 +343,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                   className="flex items-center justify-between w-full text-left"
                 >
                   <div className="flex items-center space-x-2">
-                    <Star className="h-4 w-4 text-gray-500" />
+                    <Star className="h-4 w-4 text-earth-500" />
                     <span className="font-medium">Customer Rating</span>
                   </div>
                   {sections.find(s => s.id === 'rating')?.isExpanded ? (
@@ -368,14 +368,14 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                             name="rating"
                             checked={filters.rating === rating}
                             onChange={() => updateFilters({ rating })}
-                            className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-600"
+                            className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-earth-600"
                           />
                           <div className="flex items-center space-x-1">
                             {[...Array(rating)].map((_, i) => (
                               <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                             ))}
                             {[...Array(5 - rating)].map((_, i) => (
-                              <Star key={i} className="h-4 w-4 text-gray-300" />
+                              <Star key={i} className="h-4 w-4 text-cream-300" />
                             ))}
                             <span className="text-sm ml-2">& up</span>
                           </div>
@@ -393,7 +393,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                   className="flex items-center justify-between w-full text-left"
                 >
                   <div className="flex items-center space-x-2">
-                    <Clock className="h-4 w-4 text-gray-500" />
+                    <Clock className="h-4 w-4 text-earth-500" />
                     <span className="font-medium">Availability</span>
                   </div>
                   {sections.find(s => s.id === 'availability')?.isExpanded ? (
@@ -422,7 +422,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                             name="availability"
                             checked={filters.availability === option.value}
                             onChange={() => updateFilters({ availability: option.value as any })}
-                            className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-600"
+                            className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-earth-600"
                           />
                           <span className="text-sm">{option.label}</span>
                         </label>

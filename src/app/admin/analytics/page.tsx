@@ -2,7 +2,7 @@ import { AnalyticsDashboard } from '@/components/analytics/analytics-dashboard'
 
 export default function AnalyticsPage() {
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-earth-900">
       <AnalyticsDashboard />
     </div>
   )

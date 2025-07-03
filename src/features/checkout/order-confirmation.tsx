@@ -63,10 +63,10 @@ export function OrderConfirmation({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <h1 className="text-2xl font-bold text-gray-100 mb-2">
+          <h1 className="text-2xl font-bold text-cream-100 mb-2">
             Order Placed Successfully!
           </h1>
-          <p className="text-gray-600">
+          <p className="text-earth-600">
             Thank you for choosing Tishya Foods. Your order has been confirmed and is being processed.
           </p>
         </motion.div>
@@ -77,7 +77,7 @@ export function OrderConfirmation({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="bg-gray-800 border rounded-lg p-6 text-left"
+        className="bg-earth-800 border rounded-lg p-6 text-left"
       >
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">Order Details</h2>
@@ -88,20 +88,20 @@ export function OrderConfirmation({
           {/* Order Info */}
           <div className="space-y-3">
             <div className="flex items-center space-x-2">
-              <Package className="h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-600">Order ID:</span>
+              <Package className="h-4 w-4 text-earth-500" />
+              <span className="text-sm text-earth-600">Order ID:</span>
               <span className="font-mono font-medium">#{orderId}</span>
             </div>
 
             <div className="flex items-center space-x-2">
-              <Calendar className="h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-600">Order Date:</span>
+              <Calendar className="h-4 w-4 text-earth-500" />
+              <span className="text-sm text-earth-600">Order Date:</span>
               <span className="font-medium">{new Date().toLocaleDateString()}</span>
             </div>
 
             <div className="flex items-center space-x-2">
-              <Truck className="h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-600">Expected Delivery:</span>
+              <Truck className="h-4 w-4 text-earth-500" />
+              <span className="text-sm text-earth-600">Expected Delivery:</span>
               <span className="font-medium text-green-600">
                 {estimatedDeliveryDate.toLocaleDateString()}
               </span>
@@ -111,13 +111,13 @@ export function OrderConfirmation({
           {/* Payment Info */}
           <div className="space-y-3">
             <div className="flex items-center space-x-2">
-              <CreditCard className="h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-600">Payment Method:</span>
+              <CreditCard className="h-4 w-4 text-earth-500" />
+              <span className="text-sm text-earth-600">Payment Method:</span>
               <span className="font-medium">{paymentMethod.name}</span>
             </div>
 
             <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-600">Total Amount:</span>
+              <span className="text-sm text-earth-600">Total Amount:</span>
               <span className="font-bold text-lg text-primary-600">
                 {formatPrice(cart.finalTotal)}
               </span>
@@ -139,7 +139,7 @@ export function OrderConfirmation({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
-        className="bg-gray-800 border rounded-lg p-6 text-left"
+        className="bg-earth-800 border rounded-lg p-6 text-left"
       >
         <h3 className="text-lg font-semibold mb-4">Ordered Items</h3>
         <div className="space-y-4">
@@ -152,12 +152,12 @@ export function OrderConfirmation({
               />
               <div className="flex-1">
                 <h4 className="font-medium">{item.name}</h4>
-                <p className="text-sm text-gray-500">Quantity: {item.quantity}</p>
+                <p className="text-sm text-earth-500">Quantity: {item.quantity}</p>
                 <p className="text-sm text-green-600">{item.nutritionalInfo.protein}g protein</p>
               </div>
               <div className="text-right">
                 <p className="font-semibold">{formatPrice(item.price * item.quantity)}</p>
-                <p className="text-sm text-gray-500">{formatPrice(item.price)} each</p>
+                <p className="text-sm text-earth-500">{formatPrice(item.price)} each</p>
               </div>
             </div>
           ))}
@@ -169,23 +169,23 @@ export function OrderConfirmation({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.0 }}
-        className="bg-gray-800 border rounded-lg p-6 text-left"
+        className="bg-earth-800 border rounded-lg p-6 text-left"
       >
         <h3 className="text-lg font-semibold mb-4 flex items-center">
           <MapPin className="h-5 w-5 mr-2" />
           Shipping Address
         </h3>
-        <div className="text-gray-700">
+        <div className="text-earth-700">
           <p className="font-medium">{shippingAddress.firstName} {shippingAddress.lastName}</p>
           <p>{shippingAddress.line1}</p>
           {shippingAddress.line2 && <p>{shippingAddress.line2}</p>}
           <p>{shippingAddress.city}, {shippingAddress.state} {shippingAddress.postalCode}</p>
           <p>{shippingAddress.country}</p>
           <p className="mt-2">
-            <span className="text-sm text-gray-500">Phone:</span> {shippingAddress.phone}
+            <span className="text-sm text-earth-500">Phone:</span> {shippingAddress.phone}
           </p>
           <p>
-            <span className="text-sm text-gray-500">Email:</span> {shippingAddress.email}
+            <span className="text-sm text-earth-500">Email:</span> {shippingAddress.email}
           </p>
         </div>
       </motion.div>

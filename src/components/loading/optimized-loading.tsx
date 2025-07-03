@@ -19,7 +19,7 @@ export function Skeleton({
   height,
   animation = 'pulse'
 }: SkeletonProps) {
-  const baseClasses = 'bg-gray-200'
+  const baseClasses = 'bg-cream-200'
   
   const variantClasses = {
     text: 'h-4 rounded',
@@ -55,7 +55,7 @@ export function Skeleton({
 // Product Card Skeleton
 export function ProductCardSkeleton() {
   return (
-    <div className="bg-gray-800 rounded-lg shadow-sm border p-4 space-y-4">
+    <div className="bg-earth-800 rounded-lg shadow-sm border p-4 space-y-4">
       <Skeleton variant="rounded" height={200} className="w-full" />
       <div className="space-y-2">
         <Skeleton variant="text" className="w-3/4" />
@@ -101,7 +101,7 @@ export function LoadingSpinner({
 
   const colorClasses = {
     primary: 'border-primary-600',
-    gray: 'border-gray-600',
+    gray: 'border-earth-600',
     white: 'border-white'
   }
 
@@ -159,7 +159,7 @@ export function ProgressiveImage({
         )}
       />
       {!imageLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+        <div className="absolute inset-0 flex items-center justify-center bg-cream-100">
           <LoadingSpinner size="sm" />
         </div>
       )}

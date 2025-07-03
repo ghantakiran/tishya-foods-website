@@ -171,11 +171,11 @@ export function CheckoutFlow() {
 
   if (!cart || cart.items.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+      <div className="min-h-screen flex items-center justify-center bg-earth-900">
         <div className="text-center space-y-4">
-          <ShoppingBag className="h-16 w-16 text-gray-300 mx-auto" />
-          <h2 className="text-2xl font-semibold text-gray-100">Your cart is empty</h2>
-          <p className="text-gray-600">Add some products to get started!</p>
+          <ShoppingBag className="h-16 w-16 text-cream-300 mx-auto" />
+          <h2 className="text-2xl font-semibold text-cream-100">Your cart is empty</h2>
+          <p className="text-earth-600">Add some products to get started!</p>
           <Button>Continue Shopping</Button>
         </div>
       </div>
@@ -183,7 +183,7 @@ export function CheckoutFlow() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 pt-20">
+    <div className="min-h-screen bg-earth-900 pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Progress Steps */}
         <div className="mb-8">
@@ -198,7 +198,7 @@ export function CheckoutFlow() {
                           ? 'bg-green-500 border-green-500 text-white'
                           : currentStep === step.id
                           ? 'bg-primary-500 border-primary-500 text-white'
-                          : 'bg-gray-800 border-gray-600 text-gray-500'
+                          : 'bg-earth-800 border-earth-600 text-earth-500'
                       }`}
                     >
                       {step.completed ? (
@@ -210,8 +210,8 @@ export function CheckoutFlow() {
                     <span
                       className={`text-sm font-medium ${
                         step.completed || currentStep === step.id
-                          ? 'text-gray-100'
-                          : 'text-gray-500'
+                          ? 'text-cream-100'
+                          : 'text-earth-500'
                       }`}
                     >
                       {step.title}
@@ -221,7 +221,7 @@ export function CheckoutFlow() {
                   {index < steps.length - 1 && (
                     <div
                       className={`w-16 h-0.5 ml-4 ${
-                        step.completed ? 'bg-green-500' : 'bg-gray-300'
+                        step.completed ? 'bg-green-500' : 'bg-earth-300'
                       }`}
                     />
                   )}
@@ -234,7 +234,7 @@ export function CheckoutFlow() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2">
-            <div className="bg-gray-800 rounded-lg shadow-sm border p-6">
+            <div className="bg-earth-800 rounded-lg shadow-sm border p-6">
               <AnimatePresence mode="wait">
                 {currentStep === 1 && (
                   <motion.div
@@ -255,7 +255,7 @@ export function CheckoutFlow() {
                           />
                           <div className="flex-1">
                             <h3 className="font-medium">{item.name}</h3>
-                            <p className="text-sm text-gray-500">Quantity: {item.quantity}</p>
+                            <p className="text-sm text-earth-500">Quantity: {item.quantity}</p>
                             <p className="text-sm text-green-600">{item.nutritionalInfo.protein}g protein</p>
                           </div>
                           <div className="text-right">

@@ -167,7 +167,7 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
       {/* Header */}
       <div className="text-center">
         <motion.h2 
-          className="text-3xl font-bold text-brown-800 mb-4"
+          className="text-3xl font-bold text-earth-800 mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -175,7 +175,7 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
           Choose Your Wellness Journey
         </motion.h2>
         <motion.p 
-          className="text-brown-600 max-w-2xl mx-auto"
+          className="text-earth-600 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -192,7 +192,7 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="bg-gray-800 rounded-2xl p-2 shadow-lg border">
+        <div className="bg-earth-800 rounded-2xl p-2 shadow-lg border">
           <div className="flex space-x-1">
             {frequencyOptions.map((option) => (
               <button
@@ -201,8 +201,8 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
                 className={cn(
                   'px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200',
                   selectedFrequency === option.value
-                    ? 'bg-brown-800 text-white shadow-md'
-                    : 'text-brown-600 hover:bg-brown-50'
+                    ? 'bg-earth-800 text-white shadow-md'
+                    : 'text-earth-600 hover:bg-earth-50'
                 )}
               >
                 {option.label}
@@ -231,13 +231,13 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
             >
               <Card className={cn(
                 'relative overflow-hidden transition-all duration-300 hover:shadow-2xl',
-                plan.popular && 'ring-2 ring-brown-800 scale-105',
+                plan.popular && 'ring-2 ring-earth-800 scale-105',
                 selectedPlan === plan.id && 'ring-2 ring-primary-500'
               )}>
                 {/* Popular Badge */}
                 {plan.popular && (
                   <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <Badge className="bg-brown-800 text-white px-4 py-1">
+                    <Badge className="bg-earth-800 text-white px-4 py-1">
                       <Star className="h-3 w-3 mr-1" />
                       Most Popular
                     </Badge>
@@ -247,23 +247,23 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
                 <div className="p-6">
                   {/* Plan Header */}
                   <div className="text-center mb-6">
-                    <h3 className="text-xl font-bold text-brown-800 mb-2">
+                    <h3 className="text-xl font-bold text-earth-800 mb-2">
                       {plan.name}
                     </h3>
-                    <p className="text-brown-600 text-sm mb-4">
+                    <p className="text-earth-600 text-sm mb-4">
                       {plan.description}
                     </p>
                     
                     {/* Pricing */}
                     <div className="space-y-2">
                       <div className="flex items-center justify-center space-x-2">
-                        <span className="text-3xl font-bold text-brown-800">
+                        <span className="text-3xl font-bold text-earth-800">
                           {getBillingText(selectedFrequency, finalPrice)}
                         </span>
                       </div>
                       {savings > 0 && (
                         <div className="flex items-center justify-center space-x-2 text-sm">
-                          <span className="line-through text-gray-400">
+                          <span className="line-through text-earth-400">
                             {formatPrice(plan.basePrice)}
                           </span>
                           <Badge variant="secondary" className="bg-green-100 text-green-800">
@@ -279,7 +279,7 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
                     {plan.features.map((feature, idx) => (
                       <div key={idx} className="flex items-start space-x-2">
                         <Check className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-brown-700">{feature}</span>
+                        <span className="text-sm text-earth-700">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -289,34 +289,34 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
                     {plan.benefits.freeShipping && (
                       <div className="flex items-center space-x-2 text-xs">
                         <Truck className="h-4 w-4 text-green-500" />
-                        <span className="text-brown-600">Free Shipping</span>
+                        <span className="text-earth-600">Free Shipping</span>
                       </div>
                     )}
                     {plan.benefits.prioritySupport && (
                       <div className="flex items-center space-x-2 text-xs">
                         <Shield className="h-4 w-4 text-blue-500" />
-                        <span className="text-brown-600">Priority Support</span>
+                        <span className="text-earth-600">Priority Support</span>
                       </div>
                     )}
                     {plan.benefits.exclusiveProducts && (
                       <div className="flex items-center space-x-2 text-xs">
                         <Gift className="h-4 w-4 text-purple-500" />
-                        <span className="text-brown-600">Exclusive Items</span>
+                        <span className="text-earth-600">Exclusive Items</span>
                       </div>
                     )}
                     {plan.benefits.nutritionConsults && (
                       <div className="flex items-center space-x-2 text-xs">
                         <Heart className="h-4 w-4 text-red-500" />
-                        <span className="text-brown-600">Nutrition Consults</span>
+                        <span className="text-earth-600">Nutrition Consults</span>
                       </div>
                     )}
                   </div>
 
                   {/* Product Range */}
-                  <div className="bg-gray-900 rounded-lg p-3 mb-6">
+                  <div className="bg-earth-900 rounded-lg p-3 mb-6">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-brown-600">Products per delivery:</span>
-                      <span className="font-semibold text-brown-800">
+                      <span className="text-earth-600">Products per delivery:</span>
+                      <span className="font-semibold text-earth-800">
                         {plan.minProducts}-{plan.maxProducts} items
                       </span>
                     </div>
@@ -328,10 +328,10 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
                     className={cn(
                       'w-full transition-all duration-300',
                       plan.popular 
-                        ? 'bg-brown-800 hover:bg-brown-900' 
+                        ? 'bg-earth-800 hover:bg-earth-900' 
                         : selectedPlan === plan.id
                         ? 'bg-primary-600 hover:bg-primary-700'
-                        : 'bg-brown-700 hover:bg-brown-800'
+                        : 'bg-earth-700 hover:bg-earth-800'
                     )}
                     size="lg"
                   >
@@ -346,52 +346,52 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
 
       {/* Additional Benefits */}
       <motion.div 
-        className="bg-gradient-to-r from-brown-50 to-primary-50 rounded-2xl p-8"
+        className="bg-gradient-to-r from-earth-50 to-primary-50 rounded-2xl p-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.6 }}
       >
-        <h3 className="text-xl font-bold text-brown-800 mb-6 text-center">
+        <h3 className="text-xl font-bold text-earth-800 mb-6 text-center">
           Why Choose Tishya Foods Subscription?
         </h3>
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="text-center">
-            <div className="bg-gray-800 rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
+            <div className="bg-earth-800 rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
               <Percent className="h-8 w-8 text-green-500" />
             </div>
-            <h4 className="font-semibold text-brown-800 mb-2">Save More</h4>
-            <p className="text-sm text-brown-600">
+            <h4 className="font-semibold text-earth-800 mb-2">Save More</h4>
+            <p className="text-sm text-earth-600">
               Up to 25% off regular prices with quarterly subscriptions
             </p>
           </div>
           
           <div className="text-center">
-            <div className="bg-gray-800 rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
+            <div className="bg-earth-800 rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
               <Calendar className="h-8 w-8 text-blue-500" />
             </div>
-            <h4 className="font-semibold text-brown-800 mb-2">Flexible</h4>
-            <p className="text-sm text-brown-600">
+            <h4 className="font-semibold text-earth-800 mb-2">Flexible</h4>
+            <p className="text-sm text-earth-600">
               Pause, skip, or cancel anytime. Change frequency as needed
             </p>
           </div>
           
           <div className="text-center">
-            <div className="bg-gray-800 rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
+            <div className="bg-earth-800 rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
               <Package className="h-8 w-8 text-purple-500" />
             </div>
-            <h4 className="font-semibold text-brown-800 mb-2">Curated</h4>
-            <p className="text-sm text-brown-600">
+            <h4 className="font-semibold text-earth-800 mb-2">Curated</h4>
+            <p className="text-sm text-earth-600">
               Hand-picked products based on your preferences and goals
             </p>
           </div>
           
           <div className="text-center">
-            <div className="bg-gray-800 rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
+            <div className="bg-earth-800 rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
               <Heart className="h-8 w-8 text-red-500" />
             </div>
-            <h4 className="font-semibold text-brown-800 mb-2">Support</h4>
-            <p className="text-sm text-brown-600">
+            <h4 className="font-semibold text-earth-800 mb-2">Support</h4>
+            <p className="text-sm text-earth-600">
               Dedicated nutrition support and personalized guidance
             </p>
           </div>

@@ -219,9 +219,9 @@ export default function RecipesPage() {
   })
 
   return (
-    <div className="pt-20 min-h-screen bg-gray-900">
+    <div className="pt-20 min-h-screen bg-earth-900">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
+      <section className="py-20 bg-gradient-to-br from-earth-900 to-earth-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center max-w-3xl mx-auto"
@@ -229,10 +229,10 @@ export default function RecipesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-100 mb-6 font-montserrat">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-cream-100 mb-6 font-montserrat">
               Healthy Recipes
             </h1>
-            <p className="text-xl text-gray-300 leading-relaxed">
+            <p className="text-xl text-cream-300 leading-relaxed">
               Discover delicious and nutritious recipes featuring our protein-rich products. 
               From quick breakfasts to satisfying dinners, fuel your body with goodness.
             </p>
@@ -244,7 +244,7 @@ export default function RecipesPage() {
       <section className="py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="bg-gray-800 rounded-2xl p-6 shadow-lg"
+            className="bg-earth-800 rounded-2xl p-6 shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -252,13 +252,13 @@ export default function RecipesPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Search */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-earth-400 h-5 w-5" />
                 <input
                   type="text"
                   placeholder="Search recipes..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none placeholder-gray-400"
+                  className="w-full pl-10 pr-4 py-2 border border-earth-600 bg-earth-700 text-cream-100 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none placeholder-earth-400"
                 />
               </div>
 
@@ -266,7 +266,7 @@ export default function RecipesPage() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                className="px-4 py-2 border border-earth-600 bg-earth-700 text-cream-100 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
               >
                 {categories.map(category => (
                   <option key={category} value={category}>
@@ -279,7 +279,7 @@ export default function RecipesPage() {
               <select
                 value={selectedDifficulty}
                 onChange={(e) => setSelectedDifficulty(e.target.value)}
-                className="px-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                className="px-4 py-2 border border-earth-600 bg-earth-700 text-cream-100 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
               >
                 {difficulties.map(difficulty => (
                   <option key={difficulty} value={difficulty}>
@@ -295,7 +295,7 @@ export default function RecipesPage() {
       {/* Results Count */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-6">
-          <p className="text-gray-300">
+          <p className="text-cream-300">
             Showing {filteredRecipes.length} of {recipes.length} recipes
           </p>
         </div>
@@ -313,7 +313,7 @@ export default function RecipesPage() {
             {filteredRecipes.map((recipe, index) => (
               <motion.div
                 key={recipe.id}
-                className="bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group"
+                className="bg-earth-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -322,37 +322,37 @@ export default function RecipesPage() {
                 {/* Recipe Image */}
                 <div className="aspect-[4/3] bg-gradient-to-br from-primary-100 to-primary-200 relative overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-gray-100 font-bold text-lg text-center px-4">
+                    <span className="text-cream-100 font-bold text-lg text-center px-4">
                       {recipe.title}
                     </span>
                   </div>
                   
                   {/* Category Badge */}
                   <div className="absolute top-4 left-4">
-                    <span className="bg-gray-800/90 text-gray-100 text-xs px-3 py-1 rounded-full font-semibold">
+                    <span className="bg-earth-800/90 text-cream-100 text-xs px-3 py-1 rounded-full font-semibold">
                       {recipe.category}
                     </span>
                   </div>
 
                   {/* Rating */}
-                  <div className="absolute top-4 right-4 flex items-center bg-gray-800/90 rounded-full px-2 py-1">
+                  <div className="absolute top-4 right-4 flex items-center bg-earth-800/90 rounded-full px-2 py-1">
                     <Star className="h-3 w-3 text-yellow-500 fill-current mr-1" />
-                    <span className="text-xs font-semibold text-gray-100">{recipe.rating}</span>
+                    <span className="text-xs font-semibold text-cream-100">{recipe.rating}</span>
                   </div>
                 </div>
 
                 {/* Recipe Content */}
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-100 mb-2 group-hover:text-primary-600 transition-colors">
+                  <h3 className="text-xl font-bold text-cream-100 mb-2 group-hover:text-primary-600 transition-colors">
                     {recipe.title}
                   </h3>
                   
-                  <p className="text-gray-300 text-sm mb-4 line-clamp-2">
+                  <p className="text-cream-300 text-sm mb-4 line-clamp-2">
                     {recipe.description}
                   </p>
 
                   {/* Recipe Meta */}
-                  <div className="flex items-center justify-between text-sm text-gray-300 mb-4">
+                  <div className="flex items-center justify-between text-sm text-cream-300 mb-4">
                     <div className="flex items-center">
                       <Clock className="h-4 w-4 mr-1" />
                       <span>{recipe.prepTime}</span>
@@ -369,21 +369,21 @@ export default function RecipesPage() {
 
                   {/* Nutritional Info */}
                   <div className="grid grid-cols-4 gap-2 mb-6 text-center">
-                    <div className="bg-gray-800 rounded-lg p-2">
-                      <div className="text-sm font-bold text-gray-100">{recipe.nutritionalInfo.calories}</div>
-                      <div className="text-xs text-gray-300">Cal</div>
+                    <div className="bg-earth-800 rounded-lg p-2">
+                      <div className="text-sm font-bold text-cream-100">{recipe.nutritionalInfo.calories}</div>
+                      <div className="text-xs text-cream-300">Cal</div>
                     </div>
-                    <div className="bg-gray-800 rounded-lg p-2">
-                      <div className="text-sm font-bold text-gray-100">{recipe.nutritionalInfo.protein}g</div>
-                      <div className="text-xs text-gray-300">Protein</div>
+                    <div className="bg-earth-800 rounded-lg p-2">
+                      <div className="text-sm font-bold text-cream-100">{recipe.nutritionalInfo.protein}g</div>
+                      <div className="text-xs text-cream-300">Protein</div>
                     </div>
-                    <div className="bg-gray-800 rounded-lg p-2">
-                      <div className="text-sm font-bold text-gray-100">{recipe.nutritionalInfo.carbs}g</div>
-                      <div className="text-xs text-gray-300">Carbs</div>
+                    <div className="bg-earth-800 rounded-lg p-2">
+                      <div className="text-sm font-bold text-cream-100">{recipe.nutritionalInfo.carbs}g</div>
+                      <div className="text-xs text-cream-300">Carbs</div>
                     </div>
-                    <div className="bg-gray-800 rounded-lg p-2">
-                      <div className="text-sm font-bold text-gray-100">{recipe.nutritionalInfo.fat}g</div>
-                      <div className="text-xs text-gray-300">Fat</div>
+                    <div className="bg-earth-800 rounded-lg p-2">
+                      <div className="text-sm font-bold text-cream-100">{recipe.nutritionalInfo.fat}g</div>
+                      <div className="text-xs text-cream-300">Fat</div>
                     </div>
                   </div>
 
@@ -404,7 +404,7 @@ export default function RecipesPage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="text-gray-300 mb-4">
+              <div className="text-cream-300 mb-4">
                 <Filter className="h-12 w-12 mx-auto mb-4 opacity-50" />
                 <p className="text-lg">No recipes found matching your criteria</p>
                 <p className="text-sm">Try adjusting your filters or search terms</p>

@@ -71,9 +71,9 @@ export function OrderList() {
   if (error) {
     return (
       <div className="text-center py-12">
-        <Package className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-lg font-medium text-gray-100 mb-2">Error loading orders</h3>
-        <p className="text-gray-600 mb-4">{error}</p>
+        <Package className="h-16 w-16 text-cream-300 mx-auto mb-4" />
+        <h3 className="text-lg font-medium text-cream-100 mb-2">Error loading orders</h3>
+        <p className="text-earth-600 mb-4">{error}</p>
         <Button onClick={() => fetchOrders()}>Try Again</Button>
       </div>
     )
@@ -84,8 +84,8 @@ export function OrderList() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-100">My Orders</h1>
-          <p className="text-gray-600">Track and manage your orders</p>
+          <h1 className="text-2xl font-bold text-cream-100">My Orders</h1>
+          <p className="text-earth-600">Track and manage your orders</p>
         </div>
       </div>
 
@@ -93,7 +93,7 @@ export function OrderList() {
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="flex-1 relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-gray-400" />
+            <Search className="h-5 w-5 text-earth-400" />
           </div>
           <Input
             type="text"
@@ -125,18 +125,18 @@ export function OrderList() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
-          className="border rounded-lg p-4 bg-gray-900"
+          className="border rounded-lg p-4 bg-earth-900"
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Order Status Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-earth-700 mb-2">
                 Order Status
               </label>
               <select
                 value={tempFilters.status || ''}
                 onChange={(e) => setTempFilters({ ...tempFilters, status: e.target.value as OrderStatus })}
-                className="w-full px-3 py-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-3 py-2 border border-earth-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
               >
                 <option value="">All statuses</option>
                 <option value={OrderStatus.PENDING}>Pending</option>
@@ -150,13 +150,13 @@ export function OrderList() {
 
             {/* Payment Status Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-earth-700 mb-2">
                 Payment Status
               </label>
               <select
                 value={tempFilters.paymentStatus || ''}
                 onChange={(e) => setTempFilters({ ...tempFilters, paymentStatus: e.target.value as PaymentStatus })}
-                className="w-full px-3 py-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-3 py-2 border border-earth-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
               >
                 <option value="">All payments</option>
                 <option value={PaymentStatus.PENDING}>Pending</option>
@@ -168,13 +168,13 @@ export function OrderList() {
 
             {/* Sort By */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-earth-700 mb-2">
                 Sort By
               </label>
               <select
                 value={tempFilters.sortBy || 'date'}
                 onChange={(e) => setTempFilters({ ...tempFilters, sortBy: e.target.value as any })}
-                className="w-full px-3 py-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-3 py-2 border border-earth-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
               >
                 <option value="date">Order Date</option>
                 <option value="total">Total Amount</option>
@@ -206,9 +206,9 @@ export function OrderList() {
         <div className="space-y-4">
           {orders.length === 0 ? (
             <div className="text-center py-12">
-              <Package className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-100 mb-2">No orders found</h3>
-              <p className="text-gray-600 mb-4">
+              <Package className="h-16 w-16 text-cream-300 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-cream-100 mb-2">No orders found</h3>
+              <p className="text-earth-600 mb-4">
                 {searchQuery || Object.keys(filters).length > 0
                   ? 'Try adjusting your search or filters'
                   : "You haven't placed any orders yet"

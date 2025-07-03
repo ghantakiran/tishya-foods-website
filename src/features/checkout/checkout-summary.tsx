@@ -16,7 +16,7 @@ export function CheckoutSummary({ cart }: CheckoutSummaryProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-gray-800 rounded-lg shadow-sm border p-6 sticky top-24"
+      className="bg-earth-800 rounded-lg shadow-sm border p-6 sticky top-24"
     >
       <h3 className="text-lg font-semibold mb-4 flex items-center">
         <ShoppingBag className="h-5 w-5 mr-2" />
@@ -25,14 +25,14 @@ export function CheckoutSummary({ cart }: CheckoutSummaryProps) {
 
       {/* Items Count */}
       <div className="flex items-center justify-between mb-4 pb-4 border-b">
-        <span className="text-gray-600">Items ({cart.totalItems})</span>
+        <span className="text-earth-600">Items ({cart.totalItems})</span>
         <span className="font-medium">{formatPrice(cart.totalPrice)}</span>
       </div>
 
       {/* Applied Coupons */}
       {cart.appliedCoupons.length > 0 && (
         <div className="mb-4 pb-4 border-b">
-          <h4 className="text-sm font-medium text-gray-700 mb-2 flex items-center">
+          <h4 className="text-sm font-medium text-earth-700 mb-2 flex items-center">
             <Tag className="h-4 w-4 mr-1" />
             Applied Coupons
           </h4>
@@ -54,21 +54,21 @@ export function CheckoutSummary({ cart }: CheckoutSummaryProps) {
       {/* Cost Breakdown */}
       <div className="space-y-3 mb-4 pb-4 border-b">
         <div className="flex items-center justify-between text-sm">
-          <span className="text-gray-600">Subtotal</span>
+          <span className="text-earth-600">Subtotal</span>
           <span>{formatPrice(cart.totalPrice)}</span>
         </div>
 
         {cart.discountAmount > 0 && (
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600">Discount</span>
+            <span className="text-earth-600">Discount</span>
             <span className="text-green-600">-{formatPrice(cart.discountAmount)}</span>
           </div>
         )}
 
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center">
-            <Truck className="h-4 w-4 mr-1 text-gray-400" />
-            <span className="text-gray-600">Shipping</span>
+            <Truck className="h-4 w-4 mr-1 text-earth-400" />
+            <span className="text-earth-600">Shipping</span>
           </div>
           <span className={cart.shippingCost === 0 ? 'text-green-600' : ''}>
             {cart.shippingCost === 0 ? 'FREE' : formatPrice(cart.shippingCost)}
@@ -77,8 +77,8 @@ export function CheckoutSummary({ cart }: CheckoutSummaryProps) {
 
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center">
-            <Calculator className="h-4 w-4 mr-1 text-gray-400" />
-            <span className="text-gray-600">Taxes</span>
+            <Calculator className="h-4 w-4 mr-1 text-earth-400" />
+            <span className="text-earth-600">Taxes</span>
           </div>
           <span>Included</span>
         </div>
@@ -108,12 +108,12 @@ export function CheckoutSummary({ cart }: CheckoutSummaryProps) {
       )}
 
       {/* Security Notice */}
-      <div className="mt-4 p-3 bg-gray-900 rounded-lg">
+      <div className="mt-4 p-3 bg-earth-900 rounded-lg">
         <div className="flex items-start space-x-2">
           <div className="w-4 h-4 bg-green-500 rounded-full flex-shrink-0 mt-0.5">
-            <div className="w-2 h-2 bg-gray-800 rounded-full mx-auto mt-1" />
+            <div className="w-2 h-2 bg-earth-800 rounded-full mx-auto mt-1" />
           </div>
-          <div className="text-xs text-gray-600">
+          <div className="text-xs text-earth-600">
             <p className="font-medium">Secure Checkout</p>
             <p>Your payment information is encrypted and secure.</p>
           </div>
@@ -132,7 +132,7 @@ export function CheckoutSummary({ cart }: CheckoutSummaryProps) {
       </div>
 
       {/* Return Policy */}
-      <div className="mt-4 text-xs text-gray-500 text-center">
+      <div className="mt-4 text-xs text-earth-500 text-center">
         <p>30-day return policy • Free returns</p>
       </div>
     </motion.div>

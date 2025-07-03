@@ -74,10 +74,10 @@ export default function Testimonials() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-brown-800 mb-4 font-montserrat">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-earth-800 mb-4 font-montserrat">
             What Our Customers Say
           </h2>
-          <p className="text-lg text-brown-600 max-w-2xl mx-auto">
+          <p className="text-lg text-earth-600 max-w-2xl mx-auto">
             Join thousands of satisfied customers who have made Tishya Foods part of their healthy lifestyle
           </p>
         </motion.div>
@@ -93,14 +93,14 @@ export default function Testimonials() {
           {testimonials.map((testimonial) => (
             <motion.div
               key={testimonial.id}
-              className="bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 relative"
+              className="bg-earth-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 relative"
               variants={itemVariants}
               whileHover={{ y: -5 }}
             >
               {/* Quote Icon */}
               <div className="absolute -top-4 left-6">
                 <div className="bg-primary-500 rounded-full p-2">
-                  <Quote className="h-4 w-4 text-brown-800" />
+                  <Quote className="h-4 w-4 text-earth-800" />
                 </div>
               </div>
 
@@ -112,14 +112,14 @@ export default function Testimonials() {
               </div>
 
               {/* Comment */}
-              <p className="text-brown-700 mb-6 leading-relaxed">
+              <p className="text-earth-700 mb-6 leading-relaxed">
                 &quot;{testimonial.comment}&quot;
               </p>
 
               {/* Customer Info */}
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-semibold text-brown-800">{testimonial.name}</p>
+                  <p className="font-semibold text-earth-800">{testimonial.name}</p>
                   {testimonial.verified && (
                     <p className="text-sm text-primary-600 flex items-center mt-1">
                       <span className="w-2 h-2 bg-green-500 rounded-full mr-1"></span>
@@ -141,8 +141,8 @@ export default function Testimonials() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-brown-800 mb-2">4.9</div>
-            <div className="text-brown-600">Average Rating</div>
+            <div className="text-3xl sm:text-4xl font-bold text-earth-800 mb-2">4.9</div>
+            <div className="text-earth-600">Average Rating</div>
             <div className="flex justify-center mt-2">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-4 w-4 text-accent-500 fill-current" />
@@ -150,16 +150,16 @@ export default function Testimonials() {
             </div>
           </div>
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-brown-800 mb-2">1000+</div>
-            <div className="text-brown-600">Happy Customers</div>
+            <div className="text-3xl sm:text-4xl font-bold text-earth-800 mb-2">1000+</div>
+            <div className="text-earth-600">Happy Customers</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-brown-800 mb-2">500+</div>
-            <div className="text-brown-600">Reviews</div>
+            <div className="text-3xl sm:text-4xl font-bold text-earth-800 mb-2">500+</div>
+            <div className="text-earth-600">Reviews</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-brown-800 mb-2">95%</div>
-            <div className="text-brown-600">Repeat Customers</div>
+            <div className="text-3xl sm:text-4xl font-bold text-earth-800 mb-2">95%</div>
+            <div className="text-earth-600">Repeat Customers</div>
           </div>
         </motion.div>
       </div>

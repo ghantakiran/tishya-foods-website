@@ -123,7 +123,7 @@ export function OptimizedImage({
     <div className={cn('relative overflow-hidden', { 'w-full h-full': fill })}>
       {/* Placeholder */}
       {!isLoaded && !isError && (
-        <div className="absolute inset-0 bg-gray-100">
+        <div className="absolute inset-0 bg-cream-100">
           {placeholder === 'blur' && blurDataURL && (
             <img
               src={blurDataURL}
@@ -134,7 +134,7 @@ export function OptimizedImage({
           {shouldLoad && (
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
-                className="w-6 h-6 border-2 border-gray-300 border-t-primary-500 rounded-full"
+                className="w-6 h-6 border-2 border-earth-300 border-t-primary-500 rounded-full"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
               />
@@ -148,9 +148,9 @@ export function OptimizedImage({
 
       {/* Error State */}
       {isError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 text-gray-400">
+        <div className="absolute inset-0 flex items-center justify-center bg-cream-100 text-earth-400">
           <div className="text-center">
-            <div className="w-12 h-12 mx-auto mb-2 bg-gray-200 rounded flex items-center justify-center">
+            <div className="w-12 h-12 mx-auto mb-2 bg-cream-200 rounded flex items-center justify-center">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
@@ -214,7 +214,7 @@ export function ResponsiveImageGrid({
             />
           </div>
           {image.caption && (
-            <p className="mt-2 text-sm text-gray-600 text-center">{image.caption}</p>
+            <p className="mt-2 text-sm text-earth-600 text-center">{image.caption}</p>
           )}
         </motion.div>
       ))}
@@ -325,8 +325,8 @@ export function LazyImage({
         <OptimizedImage src={src} alt={alt} fill className="object-cover" />
       ) : (
         placeholder || (
-          <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-            <div className="w-8 h-8 bg-gray-200 rounded animate-pulse" />
+          <div className="w-full h-full bg-cream-100 flex items-center justify-center">
+            <div className="w-8 h-8 bg-cream-200 rounded animate-pulse" />
           </div>
         )
       )}
@@ -397,8 +397,8 @@ export function ProgressiveImage({
 
       {/* Loading placeholder */}
       {!lowResLoaded && (
-        <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-          <div className="w-6 h-6 border-2 border-gray-300 border-t-primary-500 rounded-full animate-spin" />
+        <div className="absolute inset-0 bg-cream-100 flex items-center justify-center">
+          <div className="w-6 h-6 border-2 border-earth-300 border-t-primary-500 rounded-full animate-spin" />
         </div>
       )}
     </div>

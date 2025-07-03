@@ -54,13 +54,13 @@ export const metadata: Metadata = {
     maximumScale: 1,
     userScalable: false,
   },
-  themeColor: "#8B4513",
+  themeColor: "var(--primary-500)",
   other: {
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
     "apple-mobile-web-app-title": "Tishya Foods",
     "mobile-web-app-capable": "yes",
-    "msapplication-TileColor": "#8B4513",
+    "msapplication-TileColor": "var(--primary-500)",
     "msapplication-config": "/browserconfig.xml",
   },
 };
@@ -71,7 +71,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="scroll-smooth">
       <head>
         <StructuredData 
           type="Organization" 
@@ -82,7 +82,7 @@ export default function RootLayout({
           data={{}} 
         />
       </head>
-      <body className={`${montserrat.variable} ${inter.variable} font-sans antialiased bg-gray-900 text-gray-100`}>
+      <body className={`${montserrat.variable} ${inter.variable} font-sans antialiased bg-cream-50 text-earth-800`}>
         <ErrorBoundary>
           <LoadingProvider>
             <AuthProvider>

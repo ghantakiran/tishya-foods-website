@@ -66,7 +66,7 @@ export default function ComparePage() {
   const [selectedProducts, setSelectedProducts] = useState<string[]>([])
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-earth-900">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-primary-600 to-primary-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -104,10 +104,10 @@ export default function ComparePage() {
         {/* Benefits Section */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-100 mb-4">
+            <h2 className="text-3xl font-bold text-cream-100 mb-4">
               Why Compare Products?
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-earth-600 max-w-2xl mx-auto">
               Our comparison tool helps you make data-driven decisions to find the perfect products for your health and fitness goals.
             </p>
           </div>
@@ -124,8 +124,8 @@ export default function ComparePage() {
                 <div className="flex items-center justify-center w-12 h-12 bg-primary-100 rounded-full mx-auto mb-4">
                   <benefit.icon className="h-6 w-6 text-primary-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-100 mb-2">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
+                <h3 className="text-lg font-semibold text-cream-100 mb-2">{benefit.title}</h3>
+                <p className="text-earth-600">{benefit.description}</p>
               </motion.div>
             ))}
           </div>
@@ -134,7 +134,7 @@ export default function ComparePage() {
         {/* Comparison Tips */}
         <div className="mb-16">
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-100 mb-6 text-center">
+            <h3 className="text-2xl font-bold text-cream-100 mb-6 text-center">
               Smart Comparison Tips
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -144,12 +144,12 @@ export default function ComparePage() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex items-start space-x-3 bg-gray-800 rounded-lg p-4 shadow-sm"
+                  className="flex items-start space-x-3 bg-earth-800 rounded-lg p-4 shadow-sm"
                 >
                   <div className="text-2xl">{tip.icon}</div>
                   <div>
-                    <h4 className="font-semibold text-gray-100 mb-1">{tip.title}</h4>
-                    <p className="text-sm text-gray-600">{tip.description}</p>
+                    <h4 className="font-semibold text-cream-100 mb-1">{tip.title}</h4>
+                    <p className="text-sm text-earth-600">{tip.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -160,10 +160,10 @@ export default function ComparePage() {
         {/* How It Works */}
         <div className="mb-16">
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-gray-100 mb-4">
+            <h3 className="text-2xl font-bold text-cream-100 mb-4">
               How Product Comparison Works
             </h3>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-earth-600">
               Follow these simple steps to compare products effectively
             </p>
           </div>
@@ -173,8 +173,8 @@ export default function ComparePage() {
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold text-blue-600">1</span>
               </div>
-              <h4 className="text-lg font-semibold text-gray-100 mb-2">Select Products</h4>
-              <p className="text-gray-600">
+              <h4 className="text-lg font-semibold text-cream-100 mb-2">Select Products</h4>
+              <p className="text-earth-600">
                 Choose up to 4 products from our range to compare side by side
               </p>
             </div>
@@ -183,8 +183,8 @@ export default function ComparePage() {
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold text-green-600">2</span>
               </div>
-              <h4 className="text-lg font-semibold text-gray-100 mb-2">Analyze Data</h4>
-              <p className="text-gray-600">
+              <h4 className="text-lg font-semibold text-cream-100 mb-2">Analyze Data</h4>
+              <p className="text-earth-600">
                 Review nutrition facts, ingredients, benefits, and certifications
               </p>
             </div>
@@ -193,8 +193,8 @@ export default function ComparePage() {
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold text-purple-600">3</span>
               </div>
-              <h4 className="text-lg font-semibold text-gray-100 mb-2">Make Decision</h4>
-              <p className="text-gray-600">
+              <h4 className="text-lg font-semibold text-cream-100 mb-2">Make Decision</h4>
+              <p className="text-earth-600">
                 Use highlighted best values and summaries to choose the right product
               </p>
             </div>
@@ -203,8 +203,8 @@ export default function ComparePage() {
 
         {/* Key Metrics Explanation */}
         <div className="mb-16">
-          <div className="bg-gray-800 rounded-lg shadow-sm border p-8">
-            <h3 className="text-2xl font-bold text-gray-100 mb-6">
+          <div className="bg-earth-800 rounded-lg shadow-sm border p-8">
+            <h3 className="text-2xl font-bold text-cream-100 mb-6">
               Understanding Key Metrics
             </h3>
             
@@ -212,9 +212,9 @@ export default function ComparePage() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
                   <TrendingUp className="h-5 w-5 text-blue-600" />
-                  <h4 className="font-semibold text-gray-100">Protein Content</h4>
+                  <h4 className="font-semibold text-cream-100">Protein Content</h4>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-earth-600">
                   Higher protein content supports muscle growth, recovery, and satiety. 
                   Look for products with 6g+ protein per serving.
                 </p>
@@ -223,9 +223,9 @@ export default function ComparePage() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
                   <Zap className="h-5 w-5 text-orange-600" />
-                  <h4 className="font-semibold text-gray-100">Calories</h4>
+                  <h4 className="font-semibold text-cream-100">Calories</h4>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-earth-600">
                   Consider your caloric goals. Lower calories for weight loss, 
                   moderate for maintenance, higher for muscle gain.
                 </p>
@@ -234,9 +234,9 @@ export default function ComparePage() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
                   <Heart className="h-5 w-5 text-green-600" />
-                  <h4 className="font-semibold text-gray-100">Fiber Content</h4>
+                  <h4 className="font-semibold text-cream-100">Fiber Content</h4>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-earth-600">
                   Higher fiber aids digestion, promotes satiety, and supports 
                   heart health. Aim for 3g+ per serving.
                 </p>
@@ -245,9 +245,9 @@ export default function ComparePage() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
                   <Award className="h-5 w-5 text-purple-600" />
-                  <h4 className="font-semibold text-gray-100">Certifications</h4>
+                  <h4 className="font-semibold text-cream-100">Certifications</h4>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-earth-600">
                   Organic, Non-GMO, and other certifications indicate quality 
                   standards and production methods.
                 </p>
@@ -256,9 +256,9 @@ export default function ComparePage() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
                   <Scale className="h-5 w-5 text-indigo-600" />
-                  <h4 className="font-semibold text-gray-100">Value Ratio</h4>
+                  <h4 className="font-semibold text-cream-100">Value Ratio</h4>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-earth-600">
                   Compare protein per rupee to find the best value for your budget 
                   without compromising quality.
                 </p>
@@ -267,9 +267,9 @@ export default function ComparePage() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="h-5 w-5 text-red-600" />
-                  <h4 className="font-semibold text-gray-100">Sugar Content</h4>
+                  <h4 className="font-semibold text-cream-100">Sugar Content</h4>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-earth-600">
                   Lower sugar content is generally better for blood sugar control 
                   and overall health. Natural sugars are preferred.
                 </p>
@@ -279,12 +279,12 @@ export default function ComparePage() {
         </div>
 
         {/* Main Comparison Tool */}
-        <div className="bg-gray-800 rounded-lg shadow-sm border overflow-hidden">
-          <div className="p-6 border-b bg-gray-900">
+        <div className="bg-earth-800 rounded-lg shadow-sm border overflow-hidden">
+          <div className="p-6 border-b bg-earth-900">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-2xl font-bold text-gray-100">Interactive Product Comparison</h2>
-                <p className="text-gray-600">Select products below to start comparing</p>
+                <h2 className="text-2xl font-bold text-cream-100">Interactive Product Comparison</h2>
+                <p className="text-earth-600">Select products below to start comparing</p>
               </div>
               <Badge variant="outline" className="text-sm">
                 Compare up to 4 products
@@ -300,10 +300,10 @@ export default function ComparePage() {
         {/* Call to Action */}
         <div className="mt-16 text-center">
           <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-100 mb-4">
+            <h3 className="text-2xl font-bold text-cream-100 mb-4">
               Found Your Perfect Products?
             </h3>
-            <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
+            <p className="text-lg text-earth-600 mb-6 max-w-2xl mx-auto">
               Use our comparison insights to make the best choice for your health goals. 
               All our products are crafted with premium ingredients for optimal nutrition.
             </p>

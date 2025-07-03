@@ -187,11 +187,11 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
   if (products.length === 0) {
     return (
       <div className="text-center py-12">
-        <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <Scale className="h-8 w-8 text-gray-400" />
+        <div className="w-16 h-16 bg-cream-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <Scale className="h-8 w-8 text-earth-400" />
         </div>
-        <h3 className="text-lg font-medium text-gray-100 mb-2">No products selected</h3>
-        <p className="text-gray-600 mb-4">Add products to compare their features and nutrition</p>
+        <h3 className="text-lg font-medium text-cream-100 mb-2">No products selected</h3>
+        <p className="text-earth-600 mb-4">Add products to compare their features and nutrition</p>
         <Button variant="outline">
           <Plus className="h-4 w-4 mr-2" />
           Browse Products
@@ -205,8 +205,8 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-100">Product Comparison</h2>
-          <p className="text-gray-600">Compare nutrition, benefits, and features side by side</p>
+          <h2 className="text-2xl font-bold text-cream-100">Product Comparison</h2>
+          <p className="text-earth-600">Compare nutrition, benefits, and features side by side</p>
         </div>
         <Badge variant="secondary" className="text-sm">
           {products.length} products selected
@@ -214,14 +214,14 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
       </div>
 
       {/* Comparison Table */}
-      <div className="bg-gray-800 rounded-lg shadow-sm border overflow-hidden">
+      <div className="bg-earth-800 rounded-lg shadow-sm border overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             {/* Product Headers */}
             <thead>
               <tr className="border-b">
-                <th className="text-left p-4 w-48 bg-gray-900">
-                  <span className="text-sm font-medium text-gray-500">Product Details</span>
+                <th className="text-left p-4 w-48 bg-earth-900">
+                  <span className="text-sm font-medium text-earth-500">Product Details</span>
                 </th>
                 {products.map((product) => (
                   <th key={product.id} className="text-center p-4 min-w-64 relative">
@@ -235,7 +235,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
                         variant="ghost"
                         size="sm"
                         onClick={() => onRemoveProduct(product.id)}
-                        className="absolute top-2 right-2 h-6 w-6 p-0 text-gray-400 hover:text-red-500"
+                        className="absolute top-2 right-2 h-6 w-6 p-0 text-earth-400 hover:text-red-500"
                       >
                         <X className="h-3 w-3" />
                       </Button>
@@ -257,7 +257,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
 
                       {/* Product Info */}
                       <div>
-                        <h3 className="font-semibold text-gray-100 text-sm mb-1">
+                        <h3 className="font-semibold text-cream-100 text-sm mb-1">
                           {product.name}
                         </h3>
                         <div className="flex items-center justify-center space-x-1 mb-2">
@@ -268,12 +268,12 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
                                 className={`h-3 w-3 ${
                                   i < Math.floor(product.rating)
                                     ? 'text-yellow-400 fill-current'
-                                    : 'text-gray-300'
+                                    : 'text-cream-300'
                                 }`}
                               />
                             ))}
                           </div>
-                          <span className="text-xs text-gray-500">({product.reviews})</span>
+                          <span className="text-xs text-earth-500">({product.reviews})</span>
                         </div>
                         
                         {/* Price */}
@@ -283,7 +283,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
                               {formatPrice(product.price)}
                             </span>
                             {product.originalPrice && (
-                              <span className="text-sm text-gray-500 line-through">
+                              <span className="text-sm text-earth-500 line-through">
                                 {formatPrice(product.originalPrice)}
                               </span>
                             )}
@@ -315,7 +315,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
             <tbody>
               {/* Nutrition Facts */}
               <tr className="border-b bg-blue-50">
-                <td className="p-4 font-medium text-gray-100">
+                <td className="p-4 font-medium text-cream-100">
                   <div className="flex items-center space-x-2">
                     <TrendingUp className="h-4 w-4 text-blue-600" />
                     <span>Nutrition Facts</span>
@@ -323,7 +323,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
                 </td>
                 {products.map((product) => (
                   <td key={product.id} className="p-4 text-center">
-                    <span className="text-sm text-gray-600">
+                    <span className="text-sm text-earth-600">
                       Per {product.nutritionalInfo.servingSize}
                     </span>
                   </td>
@@ -333,7 +333,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
               {nutritionCategories.map((category) => (
                 <tr
                   key={category.key}
-                  className={`border-b hover:bg-gray-900 transition-colors ${
+                  className={`border-b hover:bg-earth-900 transition-colors ${
                     highlightedMetric === category.key ? 'bg-yellow-50' : ''
                   }`}
                   onMouseEnter={() => setHighlightedMetric(category.key)}
@@ -342,7 +342,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
                   <td className="p-4">
                     <div className="flex items-center space-x-2">
                       <category.icon className={`h-4 w-4 ${category.color}`} />
-                      <span className="font-medium text-gray-700">{category.label}</span>
+                      <span className="font-medium text-earth-700">{category.label}</span>
                     </div>
                   </td>
                   {products.map((product) => {
@@ -352,7 +352,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
                     return (
                       <td key={product.id} className="p-4 text-center">
                         <div className="flex items-center justify-center space-x-1">
-                          <span className={`font-semibold ${isBest ? 'text-green-600' : 'text-gray-100'}`}>
+                          <span className={`font-semibold ${isBest ? 'text-green-600' : 'text-cream-100'}`}>
                             {value}{category.unit}
                           </span>
                           {isBest && <Check className="h-4 w-4 text-green-600" />}
@@ -365,7 +365,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
 
               {/* Benefits */}
               <tr className="border-b bg-green-50">
-                <td className="p-4 font-medium text-gray-100">
+                <td className="p-4 font-medium text-cream-100">
                   <div className="flex items-center space-x-2">
                     <Heart className="h-4 w-4 text-green-600" />
                     <span>Health Benefits</span>
@@ -377,14 +377,14 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
               </tr>
 
               {allBenefits.map((benefit) => (
-                <tr key={benefit} className="border-b hover:bg-gray-900">
-                  <td className="p-4 pl-8 text-sm text-gray-700">{benefit}</td>
+                <tr key={benefit} className="border-b hover:bg-earth-900">
+                  <td className="p-4 pl-8 text-sm text-earth-700">{benefit}</td>
                   {products.map((product) => (
                     <td key={product.id} className="p-4 text-center">
                       {product.benefits.includes(benefit) ? (
                         <Check className="h-4 w-4 text-green-600 mx-auto" />
                       ) : (
-                        <X className="h-4 w-4 text-gray-300 mx-auto" />
+                        <X className="h-4 w-4 text-cream-300 mx-auto" />
                       )}
                     </td>
                   ))}
@@ -393,7 +393,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
 
               {/* Certifications */}
               <tr className="border-b bg-purple-50">
-                <td className="p-4 font-medium text-gray-100">
+                <td className="p-4 font-medium text-cream-100">
                   <div className="flex items-center space-x-2">
                     <Award className="h-4 w-4 text-purple-600" />
                     <span>Certifications</span>
@@ -405,14 +405,14 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
               </tr>
 
               {allCertifications.map((certification) => (
-                <tr key={certification} className="border-b hover:bg-gray-900">
-                  <td className="p-4 pl-8 text-sm text-gray-700">{certification}</td>
+                <tr key={certification} className="border-b hover:bg-earth-900">
+                  <td className="p-4 pl-8 text-sm text-earth-700">{certification}</td>
                   {products.map((product) => (
                     <td key={product.id} className="p-4 text-center">
                       {product.certifications.includes(certification) ? (
                         <Check className="h-4 w-4 text-green-600 mx-auto" />
                       ) : (
-                        <X className="h-4 w-4 text-gray-300 mx-auto" />
+                        <X className="h-4 w-4 text-cream-300 mx-auto" />
                       )}
                     </td>
                   ))}
@@ -421,7 +421,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
 
               {/* Ingredients */}
               <tr className="border-b bg-orange-50">
-                <td className="p-4 font-medium text-gray-100">
+                <td className="p-4 font-medium text-cream-100">
                   <div className="flex items-center space-x-2">
                     <Info className="h-4 w-4 text-orange-600" />
                     <span>Key Ingredients</span>
@@ -429,7 +429,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
                 </td>
                 {products.map((product) => (
                   <td key={product.id} className="p-4">
-                    <div className="text-xs text-gray-600 space-y-1">
+                    <div className="text-xs text-earth-600 space-y-1">
                       {product.ingredients.slice(0, 4).map((ingredient, index) => (
                         <div key={index} className="flex items-center justify-center">
                           <Badge variant="outline" className="text-xs px-1 py-0">
@@ -438,7 +438,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
                         </div>
                       ))}
                       {product.ingredients.length > 4 && (
-                        <div className="text-center text-gray-500">
+                        <div className="text-center text-earth-500">
                           +{product.ingredients.length - 4} more
                         </div>
                       )}
@@ -551,8 +551,8 @@ export function ProductComparisonContainer() {
     <div className="max-w-7xl mx-auto space-y-8">
       {/* Product Selection */}
       {selectedProducts.length < 4 && (
-        <div className="bg-gray-800 rounded-lg shadow-sm border p-6">
-          <h3 className="text-lg font-semibold text-gray-100 mb-4">
+        <div className="bg-earth-800 rounded-lg shadow-sm border p-6">
+          <h3 className="text-lg font-semibold text-cream-100 mb-4">
             Add Products to Compare ({selectedProducts.length}/4)
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -572,8 +572,8 @@ export function ProductComparisonContainer() {
                       className="w-12 h-12 object-cover rounded-md"
                     />
                     <div className="flex-1">
-                      <h4 className="font-medium text-gray-100 text-sm">{product.name}</h4>
-                      <p className="text-xs text-gray-600 mb-1">
+                      <h4 className="font-medium text-cream-100 text-sm">{product.name}</h4>
+                      <p className="text-xs text-earth-600 mb-1">
                         {product.nutritionalInfo.protein}g protein • {product.nutritionalInfo.calories} cal
                       </p>
                       <div className="flex items-center justify-between">

@@ -258,18 +258,18 @@ export function SubscriptionCustomizer({
               <div key={step.name} className="flex items-center">
                 <div className={cn(
                   'flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300',
-                  isActive ? 'bg-brown-800 text-white' :
+                  isActive ? 'bg-earth-800 text-white' :
                   isCompleted ? 'bg-green-500 text-white' :
-                  'bg-gray-200 text-gray-500'
+                  'bg-cream-200 text-earth-500'
                 )}>
                   <Icon className="h-5 w-5" />
                 </div>
                 <div className="ml-2 hidden sm:block">
                   <div className={cn(
                     'text-sm font-medium',
-                    isActive ? 'text-brown-800' :
+                    isActive ? 'text-earth-800' :
                     isCompleted ? 'text-green-600' :
-                    'text-gray-500'
+                    'text-earth-500'
                   )}>
                     {step.name}
                   </div>
@@ -277,7 +277,7 @@ export function SubscriptionCustomizer({
                 {index < steps.length - 1 && (
                   <div className={cn(
                     'w-8 h-0.5 mx-4',
-                    index < currentStep ? 'bg-green-500' : 'bg-gray-200'
+                    index < currentStep ? 'bg-green-500' : 'bg-cream-200'
                   )} />
                 )}
               </div>
@@ -298,10 +298,10 @@ export function SubscriptionCustomizer({
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <h3 className="text-xl font-bold text-brown-800 mb-4">
+              <h3 className="text-xl font-bold text-earth-800 mb-4">
                 Select Your Dietary Preferences
               </h3>
-              <p className="text-brown-600 mb-6">
+              <p className="text-earth-600 mb-6">
                 Choose your dietary preferences to help us recommend the best products for you.
               </p>
               
@@ -313,15 +313,15 @@ export function SubscriptionCustomizer({
                     className={cn(
                       'p-4 rounded-lg border-2 cursor-pointer transition-all duration-200',
                       selectedDietaryPrefs.includes(pref.id)
-                        ? 'border-brown-800 bg-brown-50'
-                        : 'border-gray-200 hover:border-brown-300'
+                        ? 'border-earth-800 bg-earth-50'
+                        : 'border-earth-200 hover:border-earth-300'
                     )}
                   >
                     <div className="flex items-center space-x-3">
                       <span className="text-2xl">{pref.icon}</span>
                       <div>
-                        <h4 className="font-semibold text-brown-800">{pref.name}</h4>
-                        <p className="text-sm text-brown-600">{pref.description}</p>
+                        <h4 className="font-semibold text-earth-800">{pref.name}</h4>
+                        <p className="text-sm text-earth-600">{pref.description}</p>
                       </div>
                     </div>
                   </div>
@@ -339,10 +339,10 @@ export function SubscriptionCustomizer({
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <h3 className="text-xl font-bold text-brown-800 mb-4">
+              <h3 className="text-xl font-bold text-earth-800 mb-4">
                 What's Your Nutrition Goal?
               </h3>
-              <p className="text-brown-600 mb-6">
+              <p className="text-earth-600 mb-6">
                 Tell us your primary nutrition goal so we can tailor your subscription.
               </p>
               
@@ -354,12 +354,12 @@ export function SubscriptionCustomizer({
                     className={cn(
                       'p-4 rounded-lg border-2 cursor-pointer transition-all duration-200',
                       selectedNutritionGoal === goal.id
-                        ? 'border-brown-800 bg-brown-50'
-                        : 'border-gray-200 hover:border-brown-300'
+                        ? 'border-earth-800 bg-earth-50'
+                        : 'border-earth-200 hover:border-earth-300'
                     )}
                   >
-                    <h4 className="font-semibold text-brown-800 mb-2">{goal.name}</h4>
-                    <p className="text-sm text-brown-600 mb-3">{goal.description}</p>
+                    <h4 className="font-semibold text-earth-800 mb-2">{goal.name}</h4>
+                    <p className="text-sm text-earth-600 mb-3">{goal.description}</p>
                     <div className="flex space-x-4 text-xs">
                       <Badge variant="outline">{goal.targetCalories} cal/day</Badge>
                       <Badge variant="outline">{goal.targetProtein}g protein/day</Badge>
@@ -379,22 +379,22 @@ export function SubscriptionCustomizer({
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <h3 className="text-xl font-bold text-brown-800 mb-4">
+              <h3 className="text-xl font-bold text-earth-800 mb-4">
                 Choose Your Products
               </h3>
-              <p className="text-brown-600 mb-6">
+              <p className="text-earth-600 mb-6">
                 Select {plan.minProducts}-{plan.maxProducts} products for your {plan.frequency} delivery. 
                 Currently selected: {getTotalProducts()}/{plan.maxProducts}
               </p>
               
               {/* Selected Products Summary */}
               {selectedProducts.length > 0 && (
-                <div className="bg-brown-50 rounded-lg p-4 mb-6">
-                  <h4 className="font-semibold text-brown-800 mb-3">Selected Products</h4>
+                <div className="bg-earth-50 rounded-lg p-4 mb-6">
+                  <h4 className="font-semibold text-earth-800 mb-3">Selected Products</h4>
                   <div className="space-y-2">
                     {selectedProducts.map((item) => (
                       <div key={item.product.id} className="flex items-center justify-between">
-                        <span className="text-sm text-brown-700">{item.product.name}</span>
+                        <span className="text-sm text-earth-700">{item.product.name}</span>
                         <div className="flex items-center space-x-2">
                           <Button
                             variant="outline"
@@ -423,10 +423,10 @@ export function SubscriptionCustomizer({
                       </div>
                     ))}
                   </div>
-                  <div className="mt-3 pt-3 border-t border-brown-200">
+                  <div className="mt-3 pt-3 border-t border-earth-200">
                     <div className="flex justify-between items-center">
-                      <span className="font-semibold text-brown-800">Total:</span>
-                      <span className="font-bold text-brown-800">{formatPrice(getTotalPrice())}</span>
+                      <span className="font-semibold text-earth-800">Total:</span>
+                      <span className="font-bold text-earth-800">{formatPrice(getTotalPrice())}</span>
                     </div>
                   </div>
                 </div>
@@ -443,13 +443,13 @@ export function SubscriptionCustomizer({
                       key={product.id}
                       className={cn(
                         'p-4 rounded-lg border transition-all duration-200',
-                        isSelected ? 'border-brown-800 bg-brown-50' : 'border-gray-200 hover:border-brown-300'
+                        isSelected ? 'border-earth-800 bg-earth-50' : 'border-earth-200 hover:border-earth-300'
                       )}
                     >
-                      <h4 className="font-semibold text-brown-800 mb-2">{product.name}</h4>
-                      <p className="text-sm text-brown-600 mb-3 line-clamp-2">{product.description}</p>
+                      <h4 className="font-semibold text-earth-800 mb-2">{product.name}</h4>
+                      <p className="text-sm text-earth-600 mb-3 line-clamp-2">{product.description}</p>
                       <div className="flex items-center justify-between">
-                        <span className="font-bold text-brown-800">{formatPrice(product.price)}</span>
+                        <span className="font-bold text-earth-800">{formatPrice(product.price)}</span>
                         <Button
                           variant={isSelected ? "default" : "outline"}
                           size="sm"
@@ -475,28 +475,28 @@ export function SubscriptionCustomizer({
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <h3 className="text-xl font-bold text-brown-800 mb-4">
+              <h3 className="text-xl font-bold text-earth-800 mb-4">
                 Delivery Schedule
               </h3>
-              <p className="text-brown-600 mb-6">
+              <p className="text-earth-600 mb-6">
                 Set your delivery preferences and any special instructions.
               </p>
               
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-brown-800 mb-2">
+                  <label className="block text-sm font-medium text-earth-800 mb-2">
                     First Delivery Date
                   </label>
                   <input
                     type="date"
                     value={deliveryDate.toISOString().split('T')[0]}
                     onChange={(e) => setDeliveryDate(new Date(e.target.value))}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brown-500 focus:border-transparent"
+                    className="w-full p-3 border border-earth-300 rounded-lg focus:ring-2 focus:ring-earth-500 focus:border-transparent"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-brown-800 mb-2">
+                  <label className="block text-sm font-medium text-earth-800 mb-2">
                     Special Instructions
                   </label>
                   <textarea
@@ -504,7 +504,7 @@ export function SubscriptionCustomizer({
                     onChange={(e) => setSpecialInstructions(e.target.value)}
                     placeholder="Any dietary restrictions, delivery preferences, or special requests..."
                     rows={4}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brown-500 focus:border-transparent"
+                    className="w-full p-3 border border-earth-300 rounded-lg focus:ring-2 focus:ring-earth-500 focus:border-transparent"
                   />
                 </div>
               </div>
@@ -520,24 +520,24 @@ export function SubscriptionCustomizer({
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <h3 className="text-xl font-bold text-brown-800 mb-4">
+              <h3 className="text-xl font-bold text-earth-800 mb-4">
                 Review Your Subscription
               </h3>
-              <p className="text-brown-600 mb-6">
+              <p className="text-earth-600 mb-6">
                 Review your subscription details before confirming.
               </p>
               
               <div className="space-y-6">
                 {/* Plan Summary */}
-                <div className="bg-brown-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-brown-800 mb-3">{plan.name}</h4>
+                <div className="bg-earth-50 rounded-lg p-4">
+                  <h4 className="font-semibold text-earth-800 mb-3">{plan.name}</h4>
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
-                      <span className="text-brown-600">Frequency:</span>
+                      <span className="text-earth-600">Frequency:</span>
                       <span className="ml-2 capitalize">{plan.frequency}</span>
                     </div>
                     <div>
-                      <span className="text-brown-600">Products:</span>
+                      <span className="text-earth-600">Products:</span>
                       <span className="ml-2">{getTotalProducts()} items</span>
                     </div>
                   </div>
@@ -545,7 +545,7 @@ export function SubscriptionCustomizer({
                 
                 {/* Selected Products */}
                 <div>
-                  <h4 className="font-semibold text-brown-800 mb-3">Products ({selectedProducts.length})</h4>
+                  <h4 className="font-semibold text-earth-800 mb-3">Products ({selectedProducts.length})</h4>
                   <div className="space-y-2">
                     {selectedProducts.map((item) => (
                       <div key={item.product.id} className="flex justify-between items-center text-sm">
@@ -558,7 +558,7 @@ export function SubscriptionCustomizer({
                 
                 {/* Preferences */}
                 <div>
-                  <h4 className="font-semibold text-brown-800 mb-3">Preferences</h4>
+                  <h4 className="font-semibold text-earth-800 mb-3">Preferences</h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedDietaryPrefs.map((prefId) => {
                       const pref = dietaryPreferences.find(p => p.id === prefId)
@@ -574,8 +574,8 @@ export function SubscriptionCustomizer({
                 {/* Total */}
                 <div className="border-t pt-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-lg font-bold text-brown-800">Total per delivery:</span>
-                    <span className="text-xl font-bold text-brown-800">{formatPrice(getTotalPrice())}</span>
+                    <span className="text-lg font-bold text-earth-800">Total per delivery:</span>
+                    <span className="text-xl font-bold text-earth-800">{formatPrice(getTotalPrice())}</span>
                   </div>
                 </div>
               </div>
@@ -595,7 +595,7 @@ export function SubscriptionCustomizer({
           <Button
             onClick={currentStep === steps.length - 1 ? handleComplete : nextStep}
             disabled={!canProceed()}
-            className="bg-brown-800 hover:bg-brown-900"
+            className="bg-earth-800 hover:bg-earth-900"
           >
             {currentStep === steps.length - 1 ? 'Complete Subscription' : 'Next'}
             {currentStep < steps.length - 1 && <ChevronRight className="ml-2 h-4 w-4" />}

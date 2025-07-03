@@ -244,12 +244,12 @@ export function NutritionAssistant() {
             initial={{ opacity: 0, y: 100, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.9 }}
-            className="fixed bottom-6 right-6 z-50 w-96 h-[600px] bg-gray-800 rounded-2xl shadow-2xl border border-gray-600 flex flex-col overflow-hidden"
+            className="fixed bottom-6 right-6 z-50 w-96 h-[600px] bg-earth-800 rounded-2xl shadow-2xl border border-earth-600 flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-primary-500 to-primary-600 text-white p-4 flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gray-800/20 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-earth-800/20 rounded-full flex items-center justify-center">
                   <Bot className="h-5 w-5" />
                 </div>
                 <div>
@@ -264,15 +264,15 @@ export function NutritionAssistant() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsOpen(false)}
-                className="text-white hover:bg-gray-800/20 h-8 w-8 p-0"
+                className="text-white hover:bg-earth-800/20 h-8 w-8 p-0"
               >
                 <X className="h-4 w-4" />
               </Button>
             </div>
 
             {/* Quick Actions */}
-            <div className="p-3 border-b bg-gray-900">
-              <p className="text-xs text-gray-600 mb-2">Quick actions:</p>
+            <div className="p-3 border-b bg-earth-900">
+              <p className="text-xs text-earth-600 mb-2">Quick actions:</p>
               <div className="flex flex-wrap gap-1">
                 {quickActions.slice(0, 4).map((action) => (
                   <Button
@@ -300,7 +300,7 @@ export function NutritionAssistant() {
                     className={`max-w-[80%] rounded-2xl px-4 py-2 ${
                       message.type === 'user'
                         ? 'bg-primary-500 text-white'
-                        : 'bg-gray-100 text-gray-100'
+                        : 'bg-cream-100 text-cream-100'
                     }`}
                   >
                     <div className="flex items-center space-x-2 mb-1">
@@ -318,7 +318,7 @@ export function NutritionAssistant() {
                     
                     {/* Nutrition Data */}
                     {message.nutritionData && (
-                      <div className="mt-3 p-3 bg-gray-800/10 rounded-lg">
+                      <div className="mt-3 p-3 bg-earth-800/10 rounded-lg">
                         <div className="text-xs font-medium mb-2 flex items-center">
                           <Sparkles className="h-3 w-3 mr-1" />
                           Nutrition Overview
@@ -347,7 +347,7 @@ export function NutritionAssistant() {
                           <button
                             key={index}
                             onClick={() => handleSuggestionClick(suggestion)}
-                            className="block w-full text-left text-xs bg-gray-800/10 hover:bg-gray-800/20 rounded-lg px-2 py-1 transition-colors"
+                            className="block w-full text-left text-xs bg-earth-800/10 hover:bg-earth-800/20 rounded-lg px-2 py-1 transition-colors"
                           >
                             {suggestion}
                           </button>
@@ -361,12 +361,12 @@ export function NutritionAssistant() {
               {/* Typing Indicator */}
               {isTyping && (
                 <div className="flex justify-start">
-                  <div className="bg-gray-100 rounded-2xl px-4 py-2 flex items-center space-x-2">
+                  <div className="bg-cream-100 rounded-2xl px-4 py-2 flex items-center space-x-2">
                     <Bot className="h-4 w-4 text-primary-500" />
                     <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+                      <div className="w-2 h-2 bg-earth-400 rounded-full animate-bounce" />
+                      <div className="w-2 h-2 bg-earth-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
+                      <div className="w-2 h-2 bg-earth-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
                     </div>
                   </div>
                 </div>
@@ -376,7 +376,7 @@ export function NutritionAssistant() {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t bg-gray-900">
+            <div className="p-4 border-t bg-earth-900">
               <div className="flex space-x-2">
                 <Input
                   ref={inputRef}
@@ -389,7 +389,7 @@ export function NutritionAssistant() {
                       handleSendMessage(inputValue)
                     }
                   }}
-                  className="flex-1 bg-gray-800"
+                  className="flex-1 bg-earth-800"
                 />
                 <Button
                   onClick={() => handleSendMessage(inputValue)}
@@ -400,7 +400,7 @@ export function NutritionAssistant() {
                   <Send className="h-4 w-4" />
                 </Button>
               </div>
-              <p className="text-xs text-gray-500 mt-2 text-center">
+              <p className="text-xs text-earth-500 mt-2 text-center">
                 Powered by AI • Personalized nutrition advice
               </p>
             </div>

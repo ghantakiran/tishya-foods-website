@@ -137,7 +137,7 @@ export function PerformanceMonitorWidget({
   }, [showInProduction])
 
   const getScoreColor = (metric: string, value: number | null) => {
-    if (value === null) return 'text-gray-400'
+    if (value === null) return 'text-earth-400'
     
     switch (metric) {
       case 'lcp':
@@ -151,7 +151,7 @@ export function PerformanceMonitorWidget({
       case 'fcp':
         return value <= 1800 ? 'text-green-500' : value <= 3000 ? 'text-yellow-500' : 'text-red-500'
       default:
-        return 'text-gray-400'
+        return 'text-earth-400'
     }
   }
 
@@ -217,13 +217,13 @@ export function PerformanceMonitorWidget({
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-gray-800/95 backdrop-blur-sm border border-gray-600 rounded-lg shadow-xl p-4 min-w-80"
+            className="bg-earth-800/95 backdrop-blur-sm border border-earth-600 rounded-lg shadow-xl p-4 min-w-80"
           >
             {/* Header */}
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-2">
                 <Activity className="h-4 w-4 text-primary-600" />
-                <h3 className="font-semibold text-gray-100 text-sm">Performance</h3>
+                <h3 className="font-semibold text-cream-100 text-sm">Performance</h3>
               </div>
               <Button
                 variant="ghost"
@@ -237,7 +237,7 @@ export function PerformanceMonitorWidget({
 
             {/* Core Web Vitals */}
             <div className="space-y-2 mb-4">
-              <h4 className="text-xs font-medium text-gray-700 uppercase tracking-wide">
+              <h4 className="text-xs font-medium text-earth-700 uppercase tracking-wide">
                 Core Web Vitals
               </h4>
               
@@ -248,8 +248,8 @@ export function PerformanceMonitorWidget({
               ].map(({ key, label, icon: Icon }) => (
                 <div key={key} className="flex items-center justify-between text-xs">
                   <div className="flex items-center space-x-2">
-                    <Icon className="h-3 w-3 text-gray-500" />
-                    <span className="text-gray-700">{label}</span>
+                    <Icon className="h-3 w-3 text-earth-500" />
+                    <span className="text-earth-700">{label}</span>
                   </div>
                   <div className={`flex items-center space-x-1 ${getScoreColor(key, metrics[key as keyof PerformanceMetrics] as number)}`}>
                     {getScoreIcon(key, metrics[key as keyof PerformanceMetrics] as number)}
@@ -263,7 +263,7 @@ export function PerformanceMonitorWidget({
 
             {/* Additional Metrics */}
             <div className="space-y-2 mb-4">
-              <h4 className="text-xs font-medium text-gray-700 uppercase tracking-wide">
+              <h4 className="text-xs font-medium text-earth-700 uppercase tracking-wide">
                 Loading Performance
               </h4>
               
@@ -272,7 +272,7 @@ export function PerformanceMonitorWidget({
                 { key: 'fcp', label: 'FCP' }
               ].map(({ key, label }) => (
                 <div key={key} className="flex items-center justify-between text-xs">
-                  <span className="text-gray-700">{label}</span>
+                  <span className="text-earth-700">{label}</span>
                   <span className={`font-mono ${getScoreColor(key, metrics[key as keyof PerformanceMetrics] as number)}`}>
                     {formatValue(key, metrics[key as keyof PerformanceMetrics] as number)}
                   </span>
@@ -283,14 +283,14 @@ export function PerformanceMonitorWidget({
             {/* Network Info */}
             <div className="space-y-2 border-t pt-3">
               <div className="flex items-center space-x-2">
-                <Wifi className="h-3 w-3 text-gray-500" />
-                <h4 className="text-xs font-medium text-gray-700 uppercase tracking-wide">
+                <Wifi className="h-3 w-3 text-earth-500" />
+                <h4 className="text-xs font-medium text-earth-700 uppercase tracking-wide">
                   Network
                 </h4>
               </div>
               
               <div className="flex items-center justify-between text-xs">
-                <span className="text-gray-700">Connection</span>
+                <span className="text-earth-700">Connection</span>
                 <Badge variant="outline" className="text-xs">
                   {metrics.effectiveType}
                 </Badge>
@@ -298,8 +298,8 @@ export function PerformanceMonitorWidget({
               
               {metrics.downlink > 0 && (
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-700">Speed</span>
-                  <span className="font-mono text-gray-100">
+                  <span className="text-earth-700">Speed</span>
+                  <span className="font-mono text-cream-100">
                     {formatValue('downlink', metrics.downlink)}
                   </span>
                 </div>

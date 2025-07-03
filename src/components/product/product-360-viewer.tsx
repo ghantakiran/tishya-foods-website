@@ -236,15 +236,15 @@ export function Product360Viewer({ productId, productName, images, isOpen, onClo
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
-          className={`bg-gray-800 rounded-lg overflow-hidden ${
+          className={`bg-earth-800 rounded-lg overflow-hidden ${
             controls.isFullscreen ? 'w-full h-full' : 'max-w-4xl w-full max-h-[90vh]'
           }`}
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b bg-gray-900">
+          <div className="flex items-center justify-between p-4 border-b bg-earth-900">
             <div>
-              <h2 className="text-lg font-semibold text-gray-100">{productName}</h2>
-              <p className="text-sm text-gray-600">360° Product View</p>
+              <h2 className="text-lg font-semibold text-cream-100">{productName}</h2>
+              <p className="text-sm text-earth-600">360° Product View</p>
             </div>
             <div className="flex items-center space-x-2">
               <Badge variant="secondary" className="text-xs">
@@ -262,7 +262,7 @@ export function Product360Viewer({ productId, productName, images, isOpen, onClo
           </div>
 
           {/* Main Viewer */}
-          <div className="relative bg-gray-100 flex items-center justify-center h-96 md:h-[500px] overflow-hidden">
+          <div className="relative bg-cream-100 flex items-center justify-center h-96 md:h-[500px] overflow-hidden">
             {/* 360° Image */}
             <motion.div
               drag
@@ -305,10 +305,10 @@ export function Product360Viewer({ productId, productName, images, isOpen, onClo
                     
                     {/* Hotspot tooltip */}
                     <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                      <div className="bg-gray-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
+                      <div className="bg-earth-900 text-white text-xs rounded px-2 py-1 whitespace-nowrap">
                         {hotspot.title}
                       </div>
-                      <div className="w-2 h-2 bg-gray-900 transform rotate-45 absolute top-full left-1/2 -translate-x-1/2 -mt-1"></div>
+                      <div className="w-2 h-2 bg-earth-900 transform rotate-45 absolute top-full left-1/2 -translate-x-1/2 -mt-1"></div>
                     </div>
                   </motion.button>
                 ))}
@@ -316,7 +316,7 @@ export function Product360Viewer({ productId, productName, images, isOpen, onClo
 
               {/* Loading indicator */}
               {!loadedImages.has(controls.currentFrame) && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-200/80">
+                <div className="absolute inset-0 flex items-center justify-center bg-cream-200/80">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
                 </div>
               )}
@@ -338,7 +338,7 @@ export function Product360Viewer({ productId, productName, images, isOpen, onClo
           </div>
 
           {/* Controls */}
-          <div className="p-4 border-t bg-gray-900">
+          <div className="p-4 border-t bg-earth-900">
             <div className="flex items-center justify-between mb-4">
               {/* Playback Controls */}
               <div className="flex items-center space-x-2">
@@ -375,7 +375,7 @@ export function Product360Viewer({ productId, productName, images, isOpen, onClo
                   <ZoomOut className="h-4 w-4" />
                 </Button>
                 
-                <span className="text-sm text-gray-600 min-w-12 text-center">
+                <span className="text-sm text-earth-600 min-w-12 text-center">
                   {Math.round(controls.zoom * 100)}%
                 </span>
                 
@@ -411,7 +411,7 @@ export function Product360Viewer({ productId, productName, images, isOpen, onClo
                   currentFrame: parseInt(e.target.value),
                   isPlaying: false
                 }))}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+                className="w-full h-2 bg-cream-200 rounded-lg appearance-none cursor-pointer slider"
               />
             </div>
 
@@ -450,7 +450,7 @@ export function Product360Viewer({ productId, productName, images, isOpen, onClo
             {/* Hotspot Navigation */}
             {hotspots.length > 0 && (
               <div className="flex items-center space-x-2 mt-4">
-                <span className="text-sm text-gray-600">Jump to:</span>
+                <span className="text-sm text-earth-600">Jump to:</span>
                 {hotspots.map((hotspot) => (
                   <Button
                     key={hotspot.id}

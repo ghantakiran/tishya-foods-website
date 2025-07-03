@@ -37,7 +37,7 @@ export function PageLoader() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-white">
       <div className="text-center">
         <motion.div
-          className="w-16 h-16 bg-brown-800 rounded-full flex items-center justify-center mx-auto mb-4"
+          className="w-16 h-16 bg-earth-800 rounded-full flex items-center justify-center mx-auto mb-4"
           animate={{ 
             scale: [1, 1.1, 1],
             rotate: [0, 180, 360] 
@@ -51,13 +51,13 @@ export function PageLoader() {
           <span className="text-white font-bold text-xl">T</span>
         </motion.div>
         <motion.h2 
-          className="text-xl font-semibold text-brown-800 mb-2"
+          className="text-xl font-semibold text-earth-800 mb-2"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
           Tishya Foods
         </motion.h2>
-        <p className="text-brown-600">Loading healthy goodness...</p>
+        <p className="text-earth-600">Loading healthy goodness...</p>
       </div>
     </div>
   )

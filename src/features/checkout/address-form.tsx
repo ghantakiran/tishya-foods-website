@@ -137,12 +137,12 @@ export function AddressForm({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Name Fields */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-earth-700 mb-1">
               First Name *
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <User className="h-4 w-4 text-gray-400" />
+                <User className="h-4 w-4 text-earth-400" />
               </div>
               <Input
                 type="text"
@@ -158,7 +158,7 @@ export function AddressForm({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-earth-700 mb-1">
               Last Name *
             </label>
             <Input
@@ -175,12 +175,12 @@ export function AddressForm({
 
           {/* Contact Fields */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-earth-700 mb-1">
               Email Address *
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Mail className="h-4 w-4 text-gray-400" />
+                <Mail className="h-4 w-4 text-earth-400" />
               </div>
               <Input
                 type="email"
@@ -196,12 +196,12 @@ export function AddressForm({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-earth-700 mb-1">
               Phone Number *
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Phone className="h-4 w-4 text-gray-400" />
+                <Phone className="h-4 w-4 text-earth-400" />
               </div>
               <Input
                 type="tel"
@@ -218,7 +218,7 @@ export function AddressForm({
 
           {/* Address Fields */}
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-earth-700 mb-1">
               Address Line 1 *
             </label>
             <Input
@@ -234,7 +234,7 @@ export function AddressForm({
           </div>
 
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-earth-700 mb-1">
               Address Line 2 (Optional)
             </label>
             <Input
@@ -246,7 +246,7 @@ export function AddressForm({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-earth-700 mb-1">
               City *
             </label>
             <Input
@@ -262,13 +262,13 @@ export function AddressForm({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-earth-700 mb-1">
               State *
             </label>
             <select
               value={shippingAddress.state}
               onChange={(e) => handleShippingChange('state', e.target.value)}
-              className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 ${
+              className={`w-full px-3 py-2 border border-earth-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 ${
                 errors['shipping.state'] ? 'border-red-500' : ''
               }`}
             >
@@ -285,7 +285,7 @@ export function AddressForm({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-earth-700 mb-1">
               Postal Code *
             </label>
             <Input
@@ -310,9 +310,9 @@ export function AddressForm({
             type="checkbox"
             checked={sameAsShipping}
             onChange={(e) => handleSameAsShippingChange(e.target.checked)}
-            className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+            className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-earth-300 rounded"
           />
-          <span className="text-sm font-medium text-gray-700">
+          <span className="text-sm font-medium text-earth-700">
             Billing address is same as shipping address
           </span>
         </label>
@@ -335,7 +335,7 @@ export function AddressForm({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Similar structure as shipping address */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-earth-700 mb-1">
                 First Name *
               </label>
               <Input

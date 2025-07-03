@@ -77,15 +77,15 @@ export function LazyImage({
   return (
     <div 
       ref={imgRef}
-      className={cn("relative overflow-hidden bg-gray-100", className)}
+      className={cn("relative overflow-hidden bg-cream-100", className)}
     >
       {/* Placeholder */}
       {!isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+        <div className="absolute inset-0 flex items-center justify-center bg-cream-100">
           <motion.div
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-8 h-8 bg-gray-300 rounded"
+            className="w-8 h-8 bg-earth-300 rounded"
           />
         </div>
       )}
@@ -112,9 +112,9 @@ export function LazyImage({
 
       {/* Error State */}
       {isError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-          <div className="text-center text-gray-500">
-            <div className="w-8 h-8 mx-auto mb-2 bg-gray-300 rounded" />
+        <div className="absolute inset-0 flex items-center justify-center bg-cream-100">
+          <div className="text-center text-earth-500">
+            <div className="w-8 h-8 mx-auto mb-2 bg-earth-300 rounded" />
             <p className="text-xs">Failed to load</p>
           </div>
         </div>

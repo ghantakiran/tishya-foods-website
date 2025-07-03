@@ -92,8 +92,8 @@ export function PaymentMethodSelection({
                 isSelected
                   ? 'border-primary-500 bg-primary-50'
                   : isAvailable
-                  ? 'border-gray-600 hover:border-gray-600'
-                  : 'border-gray-100 bg-gray-900'
+                  ? 'border-earth-600 hover:border-earth-600'
+                  : 'border-cream-100 bg-earth-900'
               }`}
             >
               <label
@@ -108,20 +108,20 @@ export function PaymentMethodSelection({
                   checked={isSelected}
                   onChange={() => isAvailable && onSelect(method.id)}
                   disabled={!isAvailable}
-                  className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-600"
+                  className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-earth-600"
                 />
 
                 <div className="ml-4 flex-1">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className={`${isAvailable ? 'text-gray-700' : 'text-gray-400'}`}>
+                      <div className={`${isAvailable ? 'text-earth-700' : 'text-earth-400'}`}>
                         {getMethodIcon(method.type)}
                       </div>
                       <div>
-                        <h3 className={`font-medium ${isAvailable ? 'text-gray-100' : 'text-gray-500'}`}>
+                        <h3 className={`font-medium ${isAvailable ? 'text-cream-100' : 'text-earth-500'}`}>
                           {method.name}
                         </h3>
-                        <p className={`text-sm ${isAvailable ? 'text-gray-600' : 'text-gray-400'}`}>
+                        <p className={`text-sm ${isAvailable ? 'text-earth-600' : 'text-earth-400'}`}>
                           {method.description}
                         </p>
                       </div>
@@ -129,7 +129,7 @@ export function PaymentMethodSelection({
 
                     <div className="text-right">
                       {method.processingFee > 0 && (
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-earth-500">
                           +{typeof method.processingFee === 'number' && method.processingFee < 5 
                             ? `${method.processingFee}%` 
                             : formatPrice(method.processingFee)
@@ -150,7 +150,7 @@ export function PaymentMethodSelection({
                       <div
                         key={index}
                         className={`flex items-center space-x-1 text-xs ${
-                          isAvailable ? 'text-gray-600' : 'text-gray-400'
+                          isAvailable ? 'text-earth-600' : 'text-earth-400'
                         }`}
                       >
                         {feature.icon}
@@ -168,11 +168,11 @@ export function PaymentMethodSelection({
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="border-t bg-gray-800 px-4 py-3"
+                  className="border-t bg-earth-800 px-4 py-3"
                 >
                   {method.type === 'card' && (
                     <div className="space-y-3">
-                      <p className="text-sm text-gray-700">
+                      <p className="text-sm text-earth-700">
                         Accepted cards: Visa, Mastercard, American Express, RuPay
                       </p>
                       <div className="flex space-x-2">
@@ -186,7 +186,7 @@ export function PaymentMethodSelection({
 
                   {method.type === 'upi' && (
                     <div className="space-y-3">
-                      <p className="text-sm text-gray-700">
+                      <p className="text-sm text-earth-700">
                         Pay using any UPI app on your phone
                       </p>
                       <div className="flex space-x-2">
@@ -200,7 +200,7 @@ export function PaymentMethodSelection({
 
                   {method.type === 'netbanking' && (
                     <div className="space-y-3">
-                      <p className="text-sm text-gray-700">
+                      <p className="text-sm text-earth-700">
                         Support for 50+ banks including SBI, HDFC, ICICI, Axis
                       </p>
                     </div>
@@ -208,7 +208,7 @@ export function PaymentMethodSelection({
 
                   {method.type === 'wallet' && (
                     <div className="space-y-3">
-                      <p className="text-sm text-gray-700">
+                      <p className="text-sm text-earth-700">
                         Pay using your digital wallet balance
                       </p>
                       <div className="flex space-x-2">
@@ -221,7 +221,7 @@ export function PaymentMethodSelection({
 
                   {method.type === 'cod' && (
                     <div className="space-y-3">
-                      <p className="text-sm text-gray-700">
+                      <p className="text-sm text-earth-700">
                         Pay cash when your order is delivered to your doorstep
                       </p>
                       <div className="bg-yellow-50 border border-yellow-200 rounded-md p-3">
@@ -251,12 +251,12 @@ export function PaymentMethodSelection({
       </div>
 
       {/* Payment Security Info */}
-      <div className="mt-6 p-4 bg-gray-900 rounded-lg">
+      <div className="mt-6 p-4 bg-earth-900 rounded-lg">
         <div className="flex items-start space-x-3">
           <Shield className="h-5 w-5 text-green-600 mt-0.5" />
           <div className="text-sm">
-            <h4 className="font-medium text-gray-100 mb-1">Secure Payments</h4>
-            <p className="text-gray-600">
+            <h4 className="font-medium text-cream-100 mb-1">Secure Payments</h4>
+            <p className="text-earth-600">
               Your payment information is encrypted and processed securely. We never store your card details.
             </p>
           </div>

@@ -1,0 +1,26 @@
+{
+  "pages": [],
+  "designIssues": [
+    "Failed to capture homepage: net::ERR_CONNECTION_REFUSED at http://localhost:3001/",
+    "Failed to capture about-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/about",
+    "Failed to capture products-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/products",
+    "Failed to capture blog-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/blog",
+    "Failed to capture contact-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/contact",
+    "Failed to capture nutrition-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/nutrition",
+    "Failed to capture recipes-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/recipes",
+    "Failed to capture checkout-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/checkout",
+    "Failed to capture compare-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/compare",
+    "Failed to capture loyalty-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/loyalty",
+    "Failed to capture subscription-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/subscription",
+    "Failed to capture recommendations-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/recommendations"
+  ],
+  "recommendations": [
+    "Ensure all pages have consistent header and footer",
+    "Use consistent spacing classes throughout (px-4, py-6, etc.)",
+    "Maintain consistent dark theme classes (bg-gray-900, text-gray-100)",
+    "Ensure all pages have proper semantic HTML structure",
+    "Use consistent button styles and colors",
+    "Maintain consistent typography hierarchy",
+    "Ensure consistent navigation across all pages"
+  ]
+}

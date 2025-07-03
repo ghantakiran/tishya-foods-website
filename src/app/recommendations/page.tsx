@@ -6,7 +6,7 @@ import ProductRecommendations from '@/components/ai/product-recommendations'
 
 export default function RecommendationsPage() {
   return (
-    <div className="pt-20 min-h-screen bg-gray-900">
+    <div className="pt-20 min-h-screen bg-earth-900">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary-50 to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,15 +16,15 @@ export default function RecommendationsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-brown-800 to-primary-600 text-white px-4 py-2 rounded-full mb-6">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-earth-800 to-primary-600 text-white px-4 py-2 rounded-full mb-6">
               <Brain className="h-4 w-4" />
               <span className="text-sm font-semibold">AI-Powered Nutrition</span>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-100 mb-6 font-montserrat">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-cream-100 mb-6 font-montserrat">
               Personalized Product Recommendations
             </h1>
-            <p className="text-xl sm:text-2xl text-gray-300 mb-8 leading-relaxed">
+            <p className="text-xl sm:text-2xl text-cream-300 mb-8 leading-relaxed">
               Let our AI nutrition expert analyze your goals and preferences to recommend 
               the perfect Tishya Foods products for your unique health journey.
             </p>
@@ -37,11 +37,11 @@ export default function RecommendationsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <div className="w-16 h-16 bg-brown-800 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-earth-800 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <Target className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-100 mb-2">Goal-Based Matching</h3>
-                <p className="text-gray-300">
+                <h3 className="text-xl font-bold text-cream-100 mb-2">Goal-Based Matching</h3>
+                <p className="text-cream-300">
                   Products matched to your specific health and fitness goals
                 </p>
               </motion.div>
@@ -53,10 +53,10 @@ export default function RecommendationsPage() {
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <div className="w-16 h-16 bg-primary-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Sparkles className="h-8 w-8 text-gray-100" />
+                  <Sparkles className="h-8 w-8 text-cream-100" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-100 mb-2">Smart Analysis</h3>
-                <p className="text-gray-300">
+                <h3 className="text-xl font-bold text-cream-100 mb-2">Smart Analysis</h3>
+                <p className="text-cream-300">
                   Advanced AI considers your lifestyle, diet, and preferences
                 </p>
               </motion.div>
@@ -70,8 +70,8 @@ export default function RecommendationsPage() {
                 <div className="w-16 h-16 bg-accent-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <Zap className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-100 mb-2">Instant Results</h3>
-                <p className="text-gray-300">
+                <h3 className="text-xl font-bold text-cream-100 mb-2">Instant Results</h3>
+                <p className="text-cream-300">
                   Get personalized recommendations in under 2 minutes
                 </p>
               </motion.div>
@@ -94,7 +94,7 @@ export default function RecommendationsPage() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-gray-800">
+      <section className="py-20 bg-earth-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -103,10 +103,10 @@ export default function RecommendationsPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-100 mb-4 font-montserrat">
+            <h2 className="text-3xl sm:text-4xl font-bold text-cream-100 mb-4 font-montserrat">
               How Our AI Works
             </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg text-cream-300 max-w-2xl mx-auto">
               Our intelligent recommendation system uses advanced algorithms to match you with the perfect products
             </p>
           </motion.div>
@@ -147,15 +147,15 @@ export default function RecommendationsPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <div className="relative mb-6">
-                  <div className="w-20 h-20 bg-brown-800 rounded-3xl flex items-center justify-center mx-auto">
+                  <div className="w-20 h-20 bg-earth-800 rounded-3xl flex items-center justify-center mx-auto">
                     <item.icon className="h-10 w-10 text-white" />
                   </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-gray-100 font-bold text-sm">
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-cream-100 font-bold text-sm">
                     {item.step}
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-100 mb-3">{item.title}</h3>
-                <p className="text-gray-300 leading-relaxed">{item.description}</p>
+                <h3 className="text-xl font-bold text-cream-100 mb-3">{item.title}</h3>
+                <p className="text-cream-300 leading-relaxed">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -172,44 +172,44 @@ export default function RecommendationsPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-100 mb-6 font-montserrat">
+              <h2 className="text-3xl sm:text-4xl font-bold text-cream-100 mb-6 font-montserrat">
                 Why Choose AI Recommendations?
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-6 h-6 bg-brown-800 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-6 h-6 bg-earth-800 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-white text-sm">✓</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-100 mb-1">Scientifically Backed</h3>
-                    <p className="text-gray-300">Our algorithms are based on nutritional science and dietary research</p>
+                    <h3 className="font-semibold text-cream-100 mb-1">Scientifically Backed</h3>
+                    <p className="text-cream-300">Our algorithms are based on nutritional science and dietary research</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <div className="w-6 h-6 bg-brown-800 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-6 h-6 bg-earth-800 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-white text-sm">✓</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-100 mb-1">Personalized Results</h3>
-                    <p className="text-gray-300">No two recommendations are the same - every suggestion is tailored to you</p>
+                    <h3 className="font-semibold text-cream-100 mb-1">Personalized Results</h3>
+                    <p className="text-cream-300">No two recommendations are the same - every suggestion is tailored to you</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <div className="w-6 h-6 bg-brown-800 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-6 h-6 bg-earth-800 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-white text-sm">✓</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-100 mb-1">Save Time & Money</h3>
-                    <p className="text-gray-300">Stop guessing which products to buy - get exactly what works for your goals</p>
+                    <h3 className="font-semibold text-cream-100 mb-1">Save Time & Money</h3>
+                    <p className="text-cream-300">Stop guessing which products to buy - get exactly what works for your goals</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <div className="w-6 h-6 bg-brown-800 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-6 h-6 bg-earth-800 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                     <span className="text-white text-sm">✓</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-100 mb-1">Continuous Learning</h3>
-                    <p className="text-gray-300">Our AI gets smarter with every recommendation, improving accuracy over time</p>
+                    <h3 className="font-semibold text-cream-100 mb-1">Continuous Learning</h3>
+                    <p className="text-cream-300">Our AI gets smarter with every recommendation, improving accuracy over time</p>
                   </div>
                 </div>
               </div>
@@ -222,7 +222,7 @@ export default function RecommendationsPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <div className="aspect-square bg-gradient-to-br from-brown-800 to-primary-600 rounded-3xl flex items-center justify-center shadow-2xl">
+              <div className="aspect-square bg-gradient-to-br from-earth-800 to-primary-600 rounded-3xl flex items-center justify-center shadow-2xl">
                 <div className="text-center text-white">
                   <Brain className="h-16 w-16 mx-auto mb-4" />
                   <div className="text-2xl font-bold mb-2">Smart Nutrition</div>
@@ -232,11 +232,11 @@ export default function RecommendationsPage() {
               
               {/* Floating Elements */}
               <motion.div
-                className="absolute -top-4 -right-4 bg-gray-800 rounded-full p-3 shadow-lg"
+                className="absolute -top-4 -right-4 bg-earth-800 rounded-full p-3 shadow-lg"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
-                <Sparkles className="h-6 w-6 text-gray-100" />
+                <Sparkles className="h-6 w-6 text-cream-100" />
               </motion.div>
               
               <motion.div
@@ -244,7 +244,7 @@ export default function RecommendationsPage() {
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
               >
-                <Target className="h-6 w-6 text-gray-100" />
+                <Target className="h-6 w-6 text-cream-100" />
               </motion.div>
             </motion.div>
           </div>

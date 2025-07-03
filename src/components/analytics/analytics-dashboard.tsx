@@ -110,10 +110,10 @@ export function AnalyticsDashboard() {
     return (
       <div className="p-6">
         <div className="animate-pulse space-y-4">
-          <div className="h-8 bg-gray-200 rounded w-1/4"></div>
+          <div className="h-8 bg-cream-200 rounded w-1/4"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="h-32 bg-gray-200 rounded"></div>
+              <div key={i} className="h-32 bg-cream-200 rounded"></div>
             ))}
           </div>
         </div>
@@ -126,7 +126,7 @@ export function AnalyticsDashboard() {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">Analytics Dashboard</h1>
-          <p className="text-gray-600">
+          <p className="text-earth-600">
             Last updated: {lastUpdated?.toLocaleString()}
           </p>
         </div>

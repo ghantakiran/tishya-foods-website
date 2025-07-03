@@ -59,7 +59,7 @@ export default function SubscriptionPage() {
   }
 
   return (
-    <div className="pt-20 min-h-screen bg-gray-900">
+    <div className="pt-20 min-h-screen bg-earth-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <AnimatePresence mode="wait">
           {/* Plans Selection */}
@@ -88,7 +88,7 @@ export default function SubscriptionPage() {
                 <Button
                   variant="ghost"
                   onClick={handleBackToPlans}
-                  className="text-gray-300 hover:text-gray-100"
+                  className="text-cream-300 hover:text-cream-100"
                 >
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Back to Plans
@@ -126,7 +126,7 @@ export default function SubscriptionPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-3xl font-bold text-gray-100 mb-4"
+                className="text-3xl font-bold text-cream-100 mb-4"
               >
                 Subscription Created Successfully!
               </motion.h1>
@@ -135,7 +135,7 @@ export default function SubscriptionPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto"
+                className="text-lg text-cream-300 mb-8 max-w-2xl mx-auto"
               >
                 Welcome to your personalized nutrition journey! Your first delivery will arrive on{' '}
                 {subscriptionState.customization?.deliveryDate && 
@@ -148,31 +148,31 @@ export default function SubscriptionPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
-                className="bg-gray-800 rounded-2xl shadow-lg p-8 max-w-2xl mx-auto mb-8"
+                className="bg-earth-800 rounded-2xl shadow-lg p-8 max-w-2xl mx-auto mb-8"
               >
-                <h3 className="text-xl font-semibold text-gray-100 mb-6">Your Subscription</h3>
+                <h3 className="text-xl font-semibold text-cream-100 mb-6">Your Subscription</h3>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
                   <div>
-                    <h4 className="font-medium text-gray-100 mb-2">Plan</h4>
-                    <p className="text-gray-300">{subscriptionState.selectedPlan?.name}</p>
+                    <h4 className="font-medium text-cream-100 mb-2">Plan</h4>
+                    <p className="text-cream-300">{subscriptionState.selectedPlan?.name}</p>
                   </div>
                   
                   <div>
-                    <h4 className="font-medium text-gray-100 mb-2">Frequency</h4>
-                    <p className="text-gray-300 capitalize">{subscriptionState.selectedPlan?.frequency}</p>
+                    <h4 className="font-medium text-cream-100 mb-2">Frequency</h4>
+                    <p className="text-cream-300 capitalize">{subscriptionState.selectedPlan?.frequency}</p>
                   </div>
                   
                   <div>
-                    <h4 className="font-medium text-gray-100 mb-2">Products</h4>
-                    <p className="text-gray-300">
+                    <h4 className="font-medium text-cream-100 mb-2">Products</h4>
+                    <p className="text-cream-300">
                       {subscriptionState.customization?.selectedProducts?.length || 0} items selected
                     </p>
                   </div>
                   
                   <div>
-                    <h4 className="font-medium text-gray-100 mb-2">Subscription ID</h4>
-                    <p className="text-gray-300 font-mono text-sm">{subscriptionState.subscriptionId}</p>
+                    <h4 className="font-medium text-cream-100 mb-2">Subscription ID</h4>
+                    <p className="text-cream-300 font-mono text-sm">{subscriptionState.subscriptionId}</p>
                   </div>
                 </div>
               </motion.div>
@@ -187,7 +187,7 @@ export default function SubscriptionPage() {
                 <Button
                   onClick={handleGoToDashboard}
                   size="lg"
-                  className="bg-brown-800 hover:bg-brown-900"
+                  className="bg-earth-800 hover:bg-earth-900"
                 >
                   View Subscription Dashboard
                 </Button>
@@ -208,22 +208,22 @@ export default function SubscriptionPage() {
                 transition={{ duration: 0.6, delay: 1.2 }}
                 className="mt-12 text-left max-w-2xl mx-auto"
               >
-                <h3 className="text-lg font-semibold text-gray-100 mb-4">What happens next?</h3>
-                <div className="space-y-3 text-gray-300">
+                <h3 className="text-lg font-semibold text-cream-100 mb-4">What happens next?</h3>
+                <div className="space-y-3 text-cream-300">
                   <div className="flex items-start space-x-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-brown-800 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                    <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
                     <p>We'll prepare your personalized selection based on your preferences</p>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-brown-800 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                    <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
                     <p>You'll receive an email confirmation with tracking details</p>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-brown-800 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                    <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
                     <p>Your first delivery will arrive fresh at your doorstep</p>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-brown-800 text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
+                    <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
                     <p>Manage your subscription anytime through your dashboard</p>
                   </div>
                 </div>

@@ -47,7 +47,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed right-0 top-0 h-full w-full max-w-md bg-gray-800 shadow-xl z-50 flex flex-col"
+            className="fixed right-0 top-0 h-full w-full max-w-md bg-earth-800 shadow-xl z-50 flex flex-col"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -70,11 +70,11 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             <div className="flex-1 overflow-y-auto p-4">
               {!cart || cart.items.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center">
-                  <ShoppingBag className="h-16 w-16 text-gray-300 mb-4" />
-                  <h3 className="text-lg font-medium text-gray-100 mb-2">
+                  <ShoppingBag className="h-16 w-16 text-cream-300 mb-4" />
+                  <h3 className="text-lg font-medium text-cream-100 mb-2">
                     Your cart is empty
                   </h3>
-                  <p className="text-gray-500 mb-4">
+                  <p className="text-earth-500 mb-4">
                     Add some delicious protein-rich foods to get started!
                   </p>
                   <Button onClick={onClose} className="w-full">
@@ -86,7 +86,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   {cart.items.map((item) => (
                     <motion.div
                       key={item.id}
-                      className="flex items-center space-x-3 p-3 bg-gray-900 rounded-lg"
+                      className="flex items-center space-x-3 p-3 bg-earth-900 rounded-lg"
                       layout
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -102,14 +102,14 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                       </div>
                       
                       <div className="flex-1 min-w-0">
-                        <h4 className="text-sm font-medium text-gray-100 truncate">
+                        <h4 className="text-sm font-medium text-cream-100 truncate">
                           {item.name}
                         </h4>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-earth-500">
                           {formatPrice(item.price)}
                         </p>
                         {item.variant && (
-                          <p className="text-xs text-gray-400">
+                          <p className="text-xs text-earth-400">
                             {item.variant.size && `Size: ${item.variant.size}`}
                             {item.variant.flavor && ` • Flavor: ${item.variant.flavor}`}
                           </p>
@@ -125,7 +125,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-6 w-6 text-gray-400 hover:text-red-500"
+                          className="h-6 w-6 text-earth-400 hover:text-red-500"
                           onClick={() => removeItem(item.id)}
                         >
                           <Trash2 className="h-3 w-3" />
@@ -191,7 +191,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                         placeholder="Enter coupon code"
                         value={couponCode}
                         onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-                        className="flex-1 px-3 py-2 border border-gray-600 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                        className="flex-1 px-3 py-2 border border-earth-600 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
                         onKeyPress={(e) => e.key === 'Enter' && handleApplyCoupon()}
                       />
                       <Button
@@ -255,7 +255,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
 
                 {/* Free Shipping Notice */}
                 {cart.totalPrice < 500 && (
-                  <div className="text-xs text-center text-gray-500 bg-yellow-50 p-2 rounded-md">
+                  <div className="text-xs text-center text-earth-500 bg-yellow-50 p-2 rounded-md">
                     Add {formatPrice(500 - cart.totalPrice)} more for free shipping!
                   </div>
                 )}

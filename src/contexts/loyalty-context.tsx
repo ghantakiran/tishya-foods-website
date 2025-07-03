@@ -154,7 +154,7 @@ const defaultTiers: LoyaltyTier[] = [
     id: 'silver',
     name: 'Silver Member',
     minPoints: 1000,
-    color: 'bg-gray-400',
+    color: 'bg-earth-400',
     benefits: {
       discountPercentage: 8,
       freeShippingThreshold: 599,
