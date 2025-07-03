@@ -104,10 +104,38 @@ export function AnalyticsProvider({ children, config }: AnalyticsProviderProps) 
   )
 }
 
+// Create a safe default analytics object for SSR
+const createSafeAnalytics = (): AnalyticsContextType => ({
+  trackEvent: () => {},
+  trackPageView: () => {},
+  trackEcommerce: () => {},
+  trackUserAction: () => {},
+  trackEngagement: () => {},
+  trackError: () => {},
+  trackPurchase: () => {},
+  trackAddToCart: () => {},
+  trackRemoveFromCart: () => {},
+  trackViewItem: () => {},
+  trackBeginCheckout: () => {},
+  trackSearch: () => {},
+  setUserId: () => {},
+  setUserProperties: () => {}
+})
+
 export function useAnalytics(): AnalyticsContextType {
   const context = useContext(AnalyticsContext)
+  
+  // During SSR or if provider is missing, return safe defaults
   if (!context) {
-    throw new Error('useAnalytics must be used within an AnalyticsProvider')
+    if (typeof window === 'undefined') {
+      // Server-side rendering - return safe defaults
+      return createSafeAnalytics()
+    } else {
+      // Client-side but no provider - log warning and return safe defaults
+      console.warn('useAnalytics must be used within an AnalyticsProvider. Using safe defaults.')
+      return createSafeAnalytics()
+    }
   }
+  
   return context
 }

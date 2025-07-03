@@ -8,11 +8,10 @@ export function PageViewTracker() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   
-  // Only access analytics in client-side
-  const analytics = typeof window !== 'undefined' ? useAnalytics() : null
+  const analytics = useAnalytics()
 
   useEffect(() => {
-    if (!analytics) return
+    if (typeof window === 'undefined') return
     
     const url = pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '')
     
