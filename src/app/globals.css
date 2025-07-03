@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0f0f0f;
-  --foreground: #f5f5f5;
+  --background: #f0fdf4;
+  --foreground: #14532d;
+  --card-background: #ffffff;
+  --border-color: #bbf7d0;
+  --accent-color: #22c55e;
+  --secondary-color: #eab308;
+  --earth-color: #a0845c;
+  --fresh-color: #10b981;
 }
 
 @theme inline {
@@ -13,9 +19,10 @@
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #d1fae5 100%);
   color: var(--foreground);
   font-family: var(--font-inter), system-ui, sans-serif;
+  min-height: 100vh;
 }
 
 /* Custom Scrollbar */
@@ -24,16 +31,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: #bbf7d0;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #dcb287;
+  background: #22c55e;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #c19a6b;
+  background: #16a34a;
 }
 
 /* Smooth transitions for all elements */
@@ -43,7 +50,7 @@ body {
 
 /* Focus styles for accessibility */
 *:focus-visible {
-  outline: 2px solid #dcb287;
+  outline: 2px solid #22c55e;
   outline-offset: 2px;
 }
 
@@ -77,7 +84,7 @@ body {
 }
 
 .skeleton-wave {
-  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background: linear-gradient(90deg, #dcfce7 25%, #bbf7d0 50%, #dcfce7 75%);
   background-size: 200px 100%;
   animation: skeleton-wave 1.5s infinite;
 }

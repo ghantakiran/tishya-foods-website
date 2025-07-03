@@ -2,14 +2,13 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Search, Filter, Grid, List, Heart, ShoppingCart } from 'lucide-react'
+import { Search, Filter, Grid, List } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { products, productCategories } from '@/lib/products-data'
 import { Product } from '@/types'
-import { formatPrice } from '@/lib/utils'
-import { ProductImage } from '@/components/optimization/image-optimizer'
-import { VirtualGrid } from '@/components/performance/virtual-list'
-import { useRoutePerformance } from '@/components/performance/performance-init'
+import { ProductCard } from '@/components/product/product-card'
+// import { VirtualGrid } from '@/components/performance/virtual-list'
+// import { useRoutePerformance } from '@/components/performance/performance-init'
 import { useDebounce } from '@/hooks/use-debounce'
 
 const sortOptions = [
@@ -33,7 +32,7 @@ export default function ProductsPage() {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   
   // Performance tracking
-  useRoutePerformance('products')
+  // useRoutePerformance('products')
   
   // Debounce search for better performance
   const debouncedSearchTerm = useDebounce(searchTerm, 300)
@@ -71,7 +70,7 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className="pt-20 min-h-screen bg-gray-900">
+    <div className="pt-20 min-h-screen bg-gradient-to-br from-cream-50 via-primary-50 to-fresh-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Header */}
         <motion.div
@@ -80,17 +79,17 @@ export default function ProductsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-100 mb-4 font-montserrat">
+          <h1 className="text-4xl sm:text-5xl font-bold text-primary-800 mb-4 font-montserrat">
             Our Products
           </h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-earth-700 max-w-2xl mx-auto">
             Discover our complete range of protein-rich, natural foods crafted with care
           </p>
         </motion.div>
 
         {/* Filters and Controls */}
         <motion.div
-          className="bg-gray-800 rounded-2xl p-6 shadow-lg mb-8"
+          className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg mb-8 border border-cream-200"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -98,13 +97,13 @@ export default function ProductsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-earth-500 h-5 w-5" />
               <input
                 type="text"
                 placeholder="Search products..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-gray-700 border border-gray-600 text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none placeholder-gray-400"
+                className="w-full pl-10 pr-4 py-2 bg-white border border-cream-300 text-earth-800 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none placeholder-earth-500"
               />
             </div>
 
@@ -112,7 +111,7 @@ export default function ProductsPage() {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-2 bg-gray-700 border border-gray-600 text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+              className="px-4 py-2 bg-white border border-cream-300 text-earth-800 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
             >
               <option value="all">All Categories</option>
               {productCategories.map(category => (
@@ -126,7 +125,7 @@ export default function ProductsPage() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+              className="px-4 py-2 bg-white border border-cream-300 text-earth-800 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
             >
               {sortOptions.map(option => (
                 <option key={option.value} value={option.value}>
@@ -160,10 +159,10 @@ export default function ProductsPage() {
               <button
                 key={filter.key}
                 onClick={() => toggleFilter(filter.key)}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 ${
                   selectedFilters.includes(filter.key)
-                    ? 'bg-primary-600 text-white'
-                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-lg'
+                    : 'bg-cream-200 text-earth-700 hover:bg-cream-300 hover:shadow-md'
                 }`}
               >
                 {filter.label}
@@ -174,7 +173,7 @@ export default function ProductsPage() {
 
         {/* Results Count */}
         <div className="flex justify-between items-center mb-6">
-          <p className="text-gray-300">
+          <p className="text-earth-700 font-medium">
             Showing {sortedProducts.length} of {products.length} products
           </p>
         </div>
@@ -193,110 +192,18 @@ export default function ProductsPage() {
           {sortedProducts.map((product, index) => (
             <motion.div
               key={product.id}
-              className={`bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group ${
-                viewMode === 'list' ? 'flex' : ''
-              }`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
             >
-              {/* Product Image */}
-              <div className={`${viewMode === 'list' ? 'w-48 flex-shrink-0' : 'aspect-square'} relative overflow-hidden`}>
-                <ProductImage
-                  productId={product.id}
-                  alt={product.name}
-                  variant={viewMode === 'list' ? 'thumbnail' : 'card'}
-                  priority={index < 4} // Prioritize first 4 images
-                />
-                
-                {/* Fallback for missing images */}
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary-100 to-primary-200 opacity-0 hover:opacity-90 transition-opacity">
-                  <span className="text-gray-100 font-bold text-lg">
-                    {product.name}
-                  </span>
-                </div>
-                
-                {/* Product Badges */}
-                <div className="absolute top-2 left-2 flex flex-col gap-1">
-                  {product.featured && (
-                    <span className="bg-accent-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                      Featured
-                    </span>
-                  )}
-                  {product.isOrganic && (
-                    <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                      Organic
-                    </span>
-                  )}
-                </div>
-
-                {/* Quick Actions */}
-                <div className="absolute top-2 right-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Button variant="ghost" size="icon" className="bg-gray-800/80 hover:bg-gray-800">
-                    <Heart className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-
-              {/* Product Info */}
-              <div className={`p-6 ${viewMode === 'list' ? 'flex-1' : ''}`}>
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-lg font-bold text-gray-100 group-hover:text-primary-600 transition-colors">
-                    {product.name}
-                  </h3>
-                  <div className="text-right">
-                    <div className="text-xl font-bold text-gray-100">
-                      {formatPrice(product.price)}
-                    </div>
-                  </div>
-                </div>
-
-                <p className="text-gray-300 text-sm mb-4 line-clamp-2">
-                  {product.description}
-                </p>
-
-                {/* Nutritional Highlights */}
-                <div className="flex items-center gap-4 mb-4 text-xs text-gray-300">
-                  <span className="bg-primary-100 px-2 py-1 rounded-full">
-                    {product.nutritionalInfo.protein}g Protein
-                  </span>
-                  <span className="bg-primary-100 px-2 py-1 rounded-full">
-                    {product.nutritionalInfo.calories} Cal
-                  </span>
-                </div>
-
-                {/* Product Tags */}
-                <div className="flex flex-wrap gap-1 mb-4">
-                  {product.isGlutenFree && (
-                    <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
-                      Gluten Free
-                    </span>
-                  )}
-                  {product.isVegan && (
-                    <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
-                      Vegan
-                    </span>
-                  )}
-                </div>
-
-                {/* Stock Status */}
-                <div className="mb-4">
-                  {product.stock > 10 ? (
-                    <span className="text-green-600 text-sm">In Stock</span>
-                  ) : product.stock > 0 ? (
-                    <span className="text-orange-600 text-sm">Only {product.stock} left</span>
-                  ) : (
-                    <span className="text-red-600 text-sm">Out of Stock</span>
-                  )}
-                </div>
-
-                {/* Add to Cart Button */}
-                <Button className="w-full group-hover:bg-primary-600 transition-colors">
-                  <ShoppingCart className="mr-2 h-4 w-4" />
-                  Add to Cart
-                </Button>
-              </div>
+              <ProductCard
+                product={product}
+                variant={viewMode}
+                priority={index < 4}
+                onQuickView={(product) => console.log('Quick view:', product.name)}
+                onCompare={(product) => console.log('Compare:', product.name)}
+                onWishlist={(product) => console.log('Wishlist:', product.name)}
+              />
             </motion.div>
           ))}
         </motion.div>
@@ -309,13 +216,14 @@ export default function ProductsPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-gray-300 mb-4">
-              <Filter className="h-12 w-12 mx-auto mb-4 opacity-50" />
-              <p className="text-lg">No products found matching your criteria</p>
+            <div className="text-earth-700 mb-4">
+              <Filter className="h-12 w-12 mx-auto mb-4 opacity-50 text-earth-500" />
+              <p className="text-lg font-medium">No products found matching your criteria</p>
               <p className="text-sm">Try adjusting your filters or search terms</p>
             </div>
             <Button 
               variant="outline" 
+              className="border-primary-500 text-primary-700 hover:bg-primary-50"
               onClick={() => {
                 setSearchTerm('')
                 setSelectedCategory('all')

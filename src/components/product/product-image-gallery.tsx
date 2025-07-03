@@ -36,11 +36,11 @@ interface ProductImageGalleryProps {
 }
 
 const imageTypes = {
-  main: { label: 'Product', color: 'bg-blue-500' },
-  lifestyle: { label: 'Lifestyle', color: 'bg-green-500' },
-  detail: { label: 'Details', color: 'bg-orange-500' },
-  ingredient: { label: 'Ingredients', color: 'bg-purple-500' },
-  nutrition: { label: 'Nutrition', color: 'bg-red-500' }
+  main: { label: 'Product', color: 'bg-primary-500' },
+  lifestyle: { label: 'Lifestyle', color: 'bg-fresh-500' },
+  detail: { label: 'Details', color: 'bg-citrus-500' },
+  ingredient: { label: 'Ingredients', color: 'bg-earth-500' },
+  nutrition: { label: 'Nutrition', color: 'bg-berry-500' }
 }
 
 // Sample images for demonstration
@@ -220,7 +220,7 @@ export function ProductImageGallery({
       </div>
 
       {/* Main Image Display */}
-      <div className="relative bg-gray-100 rounded-lg overflow-hidden group">
+      <div className="relative bg-cream-100 rounded-lg overflow-hidden group">
         <div className="aspect-square relative">
           <motion.img
             key={currentImage.id}
@@ -316,8 +316,8 @@ export function ProductImageGallery({
 
         {/* Image Caption */}
         {currentImage.caption && (
-          <div className="p-3 bg-gray-800 border-t">
-            <p className="text-sm text-gray-600">{currentImage.caption}</p>
+          <div className="p-3 bg-cream-200 border-t border-cream-300">
+            <p className="text-sm text-earth-700">{currentImage.caption}</p>
           </div>
         )}
       </div>
@@ -332,7 +332,7 @@ export function ProductImageGallery({
               className={`flex-shrink-0 w-16 h-16 rounded-md overflow-hidden border-2 transition-all ${
                 index === currentIndex 
                   ? 'border-primary-500 ring-2 ring-primary-200' 
-                  : 'border-gray-600 hover:border-gray-600'
+                  : 'border-cream-300 hover:border-primary-300'
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
