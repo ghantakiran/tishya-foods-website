@@ -211,19 +211,19 @@ export default function SubscriptionPage() {
                 <h3 className="text-lg font-semibold text-cream-100 mb-4">What happens next?</h3>
                 <div className="space-y-3 text-cream-300">
                   <div className="flex items-start space-x-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                    <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-cream-100 rounded-full flex items-center justify-center text-sm font-bold">1</span>
                     <p>We'll prepare your personalized selection based on your preferences</p>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                    <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-cream-100 rounded-full flex items-center justify-center text-sm font-bold">2</span>
                     <p>You'll receive an email confirmation with tracking details</p>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                    <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-cream-100 rounded-full flex items-center justify-center text-sm font-bold">3</span>
                     <p>Your first delivery will arrive fresh at your doorstep</p>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
+                    <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-cream-100 rounded-full flex items-center justify-center text-sm font-bold">4</span>
                     <p>Manage your subscription anytime through your dashboard</p>
                   </div>
                 </div>

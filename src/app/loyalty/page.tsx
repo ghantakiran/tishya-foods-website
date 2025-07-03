@@ -68,7 +68,7 @@ export default function LoyaltyPage() {
                     className={cn(
                       'flex items-center space-x-3 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200',
                       activeView === view.id
-                        ? 'bg-earth-800 text-white shadow-md'
+                        ? 'bg-earth-800 text-cream-100 shadow-md'
                         : 'text-cream-300 hover:bg-earth-50'
                     )}
                   >
@@ -177,21 +177,21 @@ export default function LoyaltyPage() {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <div className="flex items-start space-x-3">
-              <div className="w-8 h-8 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
+              <div className="w-8 h-8 bg-earth-800 text-cream-100 rounded-full flex items-center justify-center text-sm font-bold">1</div>
               <div className="text-left">
                 <h4 className="font-semibold text-cream-100">Shop & Earn</h4>
                 <p className="text-sm text-cream-300">Make purchases and automatically earn points</p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <div className="w-8 h-8 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
+              <div className="w-8 h-8 bg-earth-800 text-cream-100 rounded-full flex items-center justify-center text-sm font-bold">2</div>
               <div className="text-left">
                 <h4 className="font-semibold text-cream-100">Unlock Tiers</h4>
                 <p className="text-sm text-cream-300">Accumulate points to reach higher tiers with better benefits</p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <div className="w-8 h-8 bg-earth-800 text-white rounded-full flex items-center justify-center text-sm font-bold">3</div>
+              <div className="w-8 h-8 bg-earth-800 text-cream-100 rounded-full flex items-center justify-center text-sm font-bold">3</div>
               <div className="text-left">
                 <h4 className="font-semibold text-cream-100">Redeem Rewards</h4>
                 <p className="text-sm text-cream-300">Use points for discounts, free products, and exclusive experiences</p>
