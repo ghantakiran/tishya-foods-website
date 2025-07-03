@@ -6,10 +6,10 @@ import { Search, Filter, Grid, List } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { products, productCategories } from '@/lib/products-data'
 import { Product } from '@/types'
-import { ProductCard } from '@/components/product/product-card'
+// import { ProductCard } from '@/components/product/product-card'
 // import { VirtualGrid } from '@/components/performance/virtual-list'
 // import { useRoutePerformance } from '@/components/performance/performance-init'
-import { useDebounce } from '@/hooks/use-debounce'
+// import { useDebounce } from '@/hooks/use-debounce'
 
 const sortOptions = [
   { value: 'name', label: 'Name A-Z' },
@@ -35,7 +35,8 @@ export default function ProductsPage() {
   // useRoutePerformance('products')
   
   // Debounce search for better performance
-  const debouncedSearchTerm = useDebounce(searchTerm, 300)
+  // const debouncedSearchTerm = useDebounce(searchTerm, 300)
+  const debouncedSearchTerm = searchTerm
 
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
@@ -196,14 +197,19 @@ export default function ProductsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <ProductCard
-                product={product}
-                variant={viewMode}
-                priority={index < 4}
-                onQuickView={(product) => console.log('Quick view:', product.name)}
-                onCompare={(product) => console.log('Compare:', product.name)}
-                onWishlist={(product) => console.log('Wishlist:', product.name)}
-              />
+              <div className="bg-gradient-to-br from-cream-50 to-cream-100 border border-cream-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="w-full h-48 bg-gradient-to-br from-primary-100 to-fresh-100 rounded-xl mb-4 flex items-center justify-center">
+                  <span className="text-primary-800 font-bold text-lg">{product.name}</span>
+                </div>
+                <h3 className="text-xl font-bold text-primary-800 mb-2">{product.name}</h3>
+                <p className="text-earth-700 mb-4 line-clamp-2">{product.description}</p>
+                <div className="flex justify-between items-center">
+                  <span className="text-2xl font-bold text-primary-600">₹{product.price}</span>
+                  <button className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition-colors">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
             </motion.div>
           ))}
         </motion.div>
