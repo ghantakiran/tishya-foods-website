@@ -68,7 +68,7 @@ export default function ComparePage() {
   return (
     <div className="min-h-screen bg-earth-900">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-earth-800 to-earth-900 text-white">
+      <div className="bg-gradient-to-r from-earth-800 to-earth-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -77,22 +77,22 @@ export default function ComparePage() {
           >
             <div className="flex items-center justify-center mb-4">
               <Scale className="h-12 w-12 text-yellow-400 mr-3" />
-              <h1 className="text-4xl md:text-5xl font-bold text-white">
+              <h1 className="text-4xl md:text-5xl font-bold text-cream-100">
                 Product Comparison
               </h1>
             </div>
-            <p className="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-cream-200 mb-8 max-w-3xl mx-auto">
               Make informed decisions with our comprehensive product comparison tool. 
               Compare nutrition, ingredients, and value across our protein-rich product range.
             </p>
             <div className="flex items-center justify-center space-x-4">
-              <Badge className="text-sm px-3 py-1 bg-primary-500 text-white border-primary-400">
+              <Badge className="text-sm px-3 py-1 bg-primary-500 text-earth-100 border-primary-400">
                 Nutrition Analysis
               </Badge>
-              <Badge className="text-sm px-3 py-1 bg-primary-500 text-white border-primary-400">
+              <Badge className="text-sm px-3 py-1 bg-primary-500 text-earth-100 border-primary-400">
                 Smart Highlighting
               </Badge>
-              <Badge className="text-sm px-3 py-1 bg-primary-500 text-white border-primary-400">
+              <Badge className="text-sm px-3 py-1 bg-primary-500 text-earth-100 border-primary-400">
                 Value Assessment
               </Badge>
             </div>
