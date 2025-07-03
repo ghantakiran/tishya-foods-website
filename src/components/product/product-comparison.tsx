@@ -62,7 +62,7 @@ const sampleProducts: Product[] = [
     id: '1',
     name: 'Protein Rich Quinoa Mix',
     description: 'High-protein quinoa blend with nuts and seeds for sustained energy',
-    image: '/images/products/quinoa-mix.jpg',
+    image: '/api/placeholder/80/80',
     price: 299,
     originalPrice: 349,
     rating: 4.8,
@@ -90,7 +90,7 @@ const sampleProducts: Product[] = [
     id: '2',
     name: 'Sweet Protein Balls',
     description: 'Delicious protein-packed energy balls made with natural ingredients',
-    image: '/images/products/protein-balls.jpg',
+    image: '/api/placeholder/80/80',
     price: 199,
     rating: 4.6,
     reviews: 89,
@@ -117,7 +117,7 @@ const sampleProducts: Product[] = [
     id: '3',
     name: 'Nutty Granola Mix',
     description: 'Crunchy granola with mixed nuts and seeds for breakfast or snacking',
-    image: '/images/products/granola.jpg',
+    image: '/api/placeholder/80/80',
     price: 249,
     originalPrice: 279,
     rating: 4.7,
@@ -242,11 +242,11 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
 
                       {/* Product Image */}
                       <div className="relative">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="w-20 h-20 object-cover rounded-lg mx-auto"
-                        />
+                        <div className="w-20 h-20 bg-gradient-to-br from-primary-100 to-primary-200 rounded-lg mx-auto flex items-center justify-center">
+                          <span className="text-2xl font-bold text-primary-700">
+                            {product.name.charAt(0)}
+                          </span>
+                        </div>
                         {product.isPopular && (
                           <Badge className="absolute -top-1 -right-1 text-xs px-1">Popular</Badge>
                         )}
@@ -314,7 +314,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
 
             <tbody>
               {/* Nutrition Facts */}
-              <tr className="border-b bg-blue-50">
+              <tr className="border-b bg-earth-900">
                 <td className="p-4 font-medium text-cream-100">
                   <div className="flex items-center space-x-2">
                     <TrendingUp className="h-4 w-4 text-blue-600" />
@@ -339,10 +339,10 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
                   onMouseEnter={() => setHighlightedMetric(category.key)}
                   onMouseLeave={() => setHighlightedMetric(null)}
                 >
-                  <td className="p-4">
+                  <td className="p-4 bg-earth-800">
                     <div className="flex items-center space-x-2">
                       <category.icon className={`h-4 w-4 ${category.color}`} />
-                      <span className="font-medium text-earth-700">{category.label}</span>
+                      <span className="font-medium text-cream-100">{category.label}</span>
                     </div>
                   </td>
                   {products.map((product) => {
@@ -364,7 +364,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
               ))}
 
               {/* Benefits */}
-              <tr className="border-b bg-green-50">
+              <tr className="border-b bg-earth-900">
                 <td className="p-4 font-medium text-cream-100">
                   <div className="flex items-center space-x-2">
                     <Heart className="h-4 w-4 text-green-600" />
@@ -378,7 +378,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
 
               {allBenefits.map((benefit) => (
                 <tr key={benefit} className="border-b hover:bg-earth-900">
-                  <td className="p-4 pl-8 text-sm text-earth-700">{benefit}</td>
+                  <td className="p-4 pl-8 text-sm text-cream-100">{benefit}</td>
                   {products.map((product) => (
                     <td key={product.id} className="p-4 text-center">
                       {product.benefits.includes(benefit) ? (
@@ -392,7 +392,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
               ))}
 
               {/* Certifications */}
-              <tr className="border-b bg-purple-50">
+              <tr className="border-b bg-earth-900">
                 <td className="p-4 font-medium text-cream-100">
                   <div className="flex items-center space-x-2">
                     <Award className="h-4 w-4 text-purple-600" />
@@ -406,7 +406,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
 
               {allCertifications.map((certification) => (
                 <tr key={certification} className="border-b hover:bg-earth-900">
-                  <td className="p-4 pl-8 text-sm text-earth-700">{certification}</td>
+                  <td className="p-4 pl-8 text-sm text-cream-100">{certification}</td>
                   {products.map((product) => (
                     <td key={product.id} className="p-4 text-center">
                       {product.certifications.includes(certification) ? (
@@ -420,7 +420,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
               ))}
 
               {/* Ingredients */}
-              <tr className="border-b bg-orange-50">
+              <tr className="border-b bg-earth-900">
                 <td className="p-4 font-medium text-cream-100">
                   <div className="flex items-center space-x-2">
                     <Info className="h-4 w-4 text-orange-600" />
@@ -453,27 +453,27 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
 
       {/* Summary Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg p-4">
           <div className="flex items-center space-x-2 mb-2">
-            <TrendingUp className="h-5 w-5 text-blue-600" />
-            <h3 className="font-semibold text-blue-900">Highest Protein</h3>
+            <TrendingUp className="h-5 w-5 text-blue-200" />
+            <h3 className="font-semibold text-white">Highest Protein</h3>
           </div>
           {(() => {
             const maxProtein = Math.max(...products.map(p => p.nutritionalInfo.protein))
             const bestProduct = products.find(p => p.nutritionalInfo.protein === maxProtein)
             return bestProduct ? (
               <div>
-                <p className="text-sm text-blue-800">{bestProduct.name}</p>
-                <p className="text-lg font-bold text-blue-900">{maxProtein}g protein</p>
+                <p className="text-sm text-blue-200">{bestProduct.name}</p>
+                <p className="text-lg font-bold text-white">{maxProtein}g protein</p>
               </div>
             ) : null
           })()}
         </div>
 
-        <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4">
+        <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-lg p-4">
           <div className="flex items-center space-x-2 mb-2">
-            <Heart className="h-5 w-5 text-green-600" />
-            <h3 className="font-semibold text-green-900">Best Value</h3>
+            <Heart className="h-5 w-5 text-green-200" />
+            <h3 className="font-semibold text-white">Best Value</h3>
           </div>
           {(() => {
             const bestValue = products.reduce((prev, current) => 
@@ -483,8 +483,8 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
             )
             return (
               <div>
-                <p className="text-sm text-green-800">{bestValue.name}</p>
-                <p className="text-lg font-bold text-green-900">
+                <p className="text-sm text-green-200">{bestValue.name}</p>
+                <p className="text-lg font-bold text-white">
                   {formatPrice(bestValue.price)} for {bestValue.nutritionalInfo.protein}g
                 </p>
               </div>
@@ -492,10 +492,10 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
           })()}
         </div>
 
-        <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg p-4">
+        <div className="bg-gradient-to-r from-purple-600 to-purple-700 rounded-lg p-4">
           <div className="flex items-center space-x-2 mb-2">
-            <Star className="h-5 w-5 text-purple-600" />
-            <h3 className="font-semibold text-purple-900">Top Rated</h3>
+            <Star className="h-5 w-5 text-purple-200" />
+            <h3 className="font-semibold text-white">Top Rated</h3>
           </div>
           {(() => {
             const topRated = products.reduce((prev, current) => 
@@ -503,8 +503,8 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
             )
             return (
               <div>
-                <p className="text-sm text-purple-800">{topRated.name}</p>
-                <p className="text-lg font-bold text-purple-900">
+                <p className="text-sm text-purple-200">{topRated.name}</p>
+                <p className="text-lg font-bold text-white">
                   ⭐ {topRated.rating} ({topRated.reviews} reviews)
                 </p>
               </div>
@@ -566,11 +566,11 @@ export function ProductComparisonContainer() {
                   onClick={() => addProductToComparison(product)}
                 >
                   <div className="flex items-center space-x-3">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-12 h-12 object-cover rounded-md"
-                    />
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary-100 to-primary-200 rounded-md flex items-center justify-center">
+                      <span className="text-sm font-bold text-primary-700">
+                        {product.name.charAt(0)}
+                      </span>
+                    </div>
                     <div className="flex-1">
                       <h4 className="font-medium text-cream-100 text-sm">{product.name}</h4>
                       <p className="text-xs text-earth-600 mb-1">

@@ -133,7 +133,7 @@ export default function ComparePage() {
 
         {/* Comparison Tips */}
         <div className="mb-16">
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-8">
+          <div className="bg-earth-800 rounded-lg p-8 border">
             <h3 className="text-2xl font-bold text-cream-100 mb-6 text-center">
               Smart Comparison Tips
             </h3>
@@ -299,7 +299,7 @@ export default function ComparePage() {
 
         {/* Call to Action */}
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-8">
+          <div className="bg-earth-800 rounded-lg p-8 border">
             <h3 className="text-2xl font-bold text-cream-100 mb-4">
               Found Your Perfect Products?
             </h3>
