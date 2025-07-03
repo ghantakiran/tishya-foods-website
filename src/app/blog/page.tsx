@@ -1,4 +1,5 @@
-import { Metadata } from 'next'
+'use client'
+
 import { BlogProvider } from '@/contexts/blog-context'
 import { BlogList } from '@/components/blog/blog-list'
 import { BlogFilters } from '@/components/blog/blog-filters'
@@ -7,24 +8,6 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { BookOpen, TrendingUp, Calendar, Users } from 'lucide-react'
 import Link from 'next/link'
-
-export const metadata: Metadata = {
-  title: 'Blog - Tishya Foods | Nutrition, Health & Wellness',
-  description: 'Discover expert insights on nutrition, health, and wellness. Learn about protein-rich foods, sustainable farming, healthy recipes, and wellness tips from our nutrition experts.',
-  keywords: 'nutrition blog, health tips, wellness advice, protein foods, healthy eating, plant-based nutrition, sustainable farming, food science',
-  openGraph: {
-    title: 'Blog - Tishya Foods | Nutrition, Health & Wellness',
-    description: 'Expert insights on nutrition, health, and wellness from Tishya Foods.',
-    type: 'website',
-    images: [{ url: '/images/blog/blog-hero.jpg' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Blog - Tishya Foods | Nutrition, Health & Wellness',
-    description: 'Expert insights on nutrition, health, and wellness from Tishya Foods.',
-    images: ['/images/blog/blog-hero.jpg'],
-  }
-}
 
 const blogStats = [
   {
@@ -87,8 +70,6 @@ const featuredCategories = [
     color: '#059669'
   }
 ]
-
-'use client'
 
 export default function BlogPage() {
   return (
