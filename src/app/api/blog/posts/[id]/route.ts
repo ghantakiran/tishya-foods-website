@@ -23,7 +23,7 @@ const mockPosts: BlogPost[] = [
         <li>Better recovery after exercise</li>
       </ul>
     `,
-    featuredImage: '/images/blog/protein-guide.jpg',
+    featuredImage: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop&crop=center',
     status: 'published',
     publishedAt: '2024-01-15T10:00:00Z',
     createdAt: '2024-01-10T08:00:00Z',
@@ -32,7 +32,7 @@ const mockPosts: BlogPost[] = [
       id: '1',
       name: 'Dr. Sarah Nutrition',
       email: 'sarah@tishyafoods.com',
-      avatar: '/images/authors/sarah.jpg',
+      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b131?w=100&h=100&fit=crop&crop=face',
       bio: 'Nutritionist and wellness expert with over 10 years of experience in plant-based nutrition.'
     },
     categories: [
