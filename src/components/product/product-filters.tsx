@@ -146,7 +146,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-xl z-50 flex flex-col"
+            className="fixed right-0 top-0 h-full w-full max-w-md bg-gray-800 shadow-xl z-50 flex flex-col"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -279,7 +279,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                             type="checkbox"
                             checked={filters.dietaryRestrictions.includes(option.id)}
                             onChange={() => handleDietaryChange(option.id)}
-                            className="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                            className="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-600 rounded"
                           />
                           <div>
                             <div className="text-sm font-medium">{option.label}</div>
@@ -323,7 +323,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                             type="checkbox"
                             checked={filters.nutritionalGoals.includes(goal.id)}
                             onChange={() => handleNutritionalGoalChange(goal.id)}
-                            className="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                            className="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-600 rounded"
                           />
                           <div>
                             <div className="text-sm font-medium">{goal.label}</div>
@@ -368,7 +368,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                             name="rating"
                             checked={filters.rating === rating}
                             onChange={() => updateFilters({ rating })}
-                            className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300"
+                            className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-600"
                           />
                           <div className="flex items-center space-x-1">
                             {[...Array(rating)].map((_, i) => (
@@ -422,7 +422,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                             name="availability"
                             checked={filters.availability === option.value}
                             onChange={() => updateFilters({ availability: option.value as any })}
-                            className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300"
+                            className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-600"
                           />
                           <span className="text-sm">{option.label}</span>
                         </label>

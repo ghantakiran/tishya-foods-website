@@ -54,7 +54,7 @@ const itemVariants = {
 
 export default function ProductCategories() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -88,7 +88,7 @@ export default function ProductCategories() {
               whileHover={{ y: -10 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
+              <div className="bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
                 {/* Category Image */}
                 <div className={`h-48 bg-gradient-to-br ${category.color} relative overflow-hidden`}>
                   <motion.div

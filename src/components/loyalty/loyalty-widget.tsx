@@ -186,7 +186,7 @@ export function LoyaltyWidget({
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
             >
-              <Card className="w-80 bg-white/95 backdrop-blur-sm border shadow-xl">
+              <Card className="w-80 bg-gray-800/95 backdrop-blur-sm border shadow-xl">
                 {/* Header */}
                 <div className="flex items-center justify-between p-4 border-b">
                   <div className="flex items-center space-x-3">

@@ -87,9 +87,9 @@ const team = [
 
 export default function AboutPage() {
   return (
-    <div className="pt-20 min-h-screen">
+    <div className="pt-20 min-h-screen bg-gray-900">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-primary-50 to-white overflow-hidden">
+      <section className="relative py-20 bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center max-w-4xl mx-auto"
@@ -97,25 +97,25 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-brown-800 mb-6 font-montserrat">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-100 mb-6 font-montserrat">
               Our Story
             </h1>
-            <p className="text-xl sm:text-2xl text-brown-600 mb-8 leading-relaxed">
+            <p className="text-xl sm:text-2xl text-gray-300 mb-8 leading-relaxed">
               Where nature&apos;s goodness is lovingly crafted into the purest and 
               most wholesome protein-rich foods for your family&apos;s health and happiness.
             </p>
             <div className="grid md:grid-cols-3 gap-8 mt-12">
               <div className="text-center">
-                <div className="text-3xl font-bold text-brown-800 mb-2">1000+</div>
-                <div className="text-brown-600">Happy Families</div>
+                <div className="text-3xl font-bold text-gray-100 mb-2">1000+</div>
+                <div className="text-gray-300">Happy Families</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-brown-800 mb-2">50+</div>
-                <div className="text-brown-600">Product Varieties</div>
+                <div className="text-3xl font-bold text-gray-100 mb-2">50+</div>
+                <div className="text-gray-300">Product Varieties</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-brown-800 mb-2">100%</div>
-                <div className="text-brown-600">Natural Ingredients</div>
+                <div className="text-3xl font-bold text-gray-100 mb-2">100%</div>
+                <div className="text-gray-300">Natural Ingredients</div>
               </div>
             </div>
           </motion.div>
@@ -123,7 +123,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -132,15 +132,15 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-brown-800 mb-6 font-montserrat">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-100 mb-6 font-montserrat">
                 Our Mission
               </h2>
-              <p className="text-lg text-brown-600 mb-6 leading-relaxed">
+              <p className="text-lg text-gray-300 mb-6 leading-relaxed">
                 To provide families with access to pure, wholesome, protein-rich foods that 
                 support health and wellness without compromising on taste or convenience. 
                 We believe that everyone deserves nutrition that nourishes both body and soul.
               </p>
-              <p className="text-lg text-brown-600 leading-relaxed">
+              <p className="text-lg text-gray-300 leading-relaxed">
                 Through our meticulous triple-washing, air-drying, hand-roasting, and fine 
                 milling process, we preserve the natural goodness of every ingredient while 
                 creating products that fit seamlessly into modern family life.
@@ -154,8 +154,8 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <div className="aspect-square bg-gradient-to-br from-primary-200 to-primary-300 rounded-3xl flex items-center justify-center shadow-2xl">
-                <div className="text-brown-800 font-bold text-2xl font-montserrat text-center">
+              <div className="aspect-square bg-gradient-to-br from-primary-600 to-primary-700 rounded-3xl flex items-center justify-center shadow-2xl">
+                <div className="text-gray-100 font-bold text-2xl font-montserrat text-center">
                   Health<br />At Home!
                 </div>
               </div>
@@ -165,7 +165,7 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="py-20 bg-brown-50">
+      <section className="py-20 bg-gray-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -174,10 +174,10 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-brown-800 mb-4 font-montserrat">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-100 mb-4 font-montserrat">
               Our Journey
             </h2>
-            <p className="text-lg text-brown-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
               From a small vision to serving families across India with premium natural foods
             </p>
           </motion.div>
@@ -196,10 +196,10 @@ export default function AboutPage() {
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
                 <div className={`lg:w-1/2 ${index % 2 === 0 ? 'lg:pr-12 lg:text-right' : 'lg:pl-12 lg:ml-auto'}`}>
-                  <div className="bg-white rounded-2xl p-8 shadow-lg">
+                  <div className="bg-gray-800 rounded-2xl p-8 shadow-lg">
                     <div className="text-primary-600 font-bold text-lg mb-2">{milestone.year}</div>
-                    <h3 className="text-xl font-bold text-brown-800 mb-3">{milestone.title}</h3>
-                    <p className="text-brown-600 leading-relaxed">{milestone.description}</p>
+                    <h3 className="text-xl font-bold text-gray-100 mb-3">{milestone.title}</h3>
+                    <p className="text-gray-300 leading-relaxed">{milestone.description}</p>
                   </div>
                 </div>
 
@@ -212,7 +212,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -221,10 +221,10 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-brown-800 mb-4 font-montserrat">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-100 mb-4 font-montserrat">
               Our Core Values
             </h2>
-            <p className="text-lg text-brown-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
               The principles that guide every decision we make and every product we create
             </p>
           </motion.div>
@@ -233,7 +233,7 @@ export default function AboutPage() {
             {values.map((value, index) => (
               <motion.div
                 key={index}
-                className="bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-all duration-300"
+                className="bg-gray-800 border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -241,10 +241,10 @@ export default function AboutPage() {
                 whileHover={{ y: -5 }}
               >
                 <div className="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mb-6">
-                  <value.icon className="h-8 w-8 text-brown-800" />
+                  <value.icon className="h-8 w-8 text-gray-100" />
                 </div>
-                <h3 className="text-xl font-bold text-brown-800 mb-3">{value.title}</h3>
-                <p className="text-brown-600 leading-relaxed">{value.description}</p>
+                <h3 className="text-xl font-bold text-gray-100 mb-3">{value.title}</h3>
+                <p className="text-gray-300 leading-relaxed">{value.description}</p>
               </motion.div>
             ))}
           </div>
@@ -252,7 +252,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="py-20 bg-gradient-to-br from-primary-50 to-white">
+      <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -261,10 +261,10 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-brown-800 mb-4 font-montserrat">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-100 mb-4 font-montserrat">
               Meet Our Team
             </h2>
-            <p className="text-lg text-brown-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
               The passionate individuals behind Tishya Foods&apos; commitment to excellence
             </p>
           </motion.div>
@@ -273,7 +273,7 @@ export default function AboutPage() {
             {team.map((member, index) => (
               <motion.div
                 key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-all duration-300"
+                className="bg-gray-800 rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-all duration-300"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -281,11 +281,11 @@ export default function AboutPage() {
                 whileHover={{ y: -5 }}
               >
                 <div className="w-24 h-24 bg-gradient-to-br from-primary-200 to-primary-300 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <span className="text-brown-800 font-bold text-lg">TF</span>
+                  <span className="text-gray-100 font-bold text-lg">TF</span>
                 </div>
-                <h3 className="text-xl font-bold text-brown-800 mb-2">{member.name}</h3>
+                <h3 className="text-xl font-bold text-gray-100 mb-2">{member.name}</h3>
                 <div className="text-primary-600 font-semibold mb-4">{member.role}</div>
-                <p className="text-brown-600 leading-relaxed">{member.description}</p>
+                <p className="text-gray-300 leading-relaxed">{member.description}</p>
               </motion.div>
             ))}
           </div>
@@ -309,10 +309,10 @@ export default function AboutPage() {
               in your family&apos;s health and happiness.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-primary-500 text-brown-800 px-8 py-3 rounded-lg font-semibold hover:bg-primary-400 transition-colors">
+              <button className="bg-primary-500 text-gray-100 px-8 py-3 rounded-lg font-semibold hover:bg-primary-400 transition-colors">
                 Shop Our Products
               </button>
-              <button className="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-brown-800 transition-colors">
+              <button className="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 hover:text-gray-100 transition-colors">
                 Contact Us
               </button>
             </div>

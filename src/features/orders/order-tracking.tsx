@@ -93,7 +93,7 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
     return (
       <div className="text-center py-12">
         <Package className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-lg font-medium text-gray-900 mb-2">Order not found</h3>
+        <h3 className="text-lg font-medium text-gray-100 mb-2">Order not found</h3>
         <p className="text-gray-600">{error || 'The order you are looking for does not exist.'}</p>
       </div>
     )
@@ -105,10 +105,10 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       {/* Header */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="bg-gray-800 rounded-lg shadow-sm border p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Order Tracking</h1>
+            <h1 className="text-2xl font-bold text-gray-100">Order Tracking</h1>
             <p className="text-gray-600">Track your order status and delivery progress</p>
           </div>
           <Badge variant={order.status === OrderStatus.DELIVERED ? 'success' : 'default'} className="text-sm">
@@ -159,7 +159,7 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
       </div>
 
       {/* Tracking Timeline */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="bg-gray-800 rounded-lg shadow-sm border p-6">
         <h2 className="text-lg font-semibold mb-6">Tracking Progress</h2>
         
         <div className="relative">
@@ -184,7 +184,7 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
                 <div className={`relative z-10 flex items-center justify-center w-12 h-12 rounded-full border-4 transition-all duration-300 ${
                   step.isCompleted
                     ? 'bg-green-500 border-green-500 text-white'
-                    : 'bg-white border-gray-300 text-gray-400'
+                    : 'bg-gray-800 border-gray-600 text-gray-400'
                 }`}>
                   {step.isCompleted ? (
                     <CheckCircle className="h-6 w-6" />
@@ -196,7 +196,7 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
                 {/* Step Content */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
-                    <h3 className={`font-medium ${step.isCompleted ? 'text-gray-900' : 'text-gray-500'}`}>
+                    <h3 className={`font-medium ${step.isCompleted ? 'text-gray-100' : 'text-gray-500'}`}>
                       {step.label}
                     </h3>
                     {step.trackingInfo && (
@@ -225,7 +225,7 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
       </div>
 
       {/* Order Items */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="bg-gray-800 rounded-lg shadow-sm border p-6">
         <h2 className="text-lg font-semibold mb-4">Order Items</h2>
         <div className="space-y-4">
           {order.items.map((item) => (
@@ -236,7 +236,7 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
                 className="w-16 h-16 object-cover rounded-md"
               />
               <div className="flex-1">
-                <h3 className="font-medium text-gray-900">{item.name}</h3>
+                <h3 className="font-medium text-gray-100">{item.name}</h3>
                 <p className="text-sm text-gray-600">{item.description}</p>
                 <div className="flex items-center space-x-4 mt-1 text-xs text-gray-500">
                   <span>{item.nutritionalInfo.protein}g protein</span>
@@ -254,7 +254,7 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
       </div>
 
       {/* Delivery Address */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
+      <div className="bg-gray-800 rounded-lg shadow-sm border p-6">
         <h2 className="text-lg font-semibold mb-4 flex items-center">
           <MapPin className="h-5 w-5 mr-2" />
           Delivery Address

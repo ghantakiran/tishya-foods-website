@@ -45,7 +45,7 @@ export function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalP
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute top-4 right-4 z-10 bg-white/80 hover:bg-white"
+                className="absolute top-4 right-4 z-10 bg-gray-800/80 hover:bg-gray-800"
                 onClick={onClose}
               >
                 <X className="h-5 w-5" />

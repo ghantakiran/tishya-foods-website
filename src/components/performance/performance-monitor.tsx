@@ -217,13 +217,13 @@ export function PerformanceMonitorWidget({
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg shadow-xl p-4 min-w-80"
+            className="bg-gray-800/95 backdrop-blur-sm border border-gray-600 rounded-lg shadow-xl p-4 min-w-80"
           >
             {/* Header */}
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-2">
                 <Activity className="h-4 w-4 text-primary-600" />
-                <h3 className="font-semibold text-gray-900 text-sm">Performance</h3>
+                <h3 className="font-semibold text-gray-100 text-sm">Performance</h3>
               </div>
               <Button
                 variant="ghost"
@@ -299,7 +299,7 @@ export function PerformanceMonitorWidget({
               {metrics.downlink > 0 && (
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-gray-700">Speed</span>
-                  <span className="font-mono text-gray-900">
+                  <span className="font-mono text-gray-100">
                     {formatValue('downlink', metrics.downlink)}
                   </span>
                 </div>

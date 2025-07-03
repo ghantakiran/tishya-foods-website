@@ -86,13 +86,13 @@ export function OrderCard({ order, onDownloadInvoice, onReorder, onCancel }: Ord
 
   return (
     <>
-      <div className="bg-white border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+      <div className="bg-gray-800 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
         {/* Card Header */}
         <div className="p-4 border-b">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div>
-                <p className="font-semibold text-gray-900">Order #{order.orderNumber}</p>
+                <p className="font-semibold text-gray-100">Order #{order.orderNumber}</p>
                 <p className="text-sm text-gray-500">
                   Placed on {new Date(order.createdAt).toLocaleDateString()}
                 </p>
@@ -134,7 +134,7 @@ export function OrderCard({ order, onDownloadInvoice, onReorder, onCancel }: Ord
                   className="w-12 h-12 object-cover rounded-md"
                 />
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">
+                  <p className="text-sm font-medium text-gray-100 truncate">
                     {item.name}
                   </p>
                   <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
@@ -157,14 +157,14 @@ export function OrderCard({ order, onDownloadInvoice, onReorder, onCancel }: Ord
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="border-t bg-gray-50"
+              className="border-t bg-gray-900"
             >
               <div className="p-4 space-y-6">
                 {/* Order Details */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Order Information */}
                   <div className="space-y-3">
-                    <h4 className="font-medium text-gray-900 flex items-center">
+                    <h4 className="font-medium text-gray-100 flex items-center">
                       <Package className="h-4 w-4 mr-2" />
                       Order Information
                     </h4>
@@ -194,12 +194,12 @@ export function OrderCard({ order, onDownloadInvoice, onReorder, onCancel }: Ord
 
                   {/* Shipping Address */}
                   <div className="space-y-3">
-                    <h4 className="font-medium text-gray-900 flex items-center">
+                    <h4 className="font-medium text-gray-100 flex items-center">
                       <MapPin className="h-4 w-4 mr-2" />
                       Shipping Address
                     </h4>
                     <div className="text-sm text-gray-600">
-                      <p className="font-medium text-gray-900">
+                      <p className="font-medium text-gray-100">
                         {order.shippingAddress.firstName} {order.shippingAddress.lastName}
                       </p>
                       <p>{order.shippingAddress.line1}</p>
@@ -214,17 +214,17 @@ export function OrderCard({ order, onDownloadInvoice, onReorder, onCancel }: Ord
 
                 {/* All Items */}
                 <div className="space-y-3">
-                  <h4 className="font-medium text-gray-900">Order Items</h4>
+                  <h4 className="font-medium text-gray-100">Order Items</h4>
                   <div className="space-y-3">
                     {order.items.map((item) => (
-                      <div key={item.id} className="flex items-center space-x-3 bg-white p-3 rounded-lg">
+                      <div key={item.id} className="flex items-center space-x-3 bg-gray-800 p-3 rounded-lg">
                         <img
                           src={item.image}
                           alt={item.name}
                           className="w-16 h-16 object-cover rounded-md"
                         />
                         <div className="flex-1">
-                          <h5 className="font-medium text-gray-900">{item.name}</h5>
+                          <h5 className="font-medium text-gray-100">{item.name}</h5>
                           <p className="text-sm text-gray-600">{item.description}</p>
                           <div className="flex items-center space-x-4 mt-1 text-xs text-gray-500">
                             <span>{item.nutritionalInfo.protein}g protein</span>
@@ -244,8 +244,8 @@ export function OrderCard({ order, onDownloadInvoice, onReorder, onCancel }: Ord
                 </div>
 
                 {/* Order Total Breakdown */}
-                <div className="bg-white p-4 rounded-lg space-y-2">
-                  <h4 className="font-medium text-gray-900 mb-3">Order Summary</h4>
+                <div className="bg-gray-800 p-4 rounded-lg space-y-2">
+                  <h4 className="font-medium text-gray-100 mb-3">Order Summary</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-gray-600">Subtotal:</span>
@@ -277,7 +277,7 @@ export function OrderCard({ order, onDownloadInvoice, onReorder, onCancel }: Ord
         </AnimatePresence>
 
         {/* Card Footer - Actions */}
-        <div className="p-4 border-t bg-gray-50 flex items-center justify-between">
+        <div className="p-4 border-t bg-gray-900 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Link href={`/orders/${order.id}`}>
               <Button variant="outline" size="sm" className="flex items-center space-x-2">
@@ -338,7 +338,7 @@ export function OrderCard({ order, onDownloadInvoice, onReorder, onCancel }: Ord
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-white rounded-lg p-6 w-full max-w-md"
+            className="bg-gray-800 rounded-lg p-6 w-full max-w-md"
           >
             <h3 className="text-lg font-semibold mb-4">Cancel Order</h3>
             <p className="text-gray-600 mb-4">
@@ -352,7 +352,7 @@ export function OrderCard({ order, onDownloadInvoice, onReorder, onCancel }: Ord
               <textarea
                 value={cancelReason}
                 onChange={(e) => setCancelReason(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="w-full px-3 py-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                 rows={3}
                 placeholder="Please let us know why you're cancelling..."
               />

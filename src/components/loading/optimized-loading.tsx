@@ -55,7 +55,7 @@ export function Skeleton({
 // Product Card Skeleton
 export function ProductCardSkeleton() {
   return (
-    <div className="bg-white rounded-lg shadow-sm border p-4 space-y-4">
+    <div className="bg-gray-800 rounded-lg shadow-sm border p-4 space-y-4">
       <Skeleton variant="rounded" height={200} className="w-full" />
       <div className="space-y-2">
         <Skeleton variant="text" className="w-3/4" />

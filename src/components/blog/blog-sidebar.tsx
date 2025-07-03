@@ -338,7 +338,7 @@ export function BlogSidebar({ currentPost }: BlogSidebarProps) {
               <Link
                 key={category.id}
                 href={`/blog/category/${category.slug}`}
-                className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors group"
+                className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-gray-900 transition-colors group"
               >
                 <span className="text-sm group-hover:text-primary">{category.name}</span>
                 <Badge variant="secondary" className="text-xs">

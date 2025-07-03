@@ -236,14 +236,14 @@ export function Product360Viewer({ productId, productName, images, isOpen, onClo
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
-          className={`bg-white rounded-lg overflow-hidden ${
+          className={`bg-gray-800 rounded-lg overflow-hidden ${
             controls.isFullscreen ? 'w-full h-full' : 'max-w-4xl w-full max-h-[90vh]'
           }`}
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b bg-gray-50">
+          <div className="flex items-center justify-between p-4 border-b bg-gray-900">
             <div>
-              <h2 className="text-lg font-semibold text-gray-900">{productName}</h2>
+              <h2 className="text-lg font-semibold text-gray-100">{productName}</h2>
               <p className="text-sm text-gray-600">360° Product View</p>
             </div>
             <div className="flex items-center space-x-2">
@@ -338,7 +338,7 @@ export function Product360Viewer({ productId, productName, images, isOpen, onClo
           </div>
 
           {/* Controls */}
-          <div className="p-4 border-t bg-gray-50">
+          <div className="p-4 border-t bg-gray-900">
             <div className="flex items-center justify-between mb-4">
               {/* Playback Controls */}
               <div className="flex items-center space-x-2">

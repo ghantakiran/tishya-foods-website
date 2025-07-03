@@ -94,13 +94,13 @@ ${this.state.errorInfo?.componentStack || 'No additional details'}
 
       // Default error UI
       return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-          <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 text-center">
+        <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
+          <div className="max-w-md w-full bg-gray-800 rounded-lg shadow-lg p-6 text-center">
             <div className="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
               <AlertTriangle className="w-8 h-8 text-red-600" />
             </div>
             
-            <h1 className="text-xl font-semibold text-gray-900 mb-2">
+            <h1 className="text-xl font-semibold text-gray-100 mb-2">
               Oops! Something went wrong
             </h1>
             

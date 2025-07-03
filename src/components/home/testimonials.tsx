@@ -93,7 +93,7 @@ export default function Testimonials() {
           {testimonials.map((testimonial) => (
             <motion.div
               key={testimonial.id}
-              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 relative"
+              className="bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 relative"
               variants={itemVariants}
               whileHover={{ y: -5 }}
             >

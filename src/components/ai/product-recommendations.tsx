@@ -235,7 +235,7 @@ export default function ProductRecommendations() {
                   className={`p-4 rounded-xl border-2 transition-all ${
                     preferences.goal === goal.id
                       ? 'border-brown-800 bg-brown-50'
-                      : 'border-gray-200 hover:border-primary-300'
+                      : 'border-gray-600 hover:border-primary-300'
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -266,7 +266,7 @@ export default function ProductRecommendations() {
                   className={`w-full p-4 rounded-xl border-2 transition-all text-left ${
                     preferences.age === age.id
                       ? 'border-brown-800 bg-brown-50'
-                      : 'border-gray-200 hover:border-primary-300'
+                      : 'border-gray-600 hover:border-primary-300'
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -294,7 +294,7 @@ export default function ProductRecommendations() {
                   className={`w-full p-4 rounded-xl border-2 transition-all text-left ${
                     preferences.activityLevel === level.id
                       ? 'border-brown-800 bg-brown-50'
-                      : 'border-gray-200 hover:border-primary-300'
+                      : 'border-gray-600 hover:border-primary-300'
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -322,7 +322,7 @@ export default function ProductRecommendations() {
                   className={`p-3 rounded-xl border-2 transition-all ${
                     preferences.dietaryRestrictions.includes(option.id)
                       ? 'border-brown-800 bg-brown-50'
-                      : 'border-gray-200 hover:border-primary-300'
+                      : 'border-gray-600 hover:border-primary-300'
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -350,7 +350,7 @@ export default function ProductRecommendations() {
                   className={`p-3 rounded-xl border-2 transition-all ${
                     preferences.preferredMealTimes.includes(time.id)
                       ? 'border-brown-800 bg-brown-50'
-                      : 'border-gray-200 hover:border-primary-300'
+                      : 'border-gray-600 hover:border-primary-300'
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -374,7 +374,7 @@ export default function ProductRecommendations() {
               {recommendations.map((rec, index) => (
                 <motion.div
                   key={rec.product.id}
-                  className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm"
+                  className="bg-gray-800 rounded-xl p-6 border border-gray-600 shadow-sm"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -440,7 +440,7 @@ export default function ProductRecommendations() {
   }
 
   return (
-    <div className="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
+    <div className="bg-gray-800 rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
       {/* Header with AI branding */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-brown-800 to-primary-600 text-white px-4 py-2 rounded-full mb-4">

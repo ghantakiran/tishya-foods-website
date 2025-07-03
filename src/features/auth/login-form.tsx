@@ -59,7 +59,7 @@ export function LoginForm({ onSuccess, onSwitchToRegister }: LoginFormProps) {
       transition={{ duration: 0.5 }}
       className="w-full max-w-md mx-auto"
     >
-      <div className="bg-white rounded-lg shadow-lg p-6">
+      <div className="bg-gray-800 rounded-lg shadow-lg p-6">
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold text-brown-800 font-montserrat">
             Welcome Back
@@ -136,9 +136,9 @@ export function LoginForm({ onSuccess, onSwitchToRegister }: LoginFormProps) {
                 id="remember-me"
                 name="remember-me"
                 type="checkbox"
-                className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-600 rounded"
               />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-100">
                 Remember me
               </label>
             </div>
@@ -175,10 +175,10 @@ export function LoginForm({ onSuccess, onSwitchToRegister }: LoginFormProps) {
         <div className="mt-6">
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300" />
+              <div className="w-full border-t border-gray-600" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">Or continue with</span>
+              <span className="px-2 bg-gray-800 text-gray-500">Or continue with</span>
             </div>
           </div>
 

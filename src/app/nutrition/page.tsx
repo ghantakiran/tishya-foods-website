@@ -82,7 +82,7 @@ export default function NutritionPage() {
               <div className="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mx-auto mb-4">
                 <Bot className="h-8 w-8 text-blue-600" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">AI Nutrition Assistant</h2>
+              <h2 className="text-2xl font-bold text-gray-100 mb-2">AI Nutrition Assistant</h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Chat with our intelligent nutrition assistant to get personalized advice, meal suggestions, 
                 and answers to your health questions using Tishya Foods products.
@@ -114,7 +114,7 @@ export default function NutritionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-900">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-primary-600 to-primary-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -151,7 +151,7 @@ export default function NutritionPage() {
       {/* Benefits Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-gray-100 mb-4">
             Why Choose Our Nutrition Hub?
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -171,14 +171,14 @@ export default function NutritionPage() {
               <div className="flex items-center justify-center w-12 h-12 bg-primary-100 rounded-full mx-auto mb-4">
                 <benefit.icon className="h-6 w-6 text-primary-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{benefit.title}</h3>
+              <h3 className="text-lg font-semibold text-gray-100 mb-2">{benefit.title}</h3>
               <p className="text-gray-600">{benefit.description}</p>
             </motion.div>
           ))}
         </div>
 
         {/* Tab Navigation */}
-        <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
+        <div className="bg-gray-800 rounded-lg shadow-sm border overflow-hidden">
           <div className="border-b">
             <nav className="flex">
               {tabs.map((tab) => (
@@ -188,7 +188,7 @@ export default function NutritionPage() {
                   className={`flex-1 px-6 py-4 text-left transition-colors ${
                     activeTab === tab.id
                       ? `${tab.bgColor} ${tab.color} border-b-2 border-current`
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      : 'text-gray-600 hover:text-gray-100 hover:bg-gray-900'
                   }`}
                 >
                   <div className="flex items-center space-x-3">
@@ -219,7 +219,7 @@ export default function NutritionPage() {
         {/* Call to Action */}
         <div className="mt-16 text-center">
           <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <h3 className="text-2xl font-bold text-gray-100 mb-4">
               Ready to Transform Your Nutrition?
             </h3>
             <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">

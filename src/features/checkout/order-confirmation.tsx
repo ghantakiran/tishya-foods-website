@@ -63,7 +63,7 @@ export function OrderConfirmation({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+          <h1 className="text-2xl font-bold text-gray-100 mb-2">
             Order Placed Successfully!
           </h1>
           <p className="text-gray-600">
@@ -77,7 +77,7 @@ export function OrderConfirmation({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="bg-white border rounded-lg p-6 text-left"
+        className="bg-gray-800 border rounded-lg p-6 text-left"
       >
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold">Order Details</h2>
@@ -139,7 +139,7 @@ export function OrderConfirmation({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
-        className="bg-white border rounded-lg p-6 text-left"
+        className="bg-gray-800 border rounded-lg p-6 text-left"
       >
         <h3 className="text-lg font-semibold mb-4">Ordered Items</h3>
         <div className="space-y-4">
@@ -169,7 +169,7 @@ export function OrderConfirmation({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.0 }}
-        className="bg-white border rounded-lg p-6 text-left"
+        className="bg-gray-800 border rounded-lg p-6 text-left"
       >
         <h3 className="text-lg font-semibold mb-4 flex items-center">
           <MapPin className="h-5 w-5 mr-2" />

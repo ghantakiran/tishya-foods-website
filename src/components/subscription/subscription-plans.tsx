@@ -192,7 +192,7 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="bg-white rounded-2xl p-2 shadow-lg border">
+        <div className="bg-gray-800 rounded-2xl p-2 shadow-lg border">
           <div className="flex space-x-1">
             {frequencyOptions.map((option) => (
               <button
@@ -313,7 +313,7 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
                   </div>
 
                   {/* Product Range */}
-                  <div className="bg-gray-50 rounded-lg p-3 mb-6">
+                  <div className="bg-gray-900 rounded-lg p-3 mb-6">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-brown-600">Products per delivery:</span>
                       <span className="font-semibold text-brown-800">
@@ -357,7 +357,7 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="text-center">
-            <div className="bg-white rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
+            <div className="bg-gray-800 rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
               <Percent className="h-8 w-8 text-green-500" />
             </div>
             <h4 className="font-semibold text-brown-800 mb-2">Save More</h4>
@@ -367,7 +367,7 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
           </div>
           
           <div className="text-center">
-            <div className="bg-white rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
+            <div className="bg-gray-800 rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
               <Calendar className="h-8 w-8 text-blue-500" />
             </div>
             <h4 className="font-semibold text-brown-800 mb-2">Flexible</h4>
@@ -377,7 +377,7 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
           </div>
           
           <div className="text-center">
-            <div className="bg-white rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
+            <div className="bg-gray-800 rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
               <Package className="h-8 w-8 text-purple-500" />
             </div>
             <h4 className="font-semibold text-brown-800 mb-2">Curated</h4>
@@ -387,7 +387,7 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
           </div>
           
           <div className="text-center">
-            <div className="bg-white rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
+            <div className="bg-gray-800 rounded-full p-3 w-16 h-16 flex items-center justify-center mx-auto mb-3">
               <Heart className="h-8 w-8 text-red-500" />
             </div>
             <h4 className="font-semibold text-brown-800 mb-2">Support</h4>

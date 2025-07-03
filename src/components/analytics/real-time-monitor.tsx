@@ -286,7 +286,7 @@ export function RealTimeMonitor() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {data?.countries.map((country) => (
-              <div key={country.name} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <div key={country.name} className="flex items-center justify-between p-3 bg-gray-900 rounded-lg">
                 <div className="flex items-center gap-3">
                   <span className="text-xl">{country.flag}</span>
                   <span className="font-medium">{country.name}</span>

@@ -16,7 +16,7 @@ export function CheckoutSummary({ cart }: CheckoutSummaryProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white rounded-lg shadow-sm border p-6 sticky top-24"
+      className="bg-gray-800 rounded-lg shadow-sm border p-6 sticky top-24"
     >
       <h3 className="text-lg font-semibold mb-4 flex items-center">
         <ShoppingBag className="h-5 w-5 mr-2" />
@@ -108,10 +108,10 @@ export function CheckoutSummary({ cart }: CheckoutSummaryProps) {
       )}
 
       {/* Security Notice */}
-      <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+      <div className="mt-4 p-3 bg-gray-900 rounded-lg">
         <div className="flex items-start space-x-2">
           <div className="w-4 h-4 bg-green-500 rounded-full flex-shrink-0 mt-0.5">
-            <div className="w-2 h-2 bg-white rounded-full mx-auto mt-1" />
+            <div className="w-2 h-2 bg-gray-800 rounded-full mx-auto mt-1" />
           </div>
           <div className="text-xs text-gray-600">
             <p className="font-medium">Secure Checkout</p>

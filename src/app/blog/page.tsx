@@ -181,7 +181,7 @@ function BlogPageContent() {
               />
               <Button 
                 variant="secondary" 
-                className="px-8 py-3 bg-white text-primary hover:bg-gray-100"
+                className="px-8 py-3 bg-gray-800 text-primary hover:bg-gray-100"
               >
                 Subscribe
               </Button>

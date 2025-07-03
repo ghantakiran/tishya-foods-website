@@ -47,7 +47,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-xl z-50 flex flex-col"
+            className="fixed right-0 top-0 h-full w-full max-w-md bg-gray-800 shadow-xl z-50 flex flex-col"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -71,7 +71,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               {!cart || cart.items.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center">
                   <ShoppingBag className="h-16 w-16 text-gray-300 mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  <h3 className="text-lg font-medium text-gray-100 mb-2">
                     Your cart is empty
                   </h3>
                   <p className="text-gray-500 mb-4">
@@ -86,7 +86,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   {cart.items.map((item) => (
                     <motion.div
                       key={item.id}
-                      className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg"
+                      className="flex items-center space-x-3 p-3 bg-gray-900 rounded-lg"
                       layout
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -102,7 +102,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                       </div>
                       
                       <div className="flex-1 min-w-0">
-                        <h4 className="text-sm font-medium text-gray-900 truncate">
+                        <h4 className="text-sm font-medium text-gray-100 truncate">
                           {item.name}
                         </h4>
                         <p className="text-sm text-gray-500">
@@ -191,7 +191,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                         placeholder="Enter coupon code"
                         value={couponCode}
                         onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                        className="flex-1 px-3 py-2 border border-gray-600 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
                         onKeyPress={(e) => e.key === 'Enter' && handleApplyCoupon()}
                       />
                       <Button

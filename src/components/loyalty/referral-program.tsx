@@ -198,9 +198,9 @@ export function ReferralProgram({
       case 'registered':
         return 'bg-yellow-100 text-yellow-800'
       case 'pending':
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-gray-100 text-gray-100'
       default:
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-gray-100 text-gray-100'
     }
   }
 
@@ -305,7 +305,7 @@ export function ReferralProgram({
       </motion.div>
 
       {/* Navigation Tabs */}
-      <div className="border-b border-gray-200">
+      <div className="border-b border-gray-600">
         <nav className="-mb-px flex space-x-8">
           {tabs.map((tab) => {
             const Icon = tab.icon
@@ -317,7 +317,7 @@ export function ReferralProgram({
                   'flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm transition-colors',
                   activeTab === tab.id
                     ? 'border-brown-800 text-brown-800'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-600'
                 )}
               >
                 <Icon className="h-4 w-4" />

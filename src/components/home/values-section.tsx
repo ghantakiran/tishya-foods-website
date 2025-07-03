@@ -88,7 +88,7 @@ export default function ValuesSection() {
           {values.map((value, index) => (
             <motion.div
               key={index}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group"
+              className="bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group"
               variants={itemVariants}
               whileHover={{ y: -5 }}
             >
@@ -114,7 +114,7 @@ export default function ValuesSection() {
 
         {/* Process Section */}
         <motion.div
-          className="mt-20 bg-white rounded-3xl p-8 lg:p-12 shadow-lg"
+          className="mt-20 bg-gray-800 rounded-3xl p-8 lg:p-12 shadow-lg"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

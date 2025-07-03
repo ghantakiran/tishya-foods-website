@@ -316,7 +316,7 @@ export function ProductImageGallery({
 
         {/* Image Caption */}
         {currentImage.caption && (
-          <div className="p-3 bg-white border-t">
+          <div className="p-3 bg-gray-800 border-t">
             <p className="text-sm text-gray-600">{currentImage.caption}</p>
           </div>
         )}
@@ -332,7 +332,7 @@ export function ProductImageGallery({
               className={`flex-shrink-0 w-16 h-16 rounded-md overflow-hidden border-2 transition-all ${
                 index === currentIndex 
                   ? 'border-primary-500 ring-2 ring-primary-200' 
-                  : 'border-gray-200 hover:border-gray-300'
+                  : 'border-gray-600 hover:border-gray-600'
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

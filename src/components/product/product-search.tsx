@@ -179,7 +179,7 @@ export function ProductSearch({ onOpenFilters, showFilters = true }: ProductSear
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border z-50 max-h-80 overflow-y-auto"
+            className="absolute top-full left-0 right-0 mt-2 bg-gray-800 rounded-lg shadow-lg border z-50 max-h-80 overflow-y-auto"
           >
             <div className="p-2">
               <div className="text-xs font-medium text-gray-500 mb-2 px-2">
@@ -190,7 +190,7 @@ export function ProductSearch({ onOpenFilters, showFilters = true }: ProductSear
                 <button
                   key={`${suggestion.type}-${suggestion.value}-${index}`}
                   onClick={() => handleSuggestionClick(suggestion)}
-                  className="w-full flex items-center space-x-3 px-3 py-2 text-left hover:bg-gray-50 rounded-md transition-colors"
+                  className="w-full flex items-center space-x-3 px-3 py-2 text-left hover:bg-gray-900 rounded-md transition-colors"
                 >
                   <div className="text-gray-400">
                     {getSuggestionIcon(suggestion.type)}
@@ -198,7 +198,7 @@ export function ProductSearch({ onOpenFilters, showFilters = true }: ProductSear
                   
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2">
-                      <span className="font-medium text-gray-900 truncate">
+                      <span className="font-medium text-gray-100 truncate">
                         {suggestion.label}
                       </span>
                       {suggestion.count && (

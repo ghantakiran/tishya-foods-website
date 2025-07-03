@@ -71,7 +71,7 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className="pt-20 min-h-screen bg-gray-50">
+    <div className="pt-20 min-h-screen bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Header */}
         <motion.div
@@ -80,17 +80,17 @@ export default function ProductsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl sm:text-5xl font-bold text-brown-800 mb-4 font-montserrat">
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-100 mb-4 font-montserrat">
             Our Products
           </h1>
-          <p className="text-lg text-brown-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
             Discover our complete range of protein-rich, natural foods crafted with care
           </p>
         </motion.div>
 
         {/* Filters and Controls */}
         <motion.div
-          className="bg-white rounded-2xl p-6 shadow-lg mb-8"
+          className="bg-gray-800 rounded-2xl p-6 shadow-lg mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -104,7 +104,7 @@ export default function ProductsPage() {
                 placeholder="Search products..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                className="w-full pl-10 pr-4 py-2 bg-gray-700 border border-gray-600 text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none placeholder-gray-400"
               />
             </div>
 
@@ -112,7 +112,7 @@ export default function ProductsPage() {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+              className="px-4 py-2 bg-gray-700 border border-gray-600 text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
             >
               <option value="all">All Categories</option>
               {productCategories.map(category => (
@@ -126,7 +126,7 @@ export default function ProductsPage() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+              className="px-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
             >
               {sortOptions.map(option => (
                 <option key={option.value} value={option.value}>
@@ -162,8 +162,8 @@ export default function ProductsPage() {
                 onClick={() => toggleFilter(filter.key)}
                 className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                   selectedFilters.includes(filter.key)
-                    ? 'bg-brown-800 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    ? 'bg-primary-600 text-white'
+                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                 }`}
               >
                 {filter.label}
@@ -174,7 +174,7 @@ export default function ProductsPage() {
 
         {/* Results Count */}
         <div className="flex justify-between items-center mb-6">
-          <p className="text-brown-600">
+          <p className="text-gray-300">
             Showing {sortedProducts.length} of {products.length} products
           </p>
         </div>
@@ -193,7 +193,7 @@ export default function ProductsPage() {
           {sortedProducts.map((product, index) => (
             <motion.div
               key={product.id}
-              className={`bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group ${
+              className={`bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group ${
                 viewMode === 'list' ? 'flex' : ''
               }`}
               initial={{ opacity: 0, y: 20 }}
@@ -212,7 +212,7 @@ export default function ProductsPage() {
                 
                 {/* Fallback for missing images */}
                 <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary-100 to-primary-200 opacity-0 hover:opacity-90 transition-opacity">
-                  <span className="text-brown-800 font-bold text-lg">
+                  <span className="text-gray-100 font-bold text-lg">
                     {product.name}
                   </span>
                 </div>
@@ -233,7 +233,7 @@ export default function ProductsPage() {
 
                 {/* Quick Actions */}
                 <div className="absolute top-2 right-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Button variant="ghost" size="icon" className="bg-white/80 hover:bg-white">
+                  <Button variant="ghost" size="icon" className="bg-gray-800/80 hover:bg-gray-800">
                     <Heart className="h-4 w-4" />
                   </Button>
                 </div>
@@ -242,22 +242,22 @@ export default function ProductsPage() {
               {/* Product Info */}
               <div className={`p-6 ${viewMode === 'list' ? 'flex-1' : ''}`}>
                 <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-lg font-bold text-brown-800 group-hover:text-primary-600 transition-colors">
+                  <h3 className="text-lg font-bold text-gray-100 group-hover:text-primary-600 transition-colors">
                     {product.name}
                   </h3>
                   <div className="text-right">
-                    <div className="text-xl font-bold text-brown-800">
+                    <div className="text-xl font-bold text-gray-100">
                       {formatPrice(product.price)}
                     </div>
                   </div>
                 </div>
 
-                <p className="text-brown-600 text-sm mb-4 line-clamp-2">
+                <p className="text-gray-300 text-sm mb-4 line-clamp-2">
                   {product.description}
                 </p>
 
                 {/* Nutritional Highlights */}
-                <div className="flex items-center gap-4 mb-4 text-xs text-brown-600">
+                <div className="flex items-center gap-4 mb-4 text-xs text-gray-300">
                   <span className="bg-primary-100 px-2 py-1 rounded-full">
                     {product.nutritionalInfo.protein}g Protein
                   </span>
@@ -309,7 +309,7 @@ export default function ProductsPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-brown-600 mb-4">
+            <div className="text-gray-300 mb-4">
               <Filter className="h-12 w-12 mx-auto mb-4 opacity-50" />
               <p className="text-lg">No products found matching your criteria</p>
               <p className="text-sm">Try adjusting your filters or search terms</p>

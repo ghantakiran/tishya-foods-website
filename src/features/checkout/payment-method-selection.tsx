@@ -92,8 +92,8 @@ export function PaymentMethodSelection({
                 isSelected
                   ? 'border-primary-500 bg-primary-50'
                   : isAvailable
-                  ? 'border-gray-200 hover:border-gray-300'
-                  : 'border-gray-100 bg-gray-50'
+                  ? 'border-gray-600 hover:border-gray-600'
+                  : 'border-gray-100 bg-gray-900'
               }`}
             >
               <label
@@ -108,7 +108,7 @@ export function PaymentMethodSelection({
                   checked={isSelected}
                   onChange={() => isAvailable && onSelect(method.id)}
                   disabled={!isAvailable}
-                  className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300"
+                  className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-600"
                 />
 
                 <div className="ml-4 flex-1">
@@ -118,7 +118,7 @@ export function PaymentMethodSelection({
                         {getMethodIcon(method.type)}
                       </div>
                       <div>
-                        <h3 className={`font-medium ${isAvailable ? 'text-gray-900' : 'text-gray-500'}`}>
+                        <h3 className={`font-medium ${isAvailable ? 'text-gray-100' : 'text-gray-500'}`}>
                           {method.name}
                         </h3>
                         <p className={`text-sm ${isAvailable ? 'text-gray-600' : 'text-gray-400'}`}>
@@ -168,7 +168,7 @@ export function PaymentMethodSelection({
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="border-t bg-white px-4 py-3"
+                  className="border-t bg-gray-800 px-4 py-3"
                 >
                   {method.type === 'card' && (
                     <div className="space-y-3">
@@ -251,11 +251,11 @@ export function PaymentMethodSelection({
       </div>
 
       {/* Payment Security Info */}
-      <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+      <div className="mt-6 p-4 bg-gray-900 rounded-lg">
         <div className="flex items-start space-x-3">
           <Shield className="h-5 w-5 text-green-600 mt-0.5" />
           <div className="text-sm">
-            <h4 className="font-medium text-gray-900 mb-1">Secure Payments</h4>
+            <h4 className="font-medium text-gray-100 mb-1">Secure Payments</h4>
             <p className="text-gray-600">
               Your payment information is encrypted and processed securely. We never store your card details.
             </p>

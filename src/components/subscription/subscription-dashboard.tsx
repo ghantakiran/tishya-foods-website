@@ -156,7 +156,7 @@ export function SubscriptionDashboard({
       case 'cancelled':
         return 'bg-red-100 text-red-800'
       default:
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-gray-100 text-gray-100'
     }
   }
 
@@ -171,7 +171,7 @@ export function SubscriptionDashboard({
       case 'failed':
         return 'bg-red-100 text-red-800'
       default:
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-gray-100 text-gray-100'
     }
   }
 
@@ -273,7 +273,7 @@ export function SubscriptionDashboard({
       </Card>
 
       {/* Tabs */}
-      <div className="border-b border-gray-200">
+      <div className="border-b border-gray-600">
         <nav className="-mb-px flex space-x-8">
           {tabs.map((tab) => {
             const Icon = tab.icon
@@ -285,7 +285,7 @@ export function SubscriptionDashboard({
                   'flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm transition-colors',
                   activeTab === tab.id
                     ? 'border-brown-800 text-brown-800'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-600'
                 )}
               >
                 <Icon className="h-4 w-4" />
@@ -571,7 +571,7 @@ export function SubscriptionDashboard({
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-lg p-6 max-w-md w-mx-4"
+              className="bg-gray-800 rounded-lg p-6 max-w-md w-mx-4"
               onClick={(e) => e.stopPropagation()}
             >
               <h3 className="text-lg font-semibold text-brown-800 mb-4">

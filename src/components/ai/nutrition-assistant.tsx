@@ -186,7 +186,7 @@ export default function NutritionAssistant() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-6 right-6 w-96 h-[500px] bg-white rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden border border-gray-200"
+            className="fixed bottom-6 right-6 w-96 h-[500px] bg-gray-800 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden border border-gray-600"
             initial={{ opacity: 0, y: 100, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.8 }}
@@ -214,7 +214,7 @@ export default function NutritionAssistant() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-gray-50">
+            <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-gray-900">
               {messages.map((message) => (
                 <motion.div
                   key={message.id}
@@ -237,7 +237,7 @@ export default function NutritionAssistant() {
                       <div className={`rounded-2xl p-3 ${
                         message.type === 'user' 
                           ? 'bg-brown-800 text-white' 
-                          : 'bg-white border border-gray-200'
+                          : 'bg-gray-800 border border-gray-600'
                       }`}>
                         <p className="text-sm leading-relaxed">{message.content}</p>
                       </div>
@@ -269,7 +269,7 @@ export default function NutritionAssistant() {
                     <div className="w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center">
                       <Bot className="h-3 w-3 text-brown-800" />
                     </div>
-                    <div className="bg-white border border-gray-200 rounded-2xl p-3">
+                    <div className="bg-gray-800 border border-gray-600 rounded-2xl p-3">
                       <div className="flex space-x-1">
                         <motion.div
                           className="w-2 h-2 bg-gray-400 rounded-full"
@@ -295,7 +295,7 @@ export default function NutritionAssistant() {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-gray-200 bg-white">
+            <div className="p-4 border-t border-gray-600 bg-gray-800">
               <form
                 onSubmit={(e) => {
                   e.preventDefault()
@@ -308,7 +308,7 @@ export default function NutritionAssistant() {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Ask about nutrition, products, or recipes..."
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none text-sm"
+                  className="flex-1 px-3 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none text-sm"
                   disabled={isTyping}
                 />
                 <Button

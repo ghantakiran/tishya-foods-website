@@ -142,7 +142,7 @@ export default function InstagramFeed() {
           {mockPosts.map((post) => (
             <motion.div
               key={post.id}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
+              className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
               variants={itemVariants}
               whileHover={{ y: -5 }}
             >
@@ -235,7 +235,7 @@ export default function InstagramFeed() {
 
         {/* User Generated Content Prompt */}
         <motion.div
-          className="mt-16 bg-white rounded-2xl p-8 shadow-lg text-center"
+          className="mt-16 bg-gray-800 rounded-2xl p-8 shadow-lg text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

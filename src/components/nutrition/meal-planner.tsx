@@ -251,7 +251,7 @@ export function MealPlanner() {
 
   const getMealTypeColor = (type: string) => {
     const mealType = mealTypes.find(mt => mt.id === type)
-    return mealType ? mealType.color : 'bg-gray-500'
+    return mealType ? mealType.color : 'bg-gray-9000'
   }
 
   if (!selectedPlan) {
@@ -260,7 +260,7 @@ export function MealPlanner() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Meal Planner</h1>
+            <h1 className="text-3xl font-bold text-gray-100">Meal Planner</h1>
             <p className="text-gray-600">Create personalized meal plans with Tishya Foods products</p>
           </div>
           <Button onClick={() => setIsCreating(true)} className="flex items-center space-x-2">
@@ -275,12 +275,12 @@ export function MealPlanner() {
             <motion.div
               key={plan.id}
               whileHover={{ y: -4 }}
-              className="bg-white rounded-lg shadow-sm border p-6 cursor-pointer hover:shadow-md transition-shadow"
+              className="bg-gray-800 rounded-lg shadow-sm border p-6 cursor-pointer hover:shadow-md transition-shadow"
               onClick={() => setSelectedPlan(plan)}
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
-                  <h3 className="font-semibold text-gray-900 mb-1">{plan.name}</h3>
+                  <h3 className="font-semibold text-gray-100 mb-1">{plan.name}</h3>
                   <p className="text-sm text-gray-600">{plan.description}</p>
                 </div>
                 <Badge variant="secondary">{plan.duration} days</Badge>
@@ -319,7 +319,7 @@ export function MealPlanner() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-white rounded-lg p-6 w-full max-w-md"
+                className="bg-gray-800 rounded-lg p-6 w-full max-w-md"
               >
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-semibold">Create New Meal Plan</h3>
@@ -431,7 +431,7 @@ export function MealPlanner() {
             ← Back to Plans
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{selectedPlan.name}</h1>
+            <h1 className="text-2xl font-bold text-gray-100">{selectedPlan.name}</h1>
             <p className="text-gray-600">{selectedPlan.description}</p>
           </div>
         </div>
@@ -517,14 +517,14 @@ export function MealPlanner() {
           const IconComponent = getMealTypeIcon(meal.type)
           
           return (
-            <div key={meal.id} className="bg-white rounded-lg shadow-sm border p-4">
+            <div key={meal.id} className="bg-gray-800 rounded-lg shadow-sm border p-4">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-3">
                   <div className={`w-8 h-8 ${getMealTypeColor(meal.type)} rounded-lg flex items-center justify-center`}>
                     <IconComponent className="h-4 w-4 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-900 capitalize">{meal.type}</h3>
+                    <h3 className="font-medium text-gray-100 capitalize">{meal.type}</h3>
                     <div className="flex items-center space-x-2 text-xs text-gray-500">
                       <Clock className="h-3 w-3" />
                       <span>{meal.time}</span>
@@ -549,7 +549,7 @@ export function MealPlanner() {
                   </p>
                 ) : (
                   meal.items.map((item) => (
-                    <div key={item.id} className="flex items-center justify-between bg-gray-50 rounded p-2">
+                    <div key={item.id} className="flex items-center justify-between bg-gray-900 rounded p-2">
                       <div className="flex items-center space-x-2">
                         <img
                           src={item.image}
@@ -598,7 +598,7 @@ export function MealPlanner() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[80vh] overflow-y-auto"
+              className="bg-gray-800 rounded-lg p-6 w-full max-w-2xl max-h-[80vh] overflow-y-auto"
             >
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold">
@@ -616,7 +616,7 @@ export function MealPlanner() {
 
               <div className="grid gap-4">
                 {sampleProducts.map((product) => (
-                  <div key={product.id} className="flex items-center justify-between bg-gray-50 rounded-lg p-4">
+                  <div key={product.id} className="flex items-center justify-between bg-gray-900 rounded-lg p-4">
                     <div className="flex items-center space-x-4">
                       <img
                         src={product.image}
@@ -624,7 +624,7 @@ export function MealPlanner() {
                         className="w-16 h-16 object-cover rounded-md"
                       />
                       <div>
-                        <h4 className="font-medium text-gray-900">{product.name}</h4>
+                        <h4 className="font-medium text-gray-100">{product.name}</h4>
                         <p className="text-sm text-gray-600">
                           {product.calories} cal • {product.protein}g protein • {product.servingSize}
                         </p>
