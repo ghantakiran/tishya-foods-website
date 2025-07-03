@@ -29,6 +29,7 @@ export interface SubscriptionPlan {
   discount: number
   minProducts: number
   maxProducts: number
+  image?: string
   features: string[]
   benefits: {
     freeShipping: boolean
@@ -51,6 +52,7 @@ const subscriptionPlans: SubscriptionPlan[] = [
     discount: 10,
     minProducts: 3,
     maxProducts: 6,
+    image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=300&fit=crop&crop=center',
     features: [
       '3-6 premium products monthly',
       'Personalized nutrition tips',
@@ -75,6 +77,7 @@ const subscriptionPlans: SubscriptionPlan[] = [
     discount: 15,
     minProducts: 6,
     maxProducts: 12,
+    image: 'https://images.unsplash.com/photo-1609501676725-7186f440e266?w=400&h=300&fit=crop&crop=center',
     features: [
       '6-12 premium products monthly',
       'Family meal planning',
@@ -101,6 +104,7 @@ const subscriptionPlans: SubscriptionPlan[] = [
     discount: 20,
     minProducts: 10,
     maxProducts: 20,
+    image: 'https://images.unsplash.com/photo-1505576391880-b3f9d713dc4f?w=400&h=300&fit=crop&crop=center',
     features: [
       '10-20 premium products monthly',
       'Exclusive limited edition items',
@@ -241,6 +245,18 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
                       <Star className="h-3 w-3 mr-1" />
                       Most Popular
                     </Badge>
+                  </div>
+                )}
+
+                {/* Plan Image */}
+                {plan.image && (
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={plan.image} 
+                      alt={plan.name}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                   </div>
                 )}
 

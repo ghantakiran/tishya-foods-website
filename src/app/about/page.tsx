@@ -66,22 +66,22 @@ const values = [
 
 const team = [
   {
-    name: 'Founder & CEO',
-    role: 'Visionary Leader',
+    name: 'Sushmitha Reddy',
+    role: 'Founder & CEO',
     description: 'Passionate about transforming how families approach nutrition and wellness.',
-    image: '/api/placeholder/300/300',
+    image: 'https://images.unsplash.com/photo-1494790108755-2616b612b131?w=300&h=300&fit=crop&crop=face',
   },
   {
-    name: 'Head of Quality',
-    role: 'Quality Assurance',
+    name: 'Ramesh Reddy',
+    role: 'Head of Quality',
     description: 'Ensures every product meets our strict standards for purity and nutrition.',
-    image: '/api/placeholder/300/300',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face',
   },
   {
-    name: 'Nutrition Expert',
-    role: 'Product Development',
+    name: 'Dr. Priya Sharma',
+    role: 'Nutritionist',
     description: 'Develops innovative recipes that balance taste, nutrition, and health benefits.',
-    image: '/api/placeholder/300/300',
+    image: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=300&h=300&fit=crop&crop=face',
   },
 ]
 

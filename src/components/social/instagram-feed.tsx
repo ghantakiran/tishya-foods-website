@@ -18,7 +18,7 @@ interface InstagramPost {
 const mockPosts: InstagramPost[] = [
   {
     id: '1',
-    imageUrl: '/api/placeholder/400/400',
+    imageUrl: 'https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=400&h=400&fit=crop&crop=center',
     caption: 'Starting the day right with our Protein Power Smoothie Bowl! 🌟 Packed with 25g of plant-based protein and topped with fresh berries. Perfect fuel for your morning workout! 💪',
     likes: 234,
     comments: 18,
@@ -28,7 +28,7 @@ const mockPosts: InstagramPost[] = [
   },
   {
     id: '2',
-    imageUrl: '/api/placeholder/400/400',
+    imageUrl: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=400&fit=crop&crop=center',
     caption: 'Behind the scenes: Our organic farmers hand-picking the finest ingredients for your health! 🌱 From farm to your table, we ensure every step maintains the natural goodness.',
     likes: 189,
     comments: 12,
@@ -38,7 +38,7 @@ const mockPosts: InstagramPost[] = [
   },
   {
     id: '3',
-    imageUrl: '/api/placeholder/400/400',
+    imageUrl: 'https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=400&h=400&fit=crop&crop=center',
     caption: 'Customer spotlight! ⭐ "My kids absolutely love the Protein Chips - they don\'t even know they\'re eating something so nutritious!" - Thanks for sharing, Sarah! 💕',
     likes: 156,
     comments: 23,
@@ -48,7 +48,7 @@ const mockPosts: InstagramPost[] = [
   },
   {
     id: '4',
-    imageUrl: '/api/placeholder/400/400',
+    imageUrl: 'https://images.unsplash.com/photo-1630851602472-9680b4bbea2e?w=400&h=400&fit=crop&crop=center',
     caption: 'Recipe Sunday! 👩‍🍳 Try our 15-minute Protein Dosa with instant sambar. Traditional taste, modern nutrition. Recipe link in bio! 🔗',
     likes: 278,
     comments: 31,
@@ -58,7 +58,7 @@ const mockPosts: InstagramPost[] = [
   },
   {
     id: '5',
-    imageUrl: '/api/placeholder/400/400',
+    imageUrl: 'https://images.unsplash.com/photo-1506459225024-1428097a7e18?w=400&h=400&fit=crop&crop=center',
     caption: 'Triple-washed, air-dried, hand-roasted with love ❤️ Our traditional process preserves every nutrient while creating the perfect texture and flavor.',
     likes: 203,
     comments: 15,
@@ -68,7 +68,7 @@ const mockPosts: InstagramPost[] = [
   },
   {
     id: '6',
-    imageUrl: '/api/placeholder/400/400',
+    imageUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop&crop=center',
     caption: 'Workout fuel that tastes amazing! 🏃‍♀️ Our Biotin Bites are perfect pre or post-exercise. Healthy hair, skin, and nails are just a bonus! ✨',
     likes: 167,
     comments: 9,
@@ -147,12 +147,12 @@ export default function InstagramFeed() {
               whileHover={{ y: -5 }}
             >
               {/* Post Image */}
-              <div className="relative aspect-square bg-gradient-to-br from-primary-100 to-primary-200 overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-earth-800 font-bold text-lg text-center px-4">
-                    {post.caption.split(' ').slice(0, 3).join(' ')}...
-                  </span>
-                </div>
+              <div className="relative aspect-square overflow-hidden">
+                <img 
+                  src={post.imageUrl} 
+                  alt={post.caption.split(' ').slice(0, 5).join(' ')}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
                 
                 {/* Hover Overlay */}
                 <motion.div

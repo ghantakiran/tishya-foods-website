@@ -22,6 +22,15 @@ const features = [
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-900 via-green-800 to-teal-900">
+      {/* Background Image */}
+      <div className="absolute inset-0 opacity-20">
+        <img 
+          src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1920&h=1080&fit=crop&crop=center" 
+          alt="Fresh healthy foods background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/70 via-green-800/70 to-teal-900/70" />
+      </div>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('/grain-pattern.svg')] bg-repeat"></div>
@@ -157,12 +166,12 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="relative w-full max-w-lg mx-auto">
-              {/* Placeholder for product image or 3D element */}
+              {/* Hero Product Image */}
               <motion.div
-                className="aspect-square bg-gradient-to-br from-lime-400 via-emerald-400 to-teal-500 rounded-3xl shadow-2xl flex items-center justify-center relative overflow-hidden"
+                className="aspect-square rounded-3xl shadow-2xl relative overflow-hidden"
                 animate={{ 
                   y: [0, -10, 0],
-                  rotate: [0, 2, 0, -2, 0] 
+                  rotate: [0, 1, 0, -1, 0] 
                 }}
                 transition={{ 
                   duration: 6,
@@ -170,11 +179,18 @@ export default function HeroSection() {
                   ease: "easeInOut" 
                 }}
               >
-                {/* Inner glow effect */}
-                <div className="absolute inset-4 bg-gradient-to-br from-yellow-300/20 to-orange-300/20 rounded-2xl blur-xl"></div>
+                <img 
+                  src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=600&fit=crop&crop=center" 
+                  alt="Healthy protein-rich foods"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                 
-                <div className="text-white font-bold text-4xl font-montserrat relative z-10 drop-shadow-lg">
-                  Tishya
+                {/* Brand overlay */}
+                <div className="absolute bottom-6 left-6 right-6 text-center">
+                  <div className="text-white font-bold text-3xl font-montserrat drop-shadow-lg bg-black/20 backdrop-blur-sm rounded-xl py-3 px-4">
+                    Tishya Foods
+                  </div>
                 </div>
               </motion.div>
 

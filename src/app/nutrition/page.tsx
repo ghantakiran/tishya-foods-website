@@ -90,13 +90,37 @@ export default function NutritionPage() {
             </div>
             
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-8">
-              <div className="text-center">
-                <p className="text-lg text-earth-700 mb-4">
-                  Ready to start your nutrition journey? Our AI assistant is available 24/7 to help you make informed decisions.
-                </p>
-                <p className="text-sm text-earth-600">
-                  Look for the chat icon in the bottom-right corner to begin your conversation.
-                </p>
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <p className="text-lg text-earth-700 mb-4">
+                    Ready to start your nutrition journey? Our AI assistant is available 24/7 to help you make informed decisions.
+                  </p>
+                  <p className="text-sm text-earth-600 mb-4">
+                    Look for the chat icon in the bottom-right corner to begin your conversation.
+                  </p>
+                  <div className="flex space-x-4">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-blue-600">85%</div>
+                      <div className="text-sm text-earth-600">Accuracy</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-green-600">24/7</div>
+                      <div className="text-sm text-earth-600">Available</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-purple-600">1000+</div>
+                      <div className="text-sm text-earth-600">Recipes</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="relative h-48">
+                  <img 
+                    src="https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?w=400&h=300&fit=crop&crop=center" 
+                    alt="AI nutrition assistant visualization"
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg" />
+                </div>
               </div>
             </div>
           </div>
@@ -116,8 +140,18 @@ export default function NutritionPage() {
   return (
     <div className="min-h-screen bg-earth-900">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-primary-600 to-primary-800 text-cream-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="relative bg-gradient-to-r from-primary-600 to-primary-800 text-cream-100 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=600&fit=crop&crop=center" 
+            alt="Healthy nutrition foods"
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-600/80 to-primary-800/80" />
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

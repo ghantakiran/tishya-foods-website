@@ -113,11 +113,20 @@ export default function LoyaltyPage() {
 
         {/* Benefits Overview */}
         <motion.div 
-          className="mt-16 bg-gradient-to-r from-earth-50 to-primary-50 rounded-2xl p-8"
+          className="mt-16 relative bg-gradient-to-r from-earth-50 to-primary-50 rounded-2xl p-8 overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
+          {/* Background Image */}
+          <div className="absolute inset-0 opacity-10">
+            <img 
+              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=400&fit=crop&crop=center" 
+              alt="Rewards and benefits"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="relative z-10">
           <h2 className="text-2xl font-bold text-cream-100 mb-6 text-center">
             Why Join Tishya Rewards?
           </h2>
@@ -162,6 +171,7 @@ export default function LoyaltyPage() {
                 Share with friends and earn bonus points for every referral
               </p>
             </div>
+          </div>
           </div>
         </motion.div>
 
