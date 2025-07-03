@@ -23,7 +23,7 @@ const mockPosts: BlogPost[] = [
         <li>Better recovery after exercise</li>
       </ul>
     `,
-    featuredImage: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop&crop=center',
+    featuredImage: 'https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=600&h=400&fit=crop&crop=center',
     status: 'published',
     publishedAt: '2024-01-15T10:00:00Z',
     createdAt: '2024-01-10T08:00:00Z',
@@ -73,7 +73,7 @@ const mockPosts: BlogPost[] = [
       <h3>2. Chickpea Flour Pancakes</h3>
       <p>Fluffy, protein-rich pancakes made from chickpea flour and topped with fresh berries.</p>
     `,
-    featuredImage: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=600&h=400&fit=crop&crop=center',
+    featuredImage: 'https://images.unsplash.com/photo-1574469103043-5b9b51a7bcdd?w=600&h=400&fit=crop&crop=center',
     status: 'published',
     publishedAt: '2024-01-20T09:00:00Z',
     createdAt: '2024-01-18T08:00:00Z',
@@ -125,7 +125,7 @@ const mockPosts: BlogPost[] = [
         <li>Animal welfare</li>
       </ul>
     `,
-    featuredImage: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=400&fit=crop&crop=center',
+    featuredImage: 'https://images.unsplash.com/photo-1601924377953-893a02a0d25b?w=600&h=400&fit=crop&crop=center',
     status: 'published',
     publishedAt: '2024-01-25T11:00:00Z',
     createdAt: '2024-01-22T08:00:00Z',
@@ -177,7 +177,7 @@ const mockPosts: BlogPost[] = [
         <li>Kombucha</li>
       </ul>
     `,
-    featuredImage: 'https://images.unsplash.com/photo-1559825481-12a05cc00344?w=600&h=400&fit=crop&crop=center',
+    featuredImage: 'https://images.unsplash.com/photo-1564859117069-8bb39115fecd?w=600&h=400&fit=crop&crop=center',
     status: 'published',
     publishedAt: '2024-01-30T14:00:00Z',
     createdAt: '2024-01-28T08:00:00Z',

@@ -23,7 +23,7 @@ const mockPosts: BlogPost[] = [
         <li>Better recovery after exercise</li>
       </ul>
     `,
-    featuredImage: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop&crop=center',
+    featuredImage: 'https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=600&h=400&fit=crop&crop=center',
     status: 'published',
     publishedAt: '2024-01-15T10:00:00Z',
     createdAt: '2024-01-10T08:00:00Z',

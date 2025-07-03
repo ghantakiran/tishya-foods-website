@@ -121,7 +121,7 @@ export default function LoyaltyPage() {
           {/* Background Image */}
           <div className="absolute inset-0 opacity-10">
             <img 
-              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=400&fit=crop&crop=center" 
+              src="https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=800&h=400&fit=crop&crop=center" 
               alt="Rewards and benefits"
               className="w-full h-full object-cover"
             />

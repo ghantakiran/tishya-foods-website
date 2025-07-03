@@ -115,7 +115,7 @@ export default function NutritionPage() {
                 </div>
                 <div className="relative h-48">
                   <img 
-                    src="https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?w=400&h=300&fit=crop&crop=center" 
+                    src="https://images.unsplash.com/photo-1574469103043-5b9b51a7bcdd?w=400&h=300&fit=crop&crop=center" 
                     alt="AI nutrition assistant visualization"
                     className="w-full h-full object-cover rounded-lg"
                   />
@@ -144,7 +144,7 @@ export default function NutritionPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=600&fit=crop&crop=center" 
+            src="https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=1200&h=600&fit=crop&crop=center" 
             alt="Healthy nutrition foods"
             className="w-full h-full object-cover opacity-20"
           />
