@@ -110,10 +110,17 @@ export default function RootLayout({
                           enableConsoleLogging: process.env.NODE_ENV === 'development'
                         }}
                       >
-                        {/* <PageViewTracker /> */}
-                        <main className="min-h-screen">
-                          {children}
-                        </main>
+                        <PageViewTracker />
+                        <div className="flex flex-col min-h-screen">
+                          <Header />
+                          <main className="flex-1">
+                            {children}
+                          </main>
+                          <Footer />
+                        </div>
+                        <NutritionAssistant />
+                        <ToastProvider />
+                        <PerformanceInit />
                       </AnalyticsProvider>
                     </LoyaltyProvider>
                   </SubscriptionProvider>
