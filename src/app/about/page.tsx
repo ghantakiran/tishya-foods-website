@@ -241,7 +241,7 @@ export default function AboutPage() {
                 whileHover={{ y: -5 }}
               >
                 <div className="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mb-6">
-                  <value.icon className="h-8 w-8 text-cream-100" />
+                  <value.icon className="h-8 w-8 text-primary-600" />
                 </div>
                 <h3 className="text-xl font-bold text-cream-100 mb-3">{value.title}</h3>
                 <p className="text-cream-300 leading-relaxed">{value.description}</p>

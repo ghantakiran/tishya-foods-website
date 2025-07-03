@@ -82,7 +82,7 @@ export default function NutritionPage() {
               <div className="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mx-auto mb-4">
                 <Bot className="h-8 w-8 text-blue-600" />
               </div>
-              <h2 className="text-2xl font-bold text-cream-100 mb-2">AI Nutrition Assistant</h2>
+              <h2 className="text-2xl font-bold text-earth-800 mb-2">AI Nutrition Assistant</h2>
               <p className="text-earth-600 max-w-2xl mx-auto">
                 Chat with our intelligent nutrition assistant to get personalized advice, meal suggestions, 
                 and answers to your health questions using Tishya Foods products.
@@ -219,7 +219,7 @@ export default function NutritionPage() {
         {/* Call to Action */}
         <div className="mt-16 text-center">
           <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-8">
-            <h3 className="text-2xl font-bold text-cream-100 mb-4">
+            <h3 className="text-2xl font-bold text-earth-800 mb-4">
               Ready to Transform Your Nutrition?
             </h3>
             <p className="text-lg text-earth-600 mb-6 max-w-2xl mx-auto">

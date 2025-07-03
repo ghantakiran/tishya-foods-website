@@ -182,7 +182,7 @@ export function ProductSearch({ onOpenFilters, showFilters = true }: ProductSear
             className="absolute top-full left-0 right-0 mt-2 bg-earth-800 rounded-lg shadow-lg border z-50 max-h-80 overflow-y-auto"
           >
             <div className="p-2">
-              <div className="text-xs font-medium text-earth-500 mb-2 px-2">
+              <div className="text-xs font-medium text-cream-200 mb-2 px-2">
                 Search Suggestions
               </div>
               
@@ -202,12 +202,12 @@ export function ProductSearch({ onOpenFilters, showFilters = true }: ProductSear
                         {suggestion.label}
                       </span>
                       {suggestion.count && (
-                        <span className="text-xs text-earth-500">
+                        <span className="text-xs text-cream-300">
                           ({suggestion.count})
                         </span>
                       )}
                     </div>
-                    <div className="text-xs text-earth-500">
+                    <div className="text-xs text-cream-300">
                       {getSuggestionTypeLabel(suggestion.type)}
                     </div>
                   </div>

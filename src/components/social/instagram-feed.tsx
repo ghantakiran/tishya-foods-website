@@ -241,8 +241,8 @@ export default function InstagramFeed() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <h3 className="text-2xl font-bold text-earth-800 mb-4">Share Your Healthy Journey</h3>
-          <p className="text-earth-600 mb-6 max-w-2xl mx-auto">
+          <h3 className="text-2xl font-bold text-cream-100 mb-4">Share Your Healthy Journey</h3>
+          <p className="text-cream-200 mb-6 max-w-2xl mx-auto">
             We love seeing how our community uses Tishya Foods products! Share your recipes, 
             meal prep ideas, and healthy lifestyle moments with us.
           </p>
@@ -252,24 +252,24 @@ export default function InstagramFeed() {
               <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <span className="text-2xl">📸</span>
               </div>
-              <h4 className="font-semibold text-earth-800 mb-2">1. Take a Photo</h4>
-              <p className="text-sm text-earth-600">Capture your delicious Tishya Foods creation</p>
+              <h4 className="font-semibold text-cream-100 mb-2">1. Take a Photo</h4>
+              <p className="text-sm text-cream-200">Capture your delicious Tishya Foods creation</p>
             </div>
             
             <div className="text-center">
               <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <span className="text-2xl">🏷️</span>
               </div>
-              <h4 className="font-semibold text-earth-800 mb-2">2. Tag Us</h4>
-              <p className="text-sm text-earth-600">Use @tishyafoods and #HealthAtHome in your post</p>
+              <h4 className="font-semibold text-cream-100 mb-2">2. Tag Us</h4>
+              <p className="text-sm text-cream-200">Use @tishyafoods and #HealthAtHome in your post</p>
             </div>
             
             <div className="text-center">
               <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <span className="text-2xl">⭐</span>
               </div>
-              <h4 className="font-semibold text-earth-800 mb-2">3. Get Featured</h4>
-              <p className="text-sm text-earth-600">Your post might be featured on our page!</p>
+              <h4 className="font-semibold text-cream-100 mb-2">3. Get Featured</h4>
+              <p className="text-sm text-cream-200">Your post might be featured on our page!</p>
             </div>
           </div>
         </motion.div>
