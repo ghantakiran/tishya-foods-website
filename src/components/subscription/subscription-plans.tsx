@@ -52,7 +52,7 @@ const subscriptionPlans: SubscriptionPlan[] = [
     discount: 10,
     minProducts: 3,
     maxProducts: 6,
-    image: 'https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=400&h=300&fit=crop&crop=center',
+    image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=300&fit=crop&crop=center',
     features: [
       '3-6 premium products monthly',
       'Personalized nutrition tips',
@@ -77,7 +77,7 @@ const subscriptionPlans: SubscriptionPlan[] = [
     discount: 15,
     minProducts: 6,
     maxProducts: 12,
-    image: 'https://images.unsplash.com/photo-1564859117069-8bb39115fecd?w=400&h=300&fit=crop&crop=center',
+    image: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=400&h=300&fit=crop&crop=center',
     features: [
       '6-12 premium products monthly',
       'Family meal planning',
@@ -104,7 +104,7 @@ const subscriptionPlans: SubscriptionPlan[] = [
     discount: 20,
     minProducts: 10,
     maxProducts: 20,
-    image: 'https://images.unsplash.com/photo-1574469103043-5b9b51a7bcdd?w=400&h=300&fit=crop&crop=center',
+    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop&crop=center',
     features: [
       '10-20 premium products monthly',
       'Exclusive limited edition items',

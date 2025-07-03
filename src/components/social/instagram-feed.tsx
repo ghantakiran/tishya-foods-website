@@ -18,7 +18,7 @@ interface InstagramPost {
 const mockPosts: InstagramPost[] = [
   {
     id: '1',
-    imageUrl: 'https://images.unsplash.com/photo-1611184711138-c2b6b5e1c839?w=400&h=400&fit=crop&crop=center',
+    imageUrl: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=400&fit=crop&crop=center',
     caption: 'Starting the day right with our Protein Power Smoothie Bowl! 🌟 Packed with 25g of plant-based protein and topped with fresh berries. Perfect fuel for your morning workout! 💪',
     likes: 234,
     comments: 18,
@@ -28,7 +28,7 @@ const mockPosts: InstagramPost[] = [
   },
   {
     id: '2',
-    imageUrl: 'https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=400&h=400&fit=crop&crop=center',
+    imageUrl: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=400&fit=crop&crop=center',
     caption: 'Behind the scenes: Our organic farmers hand-picking the finest ingredients for your health! 🌱 From farm to your table, we ensure every step maintains the natural goodness.',
     likes: 189,
     comments: 12,
@@ -38,7 +38,7 @@ const mockPosts: InstagramPost[] = [
   },
   {
     id: '3',
-    imageUrl: 'https://images.unsplash.com/photo-1574469103043-5b9b51a7bcdd?w=400&h=400&fit=crop&crop=center',
+    imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=400&h=400&fit=crop&crop=center',
     caption: 'Customer spotlight! ⭐ "My kids absolutely love the Protein Chips - they don\'t even know they\'re eating something so nutritious!" - Thanks for sharing, Sarah! 💕',
     likes: 156,
     comments: 23,
@@ -48,7 +48,7 @@ const mockPosts: InstagramPost[] = [
   },
   {
     id: '4',
-    imageUrl: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=400&fit=crop&crop=center',
+    imageUrl: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=400&fit=crop&crop=center',
     caption: 'Recipe Sunday! 👩‍🍳 Try our 15-minute Protein Dosa with instant sambar. Traditional taste, modern nutrition. Recipe link in bio! 🔗',
     likes: 278,
     comments: 31,
@@ -58,7 +58,7 @@ const mockPosts: InstagramPost[] = [
   },
   {
     id: '5',
-    imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop&crop=center',
+    imageUrl: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&h=400&fit=crop&crop=center',
     caption: 'Triple-washed, air-dried, hand-roasted with love ❤️ Our traditional process preserves every nutrient while creating the perfect texture and flavor.',
     likes: 203,
     comments: 15,
@@ -68,7 +68,7 @@ const mockPosts: InstagramPost[] = [
   },
   {
     id: '6',
-    imageUrl: 'https://images.unsplash.com/photo-1564859117069-8bb39115fecd?w=400&h=400&fit=crop&crop=center',
+    imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=400&fit=crop&crop=center',
     caption: 'Workout fuel that tastes amazing! 🏃‍♀️ Our Biotin Bites are perfect pre or post-exercise. Healthy hair, skin, and nails are just a bonus! ✨',
     likes: 167,
     comments: 9,
@@ -154,7 +154,7 @@ export default function InstagramFeed() {
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.src = 'https://images.unsplash.com/photo-1611184711138-c2b6b5e1c839?w=400&h=400&fit=crop&crop=center';
+                    target.src = 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=400&fit=crop&crop=center';
                   }}
                   loading="lazy"
                 />

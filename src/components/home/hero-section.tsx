@@ -25,7 +25,7 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 opacity-20">
         <img 
-          src="https://images.unsplash.com/photo-1607532941433-304659e8198a?w=1920&h=1080&fit=crop&crop=center" 
+          src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1920&h=1080&fit=crop&crop=center" 
           alt="Fresh healthy foods background"
           className="w-full h-full object-cover"
         />
@@ -180,7 +180,7 @@ export default function HeroSection() {
                 }}
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=600&h=600&fit=crop&crop=center" 
+                  src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=600&fit=crop&crop=center" 
                   alt="Healthy protein-rich foods"
                   className="w-full h-full object-cover"
                 />

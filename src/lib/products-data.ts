@@ -6,21 +6,21 @@ export const productCategories: ProductCategory[] = [
     name: 'Sweet Protein Treats',
     slug: 'sweet-treats',
     description: 'Guilt-free nutritional treats that perfectly balance taste and health',
-    image: 'https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=400&h=300&fit=crop&crop=center',
+    image: 'https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=400&h=300&fit=crop&crop=center',
   },
   {
     id: 'natural-foods',
     name: 'Protein Rich Natural Foods',
     slug: 'natural-foods',
     description: 'Protein shakes, instant porridge mixes, curry & spice mixes, dosa/crepe mixes',
-    image: 'https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=400&h=300&fit=crop&crop=center',
+    image: 'https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=400&h=300&fit=crop&crop=center',
   },
   {
     id: 'savory-treats',
     name: 'Savory Protein Treats',
     slug: 'savory-treats',
     description: 'Nutrient-packed options supporting your active lifestyle',
-    image: 'https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=400&h=300&fit=crop&crop=center',
+    image: 'https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=400&h=300&fit=crop&crop=center',
   },
 ]
 
@@ -32,7 +32,7 @@ export const products: Product[] = [
     description: 'Nutritious sweet bites enriched with biotin for healthy hair, skin, and nails',
     price: 299,
     category: productCategories[0],
-    images: ['https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1574469103043-5b9b51a7bcdd?w=400&h=400&fit=crop&crop=center'],
+    images: ['https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop&crop=center'],
     ingredients: ['Almonds', 'Dates', 'Biotin', 'Natural Sweeteners'],
     nutritionalInfo: {
       protein: 12,
@@ -54,7 +54,7 @@ export const products: Product[] = [
     description: 'Delicious combination of nuts and dried fruits for natural energy',
     price: 249,
     category: productCategories[0],
-    images: ['https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1574469103043-5b9b51a7bcdd?w=400&h=400&fit=crop&crop=center'],
+    images: ['https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop&crop=center'],
     ingredients: ['Mixed Nuts', 'Dried Fruits', 'Honey', 'Coconut'],
     nutritionalInfo: {
       protein: 10,
@@ -78,7 +78,7 @@ export const products: Product[] = [
     description: 'Complete protein blend for muscle building and recovery',
     price: 599,
     category: productCategories[1],
-    images: ['https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1574469103043-5b9b51a7bcdd?w=400&h=400&fit=crop&crop=center'],
+    images: ['https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop&crop=center'],
     ingredients: ['Pea Protein', 'Brown Rice Protein', 'Natural Flavors', 'Vitamins'],
     nutritionalInfo: {
       protein: 25,
@@ -100,7 +100,7 @@ export const products: Product[] = [
     description: 'Wholesome breakfast option with complete nutrition',
     price: 199,
     category: productCategories[1],
-    images: ['https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1574469103043-5b9b51a7bcdd?w=400&h=400&fit=crop&crop=center'],
+    images: ['https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop&crop=center'],
     ingredients: ['Rolled Oats', 'Quinoa', 'Chia Seeds', 'Natural Flavors'],
     nutritionalInfo: {
       protein: 8,
@@ -122,7 +122,7 @@ export const products: Product[] = [
     description: 'Authentic Indian spice blends for flavorful healthy meals',
     price: 149,
     category: productCategories[1],
-    images: ['https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1574469103043-5b9b51a7bcdd?w=400&h=400&fit=crop&crop=center'],
+    images: ['https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop&crop=center'],
     ingredients: ['Turmeric', 'Cumin', 'Coriander', 'Red Chili', 'Garam Masala'],
     nutritionalInfo: {
       protein: 2,
@@ -144,7 +144,7 @@ export const products: Product[] = [
     description: 'Traditional South Indian breakfast made easy and nutritious',
     price: 179,
     category: productCategories[1],
-    images: ['https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1574469103043-5b9b51a7bcdd?w=400&h=400&fit=crop&crop=center'],
+    images: ['https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop&crop=center'],
     ingredients: ['Rice Flour', 'Lentil Flour', 'Fenugreek', 'Salt'],
     nutritionalInfo: {
       protein: 6,
@@ -168,7 +168,7 @@ export const products: Product[] = [
     description: 'Crunchy, healthy chips packed with plant-based protein',
     price: 199,
     category: productCategories[2],
-    images: ['https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1574469103043-5b9b51a7bcdd?w=400&h=400&fit=crop&crop=center'],
+    images: ['https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop&crop=center'],
     ingredients: ['Chickpea Flour', 'Lentil Flour', 'Spices', 'Himalayan Salt'],
     nutritionalInfo: {
       protein: 15,
@@ -190,7 +190,7 @@ export const products: Product[] = [
     description: 'Traditional South Indian snack with added protein benefits',
     price: 229,
     category: productCategories[2],
-    images: ['https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1574469103043-5b9b51a7bcdd?w=400&h=400&fit=crop&crop=center'],
+    images: ['https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop&crop=center'],
     ingredients: ['Rice Flour', 'Lentil Flour', 'Sesame Seeds', 'Cumin', 'Asafoetida'],
     nutritionalInfo: {
       protein: 12,
@@ -212,7 +212,7 @@ export const products: Product[] = [
     description: 'Ready-to-cook traditional South Indian lentil curry',
     price: 179,
     category: productCategories[2],
-    images: ['https://images.unsplash.com/photo-1585500976406-9ea7b5f01fd5?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1574469103043-5b9b51a7bcdd?w=400&h=400&fit=crop&crop=center'],
+    images: ['https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=400&h=400&fit=crop&crop=center', 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop&crop=center'],
     ingredients: ['Toor Dal', 'Tamarind', 'Sambar Powder', 'Turmeric', 'Salt'],
     nutritionalInfo: {
       protein: 8,

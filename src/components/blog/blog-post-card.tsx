@@ -131,6 +131,10 @@ export function BlogPostCard({
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop&crop=center';
+            }}
           />
           {post.featured && (
             <Badge className="absolute top-2 left-2 bg-yellow-500 text-black">
