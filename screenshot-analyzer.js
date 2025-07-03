@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://tishya-foods-website-1j8o6z6yp-kirans-projects-994c7420.vercel.app';
 
 const pages = [
   { name: 'homepage', url: '/' },

@@ -1,18 +1,18 @@
 {
   "pages": [],
   "designIssues": [
-    "Failed to capture homepage: net::ERR_CONNECTION_REFUSED at http://localhost:3001/",
-    "Failed to capture about-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/about",
-    "Failed to capture products-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/products",
-    "Failed to capture blog-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/blog",
-    "Failed to capture contact-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/contact",
-    "Failed to capture nutrition-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/nutrition",
-    "Failed to capture recipes-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/recipes",
-    "Failed to capture checkout-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/checkout",
-    "Failed to capture compare-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/compare",
-    "Failed to capture loyalty-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/loyalty",
-    "Failed to capture subscription-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/subscription",
-    "Failed to capture recommendations-page: net::ERR_CONNECTION_REFUSED at http://localhost:3001/recommendations"
+    "Failed to capture homepage: Navigating frame was detached",
+    "Failed to capture about-page: Attempted to use detached Frame 'AACCE45885BB03990990191587196E65'.",
+    "Failed to capture products-page: Attempted to use detached Frame 'AACCE45885BB03990990191587196E65'.",
+    "Failed to capture blog-page: Attempted to use detached Frame 'AACCE45885BB03990990191587196E65'.",
+    "Failed to capture contact-page: Attempted to use detached Frame 'AACCE45885BB03990990191587196E65'.",
+    "Failed to capture nutrition-page: Attempted to use detached Frame 'AACCE45885BB03990990191587196E65'.",
+    "Failed to capture recipes-page: Attempted to use detached Frame 'AACCE45885BB03990990191587196E65'.",
+    "Failed to capture checkout-page: Attempted to use detached Frame 'AACCE45885BB03990990191587196E65'.",
+    "Failed to capture compare-page: Attempted to use detached Frame 'AACCE45885BB03990990191587196E65'.",
+    "Failed to capture loyalty-page: Attempted to use detached Frame 'AACCE45885BB03990990191587196E65'.",
+    "Failed to capture subscription-page: Attempted to use detached Frame 'AACCE45885BB03990990191587196E65'.",
+    "Failed to capture recommendations-page: Attempted to use detached Frame 'AACCE45885BB03990990191587196E65'."
   ],
   "recommendations": [
     "Ensure all pages have consistent header and footer",

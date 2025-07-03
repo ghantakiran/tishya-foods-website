@@ -96,7 +96,7 @@ export default function ProductCategories() {
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="text-white font-bold text-2xl font-montserrat drop-shadow-lg">
+                    <div className="text-earth-800 font-bold text-2xl font-montserrat drop-shadow-lg bg-white/20 px-4 py-2 rounded-lg backdrop-blur-sm">
                       {category.name.split(' ')[0]}
                     </div>
                   </motion.div>
