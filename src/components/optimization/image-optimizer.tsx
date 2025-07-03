@@ -88,7 +88,9 @@ export function OptimizedImage({
   // Combine refs
   const setRefs = useCallback((node: HTMLImageElement | null) => {
     imgRef.current = node
-    observerRef.current = node
+    if (node) {
+      observerRef.current = node
+    }
   }, [observerRef])
 
   const imageProps = {
