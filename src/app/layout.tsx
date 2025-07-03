@@ -111,15 +111,9 @@ export default function RootLayout({
                         }}
                       >
                         {/* <PageViewTracker /> */}
-                        <PerformanceInit>
-                          <Header />
-                          <main className="min-h-screen">
-                            {children}
-                          </main>
-                          <Footer />
-                          <NutritionAssistant />
-                          <ToastProvider />
-                        </PerformanceInit>
+                        <main className="min-h-screen">
+                          {children}
+                        </main>
                       </AnalyticsProvider>
                     </LoyaltyProvider>
                   </SubscriptionProvider>
