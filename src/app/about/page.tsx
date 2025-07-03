@@ -293,7 +293,7 @@ export default function AboutPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-earth-800 text-white">
+      <section className="py-20 bg-earth-800 text-cream-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -312,7 +312,7 @@ export default function AboutPage() {
               <button className="bg-primary-500 text-cream-100 px-8 py-3 rounded-lg font-semibold hover:bg-primary-400 transition-colors">
                 Shop Our Products
               </button>
-              <button className="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-earth-800 hover:text-cream-100 transition-colors">
+              <button className="border border-cream-100 text-cream-100 px-8 py-3 rounded-lg font-semibold hover:bg-earth-800 hover:text-cream-100 transition-colors">
                 Contact Us
               </button>
             </div>
