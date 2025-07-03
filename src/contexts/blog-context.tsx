@@ -142,8 +142,8 @@ function BlogProviderInner({ children }: { children: ReactNode }) {
       const response = await fetch(`/api/blog/posts?${queryParams}`)
       if (!response.ok) throw new Error('Failed to fetch posts')
       
-      const posts = await response.json()
-      dispatch({ type: 'SET_POSTS', payload: posts })
+      const data = await response.json()
+      dispatch({ type: 'SET_POSTS', payload: data.posts || [] })
     } catch (error) {
       dispatch({ type: 'SET_ERROR', payload: error instanceof Error ? error.message : 'Failed to fetch posts' })
       analytics.trackAPIError('/api/blog/posts', error instanceof Error ? error.message : 'Unknown error')
