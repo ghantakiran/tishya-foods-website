@@ -303,7 +303,7 @@ export default function ComparePage() {
             <h3 className="text-2xl font-bold text-cream-100 mb-4">
               Found Your Perfect Products?
             </h3>
-            <p className="text-lg text-earth-600 mb-6 max-w-2xl mx-auto">
+            <p className="text-lg text-cream-200 mb-6 max-w-2xl mx-auto">
               Use our comparison insights to make the best choice for your health goals. 
               All our products are crafted with premium ingredients for optimal nutrition.
             </p>
