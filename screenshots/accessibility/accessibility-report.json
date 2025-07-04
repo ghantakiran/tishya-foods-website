@@ -1,0 +1,518 @@
+{
+  "title": "Accessibility Testing & WCAG Compliance Analysis Report",
+  "timestamp": "2025-07-04T15:11:41.707Z",
+  "url": "http://localhost:3000",
+  "summary": {
+    "totalScreenshots": 28,
+    "totalIssues": 1,
+    "totalRecommendations": 0,
+    "overallScore": 44,
+    "wcagLevel": "Fail"
+  },
+  "wcagCompliance": {
+    "keyboardAccessible": {
+      "level": "AA",
+      "focusableElements": 4,
+      "accessibleElements": 4,
+      "percentage": "100.0"
+    },
+    "screenReader": {
+      "level": "Fail",
+      "headings": 1,
+      "landmarks": 0,
+      "altTextCoverage": 100
+    },
+    "forms": {
+      "level": "Fail",
+      "totalForms": 1,
+      "labelIssues": 0,
+      "validationIssues": 4
+    },
+    "images": {
+      "level": "AA",
+      "altTextCoverage": 100,
+      "issues": 0
+    },
+    "focus": {
+      "level": "AA",
+      "visibleFocusPercentage": 100,
+      "skipLinks": 0
+    },
+    "aria": {
+      "level": "AA",
+      "labels": 0,
+      "roles": 0,
+      "issues": 0
+    },
+    "mobile": {
+      "level": "AA",
+      "touchTargetCompliance": 100,
+      "hasViewportMeta": true,
+      "hasMobileNavigation": false
+    },
+    "animations": {
+      "level": "AA",
+      "reducedMotionSupport": true,
+      "autoplayingAnimations": 0,
+      "longAnimations": 0,
+      "infiniteAnimations": 0
+    },
+    "textScaling": {
+      "level": "A",
+      "overflowElements": 0,
+      "inaccessibleElements": 20
+    },
+    "structure": {
+      "level": "Fail",
+      "hasPageTitle": true,
+      "hasLang": true,
+      "h1Count": 1,
+      "landmarkCount": 0,
+      "skipLinkCount": 0
+    },
+    "links": {
+      "level": "AA",
+      "totalLinks": 0,
+      "emptyLinks": 0,
+      "ambiguousLinks": 0,
+      "issues": 0
+    }
+  },
+  "metrics": {
+    "keyboardNavigation": {
+      "totalFocusableElements": 4,
+      "tabOrder": [
+        {
+          "element": "details",
+          "tabIndex": -1,
+          "text": "Error Details (Development)Ele",
+          "href": "",
+          "type": ""
+        },
+        {
+          "element": "button",
+          "tabIndex": 0,
+          "text": "Try Again",
+          "href": "",
+          "type": "submit"
+        },
+        {
+          "element": "button",
+          "tabIndex": 0,
+          "text": "Go Home",
+          "href": "",
+          "type": "submit"
+        },
+        {
+          "element": "button",
+          "tabIndex": 0,
+          "text": "Report Issue",
+          "href": "",
+          "type": "submit"
+        }
+      ],
+      "skipLinks": 0,
+      "focusTraps": 0,
+      "keyboardAccessible": 4
+    },
+    "screenReaderCompatibility": {
+      "headingStructure": [
+        {
+          "level": 1,
+          "text": "Oops! Something went wrong",
+          "id": ""
+        }
+      ],
+      "landmarks": [],
+      "ariaLabels": 0,
+      "ariaDescriptions": 0,
+      "altText": 0,
+      "missingAltText": 0,
+      "semanticElements": {
+        "article": 0,
+        "section": 0,
+        "nav": 0,
+        "aside": 0,
+        "header": 0,
+        "footer": 0,
+        "main": 0
+      },
+      "formLabels": 0,
+      "missingFormLabels": 0
+    },
+    "formAccessibility": {
+      "totalForms": 1,
+      "formElements": [
+        {
+          "type": "text",
+          "hasLabel": true,
+          "hasRequired": true,
+          "hasAriaDescribedBy": false,
+          "hasValidation": false,
+          "placeholder": "Your full name",
+          "id": "name"
+        },
+        {
+          "type": "email",
+          "hasLabel": true,
+          "hasRequired": true,
+          "hasAriaDescribedBy": false,
+          "hasValidation": false,
+          "placeholder": "your.email@example.com",
+          "id": "email"
+        },
+        {
+          "type": "tel",
+          "hasLabel": true,
+          "hasRequired": false,
+          "hasAriaDescribedBy": false,
+          "hasValidation": false,
+          "placeholder": "+91 12345 67890",
+          "id": "phone"
+        },
+        {
+          "type": "select-one",
+          "hasLabel": true,
+          "hasRequired": true,
+          "hasAriaDescribedBy": false,
+          "hasValidation": false,
+          "placeholder": "",
+          "id": "subject"
+        },
+        {
+          "type": "textarea",
+          "hasLabel": true,
+          "hasRequired": true,
+          "hasAriaDescribedBy": false,
+          "hasValidation": false,
+          "placeholder": "Tell us how we can help you...",
+          "id": "message"
+        }
+      ],
+      "labelIssues": [],
+      "validationIssues": [
+        {
+          "element": "text",
+          "id": "name",
+          "issue": "Required field without proper description"
+        },
+        {
+          "element": "email",
+          "id": "email",
+          "issue": "Required field without proper description"
+        },
+        {
+          "element": "select-one",
+          "id": "subject",
+          "issue": "Required field without proper description"
+        },
+        {
+          "element": "textarea",
+          "id": "message",
+          "issue": "Required field without proper description"
+        }
+      ],
+      "fieldsets": 0,
+      "legends": 0
+    },
+    "imageAccessibility": {
+      "totalImages": 0,
+      "withAltText": 0,
+      "withEmptyAlt": 0,
+      "withoutAlt": 0,
+      "decorativeImages": 0,
+      "informativeImages": 0,
+      "complexImages": 0,
+      "issues": []
+    },
+    "focusManagement": {
+      "totalFocusable": 4,
+      "withVisibleFocus": 4,
+      "withCustomFocus": 0,
+      "focusOrder": [],
+      "skipLinks": [],
+      "focusTraps": []
+    },
+    "ariaLabelsAndRoles": {
+      "ariaLabels": 0,
+      "ariaLabelledBy": 0,
+      "ariaDescribedBy": 0,
+      "ariaRoles": {},
+      "ariaStates": {
+        "aria-hidden": 4
+      },
+      "ariaProperties": {},
+      "customComponents": 0,
+      "ariaIssues": []
+    },
+    "mobileAccessibility": {
+      "touchTargets": [
+        {
+          "width": 295,
+          "height": 44,
+          "area": 12980,
+          "meets44px": true,
+          "element": "button",
+          "text": "Try Again"
+        },
+        {
+          "width": 141.5,
+          "height": 44,
+          "area": 6226,
+          "meets44px": true,
+          "element": "button",
+          "text": "Go Home"
+        },
+        {
+          "width": 141.5,
+          "height": 44,
+          "area": 6226,
+          "meets44px": true,
+          "element": "button",
+          "text": "Report Issue"
+        }
+      ],
+      "viewportMeta": "width=device-width, initial-scale=1",
+      "mobileNavigation": false,
+      "textScaling": false,
+      "orientation": "portrait"
+    },
+    "animationAccessibility": {
+      "animatedElements": 264,
+      "autoplayingAnimations": 0,
+      "reducedMotionSupport": true,
+      "longAnimations": 0,
+      "infiniteAnimations": 0,
+      "flashingElements": 0,
+      "reducedMotionImplementation": {
+        "reducedAnimations": 0
+      }
+    },
+    "textScalingZoom": {
+      "overflowElements": 0,
+      "hiddenContent": 99,
+      "brokenLayout": 0,
+      "inaccessibleElements": 20
+    },
+    "pageStructure": {
+      "headingStructure": [
+        {
+          "level": 1,
+          "text": "Oops! Something went wrong",
+          "id": "",
+          "hasProperSequence": true,
+          "isEmpty": false
+        }
+      ],
+      "landmarks": [],
+      "pageTitle": "Tishya Foods - ProNatural Protein Rich Foods | Health At Home!",
+      "lang": "en",
+      "skipLinks": [],
+      "contentStructure": {
+        "hasMain": false,
+        "hasNav": false,
+        "hasHeader": false,
+        "hasFooter": false,
+        "hasAside": false
+      },
+      "h1Count": 1
+    },
+    "linkAccessibility": {
+      "totalLinks": 0,
+      "internalLinks": 0,
+      "externalLinks": 0,
+      "emptyLinks": 0,
+      "ambiguousLinks": 0,
+      "linksWithoutContext": 0,
+      "linksWithAriaLabel": 0,
+      "linkIssues": []
+    }
+  },
+  "accessibilityTests": [],
+  "screenshots": [
+    {
+      "filename": "keyboard-nav-initial.png",
+      "description": "Initial state before keyboard navigation",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/keyboard-nav-initial.png",
+      "timestamp": "2025-07-04T15:11:17.610Z"
+    },
+    {
+      "filename": "keyboard-nav-tab-3.png",
+      "description": "Keyboard navigation - Tab 3",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/keyboard-nav-tab-3.png",
+      "timestamp": "2025-07-04T15:11:18.318Z"
+    },
+    {
+      "filename": "keyboard-nav-shift-tab.png",
+      "description": "Reverse keyboard navigation (Shift+Tab)",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/keyboard-nav-shift-tab.png",
+      "timestamp": "2025-07-04T15:11:18.606Z"
+    },
+    {
+      "filename": "keyboard-nav-enter-activation.png",
+      "description": "Enter key activation",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/keyboard-nav-enter-activation.png",
+      "timestamp": "2025-07-04T15:11:19.195Z"
+    },
+    {
+      "filename": "keyboard-nav-escape.png",
+      "description": "Escape key functionality",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/keyboard-nav-escape.png",
+      "timestamp": "2025-07-04T15:11:19.587Z"
+    },
+    {
+      "filename": "screen-reader-structure.png",
+      "description": "Screen reader semantic structure analysis",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/screen-reader-structure.png",
+      "timestamp": "2025-07-04T15:11:21.224Z"
+    },
+    {
+      "filename": "form-accessibility-focus.png",
+      "description": "Form field focus state",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/form-accessibility-focus.png",
+      "timestamp": "2025-07-04T15:11:22.349Z"
+    },
+    {
+      "filename": "form-accessibility-filled.png",
+      "description": "Form fields filled",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/form-accessibility-filled.png",
+      "timestamp": "2025-07-04T15:11:22.718Z"
+    },
+    {
+      "filename": "form-accessibility-submit-focus.png",
+      "description": "Submit button focus",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/form-accessibility-submit-focus.png",
+      "timestamp": "2025-07-04T15:11:22.825Z"
+    },
+    {
+      "filename": "image-accessibility-loaded.png",
+      "description": "Images loaded with accessibility analysis",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/image-accessibility-loaded.png",
+      "timestamp": "2025-07-04T15:11:26.775Z"
+    },
+    {
+      "filename": "image-accessibility-reduced-motion.png",
+      "description": "Images with reduced motion preference",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/image-accessibility-reduced-motion.png",
+      "timestamp": "2025-07-04T15:11:26.849Z"
+    },
+    {
+      "filename": "focus-management-first-tab.png",
+      "description": "First Tab focus",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/focus-management-first-tab.png",
+      "timestamp": "2025-07-04T15:11:28.499Z"
+    },
+    {
+      "filename": "focus-management-third-tab.png",
+      "description": "Third Tab focus",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/focus-management-third-tab.png",
+      "timestamp": "2025-07-04T15:11:28.599Z"
+    },
+    {
+      "filename": "focus-management-restoration.png",
+      "description": "Focus restoration test",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/focus-management-restoration.png",
+      "timestamp": "2025-07-04T15:11:28.787Z"
+    },
+    {
+      "filename": "aria-labels-roles.png",
+      "description": "ARIA labels and roles analysis",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/aria-labels-roles.png",
+      "timestamp": "2025-07-04T15:11:30.892Z"
+    },
+    {
+      "filename": "aria-live-regions.png",
+      "description": "ARIA live regions test",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/aria-live-regions.png",
+      "timestamp": "2025-07-04T15:11:30.965Z"
+    },
+    {
+      "filename": "mobile-accessibility-touch-targets.png",
+      "description": "Mobile touch targets analysis",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/mobile-accessibility-touch-targets.png",
+      "timestamp": "2025-07-04T15:11:32.572Z"
+    },
+    {
+      "filename": "mobile-accessibility-text-scaled.png",
+      "description": "Mobile accessibility with scaled text",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/mobile-accessibility-text-scaled.png",
+      "timestamp": "2025-07-04T15:11:32.624Z"
+    },
+    {
+      "filename": "mobile-accessibility-landscape.png",
+      "description": "Mobile accessibility landscape orientation",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/mobile-accessibility-landscape.png",
+      "timestamp": "2025-07-04T15:11:34.369Z"
+    },
+    {
+      "filename": "animation-accessibility-default.png",
+      "description": "Default animation state",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/animation-accessibility-default.png",
+      "timestamp": "2025-07-04T15:11:35.966Z"
+    },
+    {
+      "filename": "animation-accessibility-reduced-motion.png",
+      "description": "Reduced motion preference",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/animation-accessibility-reduced-motion.png",
+      "timestamp": "2025-07-04T15:11:37.375Z"
+    },
+    {
+      "filename": "text-scaling-100.png",
+      "description": "Text scaling - 100% (default)",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/text-scaling-100.png",
+      "timestamp": "2025-07-04T15:11:38.607Z"
+    },
+    {
+      "filename": "text-scaling-150.png",
+      "description": "Text scaling - 150%",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/text-scaling-150.png",
+      "timestamp": "2025-07-04T15:11:38.695Z"
+    },
+    {
+      "filename": "text-scaling-200.png",
+      "description": "Text scaling - 200%",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/text-scaling-200.png",
+      "timestamp": "2025-07-04T15:11:38.779Z"
+    },
+    {
+      "filename": "text-scaling-browser-zoom.png",
+      "description": "Browser zoom simulation",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/text-scaling-browser-zoom.png",
+      "timestamp": "2025-07-04T15:11:38.850Z"
+    },
+    {
+      "filename": "page-structure-overview.png",
+      "description": "Page structure and landmarks",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/page-structure-overview.png",
+      "timestamp": "2025-07-04T15:11:40.024Z"
+    },
+    {
+      "filename": "page-structure-headings.png",
+      "description": "Heading structure navigation",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/page-structure-headings.png",
+      "timestamp": "2025-07-04T15:11:40.432Z"
+    },
+    {
+      "filename": "link-accessibility-external.png",
+      "description": "External link indicators",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/link-accessibility-external.png",
+      "timestamp": "2025-07-04T15:11:41.706Z"
+    }
+  ],
+  "issues": [
+    {
+      "type": "warning",
+      "category": "color_contrast",
+      "message": "Color contrast test issue: Unsupported media feature: prefers-contrast"
+    }
+  ],
+  "recommendations": [],
+  "nextSteps": [
+    "Address high-priority accessibility issues",
+    "Implement missing ARIA labels and roles",
+    "Improve color contrast for better readability",
+    "Enhance keyboard navigation support",
+    "Add prefers-reduced-motion support",
+    "Conduct user testing with assistive technologies"
+  ]
+}
