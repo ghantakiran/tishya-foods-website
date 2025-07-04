@@ -42,15 +42,23 @@ export default function Header() {
 
   return (
     <motion.header
+      data-testid="main-header"
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out',
         isScrolled
-          ? 'bg-cream-50/95 backdrop-blur-md shadow-lg border-b border-primary-200'
-          : 'bg-gradient-to-r from-primary-50/80 to-fresh-50/80 backdrop-blur-sm'
+          ? 'bg-white/80 backdrop-blur-xl shadow-sm border-b border-gray-100/20 supports-[backdrop-filter]:bg-white/60'
+          : 'bg-white/40 backdrop-blur-md supports-[backdrop-filter]:bg-white/20'
       )}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ 
+        duration: 0.6, 
+        ease: [0.25, 0.46, 0.45, 0.94] // Apple's signature easing curve
+      }}
+      style={{
+        backdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'blur(10px) saturate(120%)',
+        WebkitBackdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'blur(10px) saturate(120%)'
+      }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
@@ -81,24 +89,30 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-primary-700 hover:text-accent-600 font-medium transition-colors duration-200 relative group"
+                data-testid={`nav-${item.name.toLowerCase()}`}
+                className="text-gray-800 hover:text-blue-600 font-medium transition-all duration-300 ease-out relative group px-3 py-2 rounded-lg hover:bg-gray-100/50"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-500 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-blue-600 scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 origin-center" />
               </Link>
             ))}
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className="text-primary-700 hover:text-accent-600 hover:bg-primary-100">
+          <div className="hidden lg:flex items-center space-x-3">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-gray-700 hover:text-blue-600 hover:bg-gray-100/80 transition-all duration-200 ease-out rounded-full"
+              data-testid="search-button"
+            >
               <Search className="h-5 w-5" />
             </Button>
             {isAuthenticated ? (
               <div className="relative">
-                <Button variant="ghost" size="icon" className="relative text-primary-700 hover:text-accent-600 hover:bg-primary-100">
+                <Button variant="ghost" size="icon" className="relative text-gray-700 hover:text-blue-600 hover:bg-gray-100/80 transition-all duration-200 ease-out rounded-full">
                   <User className="h-5 w-5" />
-                  <span className="absolute -top-1 -right-1 bg-fresh-500 w-3 h-3 rounded-full"></span>
+                  <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full"></span>
                 </Button>
                 <div className="absolute right-0 mt-2 w-48 bg-cream-50 rounded-md shadow-lg py-1 z-50 hidden group-hover:block border border-primary-200">
                   <Link href="/profile" className="block px-4 py-2 text-sm text-primary-700 hover:bg-primary-100">
@@ -119,15 +133,16 @@ export default function Header() {
                 </div>
               </div>
             ) : (
-              <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)} className="text-primary-700 hover:text-accent-600 hover:bg-primary-100">
+              <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)} className="text-gray-700 hover:text-blue-600 hover:bg-gray-100/80 transition-all duration-200 ease-out rounded-full">
                 <User className="h-5 w-5" />
               </Button>
             )}
             <Button 
               variant="ghost" 
               size="icon" 
-              className="relative text-primary-700 hover:text-accent-600 hover:bg-primary-100"
+              className="relative text-gray-700 hover:text-blue-600 hover:bg-gray-100/80 transition-all duration-200 ease-out rounded-full"
               onClick={() => setIsCartOpen(true)}
+              data-testid="cart-button"
             >
               <ShoppingCart className="h-5 w-5" />
               {cart && cart.totalItems > 0 && (
@@ -136,7 +151,7 @@ export default function Header() {
                 </span>
               )}
             </Button>
-            <Button className="ml-4 bg-primary-600 hover:bg-primary-700 text-white border-0 shadow-md hover:shadow-lg transition-all duration-200">
+            <Button className="ml-4 bg-blue-600 hover:bg-blue-700 text-white border-0 shadow-sm hover:shadow-md transition-all duration-200 ease-out rounded-full px-6">
               Shop Now
             </Button>
           </div>
@@ -146,7 +161,7 @@ export default function Header() {
             data-testid="mobile-menu-toggle"
             variant="ghost"
             size="icon"
-            className="lg:hidden text-primary-700 hover:text-accent-600 hover:bg-primary-100"
+            className="lg:hidden text-gray-700 hover:text-blue-600 hover:bg-gray-100/80 transition-all duration-200 ease-out rounded-lg"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
@@ -163,11 +178,18 @@ export default function Header() {
         {isMobileMenuOpen && (
           <motion.div
             data-testid="mobile-menu"
-            className="lg:hidden bg-cream-50/95 backdrop-blur-md border-t border-primary-200 shadow-lg"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            className="lg:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100/30 shadow-lg supports-[backdrop-filter]:bg-white/80"
+            initial={{ opacity: 0, height: 0, y: -20 }}
+            animate={{ opacity: 1, height: 'auto', y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -20 }}
+            transition={{ 
+              duration: 0.4, 
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
+            style={{
+              backdropFilter: 'blur(20px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(20px) saturate(180%)'
+            }}
           >
             <div className="container mx-auto px-4 py-4">
               <nav className="flex flex-col space-y-4">
@@ -176,7 +198,7 @@ export default function Header() {
                     key={item.name}
                     href={item.href}
                     data-testid={`mobile-nav-${item.name.toLowerCase()}`}
-                    className="text-primary-700 hover:text-accent-600 font-medium py-2 transition-colors duration-200"
+                    className="text-gray-800 hover:text-blue-600 font-medium py-3 px-4 rounded-lg hover:bg-gray-100/60 transition-all duration-200 ease-out"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}

@@ -1,0 +1,38 @@
+{
+  "title": "Sticky Header & Navigation Analysis Report",
+  "timestamp": "2025-07-04T13:14:54.084Z",
+  "url": "http://localhost:3000",
+  "summary": {
+    "totalScreenshots": 7,
+    "overallScore": 0
+  },
+  "analysis": {
+    "initial": {
+      "found": false
+    },
+    "scrolled": {
+      "found": false
+    },
+    "features": {}
+  },
+  "recommendations": [
+    {
+      "category": "Header Positioning",
+      "priority": "High",
+      "issue": "Header not configured as sticky",
+      "recommendation": "Set header position to fixed for sticky behavior"
+    },
+    {
+      "category": "Apple-style Effects",
+      "priority": "Medium",
+      "issue": "Missing backdrop blur effect",
+      "recommendation": "Add backdrop-filter: blur() for glass morphism effect"
+    },
+    {
+      "category": "Visual Design",
+      "priority": "Medium",
+      "issue": "Missing translucent background",
+      "recommendation": "Use rgba background colors for glass effect"
+    }
+  ]
+}
