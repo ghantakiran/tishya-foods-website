@@ -1,0 +1,186 @@
+{
+  "title": "Product Discovery Flow Analysis Report",
+  "timestamp": "2025-07-04T08:53:37.208Z",
+  "url": "http://localhost:3000/products",
+  "summary": {
+    "totalScreenshots": 17,
+    "totalIssues": 0,
+    "totalRecommendations": 4,
+    "flowStepsCompleted": 1,
+    "overallScore": 55
+  },
+  "metrics": {
+    "hasSearchInput": true,
+    "filterElementsCount": 2,
+    "initialProductCount": 29,
+    "searchResultsCount": 17,
+    "hasNoResultsMessage": true,
+    "searchResponseTime": 3445,
+    "categoryFilterWorks": true,
+    "productCardHasPrice": false,
+    "productCardHasName": false,
+    "hasViewModeToggle": true,
+    "performance": {
+      "domContentLoaded": 0,
+      "loadComplete": 0,
+      "firstPaint": 83.39999985694885,
+      "totalLoadTime": 137.5
+    },
+    "finalProductCount": 29,
+    "discoveryFeatures": {
+      "hasSearch": true,
+      "hasFilters": true,
+      "hasSort": true,
+      "productCount": 29
+    }
+  },
+  "flowSteps": [
+    {
+      "step": "homepage_to_products",
+      "duration": 2804,
+      "success": true,
+      "url": "http://localhost:3000/products"
+    }
+  ],
+  "screenshots": [
+    {
+      "filename": "homepage-start.png",
+      "description": "Starting from homepage",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/homepage-start.png",
+      "timestamp": "2025-07-04T08:53:19.566Z"
+    },
+    {
+      "filename": "products-page-loaded.png",
+      "description": "Products page loaded",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/products-page-loaded.png",
+      "timestamp": "2025-07-04T08:53:20.727Z"
+    },
+    {
+      "filename": "search-input-found.png",
+      "description": "Search input located",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/search-input-found.png",
+      "timestamp": "2025-07-04T08:53:20.811Z"
+    },
+    {
+      "filename": "products-grid-view.png",
+      "description": "Products grid view",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/products-grid-view.png",
+      "timestamp": "2025-07-04T08:53:20.895Z"
+    },
+    {
+      "filename": "search-typing.png",
+      "description": "Typing in search box",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/search-typing.png",
+      "timestamp": "2025-07-04T08:53:21.057Z"
+    },
+    {
+      "filename": "search-results.png",
+      "description": "Search results for \"protein\"",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/search-results.png",
+      "timestamp": "2025-07-04T08:53:22.150Z"
+    },
+    {
+      "filename": "search-no-results.png",
+      "description": "No results message",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/search-no-results.png",
+      "timestamp": "2025-07-04T08:53:23.318Z"
+    },
+    {
+      "filename": "category-filtered.png",
+      "description": "Category filter applied",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/category-filtered.png",
+      "timestamp": "2025-07-04T08:53:25.454Z"
+    },
+    {
+      "filename": "gluten-free-filter.png",
+      "description": "Gluten Free filter applied",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/gluten-free-filter.png",
+      "timestamp": "2025-07-04T08:53:27.556Z"
+    },
+    {
+      "filename": "price-sort-low.png",
+      "description": "Sorted by price low to high",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/price-sort-low.png",
+      "timestamp": "2025-07-04T08:53:29.679Z"
+    },
+    {
+      "filename": "price-sort-high.png",
+      "description": "Sorted by price high to low",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/price-sort-high.png",
+      "timestamp": "2025-07-04T08:53:30.771Z"
+    },
+    {
+      "filename": "product-card-hover.png",
+      "description": "Product card hover effect",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/product-card-hover.png",
+      "timestamp": "2025-07-04T08:53:31.382Z"
+    },
+    {
+      "filename": "list-view-mode.png",
+      "description": "List view mode",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/list-view-mode.png",
+      "timestamp": "2025-07-04T08:53:32.498Z"
+    },
+    {
+      "filename": "grid-view-mode.png",
+      "description": "Grid view mode",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/grid-view-mode.png",
+      "timestamp": "2025-07-04T08:53:33.603Z"
+    },
+    {
+      "filename": "mobile-products-page.png",
+      "description": "Products page on mobile",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/mobile-products-page.png",
+      "timestamp": "2025-07-04T08:53:34.794Z"
+    },
+    {
+      "filename": "mobile-search-focus.png",
+      "description": "Mobile search input focused",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/mobile-search-focus.png",
+      "timestamp": "2025-07-04T08:53:34.847Z"
+    },
+    {
+      "filename": "tablet-products-page.png",
+      "description": "Products page on tablet",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/tablet-products-page.png",
+      "timestamp": "2025-07-04T08:53:36.064Z"
+    }
+  ],
+  "issues": [],
+  "recommendations": [
+    {
+      "category": "Performance",
+      "priority": "Medium",
+      "issue": "Slow search response",
+      "recommendation": "Optimize search performance with debouncing and efficient filtering",
+      "metric": "Search response: 3445ms"
+    },
+    {
+      "category": "Filtering",
+      "priority": "Medium",
+      "issue": "Limited filtering options",
+      "recommendation": "Add more filter options (price range, ratings, dietary preferences)",
+      "metric": "Filter elements: 2"
+    },
+    {
+      "category": "E-commerce",
+      "priority": "High",
+      "issue": "Missing add to cart functionality",
+      "recommendation": "Ensure all product cards have visible \"Add to Cart\" buttons",
+      "metric": "Add to cart: Not found"
+    },
+    {
+      "category": "UX Feedback",
+      "priority": "Medium",
+      "issue": "No add to cart feedback",
+      "recommendation": "Add visual feedback when items are added to cart",
+      "metric": "Cart feedback: Missing"
+    }
+  ],
+  "nextSteps": [
+    "Implement high-priority recommendations",
+    "Optimize search and filtering performance",
+    "Enhance add to cart feedback",
+    "Add advanced filtering options"
+  ]
+}

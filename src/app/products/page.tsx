@@ -100,6 +100,7 @@ export default function ProductsPage() {
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-earth-500 h-5 w-5" />
               <input
+                data-testid="product-search-input"
                 type="text"
                 placeholder="Search products..."
                 value={searchTerm}
@@ -110,6 +111,7 @@ export default function ProductsPage() {
 
             {/* Category Filter */}
             <select
+              data-testid="category-filter"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="px-4 py-2 bg-white border border-cream-300 text-earth-800 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
@@ -197,7 +199,10 @@ export default function ProductsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <div className="bg-gradient-to-br from-cream-50 to-cream-100 border border-cream-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div 
+                data-testid="product-card"
+                className="bg-gradient-to-br from-cream-50 to-cream-100 border border-cream-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
                 <div className="w-full h-48 bg-gradient-to-br from-primary-100 to-fresh-100 rounded-xl mb-4 flex items-center justify-center">
                   <span className="text-primary-800 font-bold text-lg">{product.name}</span>
                 </div>
@@ -205,7 +210,10 @@ export default function ProductsPage() {
                 <p className="text-earth-700 mb-4 line-clamp-2">{product.description}</p>
                 <div className="flex justify-between items-center">
                   <span className="text-2xl font-bold text-primary-600">₹{product.price}</span>
-                  <button className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition-colors">
+                  <button 
+                    data-testid="add-to-cart-button"
+                    className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition-colors"
+                  >
                     Add to Cart
                   </button>
                 </div>
