@@ -1,0 +1,296 @@
+{
+  "title": "Micro-Interactions & Animation Analysis Report",
+  "timestamp": "2025-07-04T14:57:56.505Z",
+  "url": "http://localhost:3000",
+  "summary": {
+    "totalScreenshots": 40,
+    "totalIssues": 0,
+    "totalRecommendations": 0,
+    "overallScore": 90
+  },
+  "metrics": {
+    "buttonAnimationsCount": 3,
+    "buttonAnimationsWorking": true,
+    "formFieldAnimationsCount": 4,
+    "formFieldAnimationsWorking": true,
+    "productCardAnimationsCount": 3,
+    "productCardAnimationsWorking": true,
+    "scrollAnimatedElements": 132,
+    "scrollAnimationsWorking": true,
+    "pageTransitionsWorking": true,
+    "loadingStatesWorking": true,
+    "animationPerformance": {
+      "frameCount": 60,
+      "duration": 487,
+      "estimatedFPS": 123
+    },
+    "animationCSS": {
+      "animatedElements": 132,
+      "transitionElements": 132,
+      "transformElements": 0,
+      "totalElements": 132
+    }
+  },
+  "animationTests": [
+    {
+      "test": "homepage_micro_interactions",
+      "success": true,
+      "elementsFound": {
+        "heroSection": false,
+        "heroButton": false,
+        "scrollHint": false
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "filename": "homepage-initial-load.png",
+      "description": "Homepage initial load animations",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/homepage-initial-load.png",
+      "timestamp": "2025-07-04T14:57:17.777Z"
+    },
+    {
+      "filename": "button-hover-try-again.png",
+      "description": "Button hover: Try Again",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/button-hover-try-again.png",
+      "timestamp": "2025-07-04T14:57:18.207Z"
+    },
+    {
+      "filename": "button-focus-try-again.png",
+      "description": "Button focus: Try Again",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/button-focus-try-again.png",
+      "timestamp": "2025-07-04T14:57:18.483Z"
+    },
+    {
+      "filename": "button-click-try-again.png",
+      "description": "Button click: Try Again",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/button-click-try-again.png",
+      "timestamp": "2025-07-04T14:57:18.779Z"
+    },
+    {
+      "filename": "button-hover-go-home.png",
+      "description": "Button hover: Go Home",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/button-hover-go-home.png",
+      "timestamp": "2025-07-04T14:57:19.384Z"
+    },
+    {
+      "filename": "button-focus-go-home.png",
+      "description": "Button focus: Go Home",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/button-focus-go-home.png",
+      "timestamp": "2025-07-04T14:57:19.656Z"
+    },
+    {
+      "filename": "button-click-go-home.png",
+      "description": "Button click: Go Home",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/button-click-go-home.png",
+      "timestamp": "2025-07-04T14:57:19.941Z"
+    },
+    {
+      "filename": "button-hover-report-issue.png",
+      "description": "Button hover: Report Issue",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/button-hover-report-issue.png",
+      "timestamp": "2025-07-04T14:57:20.532Z"
+    },
+    {
+      "filename": "button-focus-report-issue.png",
+      "description": "Button focus: Report Issue",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/button-focus-report-issue.png",
+      "timestamp": "2025-07-04T14:57:20.821Z"
+    },
+    {
+      "filename": "button-click-report-issue.png",
+      "description": "Button click: Report Issue",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/button-click-report-issue.png",
+      "timestamp": "2025-07-04T14:57:21.112Z"
+    },
+    {
+      "filename": "form-focus-your-full-name.png",
+      "description": "Form field focus: Your full name",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/form-focus-your-full-name.png",
+      "timestamp": "2025-07-04T14:57:22.979Z"
+    },
+    {
+      "filename": "form-typing-your-full-name.png",
+      "description": "Form field typing: Your full name",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/form-typing-your-full-name.png",
+      "timestamp": "2025-07-04T14:57:23.623Z"
+    },
+    {
+      "filename": "form-blur-your-full-name.png",
+      "description": "Form field blur: Your full name",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/form-blur-your-full-name.png",
+      "timestamp": "2025-07-04T14:57:24.178Z"
+    },
+    {
+      "filename": "form-focus-your.email@exam.png",
+      "description": "Form field focus: your.email@example.com",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/form-focus-your.email@exam.png",
+      "timestamp": "2025-07-04T14:57:24.603Z"
+    },
+    {
+      "filename": "form-typing-your.email@exam.png",
+      "description": "Form field typing: your.email@example.com",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/form-typing-your.email@exam.png",
+      "timestamp": "2025-07-04T14:57:25.144Z"
+    },
+    {
+      "filename": "form-blur-your.email@exam.png",
+      "description": "Form field blur: your.email@example.com",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/form-blur-your.email@exam.png",
+      "timestamp": "2025-07-04T14:57:25.568Z"
+    },
+    {
+      "filename": "form-focus-+91-12345-67890.png",
+      "description": "Form field focus: +91 12345 67890",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/form-focus-+91-12345-67890.png",
+      "timestamp": "2025-07-04T14:57:25.976Z"
+    },
+    {
+      "filename": "form-typing-+91-12345-67890.png",
+      "description": "Form field typing: +91 12345 67890",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/form-typing-+91-12345-67890.png",
+      "timestamp": "2025-07-04T14:57:26.386Z"
+    },
+    {
+      "filename": "form-blur-+91-12345-67890.png",
+      "description": "Form field blur: +91 12345 67890",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/form-blur-+91-12345-67890.png",
+      "timestamp": "2025-07-04T14:57:26.811Z"
+    },
+    {
+      "filename": "form-focus-field-select.png",
+      "description": "Form field focus: field-select",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/form-focus-field-select.png",
+      "timestamp": "2025-07-04T14:57:27.226Z"
+    },
+    {
+      "filename": "form-typing-field-select.png",
+      "description": "Form field typing: field-select",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/form-typing-field-select.png",
+      "timestamp": "2025-07-04T14:57:27.625Z"
+    },
+    {
+      "filename": "form-blur-field-select.png",
+      "description": "Form field blur: field-select",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/form-blur-field-select.png",
+      "timestamp": "2025-07-04T14:57:28.052Z"
+    },
+    {
+      "filename": "product-card-hover-0.png",
+      "description": "Product card 1 hover animation",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/product-card-hover-0.png",
+      "timestamp": "2025-07-04T14:57:29.974Z"
+    },
+    {
+      "filename": "product-card-scroll-0.png",
+      "description": "Product card 1 scroll into view",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/product-card-scroll-0.png",
+      "timestamp": "2025-07-04T14:57:30.665Z"
+    },
+    {
+      "filename": "product-card-hover-1.png",
+      "description": "Product card 2 hover animation",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/product-card-hover-1.png",
+      "timestamp": "2025-07-04T14:57:31.164Z"
+    },
+    {
+      "filename": "product-card-scroll-1.png",
+      "description": "Product card 2 scroll into view",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/product-card-scroll-1.png",
+      "timestamp": "2025-07-04T14:57:31.858Z"
+    },
+    {
+      "filename": "product-card-hover-2.png",
+      "description": "Product card 3 hover animation",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/product-card-hover-2.png",
+      "timestamp": "2025-07-04T14:57:32.358Z"
+    },
+    {
+      "filename": "product-card-scroll-2.png",
+      "description": "Product card 3 scroll into view",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/product-card-scroll-2.png",
+      "timestamp": "2025-07-04T14:57:33.048Z"
+    },
+    {
+      "filename": "add-to-cart-hover.png",
+      "description": "Add to cart button hover",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/add-to-cart-hover.png",
+      "timestamp": "2025-07-04T14:57:33.474Z"
+    },
+    {
+      "filename": "scroll-animation-300px.png",
+      "description": "Scroll-triggered animations at 300px",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/scroll-animation-300px.png",
+      "timestamp": "2025-07-04T14:57:36.417Z"
+    },
+    {
+      "filename": "scroll-animation-600px.png",
+      "description": "Scroll-triggered animations at 600px",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/scroll-animation-600px.png",
+      "timestamp": "2025-07-04T14:57:37.300Z"
+    },
+    {
+      "filename": "scroll-animation-1000px.png",
+      "description": "Scroll-triggered animations at 1000px",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/scroll-animation-1000px.png",
+      "timestamp": "2025-07-04T14:57:38.182Z"
+    },
+    {
+      "filename": "scroll-animation-1500px.png",
+      "description": "Scroll-triggered animations at 1500px",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/scroll-animation-1500px.png",
+      "timestamp": "2025-07-04T14:57:39.065Z"
+    },
+    {
+      "filename": "scroll-animation-2000px.png",
+      "description": "Scroll-triggered animations at 2000px",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/scroll-animation-2000px.png",
+      "timestamp": "2025-07-04T14:57:39.941Z"
+    },
+    {
+      "filename": "scroll-to-top.png",
+      "description": "Scroll to top animation",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/scroll-to-top.png",
+      "timestamp": "2025-07-04T14:57:41.014Z"
+    },
+    {
+      "filename": "page-transition-home.png",
+      "description": "Page transition to home",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/page-transition-home.png",
+      "timestamp": "2025-07-04T14:57:48.009Z"
+    },
+    {
+      "filename": "page-transition-products.png",
+      "description": "Page transition to products",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/page-transition-products.png",
+      "timestamp": "2025-07-04T14:57:50.323Z"
+    },
+    {
+      "filename": "page-transition-about.png",
+      "description": "Page transition to about",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/page-transition-about.png",
+      "timestamp": "2025-07-04T14:57:52.321Z"
+    },
+    {
+      "filename": "page-loading-state.png",
+      "description": "Page loading state",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/page-loading-state.png",
+      "timestamp": "2025-07-04T14:57:54.667Z"
+    },
+    {
+      "filename": "page-loaded-state.png",
+      "description": "Page loaded state",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/micro-interactions/page-loaded-state.png",
+      "timestamp": "2025-07-04T14:57:56.001Z"
+    }
+  ],
+  "issues": [],
+  "recommendations": [],
+  "nextSteps": [
+    "Implement high-priority animation improvements",
+    "Optimize animation performance for 60fps",
+    "Add missing micro-interactions for better UX",
+    "Implement loading states and progress indicators",
+    "Test animations across different devices and browsers"
+  ]
+}
