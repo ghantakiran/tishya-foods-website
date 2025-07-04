@@ -54,13 +54,13 @@ export const metadata: Metadata = {
     maximumScale: 1,
     userScalable: false,
   },
-  themeColor: "var(--primary-500)",
+  themeColor: "#22c55e",
   other: {
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
     "apple-mobile-web-app-title": "Tishya Foods",
     "mobile-web-app-capable": "yes",
-    "msapplication-TileColor": "var(--primary-500)",
+    "msapplication-TileColor": "#22c55e",
     "msapplication-config": "/browserconfig.xml",
   },
 };

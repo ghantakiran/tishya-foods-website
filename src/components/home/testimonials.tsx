@@ -112,14 +112,14 @@ export default function Testimonials() {
               </div>
 
               {/* Comment */}
-              <p className="text-earth-700 mb-6 leading-relaxed">
+              <p className="text-cream-200 mb-6 leading-relaxed">
                 &quot;{testimonial.comment}&quot;
               </p>
 
               {/* Customer Info */}
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-semibold text-earth-800">{testimonial.name}</p>
+                  <p className="font-semibold text-cream-100">{testimonial.name}</p>
                   {testimonial.verified && (
                     <p className="text-sm text-primary-600 flex items-center mt-1">
                       <span className="w-2 h-2 bg-green-500 rounded-full mr-1"></span>

@@ -191,19 +191,19 @@ export default function InstagramFeed() {
               <div className="p-6">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-2 text-earth-600">
+                    <div className="flex items-center space-x-2 text-cream-300">
                       <Heart className="h-4 w-4" />
                       <span className="text-sm font-semibold">{post.likes}</span>
                     </div>
-                    <div className="flex items-center space-x-2 text-earth-600">
+                    <div className="flex items-center space-x-2 text-cream-300">
                       <MessageCircle className="h-4 w-4" />
                       <span className="text-sm font-semibold">{post.comments}</span>
                     </div>
                   </div>
-                  <span className="text-sm text-earth-500">{post.timestamp}</span>
+                  <span className="text-sm text-cream-400">{post.timestamp}</span>
                 </div>
 
-                <p className="text-earth-700 text-sm leading-relaxed mb-3 line-clamp-3">
+                <p className="text-cream-200 text-sm leading-relaxed mb-3 line-clamp-3">
                   {post.caption}
                 </p>
 
