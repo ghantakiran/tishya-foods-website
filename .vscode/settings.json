@@ -1,0 +1,13 @@
+{
+  "mcp.servers": {
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PUPPETEER_LAUNCH_OPTIONS": "{\"headless\": false, \"args\": [\"--no-sandbox\", \"--disable-setuid-sandbox\"]}",
+        "ALLOW_DANGEROUS": "true"
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "title": "Homepage User Experience Analysis Report",
+  "timestamp": "2025-07-04T08:48:03.459Z",
+  "url": "http://localhost:3000",
+  "summary": {
+    "totalScreenshots": 3,
+    "totalIssues": 2,
+    "totalRecommendations": 1,
+    "overallScore": 75
+  },
+  "metrics": {
+    "navigationTime": 1670,
+    "performance": {
+      "domContentLoaded": 0,
+      "loadComplete": 0,
+      "firstPaint": 22.299999952316284,
+      "totalLoadTime": 70.59999990463257
+    }
+  },
+  "screenshots": [
+    {
+      "filename": "homepage-initial.png",
+      "description": "Homepage initial load",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/homepage-ux/homepage-initial.png",
+      "timestamp": "2025-07-04T08:47:56.357Z"
+    },
+    {
+      "filename": "mobile-homepage.png",
+      "description": "Homepage in mobile view",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/homepage-ux/mobile-homepage.png",
+      "timestamp": "2025-07-04T08:48:02.487Z"
+    },
+    {
+      "filename": "tablet-homepage.png",
+      "description": "Homepage in tablet view",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/homepage-ux/tablet-homepage.png",
+      "timestamp": "2025-07-04T08:48:03.453Z"
+    }
+  ],
+  "issues": [
+    {
+      "type": "warning",
+      "section": "hero",
+      "message": "Hero section issue: Waiting for selector `[data-testid=\"hero-section\"], .hero, section:first-of-type` failed: Waiting failed: 5000ms exceeded"
+    },
+    {
+      "type": "accessibility",
+      "message": "No heading elements found"
+    }
+  ],
+  "recommendations": [
+    {
+      "category": "Accessibility",
+      "priority": "High",
+      "issue": "Accessibility compliance issues",
+      "recommendation": "Fix accessibility issues to ensure WCAG compliance",
+      "metric": "Issues found: 1"
+    }
+  ],
+  "nextSteps": [
+    "Implement high-priority recommendations",
+    "Set up performance monitoring",
+    "Schedule regular UX audits",
+    "A/B test proposed changes"
+  ]
+}

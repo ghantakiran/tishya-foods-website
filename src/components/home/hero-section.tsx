@@ -21,19 +21,21 @@ const features = [
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-900 via-green-800 to-teal-900">
-      {/* Background Image */}
-      <div className="absolute inset-0 opacity-20">
-        <img 
-          src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1920&h=1080&fit=crop&crop=center" 
-          alt="Fresh healthy foods background"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/70 via-green-800/70 to-teal-900/70" />
+    <section 
+      data-testid="hero-section" 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-900 via-green-800 to-teal-900"
+    >
+      {/* Optimized Background Pattern */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(34,197,94,0.3),rgba(16,185,129,0.2),rgba(5,150,105,0.1))]"></div>
+        <div className="absolute inset-0 bg-[conic-gradient(from_45deg_at_50%_50%,rgba(34,197,94,0.1),rgba(16,185,129,0.05),rgba(5,150,105,0.1))]"></div>
       </div>
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[url('/grain-pattern.svg')] bg-repeat"></div>
+      {/* Performance-optimized Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundSize: '60px 60px'
+        }}></div>
       </div>
       
       {/* Organic Color Accents */}
@@ -125,7 +127,11 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
             >
-              <Button size="lg" className="group bg-gradient-to-r from-lime-500 to-emerald-500 hover:from-lime-600 hover:to-emerald-600 text-white border-0 shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105">
+              <Button 
+                data-testid="cta-button"
+                size="lg" 
+                className="group bg-gradient-to-r from-lime-500 to-emerald-500 hover:from-lime-600 hover:to-emerald-600 text-white border-0 shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105"
+              >
                 Shop Now
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
@@ -166,9 +172,9 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="relative w-full max-w-lg mx-auto">
-              {/* Hero Product Image */}
+              {/* Optimized Hero Visual */}
               <motion.div
-                className="aspect-square rounded-3xl shadow-2xl relative overflow-hidden"
+                className="aspect-square rounded-3xl shadow-2xl relative overflow-hidden bg-gradient-to-br from-emerald-600 via-green-500 to-teal-600"
                 animate={{ 
                   y: [0, -10, 0],
                   rotate: [0, 1, 0, -1, 0] 
@@ -179,12 +185,28 @@ export default function HeroSection() {
                   ease: "easeInOut" 
                 }}
               >
-                <img 
-                  src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=600&fit=crop&crop=center" 
-                  alt="Healthy protein-rich foods"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                {/* CSS-only food illustration */}
+                <div className="w-full h-full relative flex items-center justify-center">
+                  {/* Food bowl illustration using CSS */}
+                  <div className="relative">
+                    {/* Bowl base */}
+                    <div className="w-48 h-32 bg-gradient-to-b from-orange-100 to-orange-200 rounded-b-full border-4 border-orange-300 shadow-inner"></div>
+                    
+                    {/* Food items */}
+                    <div className="absolute top-2 left-8 w-8 h-8 bg-green-400 rounded-full shadow-md"></div>
+                    <div className="absolute top-4 right-12 w-6 h-6 bg-red-400 rounded-full shadow-md"></div>
+                    <div className="absolute top-6 left-16 w-10 h-6 bg-yellow-400 rounded-full shadow-md"></div>
+                    <div className="absolute top-3 right-8 w-7 h-7 bg-purple-400 rounded-full shadow-md"></div>
+                    <div className="absolute top-8 left-12 w-8 h-4 bg-orange-400 rounded-full shadow-md"></div>
+                    
+                    {/* Steam effect */}
+                    <div className="absolute -top-4 left-20 w-1 h-8 bg-white opacity-60 rounded-full animate-pulse"></div>
+                    <div className="absolute -top-6 left-24 w-1 h-6 bg-white opacity-40 rounded-full animate-pulse delay-300"></div>
+                    <div className="absolute -top-5 left-28 w-1 h-7 bg-white opacity-50 rounded-full animate-pulse delay-600"></div>
+                  </div>
+                </div>
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                 
                 {/* Brand overlay */}
                 <div className="absolute bottom-6 left-6 right-6 text-center">
