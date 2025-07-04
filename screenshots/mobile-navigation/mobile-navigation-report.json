@@ -1,0 +1,411 @@
+{
+  "title": "Mobile Navigation & Responsiveness Analysis Report",
+  "timestamp": "2025-07-04T08:59:47.406Z",
+  "url": "http://localhost:3000",
+  "summary": {
+    "totalScreenshots": 19,
+    "totalIssues": 13,
+    "totalRecommendations": 1,
+    "devicesTestedSuccessfully": 6,
+    "overallScore": 15
+  },
+  "metrics": {
+    "hasMobileMenuToggle": true,
+    "buttons_iPhone_SE": [
+      {
+        "text": "Try Again",
+        "width": 295,
+        "height": 44,
+        "touchFriendly": true
+      },
+      {
+        "text": "Go Home",
+        "width": 141.5,
+        "height": 44,
+        "touchFriendly": true
+      },
+      {
+        "text": "Report Issue",
+        "width": 141.5,
+        "height": 44,
+        "touchFriendly": true
+      }
+    ],
+    "links_iPhone_SE": [],
+    "buttons_iPhone_11_Pro_Max": [
+      {
+        "text": "Try Again",
+        "width": 334,
+        "height": 44,
+        "touchFriendly": true
+      },
+      {
+        "text": "Go Home",
+        "width": 161,
+        "height": 44,
+        "touchFriendly": true
+      },
+      {
+        "text": "Report Issue",
+        "width": 161,
+        "height": 44,
+        "touchFriendly": true
+      }
+    ],
+    "links_iPhone_11_Pro_Max": [],
+    "buttons_iPad": [
+      {
+        "text": "Try Again",
+        "width": 400,
+        "height": 44,
+        "touchFriendly": true
+      },
+      {
+        "text": "Go Home",
+        "width": 194,
+        "height": 44,
+        "touchFriendly": true
+      },
+      {
+        "text": "Report Issue",
+        "width": 194,
+        "height": 44,
+        "touchFriendly": true
+      }
+    ],
+    "links_iPad": [],
+    "buttons_iPad_Landscape": [
+      {
+        "text": "Try Again",
+        "width": 400,
+        "height": 36,
+        "touchFriendly": false
+      },
+      {
+        "text": "Go Home",
+        "width": 194,
+        "height": 36,
+        "touchFriendly": false
+      },
+      {
+        "text": "Report Issue",
+        "width": 194,
+        "height": 36,
+        "touchFriendly": false
+      }
+    ],
+    "links_iPad_Landscape": [],
+    "buttons_Android_Small": [
+      {
+        "text": "Try Again",
+        "width": 280,
+        "height": 44,
+        "touchFriendly": true
+      },
+      {
+        "text": "Go Home",
+        "width": 134,
+        "height": 44,
+        "touchFriendly": true
+      },
+      {
+        "text": "Report Issue",
+        "width": 134,
+        "height": 44,
+        "touchFriendly": true
+      }
+    ],
+    "links_Android_Small": [],
+    "buttons_iPhone_5s": [
+      {
+        "text": "Try Again",
+        "width": 240,
+        "height": 44,
+        "touchFriendly": true
+      },
+      {
+        "text": "Go Home",
+        "width": 114,
+        "height": 44,
+        "touchFriendly": true
+      },
+      {
+        "text": "Report Issue",
+        "width": 114,
+        "height": 44,
+        "touchFriendly": true
+      }
+    ],
+    "links_iPhone_5s": [],
+    "touchGesturesWorking": false,
+    "mobileSpecificElements": 0,
+    "hiddenDesktopElements": 0,
+    "touchTargets": {
+      "total": 3,
+      "touchFriendly": 3,
+      "tooSmall": 0,
+      "compliance": "100.0"
+    }
+  },
+  "deviceTests": [
+    {
+      "device": "iPhone SE",
+      "category": "mobile",
+      "dimensions": "375x667",
+      "duration": 2144,
+      "success": true,
+      "issues": []
+    },
+    {
+      "device": "iPhone 11 Pro Max",
+      "category": "mobile",
+      "dimensions": "414x896",
+      "duration": 2003,
+      "success": true,
+      "issues": []
+    },
+    {
+      "device": "iPad",
+      "category": "tablet",
+      "dimensions": "768x1024",
+      "duration": 2416,
+      "success": true,
+      "issues": []
+    },
+    {
+      "device": "iPad Landscape",
+      "category": "tablet",
+      "dimensions": "1024x768",
+      "duration": 2009,
+      "success": true,
+      "issues": []
+    },
+    {
+      "device": "Android Small",
+      "category": "mobile",
+      "dimensions": "360x640",
+      "duration": 2315,
+      "success": true,
+      "issues": []
+    },
+    {
+      "device": "iPhone 5s",
+      "category": "mobile",
+      "dimensions": "320x568",
+      "duration": 1959,
+      "success": true,
+      "issues": []
+    }
+  ],
+  "screenshots": [
+    {
+      "filename": "homepage-iphone-se.png",
+      "description": "Homepage on iPhone SE",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/homepage-iphone-se.png",
+      "timestamp": "2025-07-04T08:59:25.939Z"
+    },
+    {
+      "filename": "mobile-menu-open-iphone-se.png",
+      "description": "Mobile menu opened on iPhone SE",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-menu-open-iphone-se.png",
+      "timestamp": "2025-07-04T08:59:26.551Z"
+    },
+    {
+      "filename": "homepage-iphone-11-pro-max.png",
+      "description": "Homepage on iPhone 11 Pro Max",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/homepage-iphone-11-pro-max.png",
+      "timestamp": "2025-07-04T08:59:27.951Z"
+    },
+    {
+      "filename": "mobile-menu-open-iphone-11-pro-max.png",
+      "description": "Mobile menu opened on iPhone 11 Pro Max",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-menu-open-iphone-11-pro-max.png",
+      "timestamp": "2025-07-04T08:59:28.559Z"
+    },
+    {
+      "filename": "homepage-ipad.png",
+      "description": "Homepage on iPad",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/homepage-ipad.png",
+      "timestamp": "2025-07-04T08:59:30.340Z"
+    },
+    {
+      "filename": "mobile-menu-open-ipad.png",
+      "description": "Mobile menu opened on iPad",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-menu-open-ipad.png",
+      "timestamp": "2025-07-04T08:59:30.977Z"
+    },
+    {
+      "filename": "homepage-ipad-landscape.png",
+      "description": "Homepage on iPad Landscape",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/homepage-ipad-landscape.png",
+      "timestamp": "2025-07-04T08:59:32.354Z"
+    },
+    {
+      "filename": "mobile-menu-open-ipad-landscape.png",
+      "description": "Mobile menu opened on iPad Landscape",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-menu-open-ipad-landscape.png",
+      "timestamp": "2025-07-04T08:59:32.984Z"
+    },
+    {
+      "filename": "homepage-android-small.png",
+      "description": "Homepage on Android Small",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/homepage-android-small.png",
+      "timestamp": "2025-07-04T08:59:34.710Z"
+    },
+    {
+      "filename": "mobile-menu-open-android-small.png",
+      "description": "Mobile menu opened on Android Small",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-menu-open-android-small.png",
+      "timestamp": "2025-07-04T08:59:35.298Z"
+    },
+    {
+      "filename": "homepage-iphone-5s.png",
+      "description": "Homepage on iPhone 5s",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/homepage-iphone-5s.png",
+      "timestamp": "2025-07-04T08:59:36.643Z"
+    },
+    {
+      "filename": "mobile-menu-open-iphone-5s.png",
+      "description": "Mobile menu opened on iPhone 5s",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-menu-open-iphone-5s.png",
+      "timestamp": "2025-07-04T08:59:37.258Z"
+    },
+    {
+      "filename": "touch-gesture-tap.png",
+      "description": "Touch gesture tap test",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/touch-gesture-tap.png",
+      "timestamp": "2025-07-04T08:59:39.184Z"
+    },
+    {
+      "filename": "mobile-contact-form.png",
+      "description": "Mobile contact form",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-contact-form.png",
+      "timestamp": "2025-07-04T08:59:41.412Z"
+    },
+    {
+      "filename": "mobile-email-field.png",
+      "description": "Mobile email field focus",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-email-field.png",
+      "timestamp": "2025-07-04T08:59:42.114Z"
+    },
+    {
+      "filename": "mobile-phone-field.png",
+      "description": "Mobile phone field focus",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-phone-field.png",
+      "timestamp": "2025-07-04T08:59:42.486Z"
+    },
+    {
+      "filename": "navigation-consistency-products.png",
+      "description": "Navigation consistency on products page",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/navigation-consistency-products.png",
+      "timestamp": "2025-07-04T08:59:45.545Z"
+    },
+    {
+      "filename": "navigation-consistency-about.png",
+      "description": "Navigation consistency on about page",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/navigation-consistency-about.png",
+      "timestamp": "2025-07-04T08:59:46.480Z"
+    },
+    {
+      "filename": "navigation-consistency-contact.png",
+      "description": "Navigation consistency on contact page",
+      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/navigation-consistency-contact.png",
+      "timestamp": "2025-07-04T08:59:47.406Z"
+    }
+  ],
+  "issues": [
+    {
+      "type": "warning",
+      "category": "navigation",
+      "device": "iPhone SE",
+      "message": "Navigation elements issue: Node is detached from document"
+    },
+    {
+      "type": "warning",
+      "category": "scrolling",
+      "device": "iPhone SE",
+      "message": "Scrolling behavior issue: this.page.waitForTimeout is not a function"
+    },
+    {
+      "type": "warning",
+      "category": "navigation",
+      "device": "iPhone 11 Pro Max",
+      "message": "Navigation elements issue: Node is detached from document"
+    },
+    {
+      "type": "warning",
+      "category": "scrolling",
+      "device": "iPhone 11 Pro Max",
+      "message": "Scrolling behavior issue: this.page.waitForTimeout is not a function"
+    },
+    {
+      "type": "warning",
+      "category": "navigation",
+      "device": "iPad",
+      "message": "Navigation elements issue: Node is detached from document"
+    },
+    {
+      "type": "warning",
+      "category": "scrolling",
+      "device": "iPad",
+      "message": "Scrolling behavior issue: this.page.waitForTimeout is not a function"
+    },
+    {
+      "type": "warning",
+      "category": "navigation",
+      "device": "iPad Landscape",
+      "message": "Navigation elements issue: Node is detached from document"
+    },
+    {
+      "type": "warning",
+      "category": "scrolling",
+      "device": "iPad Landscape",
+      "message": "Scrolling behavior issue: this.page.waitForTimeout is not a function"
+    },
+    {
+      "type": "warning",
+      "category": "navigation",
+      "device": "Android Small",
+      "message": "Navigation elements issue: Node is detached from document"
+    },
+    {
+      "type": "warning",
+      "category": "scrolling",
+      "device": "Android Small",
+      "message": "Scrolling behavior issue: this.page.waitForTimeout is not a function"
+    },
+    {
+      "type": "warning",
+      "category": "navigation",
+      "device": "iPhone 5s",
+      "message": "Navigation elements issue: Node is detached from document"
+    },
+    {
+      "type": "warning",
+      "category": "scrolling",
+      "device": "iPhone 5s",
+      "message": "Scrolling behavior issue: this.page.waitForTimeout is not a function"
+    },
+    {
+      "type": "warning",
+      "category": "performance",
+      "message": "Mobile performance testing issue: Protocol error (Network.emulateNetworkConditions): Invalid parameters Failed to deserialize params.downloadThroughput - BINDINGS: mandatory field missing at position 27"
+    }
+  ],
+  "recommendations": [
+    {
+      "category": "Navigation",
+      "priority": "High",
+      "issue": "Mobile menu not functional",
+      "recommendation": "Ensure mobile menu opens and closes properly",
+      "metric": "Mobile menu functionality: Not working"
+    }
+  ],
+  "nextSteps": [
+    "Implement high-priority mobile navigation improvements",
+    "Optimize touch target sizes for better accessibility",
+    "Test on additional mobile devices and screen sizes",
+    "Improve mobile performance and loading times",
+    "Enhance mobile form experience"
+  ]
+}

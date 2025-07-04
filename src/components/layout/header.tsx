@@ -143,6 +143,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <Button
+            data-testid="mobile-menu-toggle"
             variant="ghost"
             size="icon"
             className="lg:hidden text-primary-700 hover:text-accent-600 hover:bg-primary-100"
@@ -161,6 +162,7 @@ export default function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            data-testid="mobile-menu"
             className="lg:hidden bg-cream-50/95 backdrop-blur-md border-t border-primary-200 shadow-lg"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -173,6 +175,7 @@ export default function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
+                    data-testid={`mobile-nav-${item.name.toLowerCase()}`}
                     className="text-primary-700 hover:text-accent-600 font-medium py-2 transition-colors duration-200"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
