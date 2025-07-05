@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f0fdf4;
-  --foreground: #14532d;
-  --card-background: #ffffff;
-  --border-color: #bbf7d0;
+  --background: #111827;
+  --foreground: #f9fafb;
+  --card-background: #1f2937;
+  --border-color: #4b5563;
   --accent-color: #22c55e;
   --secondary-color: #eab308;
   --earth-color: #a0845c;
@@ -41,7 +41,7 @@
 }
 
 body {
-  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #d1fae5 100%);
+  background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #374151 100%);
   color: var(--foreground);
   font-family: var(--font-inter), system-ui, sans-serif;
   min-height: 100vh;
@@ -53,7 +53,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #bbf7d0;
+  background: #374151;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -106,7 +106,7 @@ body {
 }
 
 .skeleton-wave {
-  background: linear-gradient(90deg, #dcfce7 25%, #bbf7d0 50%, #dcfce7 75%);
+  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
   background-size: 200px 100%;
   animation: skeleton-wave 1.5s infinite;
 }

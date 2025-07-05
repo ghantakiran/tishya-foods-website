@@ -66,13 +66,13 @@ export const metadata: Metadata = {
     maximumScale: 1,
     userScalable: false,
   },
-  themeColor: "#22c55e",
+  themeColor: "#111827",
   other: {
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
     "apple-mobile-web-app-title": "Tishya Foods",
     "mobile-web-app-capable": "yes",
-    "msapplication-TileColor": "#22c55e",
+    "msapplication-TileColor": "#111827",
     "msapplication-config": "/browserconfig.xml",
   },
 };
@@ -94,7 +94,7 @@ export default function RootLayout({
           data={{}} 
         />
       </head>
-      <body className={`${montserrat.variable} ${inter.variable} font-sans antialiased bg-cream-50 text-earth-800`}>
+      <body className={`${montserrat.variable} ${inter.variable} font-sans antialiased bg-gray-900 text-gray-100`}>
         <ErrorBoundary>
           <LoadingProvider>
             <AuthProvider>

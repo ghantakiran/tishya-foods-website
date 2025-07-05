@@ -107,37 +107,37 @@ const config: Config = {
           800: '#a08568',
           900: '#6b4423',
         },
-        // Semantic colors for consistent component styling
+        // Semantic colors for consistent dark theme component styling
         card: {
-          DEFAULT: '#ffffff',
-          foreground: '#14532d',
+          DEFAULT: '#1f2937', // Dark gray card background
+          foreground: '#f3f4f6', // Light gray text
         },
         background: {
-          DEFAULT: '#f0fdf4',
-          secondary: '#dcfce7',
+          DEFAULT: '#111827', // Very dark background
+          secondary: '#1f2937', // Slightly lighter dark
         },
         foreground: {
-          DEFAULT: '#14532d',
-          secondary: '#166534',
+          DEFAULT: '#f9fafb', // Almost white text
+          secondary: '#e5e7eb', // Light gray text
         },
         muted: {
-          DEFAULT: '#f2e8e5',
-          foreground: '#6b4423',
+          DEFAULT: '#374151', // Medium gray
+          foreground: '#9ca3af', // Muted text
         },
         border: {
-          DEFAULT: '#eaddd7',
-          input: '#d2bab0',
+          DEFAULT: '#4b5563', // Gray border
+          input: '#6b7280', // Input border
         },
         input: {
-          DEFAULT: '#ffffff',
-          border: '#d2bab0',
+          DEFAULT: '#1f2937', // Dark input background
+          border: '#6b7280', // Input border
         },
         ring: {
-          DEFAULT: '#22c55e',
-          offset: '#f0fdf4',
+          DEFAULT: '#22c55e', // Keep brand green for focus rings
+          offset: '#111827', // Dark offset
         },
         destructive: {
-          DEFAULT: '#dc2626',
+          DEFAULT: '#dc2626', // Keep red for destructive actions
           foreground: '#ffffff',
         },
       },
