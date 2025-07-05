@@ -2,8 +2,10 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MessageCircle, X, Send, Bot, User } from 'lucide-react'
+import { MessageCircle, X, Send, Bot, User, ShoppingCart, Star, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useCart } from '@/contexts/cart-context'
+import { products } from '@/lib/products-data'
 
 interface Message {
   id: string
@@ -11,29 +13,61 @@ interface Message {
   content: string
   timestamp: Date
   suggestions?: string[]
+  productRecommendations?: ProductRecommendation[]
 }
 
-const predefinedResponses: Record<string, string> = {
-  'hello': "Hello! I'm your Tishya Foods nutrition assistant. I can help you find the perfect protein-rich products for your health goals. What would you like to know?",
-  'protein': "Our products are rich in plant-based proteins! Our Protein Power Shake Mix has 25g protein per serving, while our Protein Chips contain 15g. What's your fitness goal?",
-  'gluten-free': "Great news! All Tishya Foods products are naturally gluten-free. We have sweet treats, savory snacks, and meal mixes that are safe for gluten-sensitive individuals.",
-  'vegan': "Most of our products are vegan-friendly! Our Protein Shake Mix, Instant Porridge, and Protein Chips are all plant-based. Only our Nutty Fruit Bites contain honey.",
-  'weight-loss': "For weight management, I recommend our Protein Power Shake Mix (150 calories, 25g protein) and Protein Chips (180 calories, 15g protein). High protein helps with satiety!",
-  'muscle-building': "Perfect! For muscle building, try our Protein Power Shake Mix with 25g protein per serving. Combine it with our Biotin Bites for additional nutrients and healthy fats.",
-  'breakfast': "For healthy breakfasts, try our Instant Porridge Mix (200 calories, 8g protein) or make protein pancakes with it! Also great: Protein Power Smoothie bowls.",
-  'snacks': "Our healthy snacks include Protein Chips, Protein Murukulu, Biotin Bites, and Nutty Fruit Bites. All are preservative-free and packed with nutrients!",
-  'ingredients': "All our products use natural ingredients: no artificial colors, preservatives, or white sugars. We source directly from organic farmers and use traditional processing methods.",
-  'recipes': "I can suggest recipes! Try our Protein Power Smoothie Bowl, Instant Protein Pancakes, or Spiced Protein Curry. Each recipe includes nutritional information and cooking instructions.",
-  'organic': "Yes! All Tishya Foods products are made with organic ingredients sourced directly from farmers. We ensure quality through our triple-washing and hand-roasting process.",
+interface ProductRecommendation {
+  id: string
+  name: string
+  price: number
+  description: string
+  reason: string
+  image?: string
+}
+
+// Enhanced responses with product recommendations
+const predefinedResponses: Record<string, { content: string; products?: string[] }> = {
+  'hello': {
+    content: "Hello! I'm your personal Tishya Foods shopping assistant. I can help you find the perfect protein-rich products for your health goals and even add them to your cart. What brings you here today?",
+    products: ['1', '2', '3'] // Featured products
+  },
+  'protein': {
+    content: "Excellent choice! High-protein foods are essential for muscle maintenance and satiety. Based on your interest, I've found some perfect matches:",
+    products: ['1', '4', '7'] // High protein products
+  },
+  'gluten-free': {
+    content: "Perfect! All our products are naturally gluten-free and safe for celiac diet. Here are our most popular gluten-free options:",
+    products: ['2', '5', '8'] // Gluten-free products
+  },
+  'vegan': {
+    content: "Great choice for plant-based nutrition! Most of our products are 100% vegan. Here are our top vegan bestsellers:",
+    products: ['3', '6', '9'] // Vegan products
+  },
+  'weight-loss': {
+    content: "Smart approach! High-protein, low-calorie foods help with satiety and weight management. These products are perfect for your goals:",
+    products: ['1', '2', '4'] // Weight loss friendly
+  },
+  'muscle-building': {
+    content: "Excellent for fitness goals! Protein is crucial for muscle synthesis. These high-protein products will support your training:",
+    products: ['1', '7', '4'] // High protein for muscle building
+  },
+  'breakfast': {
+    content: "A protein-rich breakfast sets you up for success! These options are quick, nutritious, and delicious:",
+    products: ['5', '6', '3'] // Breakfast items
+  },
+  'snacks': {
+    content: "Smart snacking keeps your metabolism active! These healthy, protein-packed snacks are perfect for any time:",
+    products: ['2', '8', '9'] // Snack items
+  }
 }
 
 const quickSuggestions = [
-  "Tell me about protein content",
-  "Which products are vegan?",
-  "Best for weight loss?",
-  "Gluten-free options",
-  "Healthy breakfast ideas",
-  "Recipe suggestions",
+  "Show me high-protein products",
+  "Best for weight loss",
+  "Vegan protein options",
+  "Quick breakfast ideas",
+  "Healthy snack recommendations",
+  "What's on sale today?",
 ]
 
 export default function NutritionAssistant() {
@@ -42,14 +76,16 @@ export default function NutritionAssistant() {
     {
       id: 'welcome-1',
       type: 'assistant',
-      content: "Hi! I'm your Tishya Foods nutrition assistant. I can help you find the perfect protein-rich products for your dietary needs. How can I assist you today?",
+      content: "Hi! I'm your personal Tishya Foods shopping assistant 🛒. I can help you discover the perfect protein-rich products for your goals and add them directly to your cart. What are you looking for today?",
       timestamp: new Date(),
       suggestions: quickSuggestions.slice(0, 3),
+      productRecommendations: getRecommendedProducts(['1', '2', '3'])
     }
   ])
   const [inputValue, setInputValue] = useState('')
   const [isTyping, setIsTyping] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const { addItem } = useCart()
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -59,60 +95,83 @@ export default function NutritionAssistant() {
     scrollToBottom()
   }, [messages])
 
-  const generateResponse = (userInput: string): { content: string; suggestions?: string[] } => {
+  // Helper function to get product recommendations
+  const getRecommendedProducts = (productIds: string[]): ProductRecommendation[] => {
+    return productIds.map(id => {
+      const product = products.find(p => p.id === id)
+      if (!product) return null
+      
+      return {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        description: product.description,
+        reason: getRecommendationReason(product),
+        image: product.image
+      }
+    }).filter(Boolean) as ProductRecommendation[]
+  }
+  
+  const getRecommendationReason = (product: any): string => {
+    if (product.isOrganic && product.isVegan) return "Perfect for health-conscious customers"
+    if (product.featured) return "Bestseller - loved by customers"
+    if (product.isGlutenFree) return "Great for gluten-sensitive diets"
+    if (product.isVegan) return "100% plant-based nutrition"
+    return "Highly recommended for you"
+  }
+
+  const generateResponse = (userInput: string): { content: string; suggestions?: string[]; productRecommendations?: ProductRecommendation[] } => {
     const input = userInput.toLowerCase()
     
-    // Check for predefined responses
+    // Check for predefined responses with products
     for (const [key, response] of Object.entries(predefinedResponses)) {
       if (input.includes(key)) {
         return {
-          content: response,
+          content: response.content,
           suggestions: getContextualSuggestions(key),
+          productRecommendations: response.products ? getRecommendedProducts(response.products) : undefined
         }
       }
     }
 
-    // Product-specific queries
+    // Product-specific queries with cart integration
     if (input.includes('chips')) {
       return {
-        content: "Our Protein Chips are amazing! Made with chickpea and lentil flour, they have 15g protein and only 180 calories per serving. They're gluten-free, vegan, and perfect for healthy snacking!",
-        suggestions: ["Other snack options", "Nutritional details", "Recipe ideas"],
+        content: "Our Protein Chips are customer favorites! 🔥 Made with chickpea and lentil flour, they pack 15g protein and only 180 calories per serving. Perfect for guilt-free snacking!",
+        suggestions: ["Add to cart", "Other snack options", "Nutritional benefits"],
+        productRecommendations: getRecommendedProducts(['2', '8'])
       }
     }
 
     if (input.includes('shake') || input.includes('powder')) {
       return {
-        content: "Our Protein Power Shake Mix is our flagship product! With 25g of plant-based protein and only 150 calories, it's perfect for post-workout recovery or meal replacement. Mix with fruits for delicious smoothies!",
-        suggestions: ["Smoothie recipes", "When to drink protein shakes", "Vegan protein benefits"],
+        content: "Our Protein Power Shake Mix is a game-changer! 💪 With 25g of plant-based protein and only 150 calories, it's perfect for post-workout recovery or meal replacement.",
+        suggestions: ["Add to cart now", "Smoothie recipes", "Protein timing tips"],
+        productRecommendations: getRecommendedProducts(['1'])
       }
     }
 
-    if (input.includes('porridge')) {
+    if (input.includes('sale') || input.includes('deal') || input.includes('discount')) {
       return {
-        content: "Our Instant Porridge Mix combines rolled oats, quinoa, and chia seeds for a nutritious breakfast. It has 8g protein and 6g fiber per serving. Just add water or milk and you're ready to go!",
-        suggestions: ["Porridge toppings", "Breakfast recipes", "Other breakfast options"],
+        content: "Great timing! We have some amazing deals right now. Check out these featured products with special pricing:",
+        suggestions: ["View all deals", "Limited time offers", "Bulk discounts"],
+        productRecommendations: getRecommendedProducts(['1', '2', '3'])
       }
     }
 
-    // General responses
-    if (input.includes('calories') || input.includes('nutrition')) {
+    if (input.includes('buy') || input.includes('order') || input.includes('purchase') || input.includes('cart')) {
       return {
-        content: "Our products range from 140-320 calories per serving, with high protein content (8-25g). All include detailed nutritional information. Would you like specifics for any particular product?",
-        suggestions: ["Low calorie options", "High protein products", "Nutritional comparison"],
-      }
-    }
-
-    if (input.includes('buy') || input.includes('order') || input.includes('purchase')) {
-      return {
-        content: "You can order our products directly from our website! We offer free shipping on orders over ₹500. All products come with our 100% satisfaction guarantee.",
-        suggestions: ["View all products", "Shipping information", "Return policy"],
+        content: "Ready to shop? 🛒 I can add products directly to your cart! We offer free shipping on orders over ₹500 and 100% satisfaction guarantee.",
+        suggestions: ["Show bestsellers", "Free shipping info", "Return policy"],
+        productRecommendations: getRecommendedProducts(['1', '2', '4'])
       }
     }
 
     // Default response with product recommendations
     return {
-      content: "I'd be happy to help! Could you tell me more about your specific dietary goals or preferences? I can recommend the best Tishya Foods products for you based on your needs.",
+      content: "I'd love to help you find the perfect products! 🎯 Tell me about your health goals, dietary preferences, or what you're looking for, and I'll recommend the best options for you.",
       suggestions: quickSuggestions.slice(0, 3),
+      productRecommendations: getRecommendedProducts(['1', '2', '3'])
     }
   }
 
@@ -162,6 +221,24 @@ export default function NutritionAssistant() {
 
   const handleSuggestionClick = (suggestion: string) => {
     handleSendMessage(suggestion)
+  }
+  
+  const handleAddToCart = async (product: ProductRecommendation) => {
+    const fullProduct = products.find(p => p.id === product.id)
+    if (fullProduct) {
+      await addItem(fullProduct, 1)
+      
+      // Add confirmation message
+      const confirmationMessage: Message = {
+        id: Date.now().toString(),
+        type: 'assistant',
+        content: `Great choice! 🎉 I've added "${product.name}" to your cart. Would you like to continue shopping or check out?`,
+        timestamp: new Date(),
+        suggestions: ["Continue shopping", "View cart", "Checkout now"],
+      }
+      
+      setMessages(prev => [...prev, confirmationMessage])
+    }
   }
 
   return (
@@ -246,16 +323,50 @@ export default function NutritionAssistant() {
                       }`} data-testid="message" data-sender={message.type === 'user' ? 'user' : 'bot'}>
                         <p className="text-sm leading-relaxed">{message.content}</p>
                       </div>
+                      {/* Product Recommendations */}
+                      {message.productRecommendations && (
+                        <div className="mt-3 space-y-2">
+                          <p className="text-xs text-gray-400 font-medium">Recommended for you:</p>
+                          {message.productRecommendations.map((product) => (
+                            <div key={product.id} className="bg-gray-700 rounded-lg p-3 border border-gray-600">
+                              <div className="flex items-start justify-between">
+                                <div className="flex-1">
+                                  <h4 className="text-sm font-semibold text-gray-100">{product.name}</h4>
+                                  <p className="text-xs text-gray-300 mt-1">{product.reason}</p>
+                                  <div className="flex items-center mt-2">
+                                    <span className="text-sm font-bold text-blue-400">₹{product.price}</span>
+                                    <div className="flex items-center ml-2">
+                                      <Star className="h-3 w-3 text-yellow-400 fill-current" />
+                                      <span className="text-xs text-gray-400 ml-1">4.8</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <Button
+                                  size="sm"
+                                  onClick={() => handleAddToCart(product)}
+                                  className="ml-3 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 text-xs"
+                                >
+                                  <ShoppingCart className="h-3 w-3 mr-1" />
+                                  Add
+                                </Button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      
+                      {/* Quick Reply Suggestions */}
                       {message.suggestions && (
                         <div className="mt-2 space-y-1">
                           {message.suggestions.map((suggestion, index) => (
                             <button
                               key={index}
                               onClick={() => handleSuggestionClick(suggestion)}
-                              className="block text-xs bg-green-100 hover:bg-green-200 text-gray-800 px-2 py-1 rounded-full transition-colors"
+                              className="block text-xs bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 px-3 py-1 rounded-full transition-colors border border-blue-500/30"
                               data-testid="quick-reply"
                             >
                               {suggestion}
+                              <ArrowRight className="inline h-3 w-3 ml-1" />
                             </button>
                           ))}
                         </div>
@@ -313,10 +424,11 @@ export default function NutritionAssistant() {
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Ask about nutrition, products, or recipes..."
-                  className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none text-sm text-gray-100 placeholder-gray-400"
+                  placeholder="Ask about products, nutrition, or say 'add to cart'..."
+                  className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm text-gray-100 placeholder-gray-400"
                   disabled={isTyping}
                   data-testid="chat-input"
+                  aria-label="Chat with AI assistant about products"
                 />
                 <Button
                   type="submit"
