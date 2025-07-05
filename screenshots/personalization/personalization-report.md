@@ -1,36 +1,32 @@
 # Personalization Features Testing Report
 
 ## Test Summary
-- **Date**: 7/5/2025, 8:31:05 AM
+- **Date**: 7/5/2025, 9:15:27 AM
 - **URL**: http://localhost:3001
-- **Total Tests**: 11
-- **Passed**: 3
-- **Failed**: 8
-- **Success Rate**: 27.3%
+- **Total Tests**: 10
+- **Passed**: 0
+- **Failed**: 10
+- **Success Rate**: 0.0%
 
 ## Personalization Metrics
-- **loadTime**: 1273
-- **localStorage**: 7
-- **sessionStorage**: 1
-- **recommendationElements**: 0
-- **personalizedContent**: 0
+
 
 ## Test Results
 
 ### ✅ Passed Tests
-- **Personalization Performance**: Page load time: 1273ms
-- **Personalization Storage**: 7 localStorage items, 1 sessionStorage items
-- **Personalization Elements**: 0 recommendation elements, 0 personalized content blocks
+
 
 ### ❌ Failed Tests
-- **Dietary Preferences Selection**: No dietary preference options found
-- **Preferences Saving**: Save preferences button not found
-- **User Preferences**: page.waitForTimeout is not a function
-- **Recommendation Sections Present**: No recommendation sections found on homepage
-- **Behavior Tracking**: No element found for selector: nav a[href="/products"]
-- **User Segmentation**: page.waitForTimeout is not a function
-- **Adaptive Interface**: page.waitForTimeout is not a function
-- **Recommendation Accuracy**: page.waitForTimeout is not a function
+- **User Preferences**: net::ERR_CONNECTION_REFUSED at http://localhost:3001/profile
+- **Product Recommendations**: net::ERR_CONNECTION_REFUSED at http://localhost:3001
+- **Personalized Content**: net::ERR_CONNECTION_REFUSED at http://localhost:3001
+- **Behavior Tracking**: net::ERR_CONNECTION_REFUSED at http://localhost:3001
+- **Customized Navigation**: net::ERR_CONNECTION_REFUSED at http://localhost:3001
+- **Personalized Offers**: net::ERR_CONNECTION_REFUSED at http://localhost:3001
+- **User Segmentation**: net::ERR_CONNECTION_REFUSED at http://localhost:3001
+- **Adaptive Interface**: net::ERR_CONNECTION_REFUSED at http://localhost:3001
+- **Recommendation Accuracy**: net::ERR_CONNECTION_REFUSED at http://localhost:3001/products
+- **Personalization Performance**: net::ERR_CONNECTION_REFUSED at http://localhost:3001
 
 ## Recommendations
 - Improve personalization algorithm accuracy

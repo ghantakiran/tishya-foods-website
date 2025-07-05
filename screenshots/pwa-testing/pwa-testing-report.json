@@ -1,0 +1,303 @@
+{
+  "timestamp": "2025-07-05T14:14:56.530Z",
+  "url": "http://localhost:3000",
+  "tests": [
+    {
+      "name": "PWA Manifest Validation",
+      "passed": true,
+      "message": "Manifest is valid with all required properties",
+      "timestamp": "2025-07-05T14:14:57.520Z"
+    },
+    {
+      "name": "PWA Icons",
+      "passed": true,
+      "message": "Required icon sizes present",
+      "timestamp": "2025-07-05T14:14:57.520Z"
+    },
+    {
+      "name": "Service Worker Test",
+      "passed": false,
+      "message": "page.waitForTimeout is not a function",
+      "timestamp": "2025-07-05T14:14:58.315Z"
+    },
+    {
+      "name": "Offline Functionality Test",
+      "passed": false,
+      "message": "page.waitForTimeout is not a function",
+      "timestamp": "2025-07-05T14:14:58.564Z"
+    },
+    {
+      "name": "PWA Installation Criteria",
+      "passed": true,
+      "message": "PWA meets installation criteria",
+      "timestamp": "2025-07-05T14:15:01.822Z"
+    },
+    {
+      "name": "PWA Install Prompt",
+      "passed": false,
+      "message": "Install prompt not triggered",
+      "timestamp": "2025-07-05T14:15:01.822Z"
+    },
+    {
+      "name": "Mobile Viewport Meta",
+      "passed": true,
+      "message": "Viewport meta tag present",
+      "timestamp": "2025-07-05T14:15:02.275Z"
+    },
+    {
+      "name": "Theme Color",
+      "passed": false,
+      "message": "No theme color specified",
+      "timestamp": "2025-07-05T14:15:02.276Z"
+    },
+    {
+      "name": "Display Mode",
+      "passed": true,
+      "message": "Current display mode: browser",
+      "timestamp": "2025-07-05T14:15:02.276Z"
+    },
+    {
+      "name": "Safe Area Support",
+      "passed": false,
+      "message": "Safe area insets not detected",
+      "timestamp": "2025-07-05T14:15:02.277Z"
+    },
+    {
+      "name": "Notification API Support",
+      "passed": true,
+      "message": "Notification API supported",
+      "timestamp": "2025-07-05T14:15:02.593Z"
+    },
+    {
+      "name": "Push Manager Support",
+      "passed": true,
+      "message": "Push Manager supported",
+      "timestamp": "2025-07-05T14:15:02.593Z"
+    },
+    {
+      "name": "Notification Permission",
+      "passed": true,
+      "message": "Current permission: default",
+      "timestamp": "2025-07-05T14:15:02.593Z"
+    },
+    {
+      "name": "PWA Performance Metrics",
+      "passed": true,
+      "message": "App shell load: nullms, SW activation: 6.5999999940395355ms",
+      "timestamp": "2025-07-05T14:15:02.756Z"
+    },
+    {
+      "name": "App Mode Performance",
+      "passed": true,
+      "message": "JS heap: 47MB, Nodes: 8527",
+      "timestamp": "2025-07-05T14:15:03.254Z"
+    },
+    {
+      "name": "Cache Strategies Test",
+      "passed": false,
+      "message": "page.waitForTimeout is not a function",
+      "timestamp": "2025-07-05T14:15:04.136Z"
+    },
+    {
+      "name": "Background Sync Support",
+      "passed": true,
+      "message": "Background Sync supported",
+      "timestamp": "2025-07-05T14:15:04.287Z"
+    },
+    {
+      "name": "Periodic Background Sync",
+      "passed": true,
+      "message": "Periodic Background Sync supported",
+      "timestamp": "2025-07-05T14:15:04.287Z"
+    }
+  ],
+  "summary": {
+    "total": 18,
+    "passed": 12,
+    "failed": 6,
+    "warnings": 0
+  },
+  "pwaMetrics": {
+    "manifest": {
+      "name": "Tishya Foods - ProNatural Protein Rich Foods",
+      "short_name": "Tishya Foods",
+      "description": "Where nature's goodness is lovingly crafted into the purest and most wholesome protein-rich foods.",
+      "start_url": "/",
+      "display": "standalone",
+      "background_color": "#111827",
+      "theme_color": "#111827",
+      "orientation": "portrait-primary",
+      "scope": "/",
+      "lang": "en",
+      "dir": "ltr",
+      "categories": [
+        "food",
+        "health",
+        "shopping"
+      ],
+      "icons": [
+        {
+          "src": "/icon-192x192.svg",
+          "sizes": "192x192",
+          "type": "image/svg+xml",
+          "purpose": "maskable any"
+        },
+        {
+          "src": "/icon-256x256.svg",
+          "sizes": "256x256",
+          "type": "image/svg+xml",
+          "purpose": "maskable any"
+        },
+        {
+          "src": "/icon-384x384.svg",
+          "sizes": "384x384",
+          "type": "image/svg+xml",
+          "purpose": "maskable any"
+        },
+        {
+          "src": "/icon-512x512.svg",
+          "sizes": "512x512",
+          "type": "image/svg+xml",
+          "purpose": "any"
+        }
+      ],
+      "shortcuts": [
+        {
+          "name": "Browse Products",
+          "short_name": "Products",
+          "description": "View our protein-rich product catalog",
+          "url": "/products",
+          "icons": [
+            {
+              "src": "/icon-192x192.svg",
+              "sizes": "192x192"
+            }
+          ]
+        },
+        {
+          "name": "Nutrition Assistant",
+          "short_name": "Nutrition",
+          "description": "Get personalized nutrition advice",
+          "url": "/nutrition",
+          "icons": [
+            {
+              "src": "/icon-192x192.svg",
+              "sizes": "192x192"
+            }
+          ]
+        },
+        {
+          "name": "Shopping Cart",
+          "short_name": "Cart",
+          "description": "View your shopping cart",
+          "url": "/cart",
+          "icons": [
+            {
+              "src": "/icon-192x192.svg",
+              "sizes": "192x192"
+            }
+          ]
+        }
+      ],
+      "screenshots": [
+        {
+          "src": "/screenshot-mobile.png",
+          "sizes": "390x844",
+          "type": "image/png",
+          "form_factor": "narrow",
+          "label": "Tishya Foods mobile app"
+        },
+        {
+          "src": "/screenshot-desktop.png",
+          "sizes": "1920x1080",
+          "type": "image/png",
+          "form_factor": "wide",
+          "label": "Tishya Foods desktop app"
+        }
+      ],
+      "related_applications": [],
+      "prefer_related_applications": false,
+      "edge_side_panel": {
+        "preferred_width": 400
+      },
+      "protocol_handlers": [
+        {
+          "protocol": "web+tishya",
+          "url": "/handle?url=%s"
+        }
+      ]
+    },
+    "installation": {
+      "isSecureContext": true,
+      "hasManifest": true,
+      "hasServiceWorker": true,
+      "isStandalone": false,
+      "canInstall": false
+    },
+    "notifications": {
+      "notificationAPI": true,
+      "permission": "default",
+      "serviceWorkerSupport": true,
+      "pushManagerSupport": true,
+      "canRequestPermission": true
+    },
+    "performance": {
+      "serviceWorkerActivationTime": 6.5999999940395355,
+      "cacheAccessTime": 10.200000002980232,
+      "cacheCount": 3,
+      "appShellLoadTime": null
+    },
+    "appModePerformance": {
+      "Timestamp": 57531.000386,
+      "Documents": 12,
+      "Frames": 3,
+      "JSEventListeners": 2244,
+      "Nodes": 8527,
+      "LayoutCount": 73,
+      "RecalcStyleCount": 192,
+      "LayoutDuration": 0.182983,
+      "RecalcStyleDuration": 0.113337,
+      "ScriptDuration": 0.827231,
+      "TaskDuration": 1.493468,
+      "JSHeapUsedSize": 49418096,
+      "JSHeapTotalSize": 92012544
+    },
+    "backgroundSync": {
+      "serviceWorkerSupport": true,
+      "syncSupport": true,
+      "periodicSyncSupport": true
+    }
+  },
+  "recommendations": [
+    {
+      "category": "Service Worker",
+      "priority": "High",
+      "issue": "Service Worker registration issues",
+      "solution": "Verify service worker script exists and registers correctly"
+    },
+    {
+      "category": "Offline Functionality",
+      "priority": "Medium",
+      "issue": "Offline functionality not working properly",
+      "solution": "Implement proper caching strategies and offline fallbacks"
+    },
+    {
+      "category": "Icon Optimization",
+      "priority": "Low",
+      "issue": "PWA icon recommendations",
+      "solution": "Ensure icons are optimized for all device sizes and include maskable icons"
+    },
+    {
+      "category": "Caching Strategy",
+      "priority": "Medium",
+      "issue": "Cache optimization",
+      "solution": "Implement appropriate caching strategies for different resource types"
+    },
+    {
+      "category": "User Experience",
+      "priority": "Medium",
+      "issue": "App-like experience",
+      "solution": "Add install prompt, theme colors, and proper viewport configuration"
+    }
+  ]
+}

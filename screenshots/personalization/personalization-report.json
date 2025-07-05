@@ -1,88 +1,76 @@
 {
-  "timestamp": "2025-07-05T13:31:05.050Z",
+  "timestamp": "2025-07-05T14:15:27.064Z",
   "url": "http://localhost:3001",
   "tests": [
     {
-      "test": "Dietary Preferences Selection",
-      "status": "FAIL",
-      "details": "No dietary preference options found",
-      "timestamp": "2025-07-05T13:31:08.167Z"
-    },
-    {
-      "test": "Preferences Saving",
-      "status": "FAIL",
-      "details": "Save preferences button not found",
-      "timestamp": "2025-07-05T13:31:08.168Z"
-    },
-    {
       "test": "User Preferences",
       "status": "FAIL",
-      "details": "page.waitForTimeout is not a function",
-      "timestamp": "2025-07-05T13:31:08.420Z"
+      "details": "net::ERR_CONNECTION_REFUSED at http://localhost:3001/profile",
+      "timestamp": "2025-07-05T14:15:27.691Z"
     },
     {
-      "test": "Recommendation Sections Present",
+      "test": "Product Recommendations",
       "status": "FAIL",
-      "details": "No recommendation sections found on homepage",
-      "timestamp": "2025-07-05T13:31:10.355Z"
+      "details": "net::ERR_CONNECTION_REFUSED at http://localhost:3001",
+      "timestamp": "2025-07-05T14:15:27.743Z"
+    },
+    {
+      "test": "Personalized Content",
+      "status": "FAIL",
+      "details": "net::ERR_CONNECTION_REFUSED at http://localhost:3001",
+      "timestamp": "2025-07-05T14:15:27.793Z"
     },
     {
       "test": "Behavior Tracking",
       "status": "FAIL",
-      "details": "No element found for selector: nav a[href=\"/products\"]",
-      "timestamp": "2025-07-05T13:31:14.937Z"
+      "details": "net::ERR_CONNECTION_REFUSED at http://localhost:3001",
+      "timestamp": "2025-07-05T14:15:27.849Z"
+    },
+    {
+      "test": "Customized Navigation",
+      "status": "FAIL",
+      "details": "net::ERR_CONNECTION_REFUSED at http://localhost:3001",
+      "timestamp": "2025-07-05T14:15:27.897Z"
+    },
+    {
+      "test": "Personalized Offers",
+      "status": "FAIL",
+      "details": "net::ERR_CONNECTION_REFUSED at http://localhost:3001",
+      "timestamp": "2025-07-05T14:15:27.946Z"
     },
     {
       "test": "User Segmentation",
       "status": "FAIL",
-      "details": "page.waitForTimeout is not a function",
-      "timestamp": "2025-07-05T13:31:17.447Z"
+      "details": "net::ERR_CONNECTION_REFUSED at http://localhost:3001",
+      "timestamp": "2025-07-05T14:15:27.996Z"
     },
     {
       "test": "Adaptive Interface",
       "status": "FAIL",
-      "details": "page.waitForTimeout is not a function",
-      "timestamp": "2025-07-05T13:31:17.752Z"
+      "details": "net::ERR_CONNECTION_REFUSED at http://localhost:3001",
+      "timestamp": "2025-07-05T14:15:28.043Z"
     },
     {
       "test": "Recommendation Accuracy",
       "status": "FAIL",
-      "details": "page.waitForTimeout is not a function",
-      "timestamp": "2025-07-05T13:31:18.027Z"
+      "details": "net::ERR_CONNECTION_REFUSED at http://localhost:3001/products",
+      "timestamp": "2025-07-05T14:15:28.091Z"
     },
     {
       "test": "Personalization Performance",
-      "status": "PASS",
-      "details": "Page load time: 1273ms",
-      "timestamp": "2025-07-05T13:31:20.385Z"
-    },
-    {
-      "test": "Personalization Storage",
-      "status": "PASS",
-      "details": "7 localStorage items, 1 sessionStorage items",
-      "timestamp": "2025-07-05T13:31:20.385Z"
-    },
-    {
-      "test": "Personalization Elements",
-      "status": "PASS",
-      "details": "0 recommendation elements, 0 personalized content blocks",
-      "timestamp": "2025-07-05T13:31:20.385Z"
+      "status": "FAIL",
+      "details": "net::ERR_CONNECTION_REFUSED at http://localhost:3001",
+      "timestamp": "2025-07-05T14:15:28.168Z"
     }
   ],
   "summary": {
-    "total": 11,
-    "passed": 3,
-    "failed": 8,
+    "total": 10,
+    "passed": 0,
+    "failed": 10,
     "warnings": 0,
-    "successRate": "27.3"
+    "successRate": "0.0"
   },
-  "personalizationMetrics": {
-    "loadTime": 1273,
-    "localStorage": 7,
-    "sessionStorage": 1,
-    "recommendationElements": 0,
-    "personalizedContent": 0
-  },
+  "personalizationMetrics": {},
   "recommendations": [
     "Improve personalization algorithm accuracy",
     "Enhance recommendation relevance using better user profiling",

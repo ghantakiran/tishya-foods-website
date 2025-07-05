@@ -1,78 +1,54 @@
 {
-  "timestamp": "2025-07-05T13:40:46.494Z",
+  "timestamp": "2025-07-05T14:16:05.045Z",
   "url": "http://localhost:3001",
   "tests": [
     {
-      "test": "Chatbot Trigger Visibility",
+      "test": "Chatbot Visibility",
       "status": "FAIL",
-      "details": "No chatbot trigger found on homepage",
-      "timestamp": "2025-07-05T13:40:47.348Z"
-    },
-    {
-      "test": "Chatbot Accessibility",
-      "status": "FAIL",
-      "details": "Chatbot trigger missing aria-label",
-      "timestamp": "2025-07-05T13:40:47.349Z"
+      "details": "net::ERR_CONNECTION_REFUSED at http://localhost:3001",
+      "timestamp": "2025-07-05T14:16:05.640Z"
     },
     {
       "test": "Chatbot Initialization",
       "status": "FAIL",
-      "details": "No chatbot trigger found to test initialization",
-      "timestamp": "2025-07-05T13:40:47.507Z"
+      "details": "net::ERR_CONNECTION_REFUSED at http://localhost:3001",
+      "timestamp": "2025-07-05T14:16:05.694Z"
     },
     {
-      "test": "Chatbot Input Field",
+      "test": "Chatbot Interface",
       "status": "FAIL",
-      "details": "No chat input field found",
-      "timestamp": "2025-07-05T13:40:47.580Z"
-    },
-    {
-      "test": "Chatbot Send Button",
-      "status": "FAIL",
-      "details": "No send button found",
-      "timestamp": "2025-07-05T13:40:47.580Z"
-    },
-    {
-      "test": "Chatbot Close Button",
-      "status": "FAIL",
-      "details": "No close button found",
-      "timestamp": "2025-07-05T13:40:47.581Z"
-    },
-    {
-      "test": "Messages Container",
-      "status": "FAIL",
-      "details": "No messages container found",
-      "timestamp": "2025-07-05T13:40:47.581Z"
-    },
-    {
-      "test": "Quick Reply Buttons",
-      "status": "FAIL",
-      "details": "No quick reply buttons found",
-      "timestamp": "2025-07-05T13:40:47.584Z"
+      "details": "Execution context was destroyed, most likely because of a navigation.",
+      "timestamp": "2025-07-05T14:16:05.702Z"
     },
     {
       "test": "Conversation Flow",
       "status": "FAIL",
       "details": "Missing input field or send button",
-      "timestamp": "2025-07-05T13:40:47.585Z"
+      "timestamp": "2025-07-05T14:16:05.715Z"
     },
     {
       "test": "Product Recommendations",
       "status": "FAIL",
       "details": "No product links found in response",
-      "timestamp": "2025-07-05T13:40:47.648Z"
+      "timestamp": "2025-07-05T14:16:05.795Z"
     },
     {
-      "test": "Mobile Chatbot Trigger",
+      "test": "Chatbot Mobile Experience",
       "status": "FAIL",
-      "details": "No chatbot trigger found on mobile",
-      "timestamp": "2025-07-05T13:40:48.375Z"
+      "details": "net::ERR_CONNECTION_REFUSED at http://localhost:3001",
+      "timestamp": "2025-07-05T14:16:06.434Z"
+    },
+    {
+      "test": "Chatbot Performance",
+      "status": "FAIL",
+      "details": "net::ERR_CONNECTION_REFUSED at http://localhost:3001",
+      "timestamp": "2025-07-05T14:16:06.480Z"
     }
   ],
   "summary": {
-    "total": 11,
+    "total": 7,
     "passed": 0,
-    "failed": 11,
+    "failed": 7,
     "warnings": 0,
     "successRate": "0.0"
   },

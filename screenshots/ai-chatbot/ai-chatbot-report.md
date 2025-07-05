@@ -1,11 +1,11 @@
 # AI Chatbot Integration Testing Report
 
 ## Test Summary
-- **Date**: 7/5/2025, 8:40:46 AM
+- **Date**: 7/5/2025, 9:16:05 AM
 - **URL**: http://localhost:3001
-- **Total Tests**: 11
+- **Total Tests**: 7
 - **Passed**: 0
-- **Failed**: 11
+- **Failed**: 7
 - **Success Rate**: 0.0%
 
 ## Chatbot Performance Metrics
@@ -17,17 +17,13 @@
 
 
 ### ❌ Failed Tests
-- **Chatbot Trigger Visibility**: No chatbot trigger found on homepage
-- **Chatbot Accessibility**: Chatbot trigger missing aria-label
-- **Chatbot Initialization**: No chatbot trigger found to test initialization
-- **Chatbot Input Field**: No chat input field found
-- **Chatbot Send Button**: No send button found
-- **Chatbot Close Button**: No close button found
-- **Messages Container**: No messages container found
-- **Quick Reply Buttons**: No quick reply buttons found
+- **Chatbot Visibility**: net::ERR_CONNECTION_REFUSED at http://localhost:3001
+- **Chatbot Initialization**: net::ERR_CONNECTION_REFUSED at http://localhost:3001
+- **Chatbot Interface**: Execution context was destroyed, most likely because of a navigation.
 - **Conversation Flow**: Missing input field or send button
 - **Product Recommendations**: No product links found in response
-- **Mobile Chatbot Trigger**: No chatbot trigger found on mobile
+- **Chatbot Mobile Experience**: net::ERR_CONNECTION_REFUSED at http://localhost:3001
+- **Chatbot Performance**: net::ERR_CONNECTION_REFUSED at http://localhost:3001
 
 ## Recommendations
 - Improve chatbot response accuracy and reliability

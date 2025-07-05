@@ -1,0 +1,233 @@
+{
+  "timestamp": "2025-07-05T14:15:33.608Z",
+  "url": "http://localhost:3000",
+  "tests": [
+    {
+      "name": "Customer Testimonials Test",
+      "passed": false,
+      "message": "page.scrollIntoView is not a function",
+      "timestamp": "2025-07-05T14:15:34.528Z"
+    },
+    {
+      "name": "Security Badges Presence",
+      "passed": false,
+      "message": "No security badges found",
+      "timestamp": "2025-07-05T14:15:35.352Z"
+    },
+    {
+      "name": "SSL/HTTPS Security",
+      "passed": false,
+      "message": "Site is not secure (HTTP)",
+      "timestamp": "2025-07-05T14:15:35.352Z"
+    },
+    {
+      "name": "Customer Reviews Test",
+      "passed": false,
+      "message": "page.waitForTimeout is not a function",
+      "timestamp": "2025-07-05T14:15:35.809Z"
+    },
+    {
+      "name": "Social Media Links",
+      "passed": false,
+      "message": "No social media links found",
+      "timestamp": "2025-07-05T14:15:36.253Z"
+    },
+    {
+      "name": "Instagram Feed",
+      "passed": false,
+      "message": "No Instagram feed found",
+      "timestamp": "2025-07-05T14:15:36.255Z"
+    },
+    {
+      "name": "Social Sharing",
+      "passed": false,
+      "message": "No social sharing buttons found",
+      "timestamp": "2025-07-05T14:15:36.411Z"
+    },
+    {
+      "name": "Guarantee Section",
+      "passed": false,
+      "message": "No guarantee section found",
+      "timestamp": "2025-07-05T14:15:36.588Z"
+    },
+    {
+      "name": "Return Policy Link",
+      "passed": false,
+      "message": "No return policy link found",
+      "timestamp": "2025-07-05T14:15:36.591Z"
+    },
+    {
+      "name": "Trust Indicators",
+      "passed": false,
+      "message": "1/5 trust indicators found",
+      "timestamp": "2025-07-05T14:15:36.777Z"
+    },
+    {
+      "name": "Contact Information",
+      "passed": false,
+      "message": "No contact information found",
+      "timestamp": "2025-07-05T14:15:36.777Z"
+    },
+    {
+      "name": "Business Address",
+      "passed": true,
+      "message": "Business address found",
+      "timestamp": "2025-07-05T14:15:36.777Z"
+    },
+    {
+      "name": "Business Hours",
+      "passed": false,
+      "message": "No business hours found",
+      "timestamp": "2025-07-05T14:15:36.777Z"
+    },
+    {
+      "name": "Social Proof Elements",
+      "passed": true,
+      "message": "2 social proof elements found",
+      "timestamp": "2025-07-05T14:15:36.956Z"
+    },
+    {
+      "name": "Certifications & Badges",
+      "passed": false,
+      "message": "0 certification badges found",
+      "timestamp": "2025-07-05T14:15:36.974Z"
+    },
+    {
+      "name": "Page Load Speed",
+      "passed": true,
+      "message": "Page loaded in 45ms",
+      "timestamp": "2025-07-05T14:15:37.324Z"
+    },
+    {
+      "name": "Credibility Signals",
+      "passed": false,
+      "message": "3/6 credibility signals present",
+      "timestamp": "2025-07-05T14:15:37.324Z"
+    },
+    {
+      "name": "Return Policy Links",
+      "passed": false,
+      "message": "No return policy links found",
+      "timestamp": "2025-07-05T14:15:37.510Z"
+    },
+    {
+      "name": "Quality Certifications",
+      "passed": false,
+      "message": "No certification badges found",
+      "timestamp": "2025-07-05T14:15:37.699Z"
+    }
+  ],
+  "summary": {
+    "total": 19,
+    "passed": 3,
+    "failed": 16,
+    "warnings": 0
+  },
+  "trustMetrics": {
+    "security": {
+      "httpsEnabled": false,
+      "badgeCount": 0,
+      "badgeTypes": {
+        "ssl": 0,
+        "norton": 0,
+        "mcafee": 0,
+        "verified": 0
+      },
+      "badges": []
+    },
+    "socialMedia": {
+      "socialLinks": [],
+      "hasInstagramFeed": false,
+      "shareButtonCount": 0,
+      "platforms": []
+    },
+    "guarantee": {
+      "hasSection": false
+    },
+    "trustIndicators": {
+      "contactInfo": false,
+      "address": true,
+      "businessHours": false,
+      "aboutUs": false,
+      "privacyPolicy": false,
+      "trustScore": 0.2
+    },
+    "socialProof": {
+      "customerCount": false,
+      "salesNumbers": false,
+      "yearInBusiness": true,
+      "awards": true,
+      "pressLogos": false,
+      "certifications": [],
+      "socialProofScore": 0.4
+    },
+    "credibility": {
+      "professionalLogo": false,
+      "consistentBranding": true,
+      "clearNavigation": false,
+      "footerCompleteness": false,
+      "errorHandling": true,
+      "fastLoading": true,
+      "loadTime": 45,
+      "credibilityScore": 0.5
+    },
+    "returnPolicy": {
+      "hasLinks": false
+    },
+    "certifications": {
+      "total": 0,
+      "types": {},
+      "badges": []
+    }
+  },
+  "recommendations": [
+    {
+      "category": "Customer Testimonials",
+      "priority": "High",
+      "issue": "Insufficient customer testimonials",
+      "solution": "Add at least 3-5 high-quality customer testimonials with photos, names, and specific benefits"
+    },
+    {
+      "category": "Security",
+      "priority": "Critical",
+      "issue": "Site not served over HTTPS",
+      "solution": "Implement SSL certificate and redirect all HTTP traffic to HTTPS"
+    },
+    {
+      "category": "Security Badges",
+      "priority": "Medium",
+      "issue": "No security badges displayed",
+      "solution": "Add SSL certificate badge, Norton/McAfee security badges, or other trust seals"
+    },
+    {
+      "category": "Customer Reviews",
+      "priority": "High",
+      "issue": "No customer review system on product pages",
+      "solution": "Implement customer review system with star ratings and written reviews for each product"
+    },
+    {
+      "category": "Social Media",
+      "priority": "Medium",
+      "issue": "No social media presence visible",
+      "solution": "Add social media links and consider Instagram feed integration"
+    },
+    {
+      "category": "Money Back Guarantee",
+      "priority": "High",
+      "issue": "No visible money back guarantee",
+      "solution": "Add prominent money back guarantee with specific timeframe (30-60 days)"
+    },
+    {
+      "category": "Trust Indicators",
+      "priority": "Medium",
+      "issue": "Missing basic trust indicators",
+      "solution": "Add complete contact information, business address, hours, and about us page"
+    },
+    {
+      "category": "Certifications",
+      "priority": "Low",
+      "issue": "No quality certifications displayed",
+      "solution": "Display relevant certifications (organic, FDA approved, quality standards, etc.)"
+    }
+  ]
+}
