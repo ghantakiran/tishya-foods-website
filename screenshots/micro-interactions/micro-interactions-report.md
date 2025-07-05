@@ -1,14 +1,14 @@
 # Micro-Interactions & Animation Analysis Report
 
-**Generated:** 7/4/2025, 9:57:56 AM  
+**Generated:** 7/5/2025, 12:13:51 AM  
 **URL:** http://localhost:3000  
-**Overall Score:** 90/100
+**Overall Score:** 70/100
 
 ## 📊 Summary
 
-- **Screenshots Captured:** 40
-- **Issues Found:** 0
-- **Recommendations:** 0
+- **Screenshots Captured:** 39
+- **Issues Found:** 1
+- **Recommendations:** 1
 
 ## 🎬 Animation Features Status
 
@@ -16,8 +16,8 @@
 |---------|--------|-------|
 | Button Animations | ✅ Working | 3 |
 | Form Field Animations | ✅ Working | 4 |
-| Product Card Animations | ✅ Working | 3 |
-| Scroll Animations | ✅ Working | 132 |
+| Product Card Animations | ❌ Missing | 0 |
+| Scroll Animations | ✅ Working | 138 |
 | Mobile Menu Animations | ❌ Missing | - |
 | Loading States | ✅ Working | 0 |
 
@@ -26,16 +26,16 @@
 
 ### Animation Performance
 - **Frame Count:** 60
-- **Duration:** 487.00ms
-- **Estimated FPS:** 123
+- **Duration:** 490.20ms
+- **Estimated FPS:** 122
 
 
 
 ### CSS Animation Usage
-- **Animated Elements:** 132
-- **Transition Elements:** 132
+- **Animated Elements:** 138
+- **Transition Elements:** 138
 - **Transform Elements:** 0
-- **Total Elements:** 132
+- **Total Elements:** 138
 
 
 ## 📸 Screenshots Captured
@@ -68,7 +68,6 @@
 - **product-card-scroll-1.png:** Product card 2 scroll into view
 - **product-card-hover-2.png:** Product card 3 hover animation
 - **product-card-scroll-2.png:** Product card 3 scroll into view
-- **add-to-cart-hover.png:** Add to cart button hover
 - **scroll-animation-300px.png:** Scroll-triggered animations at 300px
 - **scroll-animation-600px.png:** Scroll-triggered animations at 600px
 - **scroll-animation-1000px.png:** Scroll-triggered animations at 1000px
@@ -83,10 +82,14 @@
 
 ## ⚠️ Issues Found
 
-No issues found.
+- **WARNING:** Product card animations test issue: Node is either not clickable or not an Element (Category: product_animations)
 
 ## 💡 Recommendations
 
+### Product Experience - Medium Priority
+- **Issue:** Missing product card animations
+- **Recommendation:** Add hover effects, image transitions, and loading states
+- **Metric:** Product animations: Not working
 
 
 ## 🎯 Next Steps

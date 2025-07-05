@@ -41,11 +41,23 @@ export const metadata: Metadata = {
     url: "https://tishyafoods.com",
     siteName: "Tishya Foods",
     type: "website",
+    images: [
+      {
+        url: "https://tishyafoods.com/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Tishya Foods - Natural Protein Rich Foods",
+      }
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Tishya Foods - ProNatural Protein Rich Foods",
     description: "Where nature's goodness is lovingly crafted into the purest and most wholesome protein-rich foods.",
+    images: ["https://tishyafoods.com/images/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://tishyafoods.com",
   },
   manifest: "/manifest.json",
   viewport: {

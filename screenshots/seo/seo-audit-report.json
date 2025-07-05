@@ -1,0 +1,225 @@
+{
+  "url": "http://localhost:3000",
+  "timestamp": "2025-07-05T05:14:37.079Z",
+  "overallScore": 79,
+  "seoLevel": "Good",
+  "summary": {
+    "totalTests": 6,
+    "passedTests": 5,
+    "warningTests": 0,
+    "failedTests": 1
+  },
+  "categories": {
+    "metaTags": {
+      "score": 83,
+      "details": {
+        "title": "Tishya Foods - ProNatural Protein Rich Foods | Health At Home!",
+        "titleLength": 62,
+        "metaDescription": "Where nature's goodness is lovingly crafted into the purest and most wholesome protein-rich foods. Triple-washed, air-dried, hand-roasted, and finely milled with care.",
+        "descriptionLength": 167,
+        "metaKeywords": "protein foods, natural foods, organic, gluten-free, healthy snacks, nutrition",
+        "canonical": "https://tishyafoods.com/",
+        "robots": "",
+        "viewport": "width=device-width, initial-scale=1",
+        "ogTitle": "Tishya Foods - ProNatural Protein Rich Foods",
+        "ogDescription": "Where nature's goodness is lovingly crafted into the purest and most wholesome protein-rich foods.",
+        "ogImage": "https://tishyafoods.com/images/og-image.jpg",
+        "twitterCard": "summary_large_image"
+      },
+      "analysis": {
+        "title": "Excellent",
+        "description": "Good",
+        "socialMeta": "Excellent"
+      }
+    },
+    "headingStructure": {
+      "score": 85,
+      "details": {
+        "headings": [
+          {
+            "level": 1,
+            "text": "Oops! Something went wrong",
+            "id": "",
+            "index": 0
+          }
+        ],
+        "h1Count": 1,
+        "totalHeadings": 1
+      },
+      "analysis": {
+        "issues": [],
+        "recommendations": [
+          "Consider adding more heading tags for better content structure"
+        ]
+      }
+    },
+    "internalLinking": {
+      "score": 45,
+      "details": {
+        "totalLinks": 0,
+        "internalLinks": 0,
+        "externalLinks": 0,
+        "internalLinkDetails": [],
+        "externalLinkDetails": [],
+        "emptyLinks": 0
+      },
+      "analysis": {
+        "recommendations": [
+          "Add more internal links to improve site navigation and SEO"
+        ]
+      }
+    },
+    "imageSEO": {
+      "score": 100,
+      "details": {
+        "totalImages": 0,
+        "imagesWithAlt": 0,
+        "imagesWithTitle": 0,
+        "lazyImages": 0,
+        "imageDetails": []
+      },
+      "analysis": {
+        "issues": [],
+        "recommendations": []
+      }
+    },
+    "schemaMarkup": {
+      "score": 80,
+      "details": {
+        "totalSchemas": 2,
+        "schemas": [
+          {
+            "type": "Organization",
+            "context": "https://schema.org",
+            "content": {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Tishya Foods",
+              "alternateName": "ProNatural Protein Rich Foods",
+              "url": "https://tishyafoods.com",
+              "logo": "https://tishyafoods.com/logo.png",
+              "description": "Where nature's goodness is lovingly crafted into the purest and most wholesome protein-rich foods",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN",
+                "addressRegion": "India"
+              },
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+91-12345-67890",
+                "contactType": "customer service",
+                "email": "info@tishyafoods.com"
+              },
+              "sameAs": [
+                "https://instagram.com/tishyafoods",
+                "https://facebook.com/tishyafoods"
+              ]
+            }
+          },
+          {
+            "type": "WebSite",
+            "context": "https://schema.org",
+            "content": {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Tishya Foods",
+              "url": "https://tishyafoods.com",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://tishyafoods.com/products?search={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+              }
+            }
+          }
+        ],
+        "hasOrganization": true,
+        "hasWebSite": true,
+        "hasProduct": false
+      },
+      "analysis": {
+        "recommendations": [
+          "Consider adding Product schema markup for product pages"
+        ]
+      }
+    },
+    "technicalSEO": {
+      "score": 80,
+      "details": {
+        "hasRobotsTxt": true,
+        "hasXmlSitemap": true,
+        "hasSSL": false,
+        "hasServiceWorker": true,
+        "pageSpeed": {
+          "domContentLoaded": 185,
+          "loadComplete": 220
+        },
+        "mobileOptimized": true,
+        "hasCanonical": true,
+        "hasHreflang": false
+      },
+      "analysis": {
+        "issues": [
+          "Site not using HTTPS"
+        ],
+        "recommendations": [
+          "Implement SSL certificate for security and SEO benefits"
+        ]
+      }
+    }
+  },
+  "screenshots": [
+    {
+      "filename": "seo-audit-initial.png",
+      "description": "Initial page load for SEO audit",
+      "path": "screenshots/seo/seo-audit-initial.png",
+      "timestamp": "2025-07-05T05:14:39.506Z"
+    },
+    {
+      "filename": "meta-tags-analysis.png",
+      "description": "Meta tags and title optimization analysis",
+      "path": "screenshots/seo/meta-tags-analysis.png",
+      "timestamp": "2025-07-05T05:14:39.628Z"
+    },
+    {
+      "filename": "heading-structure.png",
+      "description": "Heading structure and hierarchy analysis",
+      "path": "screenshots/seo/heading-structure.png",
+      "timestamp": "2025-07-05T05:14:39.744Z"
+    },
+    {
+      "filename": "internal-linking.png",
+      "description": "Internal linking structure analysis",
+      "path": "screenshots/seo/internal-linking.png",
+      "timestamp": "2025-07-05T05:14:39.860Z"
+    },
+    {
+      "filename": "image-seo.png",
+      "description": "Image SEO and alt text analysis",
+      "path": "screenshots/seo/image-seo.png",
+      "timestamp": "2025-07-05T05:14:39.977Z"
+    },
+    {
+      "filename": "schema-markup.png",
+      "description": "Schema markup validation",
+      "path": "screenshots/seo/schema-markup.png",
+      "timestamp": "2025-07-05T05:14:40.093Z"
+    },
+    {
+      "filename": "technical-seo.png",
+      "description": "Technical SEO analysis",
+      "path": "screenshots/seo/technical-seo.png",
+      "timestamp": "2025-07-05T05:14:41.174Z"
+    },
+    {
+      "filename": "seo-audit-complete.png",
+      "description": "Final SEO audit overview",
+      "path": "screenshots/seo/seo-audit-complete.png",
+      "timestamp": "2025-07-05T05:14:41.315Z"
+    }
+  ],
+  "issues": [],
+  "recommendations": []
+}

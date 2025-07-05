@@ -1,6 +1,6 @@
 {
   "title": "Accessibility Testing & WCAG Compliance Analysis Report",
-  "timestamp": "2025-07-04T15:11:41.707Z",
+  "timestamp": "2025-07-05T05:15:54.986Z",
   "url": "http://localhost:3000",
   "summary": {
     "totalScreenshots": 28,
@@ -278,7 +278,7 @@
       "orientation": "portrait"
     },
     "animationAccessibility": {
-      "animatedElements": 264,
+      "animatedElements": 276,
       "autoplayingAnimations": 0,
       "reducedMotionSupport": true,
       "longAnimations": 0,
@@ -290,7 +290,7 @@
     },
     "textScalingZoom": {
       "overflowElements": 0,
-      "hiddenContent": 99,
+      "hiddenContent": 105,
       "brokenLayout": 0,
       "inaccessibleElements": 20
     },
@@ -334,169 +334,169 @@
       "filename": "keyboard-nav-initial.png",
       "description": "Initial state before keyboard navigation",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/keyboard-nav-initial.png",
-      "timestamp": "2025-07-04T15:11:17.610Z"
+      "timestamp": "2025-07-05T05:15:34.178Z"
     },
     {
       "filename": "keyboard-nav-tab-3.png",
       "description": "Keyboard navigation - Tab 3",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/keyboard-nav-tab-3.png",
-      "timestamp": "2025-07-04T15:11:18.318Z"
+      "timestamp": "2025-07-05T05:15:34.883Z"
     },
     {
       "filename": "keyboard-nav-shift-tab.png",
       "description": "Reverse keyboard navigation (Shift+Tab)",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/keyboard-nav-shift-tab.png",
-      "timestamp": "2025-07-04T15:11:18.606Z"
+      "timestamp": "2025-07-05T05:15:35.175Z"
     },
     {
       "filename": "keyboard-nav-enter-activation.png",
       "description": "Enter key activation",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/keyboard-nav-enter-activation.png",
-      "timestamp": "2025-07-04T15:11:19.195Z"
+      "timestamp": "2025-07-05T05:15:35.754Z"
     },
     {
       "filename": "keyboard-nav-escape.png",
       "description": "Escape key functionality",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/keyboard-nav-escape.png",
-      "timestamp": "2025-07-04T15:11:19.587Z"
+      "timestamp": "2025-07-05T05:15:36.153Z"
     },
     {
       "filename": "screen-reader-structure.png",
       "description": "Screen reader semantic structure analysis",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/screen-reader-structure.png",
-      "timestamp": "2025-07-04T15:11:21.224Z"
+      "timestamp": "2025-07-05T05:15:37.496Z"
     },
     {
       "filename": "form-accessibility-focus.png",
       "description": "Form field focus state",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/form-accessibility-focus.png",
-      "timestamp": "2025-07-04T15:11:22.349Z"
+      "timestamp": "2025-07-05T05:15:38.421Z"
     },
     {
       "filename": "form-accessibility-filled.png",
       "description": "Form fields filled",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/form-accessibility-filled.png",
-      "timestamp": "2025-07-04T15:11:22.718Z"
+      "timestamp": "2025-07-05T05:15:38.696Z"
     },
     {
       "filename": "form-accessibility-submit-focus.png",
       "description": "Submit button focus",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/form-accessibility-submit-focus.png",
-      "timestamp": "2025-07-04T15:11:22.825Z"
+      "timestamp": "2025-07-05T05:15:38.788Z"
     },
     {
       "filename": "image-accessibility-loaded.png",
       "description": "Images loaded with accessibility analysis",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/image-accessibility-loaded.png",
-      "timestamp": "2025-07-04T15:11:26.775Z"
+      "timestamp": "2025-07-05T05:15:42.211Z"
     },
     {
       "filename": "image-accessibility-reduced-motion.png",
       "description": "Images with reduced motion preference",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/image-accessibility-reduced-motion.png",
-      "timestamp": "2025-07-04T15:11:26.849Z"
+      "timestamp": "2025-07-05T05:15:42.286Z"
     },
     {
       "filename": "focus-management-first-tab.png",
       "description": "First Tab focus",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/focus-management-first-tab.png",
-      "timestamp": "2025-07-04T15:11:28.499Z"
+      "timestamp": "2025-07-05T05:15:43.586Z"
     },
     {
       "filename": "focus-management-third-tab.png",
       "description": "Third Tab focus",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/focus-management-third-tab.png",
-      "timestamp": "2025-07-04T15:11:28.599Z"
+      "timestamp": "2025-07-05T05:15:43.661Z"
     },
     {
       "filename": "focus-management-restoration.png",
       "description": "Focus restoration test",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/focus-management-restoration.png",
-      "timestamp": "2025-07-04T15:11:28.787Z"
+      "timestamp": "2025-07-05T05:15:43.782Z"
     },
     {
       "filename": "aria-labels-roles.png",
       "description": "ARIA labels and roles analysis",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/aria-labels-roles.png",
-      "timestamp": "2025-07-04T15:11:30.892Z"
+      "timestamp": "2025-07-05T05:15:45.133Z"
     },
     {
       "filename": "aria-live-regions.png",
       "description": "ARIA live regions test",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/aria-live-regions.png",
-      "timestamp": "2025-07-04T15:11:30.965Z"
+      "timestamp": "2025-07-05T05:15:45.201Z"
     },
     {
       "filename": "mobile-accessibility-touch-targets.png",
       "description": "Mobile touch targets analysis",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/mobile-accessibility-touch-targets.png",
-      "timestamp": "2025-07-04T15:11:32.572Z"
+      "timestamp": "2025-07-05T05:15:46.382Z"
     },
     {
       "filename": "mobile-accessibility-text-scaled.png",
       "description": "Mobile accessibility with scaled text",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/mobile-accessibility-text-scaled.png",
-      "timestamp": "2025-07-04T15:11:32.624Z"
+      "timestamp": "2025-07-05T05:15:46.431Z"
     },
     {
       "filename": "mobile-accessibility-landscape.png",
       "description": "Mobile accessibility landscape orientation",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/mobile-accessibility-landscape.png",
-      "timestamp": "2025-07-04T15:11:34.369Z"
+      "timestamp": "2025-07-05T05:15:48.023Z"
     },
     {
       "filename": "animation-accessibility-default.png",
       "description": "Default animation state",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/animation-accessibility-default.png",
-      "timestamp": "2025-07-04T15:11:35.966Z"
+      "timestamp": "2025-07-05T05:15:49.313Z"
     },
     {
       "filename": "animation-accessibility-reduced-motion.png",
       "description": "Reduced motion preference",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/animation-accessibility-reduced-motion.png",
-      "timestamp": "2025-07-04T15:11:37.375Z"
+      "timestamp": "2025-07-05T05:15:50.460Z"
     },
     {
       "filename": "text-scaling-100.png",
       "description": "Text scaling - 100% (default)",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/text-scaling-100.png",
-      "timestamp": "2025-07-04T15:11:38.607Z"
+      "timestamp": "2025-07-05T05:15:51.827Z"
     },
     {
       "filename": "text-scaling-150.png",
       "description": "Text scaling - 150%",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/text-scaling-150.png",
-      "timestamp": "2025-07-04T15:11:38.695Z"
+      "timestamp": "2025-07-05T05:15:51.905Z"
     },
     {
       "filename": "text-scaling-200.png",
       "description": "Text scaling - 200%",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/text-scaling-200.png",
-      "timestamp": "2025-07-04T15:11:38.779Z"
+      "timestamp": "2025-07-05T05:15:51.982Z"
     },
     {
       "filename": "text-scaling-browser-zoom.png",
       "description": "Browser zoom simulation",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/text-scaling-browser-zoom.png",
-      "timestamp": "2025-07-04T15:11:38.850Z"
+      "timestamp": "2025-07-05T05:15:52.040Z"
     },
     {
       "filename": "page-structure-overview.png",
       "description": "Page structure and landmarks",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/page-structure-overview.png",
-      "timestamp": "2025-07-04T15:11:40.024Z"
+      "timestamp": "2025-07-05T05:15:53.327Z"
     },
     {
       "filename": "page-structure-headings.png",
       "description": "Heading structure navigation",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/page-structure-headings.png",
-      "timestamp": "2025-07-04T15:11:40.432Z"
+      "timestamp": "2025-07-05T05:15:53.710Z"
     },
     {
       "filename": "link-accessibility-external.png",
       "description": "External link indicators",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/accessibility/link-accessibility-external.png",
-      "timestamp": "2025-07-04T15:11:41.706Z"
+      "timestamp": "2025-07-05T05:15:54.986Z"
     }
   ],
   "issues": [

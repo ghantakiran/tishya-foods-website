@@ -1,43 +1,42 @@
 {
   "title": "Product Discovery Flow Analysis Report",
-  "timestamp": "2025-07-04T08:53:37.208Z",
+  "timestamp": "2025-07-05T05:09:39.359Z",
   "url": "http://localhost:3000/products",
   "summary": {
-    "totalScreenshots": 17,
-    "totalIssues": 0,
-    "totalRecommendations": 4,
+    "totalScreenshots": 15,
+    "totalIssues": 1,
+    "totalRecommendations": 5,
     "flowStepsCompleted": 1,
-    "overallScore": 55
+    "overallScore": 45
   },
   "metrics": {
     "hasSearchInput": true,
     "filterElementsCount": 2,
-    "initialProductCount": 29,
-    "searchResultsCount": 17,
+    "initialProductCount": 30,
+    "searchResultsCount": 18,
     "hasNoResultsMessage": true,
-    "searchResponseTime": 3445,
+    "searchResponseTime": 3486,
     "categoryFilterWorks": true,
     "productCardHasPrice": false,
     "productCardHasName": false,
-    "hasViewModeToggle": true,
     "performance": {
       "domContentLoaded": 0,
       "loadComplete": 0,
-      "firstPaint": 83.39999985694885,
-      "totalLoadTime": 137.5
+      "firstPaint": 98.29999999701977,
+      "totalLoadTime": 159.60000000149012
     },
-    "finalProductCount": 29,
+    "finalProductCount": 30,
     "discoveryFeatures": {
       "hasSearch": true,
       "hasFilters": true,
       "hasSort": true,
-      "productCount": 29
+      "productCount": 30
     }
   },
   "flowSteps": [
     {
       "step": "homepage_to_products",
-      "duration": 2804,
+      "duration": 5650,
       "success": true,
       "url": "http://localhost:3000/products"
     }
@@ -47,113 +46,107 @@
       "filename": "homepage-start.png",
       "description": "Starting from homepage",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/homepage-start.png",
-      "timestamp": "2025-07-04T08:53:19.566Z"
+      "timestamp": "2025-07-05T05:09:23.715Z"
     },
     {
       "filename": "products-page-loaded.png",
       "description": "Products page loaded",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/products-page-loaded.png",
-      "timestamp": "2025-07-04T08:53:20.727Z"
+      "timestamp": "2025-07-05T05:09:24.907Z"
     },
     {
       "filename": "search-input-found.png",
       "description": "Search input located",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/search-input-found.png",
-      "timestamp": "2025-07-04T08:53:20.811Z"
+      "timestamp": "2025-07-05T05:09:24.998Z"
     },
     {
       "filename": "products-grid-view.png",
       "description": "Products grid view",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/products-grid-view.png",
-      "timestamp": "2025-07-04T08:53:20.895Z"
+      "timestamp": "2025-07-05T05:09:25.099Z"
     },
     {
       "filename": "search-typing.png",
       "description": "Typing in search box",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/search-typing.png",
-      "timestamp": "2025-07-04T08:53:21.057Z"
+      "timestamp": "2025-07-05T05:09:25.292Z"
     },
     {
       "filename": "search-results.png",
       "description": "Search results for \"protein\"",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/search-results.png",
-      "timestamp": "2025-07-04T08:53:22.150Z"
+      "timestamp": "2025-07-05T05:09:26.389Z"
     },
     {
       "filename": "search-no-results.png",
       "description": "No results message",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/search-no-results.png",
-      "timestamp": "2025-07-04T08:53:23.318Z"
+      "timestamp": "2025-07-05T05:09:27.567Z"
     },
     {
       "filename": "category-filtered.png",
       "description": "Category filter applied",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/category-filtered.png",
-      "timestamp": "2025-07-04T08:53:25.454Z"
+      "timestamp": "2025-07-05T05:09:29.686Z"
     },
     {
       "filename": "gluten-free-filter.png",
       "description": "Gluten Free filter applied",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/gluten-free-filter.png",
-      "timestamp": "2025-07-04T08:53:27.556Z"
+      "timestamp": "2025-07-05T05:09:31.810Z"
     },
     {
       "filename": "price-sort-low.png",
       "description": "Sorted by price low to high",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/price-sort-low.png",
-      "timestamp": "2025-07-04T08:53:29.679Z"
+      "timestamp": "2025-07-05T05:09:33.934Z"
     },
     {
       "filename": "price-sort-high.png",
       "description": "Sorted by price high to low",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/price-sort-high.png",
-      "timestamp": "2025-07-04T08:53:30.771Z"
+      "timestamp": "2025-07-05T05:09:35.025Z"
     },
     {
       "filename": "product-card-hover.png",
       "description": "Product card hover effect",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/product-card-hover.png",
-      "timestamp": "2025-07-04T08:53:31.382Z"
-    },
-    {
-      "filename": "list-view-mode.png",
-      "description": "List view mode",
-      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/list-view-mode.png",
-      "timestamp": "2025-07-04T08:53:32.498Z"
-    },
-    {
-      "filename": "grid-view-mode.png",
-      "description": "Grid view mode",
-      "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/grid-view-mode.png",
-      "timestamp": "2025-07-04T08:53:33.603Z"
+      "timestamp": "2025-07-05T05:09:35.631Z"
     },
     {
       "filename": "mobile-products-page.png",
       "description": "Products page on mobile",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/mobile-products-page.png",
-      "timestamp": "2025-07-04T08:53:34.794Z"
+      "timestamp": "2025-07-05T05:09:36.890Z"
     },
     {
       "filename": "mobile-search-focus.png",
       "description": "Mobile search input focused",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/mobile-search-focus.png",
-      "timestamp": "2025-07-04T08:53:34.847Z"
+      "timestamp": "2025-07-05T05:09:36.943Z"
     },
     {
       "filename": "tablet-products-page.png",
       "description": "Products page on tablet",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/tablet-products-page.png",
-      "timestamp": "2025-07-04T08:53:36.064Z"
+      "timestamp": "2025-07-05T05:09:38.177Z"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "type": "warning",
+      "step": "view_modes",
+      "message": "View modes issue: Node is either not clickable or not an Element"
+    }
+  ],
   "recommendations": [
     {
       "category": "Performance",
       "priority": "Medium",
       "issue": "Slow search response",
       "recommendation": "Optimize search performance with debouncing and efficient filtering",
-      "metric": "Search response: 3445ms"
+      "metric": "Search response: 3486ms"
     },
     {
       "category": "Filtering",
@@ -175,6 +168,13 @@
       "issue": "No add to cart feedback",
       "recommendation": "Add visual feedback when items are added to cart",
       "metric": "Cart feedback: Missing"
+    },
+    {
+      "category": "Display Options",
+      "priority": "Low",
+      "issue": "Missing view mode options",
+      "recommendation": "Add grid/list view toggle for better user preference support",
+      "metric": "View modes: Not available"
     }
   ],
   "nextSteps": [

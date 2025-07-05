@@ -1,0 +1,31 @@
+# Robots.txt for Tishya Foods Website
+# https://tishyafoods.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Important pages
+Allow: /products
+Allow: /about
+Allow: /contact
+Allow: /recipes
+Allow: /blog
+Allow: /nutrition
+
+# Disallow admin and internal pages
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /checkout/success
+Disallow: /checkout/cancel
+
+# Allow search engines to access CSS and JS
+Allow: /css/
+Allow: /js/
+Allow: /_next/static/
+
+# Sitemap location
+Sitemap: https://tishyafoods.com/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1

@@ -1,6 +1,6 @@
 # Performance Testing & Core Web Vitals Analysis Report
 
-**Generated:** 7/4/2025, 10:05:57 AM  
+**Generated:** 7/5/2025, 12:15:25 AM  
 **URL:** http://localhost:3000  
 **Overall Score:** 91/100
 
@@ -14,23 +14,23 @@
 
 | Metric | Value | Rating | Status |
 |--------|-------|--------|--------|
-| **LCP** (Largest Contentful Paint) | 644.00ms | good | ✅ Good |
-| **FID** (First Input Delay) | N/Ams | N/A | ❌ Poor |
+| **LCP** (Largest Contentful Paint) | 388.00ms | good | ✅ Good |
+| **FID** (First Input Delay) | 30.80ms | good | ✅ Good |
 | **CLS** (Cumulative Layout Shift) | N/A | N/A | ❌ Poor |
 
 ### Additional Metrics
 - **DOM Content Loaded:** N/Ams
 - **Load Complete:** N/Ams
-- **First Paint:** 404.00ms
-- **First Contentful Paint:** 404.00ms
+- **First Paint:** 232.00ms
+- **First Contentful Paint:** 232.00ms
 
 ## ⚡ Performance Metrics
 
 ### Page Load Performance
-- **homepage**: 1555ms (50 resources, 0.00KB)
-- **products**: 1381ms (43 resources, 0.00KB)
-- **about**: 1089ms (34 resources, 0.00KB)
-- **contact**: 1082ms (34 resources, 0.00KB)
+- **homepage**: 1412ms (50 resources, 0.00KB)
+- **products**: 1081ms (42 resources, 0.00KB)
+- **about**: 907ms (33 resources, 0.00KB)
+- **contact**: 942ms (33 resources, 0.00KB)
 
 ### Resource Analysis
 - **Total Resources:** 50
@@ -47,7 +47,7 @@
 - **Total Scripts:** 24
 - **Total Size:** N/A
 - **Large Scripts:** 0
-- **Average Task Time:** 0.04ms
+- **Average Task Time:** 0.13ms
 
 ### Mobile Performance
 - **Load Time (Slow 3G):** N/Ams
@@ -59,7 +59,7 @@
 - **Size Savings:** N/A
 
 ### Memory Usage
-- **Initial Memory:** 76.90MB
+- **Initial Memory:** 53.55MB
 - **Final Memory:** N/A
 - **Potential Leak:** ✅ No
 
