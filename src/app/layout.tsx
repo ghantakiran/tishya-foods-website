@@ -16,6 +16,7 @@ import { SubscriptionProvider } from "@/contexts/subscription-context";
 import { LoyaltyProvider } from "@/contexts/loyalty-context";
 import { AnalyticsProvider } from "@/components/analytics/analytics-provider";
 import { PageViewTracker } from "@/components/analytics/page-view-tracker";
+import { PWAInit } from "@/components/pwa/pwa-init";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -95,52 +96,54 @@ export default function RootLayout({
         />
       </head>
       <body className={`${montserrat.variable} ${inter.variable} font-sans antialiased bg-gray-900 text-gray-100`}>
-        <ErrorBoundary>
-          <LoadingProvider>
-            <AuthProvider>
-              <CartProvider>
-                <PaymentProvider>
-                  <SubscriptionProvider>
-                    <LoyaltyProvider>
-                      <AnalyticsProvider
-                        config={{
-                          googleAnalytics: {
-                            measurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '',
-                            config: {
-                              anonymize_ip: true,
-                              allow_google_signals: false,
-                              allow_ad_personalization_signals: false
-                            }
-                          },
-                          customAnalytics: {
-                            apiEndpoint: '/api/analytics/events',
-                            config: {
-                              batchSize: 10,
-                              batchTimeout: 5000
-                            }
-                          },
-                          enableConsoleLogging: process.env.NODE_ENV === 'development'
-                        }}
-                      >
-                        <PageViewTracker />
-                        <div className="flex flex-col min-h-screen">
-                          <Header />
-                          <main className="flex-1">
-                            {children}
-                          </main>
-                          <Footer />
-                        </div>
-                        <NutritionAssistant />
-                        <ToastProvider />
-                        <PerformanceInit />
-                      </AnalyticsProvider>
-                    </LoyaltyProvider>
-                  </SubscriptionProvider>
-                </PaymentProvider>
-              </CartProvider>
-            </AuthProvider>
-          </LoadingProvider>
-        </ErrorBoundary>
+        <PWAInit>
+          <ErrorBoundary>
+            <LoadingProvider>
+              <AuthProvider>
+                <CartProvider>
+                  <PaymentProvider>
+                    <SubscriptionProvider>
+                      <LoyaltyProvider>
+                        <AnalyticsProvider
+                          config={{
+                            googleAnalytics: {
+                              measurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '',
+                              config: {
+                                anonymize_ip: true,
+                                allow_google_signals: false,
+                                allow_ad_personalization_signals: false
+                              }
+                            },
+                            customAnalytics: {
+                              apiEndpoint: '/api/analytics/events',
+                              config: {
+                                batchSize: 10,
+                                batchTimeout: 5000
+                              }
+                            },
+                            enableConsoleLogging: process.env.NODE_ENV === 'development'
+                          }}
+                        >
+                          <PageViewTracker />
+                          <div className="flex flex-col min-h-screen">
+                            <Header />
+                            <main className="flex-1">
+                              {children}
+                            </main>
+                            <Footer />
+                          </div>
+                          <NutritionAssistant />
+                          <ToastProvider />
+                          <PerformanceInit />
+                        </AnalyticsProvider>
+                      </LoyaltyProvider>
+                    </SubscriptionProvider>
+                  </PaymentProvider>
+                </CartProvider>
+              </AuthProvider>
+            </LoadingProvider>
+          </ErrorBoundary>
+        </PWAInit>
       </body>
     </html>
   );

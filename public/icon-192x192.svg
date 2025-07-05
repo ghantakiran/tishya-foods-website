@@ -1,0 +1,30 @@
+
+<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="96" cy="96" r="86" fill="url(#grad1)" stroke="#ffffff" stroke-width="4"/>
+  
+  <!-- Tishya Foods logo elements -->
+  <g transform="translate(96, 96)">
+    <!-- Leaf symbol -->
+    <path d="M-30,-20 Q-40,-30 -20,-40 Q0,-30 10,-20 Q0,-10 -20,-10 Q-30,-15 -30,-20 Z" 
+          fill="#ffffff" opacity="0.9"/>
+    
+    <!-- Grain/protein symbol -->
+    <circle cx="15" cy="5" r="8" fill="#ffffff" opacity="0.8"/>
+    <circle cx="25" cy="-5" r="6" fill="#ffffff" opacity="0.7"/>
+    <circle cx="5" cy="15" r="7" fill="#ffffff" opacity="0.7"/>
+    
+    <!-- Text representation -->
+    <text x="0" y="35" text-anchor="middle" fill="#ffffff" 
+          font-family="Arial, sans-serif" font-size="16" font-weight="bold">
+      TISHYA
+    </text>
+  </g>
+</svg>
