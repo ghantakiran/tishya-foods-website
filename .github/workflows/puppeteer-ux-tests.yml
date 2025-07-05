@@ -1,0 +1,259 @@
+name: 🤖 Automated Puppeteer UX Testing Suite
+
+on:
+  # Run on push to main branch
+  push:
+    branches: [main]
+  
+  # Run on pull requests
+  pull_request:
+    branches: [main]
+  
+  # Run on schedule (daily at 2 AM UTC)
+  schedule:
+    - cron: '0 2 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  puppeteer-tests:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        test-suite: [
+          'homepage-ux-analysis',
+          'accessibility-wcag-compliance',
+          'performance-core-web-vitals',
+          'mobile-navigation-testing',
+          'product-discovery-flow',
+          'micro-interactions-testing',
+          'sticky-header-testing',
+          'seo-optimization-audit'
+        ]
+    
+    steps:
+      - name: 🏁 Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: 📦 Install dependencies
+        run: |
+          npm ci
+          npx playwright install chromium
+      
+      - name: 🏗️ Build Next.js application
+        run: |
+          npm run build
+        env:
+          NODE_ENV: production
+      
+      - name: 🚀 Start application server
+        run: |
+          npm start &
+          sleep 10
+          # Wait for server to be ready
+          npx wait-on http://localhost:3000 --timeout 30000
+        env:
+          NODE_ENV: production
+      
+      - name: 🎭 Run Puppeteer test suite
+        run: |
+          node tests/puppeteer/${{ matrix.test-suite }}.js
+        env:
+          NODE_ENV: test
+          HEADLESS: true
+      
+      - name: 📊 Upload test screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-${{ matrix.test-suite }}
+          path: screenshots/
+          retention-days: 30
+      
+      - name: 📄 Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports-${{ matrix.test-suite }}
+          path: |
+            screenshots/**/*.json
+            screenshots/**/*.md
+          retention-days: 30
+      
+      - name: 🔍 Check for critical issues
+        run: |
+          # Check if any critical issues were found in the reports
+          if find screenshots -name "*.json" -exec grep -l "critical\|error\|failed" {} \; | head -1; then
+            echo "::error::Critical issues found in test reports"
+            exit 1
+          fi
+
+  consolidate-reports:
+    needs: puppeteer-tests
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+      - name: 🏁 Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: 📥 Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: test-results
+      
+      - name: 📋 Generate consolidated report
+        run: |
+          # Create consolidated report directory
+          mkdir -p consolidated-reports
+          
+          # Generate HTML report index
+          cat > consolidated-reports/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Tishya Foods - Automated UX Test Results</title>
+            <style>
+              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 40px; }
+              .header { background: #111827; color: white; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+              .test-suite { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+              .test-suite h2 { color: #374151; margin-top: 0; }
+              .status-pass { color: #059669; font-weight: bold; }
+              .status-fail { color: #dc2626; font-weight: bold; }
+              .timestamp { color: #6b7280; font-size: 0.875rem; }
+              .artifact-link { display: inline-block; margin: 5px 10px 5px 0; padding: 8px 12px; background: #3b82f6; color: white; text-decoration: none; border-radius: 4px; }
+              .artifact-link:hover { background: #2563eb; }
+            </style>
+          </head>
+          <body>
+            <div class="header">
+              <h1>🤖 Automated UX Test Results</h1>
+              <p>Generated on: $(date)</p>
+              <p>Repository: ${{ github.repository }}</p>
+              <p>Commit: ${{ github.sha }}</p>
+            </div>
+          EOF
+          
+          # Add test suite results
+          for suite in homepage-ux-analysis accessibility-wcag-compliance performance-core-web-vitals mobile-navigation-testing product-discovery-flow micro-interactions-testing sticky-header-testing seo-optimization-audit; do
+            echo "<div class='test-suite'>" >> consolidated-reports/index.html
+            echo "<h2>📊 ${suite}</h2>" >> consolidated-reports/index.html
+            echo "<p class='timestamp'>Test executed: $(date)</p>" >> consolidated-reports/index.html
+            
+            # Check if reports exist
+            if [ -d "test-results/reports-${suite}" ]; then
+              echo "<div class='status-pass'>✅ Test completed successfully</div>" >> consolidated-reports/index.html
+              echo "<a href='../test-results/reports-${suite}' class='artifact-link'>📄 View Reports</a>" >> consolidated-reports/index.html
+            else
+              echo "<div class='status-fail'>❌ Test failed or incomplete</div>" >> consolidated-reports/index.html
+            fi
+            
+            if [ -d "test-results/screenshots-${suite}" ]; then
+              echo "<a href='../test-results/screenshots-${suite}' class='artifact-link'>📸 View Screenshots</a>" >> consolidated-reports/index.html
+            fi
+            
+            echo "</div>" >> consolidated-reports/index.html
+          done
+          
+          echo "</body></html>" >> consolidated-reports/index.html
+          
+          # Generate summary statistics
+          echo "## 🤖 Automated UX Test Summary" > consolidated-reports/SUMMARY.md
+          echo "" >> consolidated-reports/SUMMARY.md
+          echo "**Generated:** $(date)" >> consolidated-reports/SUMMARY.md
+          echo "**Repository:** ${{ github.repository }}" >> consolidated-reports/SUMMARY.md
+          echo "**Commit:** ${{ github.sha }}" >> consolidated-reports/SUMMARY.md
+          echo "" >> consolidated-reports/SUMMARY.md
+          echo "### Test Suites Executed:" >> consolidated-reports/SUMMARY.md
+          echo "" >> consolidated-reports/SUMMARY.md
+          
+          for suite in homepage-ux-analysis accessibility-wcag-compliance performance-core-web-vitals mobile-navigation-testing product-discovery-flow micro-interactions-testing sticky-header-testing seo-optimization-audit; do
+            if [ -d "test-results/reports-${suite}" ]; then
+              echo "- ✅ ${suite}" >> consolidated-reports/SUMMARY.md
+            else
+              echo "- ❌ ${suite}" >> consolidated-reports/SUMMARY.md
+            fi
+          done
+          
+          echo "" >> consolidated-reports/SUMMARY.md
+          echo "### Key Metrics:" >> consolidated-reports/SUMMARY.md
+          echo "- **Total Test Suites:** 8" >> consolidated-reports/SUMMARY.md
+          echo "- **Browser:** Chromium (Headless)" >> consolidated-reports/SUMMARY.md
+          echo "- **Test Environment:** Production Build" >> consolidated-reports/SUMMARY.md
+          echo "- **Artifacts Retention:** 30 days" >> consolidated-reports/SUMMARY.md
+      
+      - name: 📤 Upload consolidated report
+        uses: actions/upload-artifact@v4
+        with:
+          name: consolidated-ux-report
+          path: consolidated-reports/
+          retention-days: 30
+      
+      - name: 💬 Comment on PR (if applicable)
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            // Read the summary file
+            const summaryPath = 'consolidated-reports/SUMMARY.md';
+            let summary = '';
+            
+            try {
+              summary = fs.readFileSync(summaryPath, 'utf8');
+            } catch (error) {
+              summary = '## 🤖 Automated UX Test Summary\n\nError reading summary file.';
+            }
+            
+            // Create comment body
+            const commentBody = `${summary}
+            
+            ---
+            
+            📊 **Full Reports Available:** Check the [Actions tab](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for detailed screenshots and reports.
+            
+            🔍 **Review Required:** Please review the test results before merging this PR.`;
+            
+            // Post comment
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: commentBody
+            });
+
+  # Notification job for scheduled runs
+  notify-results:
+    needs: [puppeteer-tests, consolidate-reports]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' && always()
+    
+    steps:
+      - name: 🏁 Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: 📧 Send notification (customize as needed)
+        run: |
+          echo "📊 Daily UX test run completed"
+          echo "Repository: ${{ github.repository }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Status: ${{ needs.puppeteer-tests.result }}"
+          echo "Time: $(date)"
+          echo ""
+          echo "Check the Actions tab for detailed results and artifacts."
+          
+          # Add your notification logic here (email, Slack, etc.)
+          # Example: curl -X POST -H 'Content-type: application/json' \
+          #   --data '{"text":"UX Tests completed with status: ${{ needs.puppeteer-tests.result }}"}' \
+          #   ${{ secrets.SLACK_WEBHOOK_URL }}
