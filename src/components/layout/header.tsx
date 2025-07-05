@@ -46,8 +46,8 @@ export default function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out',
         isScrolled
-          ? 'bg-white/80 backdrop-blur-xl shadow-sm border-b border-gray-100/20 supports-[backdrop-filter]:bg-white/60'
-          : 'bg-white/40 backdrop-blur-md supports-[backdrop-filter]:bg-white/20'
+          ? 'bg-gray-900/90 backdrop-blur-xl shadow-sm border-b border-gray-700/30 supports-[backdrop-filter]:bg-gray-900/80'
+          : 'bg-gray-900/60 backdrop-blur-md supports-[backdrop-filter]:bg-gray-900/40'
       )}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -74,10 +74,10 @@ export default function Header() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-primary-800 font-bold text-lg lg:text-xl font-montserrat">
+              <span className="text-gray-100 font-bold text-lg lg:text-xl font-montserrat">
                 Tishya Foods
               </span>
-              <span className="text-secondary-600 text-xs lg:text-sm -mt-1 font-medium">
+              <span className="text-gray-300 text-xs lg:text-sm -mt-1 font-medium">
                 Health At Home!
               </span>
             </div>
@@ -90,7 +90,7 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 data-testid={`nav-${item.name.toLowerCase()}`}
-                className="text-gray-800 hover:text-blue-600 font-medium transition-all duration-300 ease-out relative group px-3 py-2 rounded-lg hover:bg-gray-100/50"
+                className="text-gray-100 hover:text-blue-400 font-medium transition-all duration-300 ease-out relative group px-3 py-2 rounded-lg hover:bg-gray-800/50"
               >
                 {item.name}
                 <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-blue-600 scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 origin-center" />
@@ -103,14 +103,14 @@ export default function Header() {
             <Button 
               variant="ghost" 
               size="icon" 
-              className="text-gray-700 hover:text-blue-600 hover:bg-gray-100/80 transition-all duration-200 ease-out rounded-full"
+              className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full"
               data-testid="search-button"
             >
               <Search className="h-5 w-5" />
             </Button>
             {isAuthenticated ? (
               <div className="relative">
-                <Button variant="ghost" size="icon" className="relative text-gray-700 hover:text-blue-600 hover:bg-gray-100/80 transition-all duration-200 ease-out rounded-full">
+                <Button variant="ghost" size="icon" className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full">
                   <User className="h-5 w-5" />
                   <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full"></span>
                 </Button>
@@ -133,14 +133,14 @@ export default function Header() {
                 </div>
               </div>
             ) : (
-              <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)} className="text-gray-700 hover:text-blue-600 hover:bg-gray-100/80 transition-all duration-200 ease-out rounded-full">
+              <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)} className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full">
                 <User className="h-5 w-5" />
               </Button>
             )}
             <Button 
               variant="ghost" 
               size="icon" 
-              className="relative text-gray-700 hover:text-blue-600 hover:bg-gray-100/80 transition-all duration-200 ease-out rounded-full"
+              className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full"
               onClick={() => setIsCartOpen(true)}
               data-testid="cart-button"
             >
@@ -161,7 +161,7 @@ export default function Header() {
             data-testid="mobile-menu-toggle"
             variant="ghost"
             size="icon"
-            className="lg:hidden text-gray-700 hover:text-blue-600 hover:bg-gray-100/80 transition-all duration-200 ease-out rounded-lg"
+            className="lg:hidden text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-lg"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
@@ -178,7 +178,7 @@ export default function Header() {
         {isMobileMenuOpen && (
           <motion.div
             data-testid="mobile-menu"
-            className="lg:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100/30 shadow-lg supports-[backdrop-filter]:bg-white/80"
+            className="lg:hidden bg-gray-900/95 backdrop-blur-xl border-t border-gray-700/30 shadow-lg supports-[backdrop-filter]:bg-gray-900/90"
             initial={{ opacity: 0, height: 0, y: -20 }}
             animate={{ opacity: 1, height: 'auto', y: 0 }}
             exit={{ opacity: 0, height: 0, y: -20 }}
@@ -198,32 +198,32 @@ export default function Header() {
                     key={item.name}
                     href={item.href}
                     data-testid={`mobile-nav-${item.name.toLowerCase()}`}
-                    className="text-gray-800 hover:text-blue-600 font-medium py-3 px-4 rounded-lg hover:bg-gray-100/60 transition-all duration-200 ease-out"
+                    className="text-gray-100 hover:text-blue-400 font-medium py-3 px-4 rounded-lg hover:bg-gray-800/60 transition-all duration-200 ease-out"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
                 ))}
               </nav>
-              <div className="flex items-center justify-between mt-6 pt-6 border-t border-primary-200">
+              <div className="flex items-center justify-between mt-6 pt-6 border-t border-gray-700">
                 <div className="flex items-center space-x-4">
-                  <Button variant="ghost" size="icon" className="text-primary-700 hover:text-accent-600 hover:bg-primary-100">
+                  <Button variant="ghost" size="icon" className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60">
                     <Search className="h-5 w-5" />
                   </Button>
                   {isAuthenticated ? (
-                    <Button variant="ghost" size="icon" className="relative text-primary-700 hover:text-accent-600 hover:bg-primary-100">
+                    <Button variant="ghost" size="icon" className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60">
                       <User className="h-5 w-5" />
                       <span className="absolute -top-1 -right-1 bg-fresh-500 w-3 h-3 rounded-full"></span>
                     </Button>
                   ) : (
-                    <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)} className="text-primary-700 hover:text-accent-600 hover:bg-primary-100">
+                    <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)} className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60">
                       <User className="h-5 w-5" />
                     </Button>
                   )}
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="relative text-primary-700 hover:text-accent-600 hover:bg-primary-100"
+                    className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60"
                     onClick={() => setIsCartOpen(true)}
                   >
                     <ShoppingCart className="h-5 w-5" />
@@ -234,7 +234,7 @@ export default function Header() {
                     )}
                   </Button>
                 </div>
-                <Button className="bg-primary-600 hover:bg-primary-700 text-white border-0 shadow-md hover:shadow-lg transition-all duration-200">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white border-0 shadow-md hover:shadow-lg transition-all duration-200">
                   Shop Now
                 </Button>
               </div>

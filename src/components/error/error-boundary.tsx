@@ -94,17 +94,17 @@ ${this.state.errorInfo?.componentStack || 'No additional details'}
 
       // Default error UI
       return (
-        <div className="min-h-screen flex items-center justify-center bg-earth-900 px-4">
-          <div className="max-w-md w-full bg-earth-800 rounded-lg shadow-lg p-6 text-center">
+        <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
+          <div className="max-w-md w-full bg-gray-800 rounded-lg shadow-lg p-6 text-center">
             <div className="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
               <AlertTriangle className="w-8 h-8 text-red-600" />
             </div>
             
-            <h1 className="text-xl font-semibold text-cream-100 mb-2">
+            <h1 className="text-xl font-semibold text-gray-100 mb-2">
               Oops! Something went wrong
             </h1>
             
-            <p className="text-earth-600 mb-6">
+            <p className="text-gray-400 mb-6">
               We&apos;re sorry for the inconvenience. The page you were trying to view has encountered an error.
             </p>
 
@@ -153,7 +153,7 @@ ${this.state.errorInfo?.componentStack || 'No additional details'}
               </div>
             </div>
 
-            <div className="mt-6 text-xs text-earth-500">
+            <div className="mt-6 text-xs text-gray-500">
               Error ID: {Date.now().toString(36)}
             </div>
           </div>
