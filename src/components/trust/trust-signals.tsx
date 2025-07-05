@@ -1,12 +1,13 @@
 'use client'
 
-import { Shield, Award, Users, CheckCircle, Truck, RotateCcw } from 'lucide-react'
+import { Shield, Award, Users, CheckCircle, Truck, RotateCcw, Lock, CreditCard, Star, Verified, Clock, Heart } from 'lucide-react'
 
 export function TrustSignals() {
   return (
     <div className="bg-gray-900 py-8" data-testid="trust-signals">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center text-center">
+        {/* Main Trust Signals */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center text-center mb-8">
           
           {/* Security Badge */}
           <div className="flex flex-col items-center space-y-2" data-testid="security-badge">
@@ -62,6 +63,96 @@ export function TrustSignals() {
             </div>
           </div>
 
+        </div>
+
+        {/* Additional Security & Trust Badges */}
+        <div className="border-t border-gray-700 pt-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 items-center text-center">
+            
+            {/* Payment Security */}
+            <div className="flex flex-col items-center space-y-2" data-testid="payment-security">
+              <Lock className="w-6 h-6 text-blue-400" />
+              <div className="text-xs text-gray-400">
+                <div className="font-medium text-gray-200">PCI Compliant</div>
+                <div>Secure Payments</div>
+              </div>
+            </div>
+
+            {/* Payment Methods */}
+            <div className="flex flex-col items-center space-y-2" data-testid="payment-methods">
+              <CreditCard className="w-6 h-6 text-blue-400" />
+              <div className="text-xs text-gray-400">
+                <div className="font-medium text-gray-200">All Cards</div>
+                <div>UPI & Wallets</div>
+              </div>
+            </div>
+
+            {/* Verified Reviews */}
+            <div className="flex flex-col items-center space-y-2" data-testid="verified-reviews">
+              <Verified className="w-6 h-6 text-blue-400" />
+              <div className="text-xs text-gray-400">
+                <div className="font-medium text-gray-200">Verified Reviews</div>
+                <div>Real Customers</div>
+              </div>
+            </div>
+
+            {/* Fast Delivery */}
+            <div className="flex flex-col items-center space-y-2" data-testid="fast-delivery">
+              <Clock className="w-6 h-6 text-blue-400" />
+              <div className="text-xs text-gray-400">
+                <div className="font-medium text-gray-200">Fast Delivery</div>
+                <div>2-3 Days</div>
+              </div>
+            </div>
+
+            {/* Customer Rating */}
+            <div className="flex flex-col items-center space-y-2" data-testid="customer-rating">
+              <Star className="w-6 h-6 text-yellow-400" />
+              <div className="text-xs text-gray-400">
+                <div className="font-medium text-gray-200">4.9/5 Rating</div>
+                <div>2500+ Reviews</div>
+              </div>
+            </div>
+
+            {/* Loved by Customers */}
+            <div className="flex flex-col items-center space-y-2" data-testid="customer-love">
+              <Heart className="w-6 h-6 text-red-400" />
+              <div className="text-xs text-gray-400">
+                <div className="font-medium text-gray-200">Loved by</div>
+                <div>Families</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Industry Certifications */}
+        <div className="border-t border-gray-700 mt-6 pt-6">
+          <div className="text-center">
+            <h3 className="text-sm font-semibold text-gray-200 mb-4">Certified & Trusted</h3>
+            <div className="flex flex-wrap justify-center items-center gap-6 text-xs text-gray-400">
+              <div className="flex items-center space-x-2">
+                <Award className="w-4 h-4 text-green-400" />
+                <span>FSSAI Licensed</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Shield className="w-4 h-4 text-green-400" />
+                <span>ISO 22000:2018</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="w-4 h-4 text-green-400" />
+                <span>HACCP Certified</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Verified className="w-4 h-4 text-blue-400" />
+                <span>Google Trusted Store</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Lock className="w-4 h-4 text-blue-400" />
+                <span>SSL Certificate</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
