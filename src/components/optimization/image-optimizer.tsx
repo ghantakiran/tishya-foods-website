@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import NextImage from 'next/image'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer'
@@ -125,10 +126,11 @@ export function OptimizedImage({
       {!isLoaded && !isError && (
         <div className="absolute inset-0 bg-cream-100">
           {placeholder === 'blur' && blurDataURL && (
-            <img
+            <NextImage
               src={blurDataURL}
               alt=""
-              className="w-full h-full object-cover filter blur-sm scale-105"
+              fill
+              className="object-cover filter blur-sm scale-105"
             />
           )}
           {shouldLoad && (

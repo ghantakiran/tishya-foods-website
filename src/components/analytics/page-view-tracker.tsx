@@ -18,6 +18,7 @@ function PageViewTrackerInner() {
     // Track page view with additional metadata
     analytics.trackPageView('page_view', {
       page_path: pathname,
+      page_url: url,
       search_params: searchParams.toString(),
       referrer: document.referrer,
       load_time: performance.now()

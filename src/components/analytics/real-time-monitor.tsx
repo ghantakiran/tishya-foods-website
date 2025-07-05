@@ -9,8 +9,7 @@ import {
   Globe, 
   Smartphone, 
   Monitor, 
-  TrendingUp, 
-  Clock,
+  TrendingUp,
   MapPin,
   Users
 } from 'lucide-react'

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Trophy, Gift, Users, TrendingUp } from 'lucide-react'
 import { LoyaltyDashboard } from '@/components/loyalty/loyalty-dashboard'
@@ -120,10 +121,11 @@ export default function LoyaltyPage() {
         >
           {/* Background Image */}
           <div className="absolute inset-0 opacity-10">
-            <img 
+            <Image 
               src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=400&fit=crop&crop=center" 
               alt="Rewards and benefits"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
           </div>
           <div className="relative z-10">

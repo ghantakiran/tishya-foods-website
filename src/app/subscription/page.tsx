@@ -4,18 +4,13 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { SubscriptionPlans, SubscriptionPlan } from '@/components/subscription/subscription-plans'
+import { SubscriptionPlans } from '@/components/subscription/subscription-plans'
 import { SubscriptionCustomizer } from '@/components/subscription/subscription-customizer'
 import { SubscriptionDashboard } from '@/components/subscription/subscription-dashboard'
 import { useRoutePerformance } from '@/components/performance/performance-init'
+import type { SubscriptionPlan, SubscriptionCustomization, SubscriptionState } from '@/types/subscription'
 
 type SubscriptionFlow = 'plans' | 'customize' | 'dashboard' | 'success'
-
-interface SubscriptionState {
-  selectedPlan?: SubscriptionPlan
-  customization?: any
-  subscriptionId?: string
-}
 
 export default function SubscriptionPage() {
   const [currentFlow, setCurrentFlow] = useState<SubscriptionFlow>('plans')
@@ -24,12 +19,12 @@ export default function SubscriptionPage() {
   // Performance tracking
   useRoutePerformance('subscription')
 
-  const handlePlanSelection = (plan: SubscriptionPlan, frequency: string) => {
+  const handlePlanSelection = (plan: SubscriptionPlan) => {
     setSubscriptionState(prev => ({ ...prev, selectedPlan: plan }))
     setCurrentFlow('customize')
   }
 
-  const handleCustomizationComplete = (customization: any) => {
+  const handleCustomizationComplete = (customization: SubscriptionCustomization) => {
     setSubscriptionState(prev => ({ 
       ...prev, 
       customization,
@@ -212,11 +207,11 @@ export default function SubscriptionPage() {
                 <div className="space-y-3 text-cream-300">
                   <div className="flex items-start space-x-3">
                     <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-cream-100 rounded-full flex items-center justify-center text-sm font-bold">1</span>
-                    <p>We'll prepare your personalized selection based on your preferences</p>
+                    <p>We&apos;ll prepare your personalized selection based on your preferences</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-cream-100 rounded-full flex items-center justify-center text-sm font-bold">2</span>
-                    <p>You'll receive an email confirmation with tracking details</p>
+                    <p>You&apos;ll receive an email confirmation with tracking details</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <span className="flex-shrink-0 w-6 h-6 bg-earth-800 text-cream-100 rounded-full flex items-center justify-center text-sm font-bold">3</span>

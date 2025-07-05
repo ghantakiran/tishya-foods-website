@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { LoadingSpinner } from '@/components/loading/optimized-loading'
 
 // Higher-order component for lazy loading with loading states
-export function withLazyLoading<T extends ComponentType<any>>(
+export function withLazyLoading<T extends ComponentType<Record<string, unknown>>>(
   importFunc: () => Promise<{ default: T }>,
   fallback?: React.ReactNode
 ) {
@@ -82,8 +82,8 @@ export function logBundleSize() {
       list.getEntries().forEach((entry) => {
         if (entry.name.includes('.js') || entry.name.includes('.css')) {
           console.log(`Resource: ${entry.name}`)
-          console.log(`Transfer Size: ${(entry as any).transferSize} bytes`)
-          console.log(`Encoded Body Size: ${(entry as any).encodedBodySize} bytes`)
+          console.log(`Transfer Size: ${(entry as PerformanceEntry & { transferSize?: number }).transferSize ?? 0} bytes`)
+          console.log(`Encoded Body Size: ${(entry as PerformanceEntry & { encodedBodySize?: number }).encodedBodySize ?? 0} bytes`)
         }
       })
     })

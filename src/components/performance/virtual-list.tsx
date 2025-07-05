@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
+import { useState, useRef, useMemo, useCallback } from 'react'
 import { motion } from 'framer-motion'
 
 interface VirtualListProps<T> {

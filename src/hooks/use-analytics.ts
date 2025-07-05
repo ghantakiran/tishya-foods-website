@@ -2,6 +2,7 @@
 
 import { useCallback } from 'react'
 import { useAnalytics as useAnalyticsContext } from '@/components/analytics/analytics-provider'
+import type { CheckoutItem, SearchFilters } from '@/types/analytics'
 
 export function useAnalytics() {
   const analytics = useAnalyticsContext()
@@ -60,7 +61,7 @@ export function useAnalytics() {
   }, [analytics])
 
   // Track search behavior
-  const trackSearchQuery = useCallback((query: string, resultsCount?: number, filters?: Record<string, any>) => {
+  const trackSearchQuery = useCallback((query: string, resultsCount?: number, filters?: SearchFilters) => {
     analytics.trackSearch(query, resultsCount)
     
     if (filters && Object.keys(filters).length > 0) {
@@ -135,7 +136,7 @@ export function useAnalytics() {
   }, [analytics])
 
   // Track checkout flow
-  const trackCheckoutStep = useCallback((step: number, stepName: string, items: any[]) => {
+  const trackCheckoutStep = useCallback((step: number, stepName: string, items: CheckoutItem[]) => {
     analytics.trackEcommerce('checkout_progress', {
       value: items.reduce((sum, item) => sum + (item.price * item.quantity), 0),
       items,
@@ -152,11 +153,11 @@ export function useAnalytics() {
     })
   }, [analytics])
 
-  const trackCheckoutBegin = useCallback((items: any[], value: number) => {
+  const trackCheckoutBegin = useCallback((items: CheckoutItem[], value: number) => {
     analytics.trackBeginCheckout(value, items)
   }, [analytics])
 
-  const trackPurchaseComplete = useCallback((transactionId: string, value: number, items: any[], paymentMethod: string) => {
+  const trackPurchaseComplete = useCallback((transactionId: string, value: number, items: CheckoutItem[], paymentMethod: string) => {
     analytics.trackPurchase(transactionId, value, items)
     
     analytics.trackUserAction('form_submit', {
@@ -192,7 +193,7 @@ export function useAnalytics() {
   }, [analytics])
 
   // User identification
-  const identifyUser = useCallback((userId: string, properties?: Record<string, any>) => {
+  const identifyUser = useCallback((userId: string, properties?: Record<string, unknown>) => {
     analytics.setUserId(userId)
     
     if (properties) {

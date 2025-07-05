@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { 
   Bot, 
@@ -114,10 +115,11 @@ export default function NutritionPage() {
                   </div>
                 </div>
                 <div className="relative h-48">
-                  <img 
+                  <Image 
                     src="https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?w=400&h=300&fit=crop&crop=center" 
                     alt="AI nutrition assistant visualization"
-                    className="w-full h-full object-cover rounded-lg"
+                    fill
+                    className="object-cover rounded-lg"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg" />
                 </div>
@@ -143,10 +145,11 @@ export default function NutritionPage() {
       <div className="relative bg-gradient-to-r from-primary-600 to-primary-800 text-cream-100 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img 
+          <Image 
             src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&h=600&fit=crop&crop=center" 
             alt="Healthy nutrition foods"
-            className="w-full h-full object-cover opacity-20"
+            fill
+            className="object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary-600/80 to-primary-800/80" />
         </div>
@@ -165,7 +168,7 @@ export default function NutritionPage() {
             </div>
             <p className="text-xl md:text-2xl text-primary-100 mb-8 max-w-3xl mx-auto">
               Your complete nutrition companion powered by AI. Track, plan, and optimize your health 
-              with personalized guidance and Tishya Foods' protein-rich products.
+              with personalized guidance and Tishya Foods&apos; protein-rich products.
             </p>
             <div className="flex items-center justify-center space-x-4">
               <Badge variant="secondary" className="text-sm px-3 py-1">

@@ -105,7 +105,7 @@ ${this.state.errorInfo?.componentStack || 'No additional details'}
             </h1>
             
             <p className="text-earth-600 mb-6">
-              We're sorry for the inconvenience. The page you were trying to view has encountered an error.
+              We&apos;re sorry for the inconvenience. The page you were trying to view has encountered an error.
             </p>
 
             {process.env.NODE_ENV === 'development' && this.state.error && (

@@ -61,7 +61,7 @@ export function BlogPostCard({
             share_method: 'native'
           }
         })
-      } catch (error) {
+      } catch {
         // Fallback to clipboard
         await navigator.clipboard.writeText(url)
         analytics.trackUserAction('share', {

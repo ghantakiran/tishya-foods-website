@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import NextImage from 'next/image'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
@@ -150,11 +151,12 @@ export function ProgressiveImage({
 
   return (
     <div className={cn("relative overflow-hidden", className)}>
-      <img
+      <NextImage
         src={imageSrc}
         alt={alt}
+        fill
         className={cn(
-          "w-full h-full object-cover transition-opacity duration-300",
+          "object-cover transition-opacity duration-300",
           imageLoaded ? "opacity-100" : "opacity-70"
         )}
       />

@@ -30,7 +30,7 @@ export default function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isAuthOpen, setIsAuthOpen] = useState(false)
   const { cart } = useCart()
-  const { user, isAuthenticated, logout } = useAuth()
+  const { isAuthenticated, logout } = useAuth()
 
   useEffect(() => {
     const handleScroll = () => {

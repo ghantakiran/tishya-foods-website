@@ -22,7 +22,7 @@ import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { formatPrice, cn } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 
 interface ReferralStats {
   totalReferrals: number
@@ -312,7 +312,7 @@ export function ReferralProgram({
             return (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id as typeof activeTab)}
                 className={cn(
                   'flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm transition-colors',
                   activeTab === tab.id
@@ -423,7 +423,7 @@ export function ReferralProgram({
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-earth-800 mb-2">
-                  Friend's Email Addresses
+                  Friend&apos;s Email Addresses
                 </label>
                 <Textarea
                   value={friendEmails}

@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
-import { MessageCircle, Heart, Reply, Flag, ThumbsUp, MoreHorizontal } from 'lucide-react'
+import { MessageCircle, Heart, Reply, Flag } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
 import { useAnalytics } from '@/hooks/use-analytics'
 

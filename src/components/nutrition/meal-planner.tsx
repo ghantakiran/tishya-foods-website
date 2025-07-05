@@ -1,16 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Calendar, 
   Plus, 
-  Trash2, 
-  Edit, 
-  Save, 
+  Trash2,
   X,
   Clock,
-  Users,
   Target,
   TrendingUp,
   ChefHat,
@@ -170,7 +168,7 @@ export function MealPlanner() {
         const meal: Meal = {
           id: `${day}-${type.id}`,
           name: `Day ${day} ${type.label}`,
-          type: type.id as any,
+          type: type.id as Meal['type'],
           time: ['08:00', '13:00', '19:00', '16:00'][index],
           items: [],
           calories: 0,
@@ -551,11 +549,14 @@ export function MealPlanner() {
                   meal.items.map((item) => (
                     <div key={item.id} className="flex items-center justify-between bg-earth-900 rounded p-2">
                       <div className="flex items-center space-x-2">
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className="w-8 h-8 object-cover rounded"
-                        />
+                        <div className="relative w-8 h-8">
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fill
+                            className="object-cover rounded"
+                          />
+                        </div>
                         <div>
                           <p className="text-sm font-medium">{item.name}</p>
                           <p className="text-xs text-earth-500">{item.servingSize}</p>
@@ -618,11 +619,14 @@ export function MealPlanner() {
                 {sampleProducts.map((product) => (
                   <div key={product.id} className="flex items-center justify-between bg-earth-900 rounded-lg p-4">
                     <div className="flex items-center space-x-4">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-16 h-16 object-cover rounded-md"
-                      />
+                      <div className="relative w-16 h-16">
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          className="object-cover rounded-md"
+                        />
+                      </div>
                       <div>
                         <h4 className="font-medium text-cream-100">{product.name}</h4>
                         <p className="text-sm text-earth-600">

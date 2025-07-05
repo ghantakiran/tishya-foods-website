@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, ReactNode } from 'react'
 import { analytics } from '@/lib/analytics/analytics-manager'
+import type { AnalyticsConfig } from '@/types/analytics'
 
 interface AnalyticsContextType {
   trackEvent: typeof analytics.trackEvent
@@ -24,11 +25,7 @@ const AnalyticsContext = createContext<AnalyticsContextType | null>(null)
 
 interface AnalyticsProviderProps {
   children: ReactNode
-  config: {
-    googleAnalytics?: { measurementId: string; config?: any }
-    customAnalytics?: { apiEndpoint: string; config?: any }
-    enableConsoleLogging?: boolean
-  }
+  config: AnalyticsConfig
 }
 
 export function AnalyticsProvider({ children, config }: AnalyticsProviderProps) {

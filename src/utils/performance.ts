@@ -71,7 +71,7 @@ export class PerformanceMonitor {
     if ('PerformanceObserver' in window) {
       const lcpObserver = new PerformanceObserver((entryList) => {
         const entries = entryList.getEntries()
-        const lastEntry = entries[entries.length - 1] as any
+        const lastEntry = entries[entries.length - 1] as PerformanceEntry & { startTime: number }
         console.log('LCP:', lastEntry.startTime)
       })
       lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true })
@@ -79,7 +79,7 @@ export class PerformanceMonitor {
       // First Input Delay
       const fidObserver = new PerformanceObserver((entryList) => {
         const entries = entryList.getEntries()
-        entries.forEach((entry: any) => {
+        entries.forEach((entry: PerformanceEntry & { processingStart: number }) => {
           console.log('FID:', entry.processingStart - entry.startTime)
         })
       })
@@ -89,7 +89,7 @@ export class PerformanceMonitor {
       let clsValue = 0
       const clsObserver = new PerformanceObserver((entryList) => {
         const entries = entryList.getEntries()
-        entries.forEach((entry: any) => {
+        entries.forEach((entry: PerformanceEntry & { hadRecentInput: boolean; value: number }) => {
           if (!entry.hadRecentInput) {
             clsValue += entry.value
           }
@@ -135,7 +135,7 @@ export function preloadRoute(route: string): void {
   }
 }
 
-export function preloadComponent(componentImport: () => Promise<any>): void {
+export function preloadComponent(componentImport: () => Promise<unknown>): void {
   if (typeof window !== 'undefined') {
     // Preload the component during idle time
     requestIdleCallback(() => {
@@ -146,10 +146,10 @@ export function preloadComponent(componentImport: () => Promise<any>): void {
 
 // Memory management
 export class MemoryManager {
-  private static cache = new Map<string, any>()
+  private static cache = new Map<string, unknown>()
   private static maxCacheSize = 100
 
-  static set(key: string, value: any): void {
+  static set(key: string, value: unknown): void {
     if (this.cache.size >= this.maxCacheSize) {
       const firstKey = this.cache.keys().next().value
       this.cache.delete(firstKey)
@@ -157,7 +157,7 @@ export class MemoryManager {
     this.cache.set(key, value)
   }
 
-  static get(key: string): any {
+  static get(key: string): unknown {
     return this.cache.get(key)
   }
 
@@ -177,14 +177,14 @@ export class MemoryManager {
 // Request batching for API calls
 export class RequestBatcher {
   private static batches = new Map<string, {
-    requests: Array<{ resolve: Function; reject: Function; data: any }>
+    requests: Array<{ resolve: (value: unknown) => void; reject: (reason: unknown) => void; data: unknown }>
     timer: NodeJS.Timeout
   }>()
 
   static batch<T>(
     key: string,
-    request: (batchedData: any[]) => Promise<T[]>,
-    data: any,
+    request: (batchedData: unknown[]) => Promise<T[]>,
+    data: unknown,
     delay = 50
   ): Promise<T> {
     return new Promise((resolve, reject) => {
@@ -202,7 +202,7 @@ export class RequestBatcher {
 
   private static async executeBatch<T>(
     key: string,
-    request: (batchedData: any[]) => Promise<T[]>
+    request: (batchedData: unknown[]) => Promise<T[]>
   ): Promise<void> {
     const batch = this.batches.get(key)
     if (!batch) return

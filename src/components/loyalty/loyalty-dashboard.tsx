@@ -1,26 +1,22 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Star, 
   Gift, 
   Trophy, 
   Crown, 
-  Coins, 
-  Calendar,
+  Coins,
   ShoppingBag,
   Users,
-  Target,
-  Zap,
   Award,
   TrendingUp,
   Clock,
   CheckCircle,
   Lock,
   Unlock,
-  Share2,
-  Heart
+  Share2
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -34,7 +30,7 @@ export interface LoyaltyTier {
   name: string
   minPoints: number
   color: string
-  icon: React.ComponentType<any>
+  icon: React.ComponentType<{ className?: string }>
   benefits: {
     discountPercentage: number
     freeShippingThreshold: number
@@ -305,7 +301,6 @@ interface LoyaltyDashboardProps {
 
 export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps) {
   const [activeTab, setActiveTab] = useState<'overview' | 'rewards' | 'achievements' | 'history'>('overview')
-  const [selectedReward, setSelectedReward] = useState<Reward | null>(null)
 
   const currentTier = loyaltyTiers.find(tier => tier.id === member.currentTier)
   const nextTier = loyaltyTiers.find(tier => tier.id === member.nextTier)
@@ -402,7 +397,7 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
             return (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id as typeof activeTab)}
                 className={cn(
                   'flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm transition-colors',
                   activeTab === tab.id

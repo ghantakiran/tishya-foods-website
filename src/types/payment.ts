@@ -21,7 +21,7 @@ export interface PaymentDetails {
   transactionId?: string
   gatewayTransactionId?: string
   failureReason?: string
-  metadata: Record<string, any>
+  metadata: Record<string, unknown>
   createdAt: string
   updatedAt: string
 }
@@ -64,7 +64,7 @@ export interface PaymentState {
 
 export interface PaymentActions {
   initializePayment: (checkoutData: CheckoutData) => Promise<string>
-  processPayment: (paymentId: string, paymentData: any) => Promise<boolean>
+  processPayment: (paymentId: string, paymentData: Record<string, unknown>) => Promise<boolean>
   verifyPayment: (paymentId: string, signature: string) => Promise<boolean>
   cancelPayment: (paymentId: string) => Promise<void>
   refundPayment: (paymentId: string, amount?: number) => Promise<boolean>

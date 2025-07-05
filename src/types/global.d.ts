@@ -3,19 +3,13 @@
 // Google Analytics gtag function
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
+    gtag: (...args: unknown[]) => void;
+    dataLayer: unknown[];
   }
   
-  function gtag(...args: any[]): void;
+  function gtag(...args: unknown[]): void;
 }
 
-// Extend Node process for environment variables
-declare namespace NodeJS {
-  interface ProcessEnv {
-    NEXT_PUBLIC_GA_MEASUREMENT_ID: string;
-    NODE_ENV: 'development' | 'production' | 'test';
-  }
-}
+// Environment variables are automatically typed by Next.js
 
 export {};

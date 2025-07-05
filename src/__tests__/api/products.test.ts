@@ -1,5 +1,6 @@
 import { products } from '@/lib/products-data'
 import { mockProduct } from '@/test-utils'
+import type { Product } from '@/types'
 
 // Mock API endpoints
 const mockFetch = jest.fn()
@@ -68,7 +69,7 @@ describe('Products API', () => {
       const response = await fetch('/api/products?category=protein')
       const data = await response.json()
 
-      expect(data.data.every((p: any) => p.category.id === 'protein')).toBe(true)
+      expect(data.data.every((p: Product) => p.category.id === 'protein')).toBe(true)
     })
 
     it('should filter products by dietary preferences', async () => {
@@ -86,7 +87,7 @@ describe('Products API', () => {
       const response = await fetch('/api/products?isVegan=true')
       const data = await response.json()
 
-      expect(data.data.every((p: any) => p.isVegan === true)).toBe(true)
+      expect(data.data.every((p: Product) => p.isVegan === true)).toBe(true)
     })
 
     it('should sort products by price', async () => {
@@ -192,7 +193,7 @@ describe('Products API', () => {
       expect(data.success).toBe(true)
       expect(Array.isArray(data.data)).toBe(true)
       expect(data.data.length).toBeLessThanOrEqual(4)
-      expect(data.data.every((p: any) => p.category.id === mockProduct.category.id)).toBe(true)
+      expect(data.data.every((p: Product) => p.category.id === mockProduct.category.id)).toBe(true)
     })
   })
 

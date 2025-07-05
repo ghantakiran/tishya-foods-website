@@ -106,7 +106,19 @@ export interface BlogStats {
 export interface ContentBlock {
   id: string
   type: 'paragraph' | 'heading' | 'image' | 'video' | 'quote' | 'code' | 'list' | 'table' | 'embed'
-  content: any
+  content: {
+    text?: string;
+    url?: string;
+    alt?: string;
+    caption?: string;
+    level?: number;
+    language?: string;
+    items?: string[];
+    headers?: string[];
+    rows?: string[][];
+    embedCode?: string;
+    [key: string]: unknown;
+  }
   order: number
 }
 

@@ -18,7 +18,6 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Badge } from '@/components/ui/badge'
 
 interface Message {
   id: string
@@ -170,7 +169,7 @@ export function NutritionAssistant() {
     }, 1500)
   }
 
-  const generateResponse = (input: string): { content: string; nutritionData?: any; suggestions?: string[] } => {
+  const generateResponse = (input: string): { content: string; nutritionData?: Message['nutritionData']; suggestions?: string[] } => {
     const inputLower = input.toLowerCase()
     
     // Check for quick action matches

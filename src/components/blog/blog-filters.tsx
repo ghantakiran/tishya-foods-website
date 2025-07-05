@@ -88,7 +88,7 @@ export function BlogFilters({
           <div className="grid grid-cols-2 gap-2">
             <Select
               value={filters.sortBy || 'publishedAt'}
-              onValueChange={(value) => onFilterChange({ sortBy: value as any })}
+              onValueChange={(value) => onFilterChange({ sortBy: value as BlogFiltersType['sortBy'] })}
             >
               <SelectTrigger className="h-9">
                 <SelectValue />
@@ -183,7 +183,7 @@ export function BlogFilters({
             <Label className="text-sm font-medium">Status</Label>
             <Select
               value={filters.status}
-              onValueChange={(value) => onFilterChange({ status: value as any })}
+              onValueChange={(value) => onFilterChange({ status: value as BlogFiltersType['status'] })}
             >
               <SelectTrigger>
                 <SelectValue />

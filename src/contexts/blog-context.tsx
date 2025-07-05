@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useReducer, useEffect, ReactNode } from 'react'
+import { createContext, useContext, useReducer, ReactNode } from 'react'
 import { BlogState, BlogActions, BlogPost, BlogCategory, BlogTag, BlogComment, BlogFilters, BlogStats, Author } from '@/types/blog'
 import { useAnalytics } from '@/hooks/use-analytics'
 
@@ -501,7 +501,7 @@ function BlogProviderInner({ children }: { children: ReactNode }) {
       analytics.trackEngagement('time_on_page', {
         value: 1
       })
-    } catch (error) {
+    } catch {
       // Silently fail for view tracking
     }
   }
