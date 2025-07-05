@@ -2,11 +2,12 @@
 
 import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { Search, Filter, Grid, List, ShoppingCart, Star, Badge } from 'lucide-react'
+import { Search, Filter, Grid, List, ShoppingCart, Star, Badge, Plus, Scale, Minus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { products, productCategories } from '@/lib/products-data'
 import { Product } from '@/types'
 import { useCart } from '@/contexts/cart-context'
+import Link from 'next/link'
 
 const sortOptions = [
   { value: 'name', label: 'Name A-Z' },
@@ -28,6 +29,7 @@ export default function ProductsPage() {
   const [sortBy, setSortBy] = useState('featured')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [showFilters, setShowFilters] = useState(false)
+  const [compareList, setCompareList] = useState<Product[]>([])
   const { addItem } = useCart()
 
   // Generate search suggestions
@@ -86,6 +88,22 @@ export default function ProductsPage() {
     setSelectedCategory('all')
     setSelectedFilters([])
     setSortBy('featured')
+  }
+
+  const toggleCompare = (product: Product) => {
+    setCompareList(prev => {
+      const isInList = prev.some(p => p.id === product.id)
+      if (isInList) {
+        return prev.filter(p => p.id !== product.id)
+      } else if (prev.length < 4) {
+        return [...prev, product]
+      }
+      return prev
+    })
+  }
+
+  const clearCompare = () => {
+    setCompareList([])
   }
 
   return (
@@ -169,13 +187,14 @@ export default function ProductsPage() {
               ))}
             </select>
 
-            {/* View Mode and Filters */}
+            {/* View Mode and Controls */}
             <div className="flex items-center space-x-2">
               <Button
                 variant={viewMode === 'grid' ? 'default' : 'outline'}
                 size="icon"
                 onClick={() => setViewMode('grid')}
                 className="border-gray-600 text-gray-200 hover:bg-gray-700"
+                title="Grid view"
               >
                 <Grid className="h-4 w-4" />
               </Button>
@@ -184,6 +203,7 @@ export default function ProductsPage() {
                 size="icon"
                 onClick={() => setViewMode('list')}
                 className="border-gray-600 text-gray-200 hover:bg-gray-700"
+                title="List view"
               >
                 <List className="h-4 w-4" />
               </Button>
@@ -192,9 +212,21 @@ export default function ProductsPage() {
                 size="icon"
                 onClick={() => setShowFilters(!showFilters)}
                 className="border-gray-600 text-gray-200 hover:bg-gray-700"
-                aria-label="Toggle filters"
+                title="Toggle filters"
               >
                 <Filter className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="border-gray-600 text-gray-200 hover:bg-gray-700"
+                title="Product comparison"
+              >
+                <Link href="/compare">
+                  <Scale className="mr-2 h-4 w-4" />
+                  Compare
+                </Link>
               </Button>
             </div>
           </div>
@@ -226,21 +258,49 @@ export default function ProductsPage() {
           )}
         </motion.div>
 
-        {/* Results Count */}
+        {/* Results Count and Compare Bar */}
         <div className="flex justify-between items-center mb-6">
           <p className="text-gray-300 font-medium">
             Showing {filteredProducts.length} of {products.length} products
           </p>
-          {(searchTerm || selectedCategory !== 'all') && (
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={clearFilters}
-              className="border-gray-600 text-gray-300 hover:bg-gray-700"
-            >
-              Clear Filters
-            </Button>
-          )}
+          <div className="flex items-center space-x-4">
+            {(searchTerm || selectedCategory !== 'all') && (
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={clearFilters}
+                className="border-gray-600 text-gray-300 hover:bg-gray-700"
+              >
+                Clear Filters
+              </Button>
+            )}
+            {compareList.length > 0 && (
+              <div className="flex items-center space-x-2">
+                <span className="text-sm text-gray-300">
+                  {compareList.length}/4 selected for comparison
+                </span>
+                <Button 
+                  size="sm"
+                  onClick={clearCompare}
+                  variant="outline"
+                  className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                >
+                  Clear
+                </Button>
+                <Button 
+                  size="sm"
+                  asChild
+                  disabled={compareList.length < 2}
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0"
+                >
+                  <Link href={`/compare?products=${compareList.map(p => p.id).join(',')}`}>
+                    <Scale className="mr-2 h-4 w-4" />
+                    Compare ({compareList.length})
+                  </Link>
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Products Grid/List */}
@@ -332,14 +392,48 @@ export default function ProductsPage() {
                     )}
                   </div>
 
-                  {/* Add to Cart Button */}
-                  <Button
-                    onClick={() => addItem(product, 1)}
-                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    <ShoppingCart className="mr-2 h-4 w-4" />
-                    Add to Cart
-                  </Button>
+                  {/* Action Buttons */}
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2">
+                      <Button
+                        onClick={() => addItem(product, 1)}
+                        className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
+                      >
+                        <ShoppingCart className="mr-2 h-4 w-4" />
+                        Add to Cart
+                      </Button>
+                      <Button
+                        onClick={() => toggleCompare(product)}
+                        variant={compareList.some(p => p.id === product.id) ? 'default' : 'outline'}
+                        size="icon"
+                        disabled={!compareList.some(p => p.id === product.id) && compareList.length >= 4}
+                        className={`${
+                          compareList.some(p => p.id === product.id)
+                            ? 'bg-orange-600 hover:bg-orange-700 text-white border-0'
+                            : 'border-gray-600 text-gray-300 hover:bg-gray-700'
+                        }`}
+                        title={compareList.some(p => p.id === product.id) ? 'Remove from comparison' : 'Add to comparison'}
+                      >
+                        {compareList.some(p => p.id === product.id) ? (
+                          <Minus className="h-4 w-4" />
+                        ) : (
+                          <Plus className="h-4 w-4" />
+                        )}
+                      </Button>
+                    </div>
+                    
+                    {compareList.some(p => p.id === product.id) && (
+                      <p className="text-xs text-orange-400 text-center">
+                        Added to comparison
+                      </p>
+                    )}
+                    
+                    {!compareList.some(p => p.id === product.id) && compareList.length >= 4 && (
+                      <p className="text-xs text-gray-500 text-center">
+                        Max 4 products for comparison
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -366,6 +460,59 @@ export default function ProductsPage() {
             >
               Clear All Filters
             </Button>
+          </motion.div>
+        )}
+        {/* Floating Compare Button */}
+        {compareList.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="fixed bottom-6 right-6 z-50"
+          >
+            <div className="bg-gray-800 border border-gray-600 rounded-2xl p-4 shadow-2xl backdrop-blur-sm">
+              <div className="text-center mb-3">
+                <p className="text-sm text-gray-300 font-medium">
+                  {compareList.length}/4 Products Selected
+                </p>
+                <div className="flex items-center space-x-2 mt-2">
+                  {compareList.map((product) => (
+                    <div key={product.id} className="relative">
+                      <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-xs text-gray-300 border border-gray-600">
+                        {product.name.charAt(0)}
+                      </div>
+                      <button
+                        onClick={() => toggleCompare(product)}
+                        className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center text-white text-xs hover:bg-red-600 transition-colors"
+                        title={`Remove ${product.name}`}
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex space-x-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={clearCompare}
+                  className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                >
+                  Clear
+                </Button>
+                <Button
+                  size="sm"
+                  asChild
+                  disabled={compareList.length < 2}
+                  className="bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white border-0"
+                >
+                  <Link href={`/compare?products=${compareList.map(p => p.id).join(',')}`}>
+                    <Scale className="mr-2 h-4 w-4" />
+                    Compare Now
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </motion.div>
         )}
       </div>
