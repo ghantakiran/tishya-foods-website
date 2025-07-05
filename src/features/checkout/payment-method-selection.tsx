@@ -76,9 +76,11 @@ export function PaymentMethodSelection({
 
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-6">Choose Payment Method</h2>
+      <h2 className="text-xl font-semibold mb-6 text-gray-100">Choose Payment Method</h2>
       
-      <div className="space-y-4">
+      <fieldset className="border border-gray-600 rounded-lg p-6 bg-gray-800">
+        <legend className="text-lg font-medium px-2 text-gray-100">Available Payment Options</legend>
+        <div className="space-y-4 mt-4">
         {methods.map((method) => {
           const isAvailable = isMethodAvailable(method)
           const isSelected = selectedMethod === method.id
@@ -97,18 +99,22 @@ export function PaymentMethodSelection({
               }`}
             >
               <label
+                htmlFor={`payment-${method.id}`}
                 className={`flex items-center p-4 cursor-pointer ${
                   !isAvailable ? 'cursor-not-allowed opacity-60' : ''
                 }`}
               >
                 <input
+                  id={`payment-${method.id}`}
                   type="radio"
                   name="paymentMethod"
                   value={method.id}
                   checked={isSelected}
                   onChange={() => isAvailable && onSelect(method.id)}
                   disabled={!isAvailable}
-                  className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-earth-600"
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-600 bg-gray-700"
+                  aria-describedby={`payment-${method.id}-description ${!isAvailable ? `payment-${method.id}-unavailable` : ''}`}
+                  aria-invalid={!isAvailable ? 'true' : 'false'}
                 />
 
                 <div className="ml-4 flex-1">
@@ -118,10 +124,10 @@ export function PaymentMethodSelection({
                         {getMethodIcon(method.type)}
                       </div>
                       <div>
-                        <h3 className={`font-medium ${isAvailable ? 'text-cream-100' : 'text-earth-500'}`}>
+                        <h3 className={`font-medium ${isAvailable ? 'text-gray-100' : 'text-gray-500'}`}>
                           {method.name}
                         </h3>
-                        <p className={`text-sm ${isAvailable ? 'text-earth-600' : 'text-earth-400'}`}>
+                        <p id={`payment-${method.id}-description`} className={`text-sm ${isAvailable ? 'text-gray-300' : 'text-gray-400'}`}>
                           {method.description}
                         </p>
                       </div>
@@ -137,7 +143,7 @@ export function PaymentMethodSelection({
                         </p>
                       )}
                       {!isAvailable && (
-                        <p className="text-xs text-red-500 mt-1">
+                        <p id={`payment-${method.id}-unavailable`} className="text-xs text-red-400 mt-1" role="alert">
                           {getUnavailableReason(method)}
                         </p>
                       )}
@@ -150,10 +156,11 @@ export function PaymentMethodSelection({
                       <div
                         key={index}
                         className={`flex items-center space-x-1 text-xs ${
-                          isAvailable ? 'text-earth-600' : 'text-earth-400'
+                          isAvailable ? 'text-gray-300' : 'text-gray-400'
                         }`}
+                        aria-label={feature.text}
                       >
-                        {feature.icon}
+                        <span aria-hidden="true">{feature.icon}</span>
                         <span>{feature.text}</span>
                       </div>
                     ))}
@@ -168,11 +175,14 @@ export function PaymentMethodSelection({
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="border-t bg-earth-800 px-4 py-3"
+                  className="border-t bg-gray-900 px-4 py-3"
+                  role="region"
+                  aria-labelledby={`payment-${method.id}-details`}
                 >
                   {method.type === 'card' && (
                     <div className="space-y-3">
-                      <p className="text-sm text-earth-700">
+                      <h4 id={`payment-${method.id}-details`} className="sr-only">Credit/Debit Card Details</h4>
+                      <p className="text-sm text-gray-300">
                         Accepted cards: Visa, Mastercard, American Express, RuPay
                       </p>
                       <div className="flex space-x-2">
@@ -186,7 +196,8 @@ export function PaymentMethodSelection({
 
                   {method.type === 'upi' && (
                     <div className="space-y-3">
-                      <p className="text-sm text-earth-700">
+                      <h4 id={`payment-${method.id}-details`} className="sr-only">UPI Payment Details</h4>
+                      <p className="text-sm text-gray-300">
                         Pay using any UPI app on your phone
                       </p>
                       <div className="flex space-x-2">
@@ -200,7 +211,8 @@ export function PaymentMethodSelection({
 
                   {method.type === 'netbanking' && (
                     <div className="space-y-3">
-                      <p className="text-sm text-earth-700">
+                      <h4 id={`payment-${method.id}-details`} className="sr-only">Net Banking Details</h4>
+                      <p className="text-sm text-gray-300">
                         Support for 50+ banks including SBI, HDFC, ICICI, Axis
                       </p>
                     </div>
@@ -208,7 +220,8 @@ export function PaymentMethodSelection({
 
                   {method.type === 'wallet' && (
                     <div className="space-y-3">
-                      <p className="text-sm text-earth-700">
+                      <h4 id={`payment-${method.id}-details`} className="sr-only">Digital Wallet Details</h4>
+                      <p className="text-sm text-gray-300">
                         Pay using your digital wallet balance
                       </p>
                       <div className="flex space-x-2">
@@ -221,11 +234,12 @@ export function PaymentMethodSelection({
 
                   {method.type === 'cod' && (
                     <div className="space-y-3">
-                      <p className="text-sm text-earth-700">
+                      <h4 id={`payment-${method.id}-details`} className="sr-only">Cash on Delivery Details</h4>
+                      <p className="text-sm text-gray-300">
                         Pay cash when your order is delivered to your doorstep
                       </p>
-                      <div className="bg-yellow-50 border border-yellow-200 rounded-md p-3">
-                        <p className="text-xs text-yellow-800">
+                      <div className="bg-yellow-600/20 border border-yellow-500/30 rounded-md p-3" role="note">
+                        <p className="text-xs text-yellow-300">
                           <strong>Note:</strong> Cash on delivery orders may take an additional 1-2 days for processing.
                           A convenience fee of ₹{method.processingFee} will be added to your order total.
                         </p>
@@ -234,8 +248,8 @@ export function PaymentMethodSelection({
                   )}
 
                   {/* Security Notice */}
-                  <div className="mt-3 flex items-center space-x-2 text-xs text-green-700 bg-green-50 rounded-md p-2">
-                    <Shield className="h-4 w-4" />
+                  <div className="mt-3 flex items-center space-x-2 text-xs text-green-300 bg-green-600/20 border border-green-500/30 rounded-md p-2" role="note">
+                    <Shield className="h-4 w-4" aria-hidden="true" />
                     <span>
                       {method.type === 'cod' 
                         ? 'No online payment required. Pay safely at delivery.'
@@ -248,15 +262,16 @@ export function PaymentMethodSelection({
             </motion.div>
           )
         })}
-      </div>
+        </div>
+      </fieldset>
 
       {/* Payment Security Info */}
-      <div className="mt-6 p-4 bg-earth-900 rounded-lg">
+      <div className="mt-6 p-4 bg-gray-900 border border-gray-600 rounded-lg" role="complementary" aria-labelledby="security-heading">
         <div className="flex items-start space-x-3">
-          <Shield className="h-5 w-5 text-green-600 mt-0.5" />
+          <Shield className="h-5 w-5 text-green-400 mt-0.5" aria-hidden="true" />
           <div className="text-sm">
-            <h4 className="font-medium text-cream-100 mb-1">Secure Payments</h4>
-            <p className="text-earth-600">
+            <h4 id="security-heading" className="font-medium text-gray-100 mb-1">Secure Payments</h4>
+            <p className="text-gray-300">
               Your payment information is encrypted and processed securely. We never store your card details.
             </p>
           </div>
