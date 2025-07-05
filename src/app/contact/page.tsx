@@ -63,39 +63,90 @@ export default function ContactPage() {
     subject: '',
     message: '',
   })
+  const [errors, setErrors] = useState<{[key: string]: string}>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState('')
+
+  const validateForm = () => {
+    const newErrors: {[key: string]: string} = {}
+    
+    if (!formData.name.trim()) {
+      newErrors.name = 'Full name is required'
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email address is required'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address'
+    }
+    
+    if (!formData.subject) {
+      newErrors.subject = 'Please select a subject'
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required'
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters long'
+    }
+    
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    if (!validateForm()) {
+      setSubmitMessage('Please correct the errors below and try again.')
+      return
+    }
+    
     setIsSubmitting(true)
+    setSubmitMessage('')
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    console.log('Form submitted:', formData)
-    alert('Thank you for your message! We\'ll get back to you soon.')
-    
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-    })
-    setIsSubmitting(false)
+    try {
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      console.log('Form submitted:', formData)
+      setSubmitMessage('Thank you for your message! We\'ll get back to you within 24 hours.')
+      
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
+      })
+      setErrors({})
+    } catch (error) {
+      setSubmitMessage('There was an error sending your message. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }))
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }))
+    }
   }
 
   return (
-    <div className="pt-20 min-h-screen bg-earth-900">
+    <div className="pt-20 min-h-screen bg-gray-900">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-earth-900 to-earth-800">
+      <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center max-w-3xl mx-auto"
@@ -103,10 +154,10 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-cream-100 mb-6 font-montserrat">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-100 mb-6 font-montserrat">
               Get In Touch
             </h1>
-            <p className="text-xl text-cream-300 leading-relaxed">
+            <p className="text-xl text-gray-300 leading-relaxed">
               Have questions about our products or need help with your order? 
               We&apos;re here to help! Reach out to our friendly customer service team.
             </p>
@@ -121,19 +172,19 @@ export default function ContactPage() {
             {contactInfo.map((info, index) => (
               <motion.div
                 key={index}
-                className="bg-earth-800 rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-all duration-300"
+                className="bg-gray-800 rounded-2xl p-8 shadow-lg text-center hover:shadow-xl transition-all duration-300 border border-gray-700"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <div className="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <info.icon className="h-8 w-8 text-cream-100" />
+                <div className="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <info.icon className="h-8 w-8 text-blue-400" />
                 </div>
-                <h3 className="text-xl font-bold text-cream-100 mb-2">{info.title}</h3>
-                <div className="text-lg font-semibold text-primary-600 mb-3">{info.details}</div>
-                <p className="text-cream-300 text-sm leading-relaxed">{info.description}</p>
+                <h3 className="text-xl font-bold text-gray-100 mb-2">{info.title}</h3>
+                <div className="text-lg font-semibold text-blue-400 mb-3">{info.details}</div>
+                <p className="text-gray-300 text-sm leading-relaxed">{info.description}</p>
               </motion.div>
             ))}
           </div>
@@ -151,86 +202,134 @@ export default function ContactPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <div className="bg-earth-800 rounded-2xl p-8 shadow-lg">
+              <div className="bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-700">
                 <div className="flex items-center mb-6">
-                  <MessageCircle className="h-6 w-6 text-primary-600 mr-3" />
-                  <h2 className="text-2xl font-bold text-cream-100">Send us a Message</h2>
+                  <MessageCircle className="h-6 w-6 text-blue-400 mr-3" />
+                  <h2 className="text-2xl font-bold text-gray-100">Send us a Message</h2>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-semibold text-cream-100 mb-2">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-earth-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
-                        placeholder="Your full name"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-cream-100 mb-2">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-earth-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
-                        placeholder="your.email@example.com"
-                      />
-                    </div>
+                {/* Form Status Messages */}
+                {submitMessage && (
+                  <div className={`mb-6 p-4 rounded-lg ${
+                    submitMessage.includes('error') || submitMessage.includes('correct') 
+                      ? 'bg-red-500/20 border border-red-500/30 text-red-400' 
+                      : 'bg-green-500/20 border border-green-500/30 text-green-400'
+                  }`} role="alert" aria-live="polite">
+                    {submitMessage}
                   </div>
+                )}
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-cream-100 mb-2">
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-earth-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
-                        placeholder="+91 12345 67890"
-                      />
+                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                  <fieldset className="border border-gray-600 rounded-lg p-4">
+                    <legend className="text-lg font-semibold text-gray-100 px-2">Contact Information</legend>
+                    <div className="grid md:grid-cols-2 gap-6 mt-4">
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-semibold text-gray-100 mb-2">
+                          Full Name <span className="text-red-400" aria-label="required">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          aria-invalid={errors.name ? 'true' : 'false'}
+                          aria-describedby={errors.name ? 'name-error' : undefined}
+                          className={`w-full px-4 py-3 bg-gray-900 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors text-gray-100 placeholder-gray-400 ${
+                            errors.name ? 'border-red-500' : 'border-gray-600'
+                          }`}
+                          placeholder="Your full name"
+                        />
+                        {errors.name && (
+                          <p id="name-error" className="mt-2 text-sm text-red-400" role="alert">
+                            {errors.name}
+                          </p>
+                        )}
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-semibold text-gray-100 mb-2">
+                          Email Address <span className="text-red-400" aria-label="required">*</span>
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                          aria-invalid={errors.email ? 'true' : 'false'}
+                          aria-describedby={errors.email ? 'email-error' : undefined}
+                          className={`w-full px-4 py-3 bg-gray-900 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors text-gray-100 placeholder-gray-400 ${
+                            errors.email ? 'border-red-500' : 'border-gray-600'
+                          }`}
+                          placeholder="your.email@example.com"
+                        />
+                        {errors.email && (
+                          <p id="email-error" className="mt-2 text-sm text-red-400" role="alert">
+                            {errors.email}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      <label htmlFor="subject" className="block text-sm font-semibold text-cream-100 mb-2">
-                        Subject *
-                      </label>
-                      <select
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-earth-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors"
-                      >
-                        <option value="">Select a subject</option>
-                        <option value="product-inquiry">Product Inquiry</option>
-                        <option value="order-support">Order Support</option>
-                        <option value="wholesale">Wholesale/Bulk Orders</option>
-                        <option value="feedback">Feedback</option>
-                        <option value="other">Other</option>
-                      </select>
+                  </fieldset>
+
+                  <fieldset className="border border-gray-600 rounded-lg p-4">
+                    <legend className="text-lg font-semibold text-gray-100 px-2">Additional Details</legend>
+                    <div className="grid md:grid-cols-2 gap-6 mt-4">
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-semibold text-gray-100 mb-2">
+                          Phone Number <span className="text-gray-400">(optional)</span>
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          className="w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors text-gray-100 placeholder-gray-400"
+                          placeholder="+91 12345 67890"
+                          aria-describedby="phone-help"
+                        />
+                        <p id="phone-help" className="mt-1 text-xs text-gray-400">
+                          We'll use this for urgent matters or follow-up calls
+                        </p>
+                      </div>
+                      <div>
+                        <label htmlFor="subject" className="block text-sm font-semibold text-gray-100 mb-2">
+                          Subject <span className="text-red-400" aria-label="required">*</span>
+                        </label>
+                        <select
+                          id="subject"
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleChange}
+                          required
+                          aria-invalid={errors.subject ? 'true' : 'false'}
+                          aria-describedby={errors.subject ? 'subject-error' : undefined}
+                          className={`w-full px-4 py-3 bg-gray-900 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors text-gray-100 ${
+                            errors.subject ? 'border-red-500' : 'border-gray-600'
+                          }`}
+                        >
+                          <option value="">Select a subject</option>
+                          <option value="product-inquiry">Product Inquiry</option>
+                          <option value="order-support">Order Support</option>
+                          <option value="wholesale">Wholesale/Bulk Orders</option>
+                          <option value="feedback">Feedback</option>
+                          <option value="other">Other</option>
+                        </select>
+                        {errors.subject && (
+                          <p id="subject-error" className="mt-2 text-sm text-red-400" role="alert">
+                            {errors.subject}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  </fieldset>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-semibold text-cream-100 mb-2">
-                      Message *
+                    <label htmlFor="message" className="block text-sm font-semibold text-gray-100 mb-2">
+                      Message <span className="text-red-400" aria-label="required">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -239,19 +338,35 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 border border-earth-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-colors resize-none"
+                      aria-invalid={errors.message ? 'true' : 'false'}
+                      aria-describedby={`message-help ${errors.message ? 'message-error' : ''}`}
+                      className={`w-full px-4 py-3 bg-gray-900 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none text-gray-100 placeholder-gray-400 ${
+                        errors.message ? 'border-red-500' : 'border-gray-600'
+                      }`}
                       placeholder="Tell us how we can help you..."
                     />
+                    <p id="message-help" className="mt-1 text-xs text-gray-400">
+                      Please provide as much detail as possible. Minimum 10 characters.
+                    </p>
+                    {errors.message && (
+                      <p id="message-error" className="mt-2 text-sm text-red-400" role="alert">
+                        {errors.message}
+                      </p>
+                    )}
                   </div>
 
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full group"
+                    className="w-full group bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
                     size="lg"
+                    aria-describedby="submit-help"
                   >
                     {isSubmitting ? (
-                      'Sending...'
+                      <>
+                        <span className="animate-spin mr-2 h-4 w-4 border-2 border-white border-t-transparent rounded-full"></span>
+                        Sending...
+                      </>
                     ) : (
                       <>
                         Send Message
@@ -259,6 +374,9 @@ export default function ContactPage() {
                       </>
                     )}
                   </Button>
+                  <p id="submit-help" className="text-xs text-gray-400 text-center mt-2">
+                    We typically respond within 24 hours
+                  </p>
                 </form>
               </div>
             </motion.div>
@@ -270,38 +388,38 @@ export default function ContactPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-2xl font-bold text-cream-100 mb-8">Frequently Asked Questions</h2>
+              <h2 className="text-2xl font-bold text-gray-100 mb-8">Frequently Asked Questions</h2>
               
               <div className="space-y-4">
                 {faqs.map((faq, index) => (
                   <motion.div
                     key={index}
-                    className="bg-earth-800 rounded-lg border border-earth-200 overflow-hidden"
+                    className="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
                     <details className="group">
-                      <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-earth-900 transition-colors">
-                        <h3 className="font-semibold text-cream-100 pr-4">{faq.question}</h3>
-                        <span className="text-primary-600 group-open:rotate-180 transition-transform duration-200">
+                      <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-900 transition-colors">
+                        <h3 className="font-semibold text-gray-100 pr-4">{faq.question}</h3>
+                        <span className="text-blue-400 group-open:rotate-180 transition-transform duration-200">
                           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                           </svg>
                         </span>
                       </summary>
                       <div className="px-6 pb-6">
-                        <p className="text-cream-300 leading-relaxed">{faq.answer}</p>
+                        <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
                       </div>
                     </details>
                   </motion.div>
                 ))}
               </div>
 
-              <div className="mt-8 p-6 bg-primary-100 rounded-lg">
-                <h3 className="font-semibold text-cream-100 mb-2">Still have questions?</h3>
-                <p className="text-cream-300 text-sm">
+              <div className="mt-8 p-6 bg-blue-600/20 border border-blue-500/30 rounded-lg">
+                <h3 className="font-semibold text-gray-100 mb-2">Still have questions?</h3>
+                <p className="text-gray-300 text-sm">
                   Can&apos;t find the answer you&apos;re looking for? Feel free to reach out to our 
                   customer service team using the contact form or any of the methods above.
                 </p>
