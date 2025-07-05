@@ -1,6 +1,5 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { 
   Scale, 
@@ -63,8 +62,6 @@ const comparisonTips = [
 ]
 
 export default function ComparePage() {
-  const [selectedProducts, setSelectedProducts] = useState<string[]>([])
-
   return (
     <div className="min-h-screen bg-earth-900">
       {/* Hero Section */}

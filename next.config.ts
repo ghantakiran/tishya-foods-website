@@ -1,12 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  // NOTE: Removed dangerous error suppression (ignoreDuringBuilds, ignoreBuildErrors)
+  // This exposes real TypeScript and ESLint errors that need to be fixed.
+  // Build will fail until these are resolved - this is intentional for code quality.
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },

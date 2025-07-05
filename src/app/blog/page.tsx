@@ -3,7 +3,7 @@
 import { BlogProvider, useBlog } from '@/contexts/blog-context'
 import { BlogList } from '@/components/blog/blog-list'
 import { BlogFilters } from '@/components/blog/blog-filters'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { BookOpen, TrendingUp, Calendar, Users } from 'lucide-react'
