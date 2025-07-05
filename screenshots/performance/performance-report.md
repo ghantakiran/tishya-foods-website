@@ -1,6 +1,6 @@
 # Performance Testing & Core Web Vitals Analysis Report
 
-**Generated:** 7/5/2025, 12:15:25 AM  
+**Generated:** 7/5/2025, 9:13:25 AM  
 **URL:** http://localhost:3000  
 **Overall Score:** 91/100
 
@@ -14,28 +14,28 @@
 
 | Metric | Value | Rating | Status |
 |--------|-------|--------|--------|
-| **LCP** (Largest Contentful Paint) | 388.00ms | good | ✅ Good |
-| **FID** (First Input Delay) | 30.80ms | good | ✅ Good |
+| **LCP** (Largest Contentful Paint) | 376.00ms | good | ✅ Good |
+| **FID** (First Input Delay) | N/Ams | N/A | ❌ Poor |
 | **CLS** (Cumulative Layout Shift) | N/A | N/A | ❌ Poor |
 
 ### Additional Metrics
 - **DOM Content Loaded:** N/Ams
 - **Load Complete:** N/Ams
-- **First Paint:** 232.00ms
-- **First Contentful Paint:** 232.00ms
+- **First Paint:** 212.00ms
+- **First Contentful Paint:** 212.00ms
 
 ## ⚡ Performance Metrics
 
 ### Page Load Performance
-- **homepage**: 1412ms (50 resources, 0.00KB)
-- **products**: 1081ms (42 resources, 0.00KB)
-- **about**: 907ms (33 resources, 0.00KB)
-- **contact**: 942ms (33 resources, 0.00KB)
+- **homepage**: 932ms (44 resources, 0.00KB)
+- **products**: 774ms (40 resources, 0.29KB)
+- **about**: 787ms (37 resources, 0.00KB)
+- **contact**: 834ms (33 resources, 0.00KB)
 
 ### Resource Analysis
-- **Total Resources:** 50
+- **Total Resources:** 44
 - **Loading Issues:** 0
-- **Resource Types:** link: 13, script: 23, fetch: 10, css: 4
+- **Resource Types:** link: 11, script: 22, css: 7, fetch: 4
 
 ### Image Optimization
 - **Total Images:** N/A
@@ -44,10 +44,10 @@
 - **Unoptimized Images:** 0
 
 ### JavaScript Performance
-- **Total Scripts:** 24
+- **Total Scripts:** 23
 - **Total Size:** N/A
 - **Large Scripts:** 0
-- **Average Task Time:** 0.13ms
+- **Average Task Time:** 0.07ms
 
 ### Mobile Performance
 - **Load Time (Slow 3G):** N/Ams
@@ -59,7 +59,7 @@
 - **Size Savings:** N/A
 
 ### Memory Usage
-- **Initial Memory:** 53.55MB
+- **Initial Memory:** 40.35MB
 - **Final Memory:** N/A
 - **Potential Leak:** ✅ No
 

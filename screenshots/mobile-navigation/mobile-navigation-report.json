@@ -1,6 +1,6 @@
 {
   "title": "Mobile Navigation & Responsiveness Analysis Report",
-  "timestamp": "2025-07-05T05:10:43.453Z",
+  "timestamp": "2025-07-05T14:05:10.649Z",
   "url": "http://localhost:3000",
   "summary": {
     "totalScreenshots": 19,
@@ -152,7 +152,7 @@
       "device": "iPhone SE",
       "category": "mobile",
       "dimensions": "375x667",
-      "duration": 22434,
+      "duration": 2064,
       "success": true,
       "issues": []
     },
@@ -160,7 +160,7 @@
       "device": "iPhone 11 Pro Max",
       "category": "mobile",
       "dimensions": "414x896",
-      "duration": 1984,
+      "duration": 1642,
       "success": true,
       "issues": []
     },
@@ -168,7 +168,7 @@
       "device": "iPad",
       "category": "tablet",
       "dimensions": "768x1024",
-      "duration": 2524,
+      "duration": 1710,
       "success": true,
       "issues": []
     },
@@ -176,7 +176,7 @@
       "device": "iPad Landscape",
       "category": "tablet",
       "dimensions": "1024x768",
-      "duration": 2019,
+      "duration": 1645,
       "success": true,
       "issues": []
     },
@@ -184,7 +184,7 @@
       "device": "Android Small",
       "category": "mobile",
       "dimensions": "360x640",
-      "duration": 2570,
+      "duration": 1632,
       "success": true,
       "issues": []
     },
@@ -192,7 +192,7 @@
       "device": "iPhone 5s",
       "category": "mobile",
       "dimensions": "320x568",
-      "duration": 1926,
+      "duration": 1500,
       "success": true,
       "issues": []
     }
@@ -202,115 +202,115 @@
       "filename": "homepage-iphone-se.png",
       "description": "Homepage on iPhone SE",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/homepage-iphone-se.png",
-      "timestamp": "2025-07-05T05:10:20.919Z"
+      "timestamp": "2025-07-05T14:04:53.714Z"
     },
     {
       "filename": "mobile-menu-open-iphone-se.png",
       "description": "Mobile menu opened on iPhone SE",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-menu-open-iphone-se.png",
-      "timestamp": "2025-07-05T05:10:21.553Z"
+      "timestamp": "2025-07-05T14:04:54.333Z"
     },
     {
       "filename": "homepage-iphone-11-pro-max.png",
       "description": "Homepage on iPhone 11 Pro Max",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/homepage-iphone-11-pro-max.png",
-      "timestamp": "2025-07-05T05:10:22.922Z"
+      "timestamp": "2025-07-05T14:04:55.336Z"
     },
     {
       "filename": "mobile-menu-open-iphone-11-pro-max.png",
       "description": "Mobile menu opened on iPhone 11 Pro Max",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-menu-open-iphone-11-pro-max.png",
-      "timestamp": "2025-07-05T05:10:23.542Z"
+      "timestamp": "2025-07-05T14:04:55.981Z"
     },
     {
       "filename": "homepage-ipad.png",
       "description": "Homepage on iPad",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/homepage-ipad.png",
-      "timestamp": "2025-07-05T05:10:25.428Z"
+      "timestamp": "2025-07-05T14:04:57.043Z"
     },
     {
       "filename": "mobile-menu-open-ipad.png",
       "description": "Mobile menu opened on iPad",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-menu-open-ipad.png",
-      "timestamp": "2025-07-05T05:10:26.065Z"
+      "timestamp": "2025-07-05T14:04:57.693Z"
     },
     {
       "filename": "homepage-ipad-landscape.png",
       "description": "Homepage on iPad Landscape",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/homepage-ipad-landscape.png",
-      "timestamp": "2025-07-05T05:10:27.437Z"
+      "timestamp": "2025-07-05T14:04:58.673Z"
     },
     {
       "filename": "mobile-menu-open-ipad-landscape.png",
       "description": "Mobile menu opened on iPad Landscape",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-menu-open-ipad-landscape.png",
-      "timestamp": "2025-07-05T05:10:28.084Z"
+      "timestamp": "2025-07-05T14:04:59.336Z"
     },
     {
       "filename": "homepage-android-small.png",
       "description": "Homepage on Android Small",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/homepage-android-small.png",
-      "timestamp": "2025-07-05T05:10:30.037Z"
+      "timestamp": "2025-07-05T14:05:00.336Z"
     },
     {
       "filename": "mobile-menu-open-android-small.png",
       "description": "Mobile menu opened on Android Small",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-menu-open-android-small.png",
-      "timestamp": "2025-07-05T05:10:30.653Z"
+      "timestamp": "2025-07-05T14:05:00.967Z"
     },
     {
       "filename": "homepage-iphone-5s.png",
       "description": "Homepage on iPhone 5s",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/homepage-iphone-5s.png",
-      "timestamp": "2025-07-05T05:10:31.961Z"
+      "timestamp": "2025-07-05T14:05:01.832Z"
     },
     {
       "filename": "mobile-menu-open-iphone-5s.png",
       "description": "Mobile menu opened on iPhone 5s",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-menu-open-iphone-5s.png",
-      "timestamp": "2025-07-05T05:10:32.580Z"
+      "timestamp": "2025-07-05T14:05:02.468Z"
     },
     {
       "filename": "touch-gesture-tap.png",
       "description": "Touch gesture tap test",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/touch-gesture-tap.png",
-      "timestamp": "2025-07-05T05:10:34.429Z"
+      "timestamp": "2025-07-05T14:05:03.914Z"
     },
     {
       "filename": "mobile-contact-form.png",
       "description": "Mobile contact form",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-contact-form.png",
-      "timestamp": "2025-07-05T05:10:37.362Z"
+      "timestamp": "2025-07-05T14:05:05.543Z"
     },
     {
       "filename": "mobile-email-field.png",
       "description": "Mobile email field focus",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-email-field.png",
-      "timestamp": "2025-07-05T05:10:38.108Z"
+      "timestamp": "2025-07-05T14:05:06.311Z"
     },
     {
       "filename": "mobile-phone-field.png",
       "description": "Mobile phone field focus",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/mobile-phone-field.png",
-      "timestamp": "2025-07-05T05:10:38.489Z"
+      "timestamp": "2025-07-05T14:05:06.715Z"
     },
     {
       "filename": "navigation-consistency-products.png",
       "description": "Navigation consistency on products page",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/navigation-consistency-products.png",
-      "timestamp": "2025-07-05T05:10:41.644Z"
+      "timestamp": "2025-07-05T14:05:09.094Z"
     },
     {
       "filename": "navigation-consistency-about.png",
       "description": "Navigation consistency on about page",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/navigation-consistency-about.png",
-      "timestamp": "2025-07-05T05:10:42.553Z"
+      "timestamp": "2025-07-05T14:05:09.856Z"
     },
     {
       "filename": "navigation-consistency-contact.png",
       "description": "Navigation consistency on contact page",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/mobile-navigation/navigation-consistency-contact.png",
-      "timestamp": "2025-07-05T05:10:43.453Z"
+      "timestamp": "2025-07-05T14:05:10.649Z"
     }
   ],
   "issues": [

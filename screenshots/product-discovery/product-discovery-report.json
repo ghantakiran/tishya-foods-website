@@ -1,6 +1,6 @@
 {
   "title": "Product Discovery Flow Analysis Report",
-  "timestamp": "2025-07-05T05:09:39.359Z",
+  "timestamp": "2025-07-05T14:04:26.469Z",
   "url": "http://localhost:3000/products",
   "summary": {
     "totalScreenshots": 15,
@@ -15,15 +15,15 @@
     "initialProductCount": 30,
     "searchResultsCount": 18,
     "hasNoResultsMessage": true,
-    "searchResponseTime": 3486,
+    "searchResponseTime": 3632,
     "categoryFilterWorks": true,
     "productCardHasPrice": false,
     "productCardHasName": false,
     "performance": {
       "domContentLoaded": 0,
       "loadComplete": 0,
-      "firstPaint": 98.29999999701977,
-      "totalLoadTime": 159.60000000149012
+      "firstPaint": 1.8000000044703484,
+      "totalLoadTime": 35.30000000447035
     },
     "finalProductCount": 30,
     "discoveryFeatures": {
@@ -36,7 +36,7 @@
   "flowSteps": [
     {
       "step": "homepage_to_products",
-      "duration": 5650,
+      "duration": 2697,
       "success": true,
       "url": "http://localhost:3000/products"
     }
@@ -46,91 +46,91 @@
       "filename": "homepage-start.png",
       "description": "Starting from homepage",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/homepage-start.png",
-      "timestamp": "2025-07-05T05:09:23.715Z"
+      "timestamp": "2025-07-05T14:04:11.614Z"
     },
     {
       "filename": "products-page-loaded.png",
       "description": "Products page loaded",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/products-page-loaded.png",
-      "timestamp": "2025-07-05T05:09:24.907Z"
+      "timestamp": "2025-07-05T14:04:12.664Z"
     },
     {
       "filename": "search-input-found.png",
       "description": "Search input located",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/search-input-found.png",
-      "timestamp": "2025-07-05T05:09:24.998Z"
+      "timestamp": "2025-07-05T14:04:12.796Z"
     },
     {
       "filename": "products-grid-view.png",
       "description": "Products grid view",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/products-grid-view.png",
-      "timestamp": "2025-07-05T05:09:25.099Z"
+      "timestamp": "2025-07-05T14:04:12.929Z"
     },
     {
       "filename": "search-typing.png",
       "description": "Typing in search box",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/search-typing.png",
-      "timestamp": "2025-07-05T05:09:25.292Z"
+      "timestamp": "2025-07-05T14:04:13.177Z"
     },
     {
       "filename": "search-results.png",
       "description": "Search results for \"protein\"",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/search-results.png",
-      "timestamp": "2025-07-05T05:09:26.389Z"
+      "timestamp": "2025-07-05T14:04:14.337Z"
     },
     {
       "filename": "search-no-results.png",
       "description": "No results message",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/search-no-results.png",
-      "timestamp": "2025-07-05T05:09:27.567Z"
+      "timestamp": "2025-07-05T14:04:15.547Z"
     },
     {
       "filename": "category-filtered.png",
       "description": "Category filter applied",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/category-filtered.png",
-      "timestamp": "2025-07-05T05:09:29.686Z"
+      "timestamp": "2025-07-05T14:04:17.722Z"
     },
     {
       "filename": "gluten-free-filter.png",
       "description": "Gluten Free filter applied",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/gluten-free-filter.png",
-      "timestamp": "2025-07-05T05:09:31.810Z"
+      "timestamp": "2025-07-05T14:04:19.897Z"
     },
     {
       "filename": "price-sort-low.png",
       "description": "Sorted by price low to high",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/price-sort-low.png",
-      "timestamp": "2025-07-05T05:09:33.934Z"
+      "timestamp": "2025-07-05T14:04:22.062Z"
     },
     {
       "filename": "price-sort-high.png",
       "description": "Sorted by price high to low",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/price-sort-high.png",
-      "timestamp": "2025-07-05T05:09:35.025Z"
+      "timestamp": "2025-07-05T14:04:23.188Z"
     },
     {
       "filename": "product-card-hover.png",
       "description": "Product card hover effect",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/product-card-hover.png",
-      "timestamp": "2025-07-05T05:09:35.631Z"
+      "timestamp": "2025-07-05T14:04:23.843Z"
     },
     {
       "filename": "mobile-products-page.png",
       "description": "Products page on mobile",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/mobile-products-page.png",
-      "timestamp": "2025-07-05T05:09:36.890Z"
+      "timestamp": "2025-07-05T14:04:24.711Z"
     },
     {
       "filename": "mobile-search-focus.png",
       "description": "Mobile search input focused",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/mobile-search-focus.png",
-      "timestamp": "2025-07-05T05:09:36.943Z"
+      "timestamp": "2025-07-05T14:04:24.768Z"
     },
     {
       "filename": "tablet-products-page.png",
       "description": "Products page on tablet",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/product-discovery/tablet-products-page.png",
-      "timestamp": "2025-07-05T05:09:38.177Z"
+      "timestamp": "2025-07-05T14:04:25.635Z"
     }
   ],
   "issues": [
@@ -146,7 +146,7 @@
       "priority": "Medium",
       "issue": "Slow search response",
       "recommendation": "Optimize search performance with debouncing and efficient filtering",
-      "metric": "Search response: 3486ms"
+      "metric": "Search response: 3632ms"
     },
     {
       "category": "Filtering",

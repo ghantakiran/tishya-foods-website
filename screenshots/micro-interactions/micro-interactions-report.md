@@ -1,6 +1,6 @@
 # Micro-Interactions & Animation Analysis Report
 
-**Generated:** 7/5/2025, 12:13:51 AM  
+**Generated:** 7/5/2025, 9:08:48 AM  
 **URL:** http://localhost:3000  
 **Overall Score:** 70/100
 
@@ -17,7 +17,7 @@
 | Button Animations | ✅ Working | 3 |
 | Form Field Animations | ✅ Working | 4 |
 | Product Card Animations | ❌ Missing | 0 |
-| Scroll Animations | ✅ Working | 138 |
+| Scroll Animations | ✅ Working | 136 |
 | Mobile Menu Animations | ❌ Missing | - |
 | Loading States | ✅ Working | 0 |
 
@@ -26,16 +26,16 @@
 
 ### Animation Performance
 - **Frame Count:** 60
-- **Duration:** 490.20ms
+- **Duration:** 490.00ms
 - **Estimated FPS:** 122
 
 
 
 ### CSS Animation Usage
-- **Animated Elements:** 138
-- **Transition Elements:** 138
+- **Animated Elements:** 136
+- **Transition Elements:** 136
 - **Transform Elements:** 0
-- **Total Elements:** 138
+- **Total Elements:** 136
 
 
 ## 📸 Screenshots Captured

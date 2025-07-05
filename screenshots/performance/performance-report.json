@@ -1,6 +1,6 @@
 {
   "title": "Performance Testing & Core Web Vitals Analysis Report",
-  "timestamp": "2025-07-05T05:15:25.740Z",
+  "timestamp": "2025-07-05T14:13:25.019Z",
   "url": "http://localhost:3000",
   "summary": {
     "totalScreenshots": 14,
@@ -10,67 +10,58 @@
   },
   "coreWebVitals": {
     "LCP": {
-      "value": 388,
+      "value": 376,
       "rating": "good",
-      "delta": 388
-    },
-    "FID": {
-      "value": 30.80000000447035,
-      "rating": "good",
-      "delta": 30.80000000447035
+      "delta": 376
     },
     "domContentLoaded": null,
     "loadComplete": null,
-    "firstPaint": 232,
-    "firstContentfulPaint": 232,
-    "transferSize": 29374,
-    "encodedBodySize": 29074,
-    "decodedBodySize": 191547,
-    "timestamp": "2025-07-05T05:14:58.550Z"
+    "firstPaint": 212,
+    "firstContentfulPaint": 212,
+    "transferSize": 29072,
+    "encodedBodySize": 28772,
+    "decodedBodySize": 175489,
+    "timestamp": "2025-07-05T14:13:03.369Z"
   },
   "metrics": {
     "requestTracking": {
-      "total": 964,
+      "total": 123,
       "byType": {
-        "document": 20,
-        "font": 164,
-        "stylesheet": 40,
-        "image": 66,
-        "script": 464,
-        "other": 57,
-        "fetch": 153
+        "document": 1,
+        "font": 9,
+        "stylesheet": 2,
+        "image": 15,
+        "script": 23,
+        "other": 4,
+        "fetch": 69
       },
       "byDomain": {
-        "localhost": 807,
+        "localhost": 104,
         "": 14,
-        "fonts.googleapis.com": 20,
-        "www.googletagmanager.com": 20,
-        "fonts.gstatic.com": 69,
-        "images.unsplash.com": 32,
-        "unpkg.com": 2
+        "fonts.googleapis.com": 1,
+        "www.googletagmanager.com": 1,
+        "fonts.gstatic.com": 3
       }
     },
     "responseTracking": {
       "statusCodes": {
-        "200": 941,
-        "302": 1,
-        "404": 19
+        "200": 123
       },
-      "averageSize": 12940.226847034339,
-      "totalSize": 12435558,
-      "count": 961
+      "averageSize": 3887.8536585365855,
+      "totalSize": 478206,
+      "count": 123
     },
     "pageLoadPerformance": true,
     "resourceLoading": {
-      "total": 50,
+      "total": 44,
       "byType": {
-        "link": 13,
-        "script": 23,
-        "fetch": 10,
-        "css": 4
+        "link": 11,
+        "script": 22,
+        "css": 7,
+        "fetch": 4
       },
       "bySize": {
-        "small": 50
+        "small": 44
       },
       "loadingIssues": []
     },
@@ -83,36 +74,36 @@
       "sizes": []
     },
     "javascriptPerformance": {
-      "totalScripts": 24,
+      "totalScripts": 23,
       "totalSize": 0,
       "largeScripts": [],
       "slowScripts": [],
       "parseTime": 0,
-      "executeTime": 4.799999997019768,
+      "executeTime": 3.399999998509884,
       "responsiveness": {
-        "averageTaskTime": 0.12999999821186065,
-        "maxTaskTime": 0.29999999701976776,
+        "averageTaskTime": 0.06999999955296517,
+        "maxTaskTime": 0.20000000298023224,
         "minTaskTime": 0
       }
     },
     "cssPerformance": {
-      "totalStylesheets": 5,
+      "totalStylesheets": 6,
       "totalSize": 0,
       "largeStylesheets": [],
       "renderBlocking": 2,
       "unusedRules": 0,
       "totalRules": 150,
-      "styleRecalcTime": 0.4000000059604645
+      "styleRecalcTime": 0.3999999985098839
     },
     "memoryUsage": {
       "initial": {
-        "usedJSHeapSize": 56150891,
-        "totalJSHeapSize": 121786447,
+        "usedJSHeapSize": 42307853,
+        "totalJSHeapSize": 133500189,
         "jsHeapSizeLimit": 4294705152
       },
       "afterTest": {
-        "usedJSHeapSize": 56150891,
-        "totalJSHeapSize": 121786447
+        "usedJSHeapSize": 42307853,
+        "totalJSHeapSize": 133500189
       },
       "memoryUsageIncrease": 0,
       "final": {},
@@ -121,25 +112,24 @@
     "thirdPartyImpact": {
       "total": 7,
       "totalSize": 0,
-      "totalTime": 679.7999999970198,
+      "totalTime": 56.6000000089407,
       "domains": [
         "fonts.googleapis.com",
         "www.googletagmanager.com",
-        "fonts.gstatic.com",
-        "images.unsplash.com"
+        "fonts.gstatic.com"
       ],
       "slowThirdParty": []
     },
     "cachingStrategy": {
       "firstLoad": {
-        "totalResources": 50,
+        "totalResources": 44,
         "totalSize": 0,
-        "cacheHits": 50
+        "cacheHits": 44
       },
       "secondLoad": {
-        "totalResources": 51,
+        "totalResources": 45,
         "totalSize": 0,
-        "cacheHits": 51
+        "cacheHits": 45
       },
       "cacheEffectiveness": 1,
       "sizeSavings": 0
@@ -149,62 +139,62 @@
     {
       "page": "homepage",
       "url": "http://localhost:3000",
-      "loadTime": 1412,
+      "loadTime": 932,
       "metrics": {
         "dns": 0,
         "tcp": 0,
-        "request": 141.09999999403954,
-        "response": 6.800000004470348,
-        "dom": 0,
-        "resources": 50,
+        "request": 1.1000000014901161,
+        "response": 0.3999999985098839,
+        "dom": 0.10000000149011612,
+        "resources": 44,
         "totalSize": 0
       },
-      "timestamp": "2025-07-05T05:15:01.260Z"
+      "timestamp": "2025-07-05T14:13:05.523Z"
     },
     {
       "page": "products",
       "url": "http://localhost:3000/products",
-      "loadTime": 1081,
+      "loadTime": 774,
       "metrics": {
         "dns": 0,
         "tcp": 0,
-        "request": 74.20000000298023,
-        "response": 6.5,
+        "request": 0.8999999985098839,
+        "response": 0.5,
         "dom": 0.10000000149011612,
-        "resources": 42,
-        "totalSize": 0
+        "resources": 40,
+        "totalSize": 300
       },
-      "timestamp": "2025-07-05T05:15:03.786Z"
+      "timestamp": "2025-07-05T14:13:07.307Z"
     },
     {
       "page": "about",
       "url": "http://localhost:3000/about",
-      "loadTime": 907,
+      "loadTime": 787,
       "metrics": {
         "dns": 0,
         "tcp": 0,
-        "request": 73.70000000298023,
-        "response": 6.699999995529652,
+        "request": 1.2000000029802322,
+        "response": 0.8999999985098839,
         "dom": 0,
-        "resources": 33,
+        "resources": 37,
         "totalSize": 0
       },
-      "timestamp": "2025-07-05T05:15:05.861Z"
+      "timestamp": "2025-07-05T14:13:08.990Z"
     },
     {
       "page": "contact",
       "url": "http://localhost:3000/contact",
-      "loadTime": 942,
+      "loadTime": 834,
       "metrics": {
         "dns": 0,
         "tcp": 0,
-        "request": 85.89999999850988,
-        "response": 29.899999998509884,
+        "request": 73.10000000149012,
+        "response": 10.399999998509884,
         "dom": 0,
         "resources": 33,
         "totalSize": 0
       },
-      "timestamp": "2025-07-05T05:15:07.787Z"
+      "timestamp": "2025-07-05T14:13:10.666Z"
     }
   ],
   "screenshots": [
@@ -212,85 +202,85 @@
       "filename": "core-web-vitals-homepage.png",
       "description": "Core Web Vitals - Homepage initial load",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/performance/core-web-vitals-homepage.png",
-      "timestamp": "2025-07-05T05:14:58.641Z"
+      "timestamp": "2025-07-05T14:13:03.479Z"
     },
     {
       "filename": "page-load-homepage.png",
       "description": "homepage page load performance",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/performance/page-load-homepage.png",
-      "timestamp": "2025-07-05T05:15:01.354Z"
+      "timestamp": "2025-07-05T14:13:05.608Z"
     },
     {
       "filename": "page-load-products.png",
       "description": "products page load performance",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/performance/page-load-products.png",
-      "timestamp": "2025-07-05T05:15:03.871Z"
+      "timestamp": "2025-07-05T14:13:07.427Z"
     },
     {
       "filename": "page-load-about.png",
       "description": "about page load performance",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/performance/page-load-about.png",
-      "timestamp": "2025-07-05T05:15:05.950Z"
+      "timestamp": "2025-07-05T14:13:09.087Z"
     },
     {
       "filename": "page-load-contact.png",
       "description": "contact page load performance",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/performance/page-load-contact.png",
-      "timestamp": "2025-07-05T05:15:07.897Z"
+      "timestamp": "2025-07-05T14:13:10.783Z"
     },
     {
       "filename": "resource-lazy-loading.png",
       "description": "Resource lazy loading test",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/performance/resource-lazy-loading.png",
-      "timestamp": "2025-07-05T05:15:11.239Z"
+      "timestamp": "2025-07-05T14:13:13.647Z"
     },
     {
       "filename": "image-optimization-analysis.png",
       "description": "Image optimization analysis",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/performance/image-optimization-analysis.png",
-      "timestamp": "2025-07-05T05:15:12.750Z"
+      "timestamp": "2025-07-05T14:13:14.816Z"
     },
     {
       "filename": "javascript-performance.png",
       "description": "JavaScript performance analysis",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/performance/javascript-performance.png",
-      "timestamp": "2025-07-05T05:15:14.956Z"
+      "timestamp": "2025-07-05T14:13:16.693Z"
     },
     {
       "filename": "css-performance.png",
       "description": "CSS performance analysis",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/performance/css-performance.png",
-      "timestamp": "2025-07-05T05:15:16.226Z"
+      "timestamp": "2025-07-05T14:13:17.602Z"
     },
     {
       "filename": "memory-usage.png",
       "description": "Memory usage analysis",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/performance/memory-usage.png",
-      "timestamp": "2025-07-05T05:15:20.805Z"
+      "timestamp": "2025-07-05T14:13:21.785Z"
     },
     {
       "filename": "third-party-analysis.png",
       "description": "Third-party impact analysis",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/performance/third-party-analysis.png",
-      "timestamp": "2025-07-05T05:15:22.290Z"
+      "timestamp": "2025-07-05T14:13:22.647Z"
     },
     {
       "filename": "caching-analysis.png",
       "description": "Caching strategy analysis",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/performance/caching-analysis.png",
-      "timestamp": "2025-07-05T05:15:25.101Z"
+      "timestamp": "2025-07-05T14:13:24.733Z"
     },
     {
       "filename": "progressive-loading-initial.png",
       "description": "Progressive loading - Initial state",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/performance/progressive-loading-initial.png",
-      "timestamp": "2025-07-05T05:15:25.511Z"
+      "timestamp": "2025-07-05T14:13:24.903Z"
     },
     {
       "filename": "progressive-loading-dom-ready.png",
       "description": "Progressive loading - DOM ready",
       "path": "/Users/kiranreddyghanta/Developer/TishyaFoods/tishya-foods-website/screenshots/performance/progressive-loading-dom-ready.png",
-      "timestamp": "2025-07-05T05:15:25.739Z"
+      "timestamp": "2025-07-05T14:13:25.018Z"
     }
   ],
   "issues": [

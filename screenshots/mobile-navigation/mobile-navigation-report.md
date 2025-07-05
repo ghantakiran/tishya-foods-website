@@ -1,6 +1,6 @@
 # Mobile Navigation & Responsiveness Analysis Report
 
-**Generated:** 7/5/2025, 12:10:43 AM  
+**Generated:** 7/5/2025, 9:05:10 AM  
 **URL:** http://localhost:3000  
 **Overall Score:** 15/100
 
@@ -15,37 +15,37 @@
 
 ### iPhone SE (mobile)
 - **Dimensions:** 375x667
-- **Duration:** 22434ms
+- **Duration:** 2064ms
 - **Status:** ✅ Success
 - **Issues:** 0
 
 ### iPhone 11 Pro Max (mobile)
 - **Dimensions:** 414x896
-- **Duration:** 1984ms
+- **Duration:** 1642ms
 - **Status:** ✅ Success
 - **Issues:** 0
 
 ### iPad (tablet)
 - **Dimensions:** 768x1024
-- **Duration:** 2524ms
+- **Duration:** 1710ms
 - **Status:** ✅ Success
 - **Issues:** 0
 
 ### iPad Landscape (tablet)
 - **Dimensions:** 1024x768
-- **Duration:** 2019ms
+- **Duration:** 1645ms
 - **Status:** ✅ Success
 - **Issues:** 0
 
 ### Android Small (mobile)
 - **Dimensions:** 360x640
-- **Duration:** 2570ms
+- **Duration:** 1632ms
 - **Status:** ✅ Success
 - **Issues:** 0
 
 ### iPhone 5s (mobile)
 - **Dimensions:** 320x568
-- **Duration:** 1926ms
+- **Duration:** 1500ms
 - **Status:** ✅ Success
 - **Issues:** 0
 

@@ -1,6 +1,6 @@
 {
   "url": "http://localhost:3000",
-  "timestamp": "2025-07-05T05:14:37.079Z",
+  "timestamp": "2025-07-05T14:12:17.184Z",
   "overallScore": 79,
   "seoLevel": "Good",
   "summary": {
@@ -153,8 +153,8 @@
         "hasSSL": false,
         "hasServiceWorker": true,
         "pageSpeed": {
-          "domContentLoaded": 185,
-          "loadComplete": 220
+          "domContentLoaded": 245,
+          "loadComplete": 282
         },
         "mobileOptimized": true,
         "hasCanonical": true,
@@ -175,49 +175,49 @@
       "filename": "seo-audit-initial.png",
       "description": "Initial page load for SEO audit",
       "path": "screenshots/seo/seo-audit-initial.png",
-      "timestamp": "2025-07-05T05:14:39.506Z"
+      "timestamp": "2025-07-05T14:12:19.596Z"
     },
     {
       "filename": "meta-tags-analysis.png",
       "description": "Meta tags and title optimization analysis",
       "path": "screenshots/seo/meta-tags-analysis.png",
-      "timestamp": "2025-07-05T05:14:39.628Z"
+      "timestamp": "2025-07-05T14:12:19.731Z"
     },
     {
       "filename": "heading-structure.png",
       "description": "Heading structure and hierarchy analysis",
       "path": "screenshots/seo/heading-structure.png",
-      "timestamp": "2025-07-05T05:14:39.744Z"
+      "timestamp": "2025-07-05T14:12:19.864Z"
     },
     {
       "filename": "internal-linking.png",
       "description": "Internal linking structure analysis",
       "path": "screenshots/seo/internal-linking.png",
-      "timestamp": "2025-07-05T05:14:39.860Z"
+      "timestamp": "2025-07-05T14:12:19.997Z"
     },
     {
       "filename": "image-seo.png",
       "description": "Image SEO and alt text analysis",
       "path": "screenshots/seo/image-seo.png",
-      "timestamp": "2025-07-05T05:14:39.977Z"
+      "timestamp": "2025-07-05T14:12:20.131Z"
     },
     {
       "filename": "schema-markup.png",
       "description": "Schema markup validation",
       "path": "screenshots/seo/schema-markup.png",
-      "timestamp": "2025-07-05T05:14:40.093Z"
+      "timestamp": "2025-07-05T14:12:20.265Z"
     },
     {
       "filename": "technical-seo.png",
       "description": "Technical SEO analysis",
       "path": "screenshots/seo/technical-seo.png",
-      "timestamp": "2025-07-05T05:14:41.174Z"
+      "timestamp": "2025-07-05T14:12:21.407Z"
     },
     {
       "filename": "seo-audit-complete.png",
       "description": "Final SEO audit overview",
       "path": "screenshots/seo/seo-audit-complete.png",
-      "timestamp": "2025-07-05T05:14:41.315Z"
+      "timestamp": "2025-07-05T14:12:21.551Z"
     }
   ],
   "issues": [],
