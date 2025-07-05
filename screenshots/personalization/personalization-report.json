@@ -1,0 +1,93 @@
+{
+  "timestamp": "2025-07-05T13:31:05.050Z",
+  "url": "http://localhost:3001",
+  "tests": [
+    {
+      "test": "Dietary Preferences Selection",
+      "status": "FAIL",
+      "details": "No dietary preference options found",
+      "timestamp": "2025-07-05T13:31:08.167Z"
+    },
+    {
+      "test": "Preferences Saving",
+      "status": "FAIL",
+      "details": "Save preferences button not found",
+      "timestamp": "2025-07-05T13:31:08.168Z"
+    },
+    {
+      "test": "User Preferences",
+      "status": "FAIL",
+      "details": "page.waitForTimeout is not a function",
+      "timestamp": "2025-07-05T13:31:08.420Z"
+    },
+    {
+      "test": "Recommendation Sections Present",
+      "status": "FAIL",
+      "details": "No recommendation sections found on homepage",
+      "timestamp": "2025-07-05T13:31:10.355Z"
+    },
+    {
+      "test": "Behavior Tracking",
+      "status": "FAIL",
+      "details": "No element found for selector: nav a[href=\"/products\"]",
+      "timestamp": "2025-07-05T13:31:14.937Z"
+    },
+    {
+      "test": "User Segmentation",
+      "status": "FAIL",
+      "details": "page.waitForTimeout is not a function",
+      "timestamp": "2025-07-05T13:31:17.447Z"
+    },
+    {
+      "test": "Adaptive Interface",
+      "status": "FAIL",
+      "details": "page.waitForTimeout is not a function",
+      "timestamp": "2025-07-05T13:31:17.752Z"
+    },
+    {
+      "test": "Recommendation Accuracy",
+      "status": "FAIL",
+      "details": "page.waitForTimeout is not a function",
+      "timestamp": "2025-07-05T13:31:18.027Z"
+    },
+    {
+      "test": "Personalization Performance",
+      "status": "PASS",
+      "details": "Page load time: 1273ms",
+      "timestamp": "2025-07-05T13:31:20.385Z"
+    },
+    {
+      "test": "Personalization Storage",
+      "status": "PASS",
+      "details": "7 localStorage items, 1 sessionStorage items",
+      "timestamp": "2025-07-05T13:31:20.385Z"
+    },
+    {
+      "test": "Personalization Elements",
+      "status": "PASS",
+      "details": "0 recommendation elements, 0 personalized content blocks",
+      "timestamp": "2025-07-05T13:31:20.385Z"
+    }
+  ],
+  "summary": {
+    "total": 11,
+    "passed": 3,
+    "failed": 8,
+    "warnings": 0,
+    "successRate": "27.3"
+  },
+  "personalizationMetrics": {
+    "loadTime": 1273,
+    "localStorage": 7,
+    "sessionStorage": 1,
+    "recommendationElements": 0,
+    "personalizedContent": 0
+  },
+  "recommendations": [
+    "Improve personalization algorithm accuracy",
+    "Enhance recommendation relevance using better user profiling",
+    "Implement A/B testing for personalization features",
+    "Add more granular user preference options",
+    "Consider machine learning for improved recommendations"
+  ]
+}

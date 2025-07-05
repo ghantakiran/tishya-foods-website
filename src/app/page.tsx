@@ -4,6 +4,7 @@ import ProductCategories from '@/components/home/product-categories'
 import { Skeleton } from '@/components/loading/loading-skeleton'
 import { LazyValuesSection, LazyTestimonials, LazyInstagramFeed } from '@/components/performance/lazy-component'
 import { TrustSignals, SocialProofNumbers, CustomerTestimonials } from '@/components/trust/trust-signals'
+import { RecommendationEngine } from '@/components/personalization/recommendation-engine'
 
 export default function Home() {
   return (
@@ -17,6 +18,15 @@ export default function Home() {
       
       {/* Social proof numbers */}
       <SocialProofNumbers />
+      
+      {/* Personalized Recommendations */}
+      <div className="py-12 bg-gray-800">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <Suspense fallback={<div className="py-8"><Skeleton className="h-64 w-full" /></div>}>
+            <RecommendationEngine />
+          </Suspense>
+        </div>
+      </div>
       
       {/* Below the fold - Lazy load with suspense */}
       <Suspense fallback={<div className="py-20"><Skeleton className="h-64 w-full" /></div>}>

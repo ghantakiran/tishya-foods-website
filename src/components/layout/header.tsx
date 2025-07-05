@@ -114,19 +114,19 @@ export default function Header() {
                   <User className="h-5 w-5" />
                   <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full"></span>
                 </Button>
-                <div className="absolute right-0 mt-2 w-48 bg-cream-50 rounded-md shadow-lg py-1 z-50 hidden group-hover:block border border-primary-200">
-                  <Link href="/profile" className="block px-4 py-2 text-sm text-primary-700 hover:bg-primary-100">
-                    Profile
+                <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 hidden group-hover:block border border-gray-600">
+                  <Link href="/profile" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">
+                    Profile & Preferences
                   </Link>
-                  <Link href="/orders" className="block px-4 py-2 text-sm text-primary-700 hover:bg-primary-100">
+                  <Link href="/orders" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">
                     Orders
                   </Link>
-                  <Link href="/preferences" className="block px-4 py-2 text-sm text-primary-700 hover:bg-primary-100">
-                    Preferences
+                  <Link href="/loyalty" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">
+                    Rewards
                   </Link>
                   <button
                     onClick={logout}
-                    className="block w-full text-left px-4 py-2 text-sm text-primary-700 hover:bg-primary-100"
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700"
                   >
                     Sign Out
                   </button>

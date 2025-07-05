@@ -1,0 +1,90 @@
+{
+  "timestamp": "2025-07-05T13:40:46.494Z",
+  "url": "http://localhost:3001",
+  "tests": [
+    {
+      "test": "Chatbot Trigger Visibility",
+      "status": "FAIL",
+      "details": "No chatbot trigger found on homepage",
+      "timestamp": "2025-07-05T13:40:47.348Z"
+    },
+    {
+      "test": "Chatbot Accessibility",
+      "status": "FAIL",
+      "details": "Chatbot trigger missing aria-label",
+      "timestamp": "2025-07-05T13:40:47.349Z"
+    },
+    {
+      "test": "Chatbot Initialization",
+      "status": "FAIL",
+      "details": "No chatbot trigger found to test initialization",
+      "timestamp": "2025-07-05T13:40:47.507Z"
+    },
+    {
+      "test": "Chatbot Input Field",
+      "status": "FAIL",
+      "details": "No chat input field found",
+      "timestamp": "2025-07-05T13:40:47.580Z"
+    },
+    {
+      "test": "Chatbot Send Button",
+      "status": "FAIL",
+      "details": "No send button found",
+      "timestamp": "2025-07-05T13:40:47.580Z"
+    },
+    {
+      "test": "Chatbot Close Button",
+      "status": "FAIL",
+      "details": "No close button found",
+      "timestamp": "2025-07-05T13:40:47.581Z"
+    },
+    {
+      "test": "Messages Container",
+      "status": "FAIL",
+      "details": "No messages container found",
+      "timestamp": "2025-07-05T13:40:47.581Z"
+    },
+    {
+      "test": "Quick Reply Buttons",
+      "status": "FAIL",
+      "details": "No quick reply buttons found",
+      "timestamp": "2025-07-05T13:40:47.584Z"
+    },
+    {
+      "test": "Conversation Flow",
+      "status": "FAIL",
+      "details": "Missing input field or send button",
+      "timestamp": "2025-07-05T13:40:47.585Z"
+    },
+    {
+      "test": "Product Recommendations",
+      "status": "FAIL",
+      "details": "No product links found in response",
+      "timestamp": "2025-07-05T13:40:47.648Z"
+    },
+    {
+      "test": "Mobile Chatbot Trigger",
+      "status": "FAIL",
+      "details": "No chatbot trigger found on mobile",
+      "timestamp": "2025-07-05T13:40:48.375Z"
+    }
+  ],
+  "summary": {
+    "total": 11,
+    "passed": 0,
+    "failed": 11,
+    "warnings": 0,
+    "successRate": "0.0"
+  },
+  "chatbotMetrics": {},
+  "recommendations": [
+    "Improve chatbot response accuracy and reliability",
+    "Optimize chatbot response time for better user experience",
+    "Improve chatbot initialization performance",
+    "Implement comprehensive natural language processing",
+    "Add more contextual understanding capabilities",
+    "Enhance mobile chatbot experience",
+    "Add voice input/output functionality",
+    "Implement chatbot analytics and conversation tracking"
+  ]
+}

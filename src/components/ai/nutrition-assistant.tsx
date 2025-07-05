@@ -40,7 +40,7 @@ export default function NutritionAssistant() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: '1',
+      id: 'welcome-1',
       type: 'assistant',
       content: "Hi! I'm your Tishya Foods nutrition assistant. I can help you find the perfect protein-rich products for your dietary needs. How can I assist you today?",
       timestamp: new Date(),
@@ -168,15 +168,17 @@ export default function NutritionAssistant() {
     <>
       {/* Chat Toggle Button */}
       <motion.button
-        className="fixed bottom-6 right-6 w-14 h-14 bg-earth-800 hover:bg-earth-700 text-white rounded-full shadow-lg flex items-center justify-center z-50"
+        className="fixed bottom-6 right-6 w-14 h-14 bg-gray-800 hover:bg-gray-700 text-white rounded-full shadow-lg flex items-center justify-center z-50"
         onClick={() => setIsOpen(true)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         animate={isOpen ? { scale: 0, opacity: 0 } : { scale: 1, opacity: 1 }}
+        data-testid="chatbot-trigger"
+        aria-label="Open AI Nutrition Assistant"
       >
         <MessageCircle className="h-6 w-6" />
         <motion.div
-          className="absolute -top-1 -right-1 w-3 h-3 bg-accent-500 rounded-full"
+          className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full"
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
@@ -186,17 +188,18 @@ export default function NutritionAssistant() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed bottom-6 right-6 w-96 h-[500px] bg-earth-800 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden border border-earth-600"
+            className="fixed bottom-6 right-6 w-96 h-[500px] bg-gray-800 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden border border-gray-600"
             initial={{ opacity: 0, y: 100, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.8 }}
             transition={{ duration: 0.3 }}
+            data-testid="chatbot-window"
           >
             {/* Header */}
-            <div className="bg-earth-800 text-white p-4 flex items-center justify-between">
+            <div className="bg-gray-800 text-white p-4 flex items-center justify-between" data-testid="chatbot-header">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center">
-                  <Bot className="h-4 w-4 text-earth-800" />
+                <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                  <Bot className="h-4 w-4 text-gray-900" />
                 </div>
                 <div>
                   <h3 className="font-semibold">Nutrition Assistant</h3>
@@ -207,14 +210,16 @@ export default function NutritionAssistant() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsOpen(false)}
-                className="text-white hover:bg-earth-700"
+                className="text-white hover:bg-gray-700"
+                data-testid="close-chatbot"
+                aria-label="Close chatbot"
               >
                 <X className="h-4 w-4" />
               </Button>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-earth-900">
+            <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-gray-900" data-testid="messages-container">
               {messages.map((message) => (
                 <motion.div
                   key={message.id}
@@ -225,20 +230,20 @@ export default function NutritionAssistant() {
                 >
                   <div className={`flex items-start space-x-2 max-w-[80%] ${message.type === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
                     <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      message.type === 'user' ? 'bg-earth-800' : 'bg-primary-500'
+                      message.type === 'user' ? 'bg-gray-700' : 'bg-green-500'
                     }`}>
                       {message.type === 'user' ? (
                         <User className="h-3 w-3 text-white" />
                       ) : (
-                        <Bot className="h-3 w-3 text-earth-800" />
+                        <Bot className="h-3 w-3 text-gray-900" />
                       )}
                     </div>
                     <div>
                       <div className={`rounded-2xl p-3 ${
                         message.type === 'user' 
-                          ? 'bg-earth-800 text-white' 
-                          : 'bg-earth-800 border border-earth-600'
-                      }`}>
+                          ? 'bg-gray-700 text-white' 
+                          : 'bg-gray-800 border border-gray-600 text-gray-100'
+                      }`} data-testid="message" data-sender={message.type === 'user' ? 'user' : 'bot'}>
                         <p className="text-sm leading-relaxed">{message.content}</p>
                       </div>
                       {message.suggestions && (
@@ -247,7 +252,8 @@ export default function NutritionAssistant() {
                             <button
                               key={index}
                               onClick={() => handleSuggestionClick(suggestion)}
-                              className="block text-xs bg-primary-100 hover:bg-primary-200 text-earth-800 px-2 py-1 rounded-full transition-colors"
+                              className="block text-xs bg-green-100 hover:bg-green-200 text-gray-800 px-2 py-1 rounded-full transition-colors"
+                              data-testid="quick-reply"
                             >
                               {suggestion}
                             </button>
@@ -265,24 +271,24 @@ export default function NutritionAssistant() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
-                  <div className="flex items-center space-x-2">
-                    <div className="w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center">
-                      <Bot className="h-3 w-3 text-earth-800" />
+                  <div className="flex items-center space-x-2" data-testid="typing">
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                      <Bot className="h-3 w-3 text-gray-900" />
                     </div>
-                    <div className="bg-earth-800 border border-earth-600 rounded-2xl p-3">
+                    <div className="bg-gray-800 border border-gray-600 rounded-2xl p-3">
                       <div className="flex space-x-1">
                         <motion.div
-                          className="w-2 h-2 bg-earth-400 rounded-full"
+                          className="w-2 h-2 bg-gray-400 rounded-full"
                           animate={{ scale: [1, 1.2, 1] }}
                           transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
                         />
                         <motion.div
-                          className="w-2 h-2 bg-earth-400 rounded-full"
+                          className="w-2 h-2 bg-gray-400 rounded-full"
                           animate={{ scale: [1, 1.2, 1] }}
                           transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
                         />
                         <motion.div
-                          className="w-2 h-2 bg-earth-400 rounded-full"
+                          className="w-2 h-2 bg-gray-400 rounded-full"
                           animate={{ scale: [1, 1.2, 1] }}
                           transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
                         />
@@ -295,7 +301,7 @@ export default function NutritionAssistant() {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-earth-600 bg-earth-800">
+            <div className="p-4 border-t border-gray-600 bg-gray-800">
               <form
                 onSubmit={(e) => {
                   e.preventDefault()
@@ -308,14 +314,16 @@ export default function NutritionAssistant() {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Ask about nutrition, products, or recipes..."
-                  className="flex-1 px-3 py-2 border border-earth-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none text-sm"
+                  className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none text-sm text-gray-100 placeholder-gray-400"
                   disabled={isTyping}
+                  data-testid="chat-input"
                 />
                 <Button
                   type="submit"
                   size="icon"
                   disabled={!inputValue.trim() || isTyping}
-                  className="flex-shrink-0"
+                  className="flex-shrink-0 bg-green-600 hover:bg-green-700"
+                  data-testid="send-button"
                 >
                   <Send className="h-4 w-4" />
                 </Button>
