@@ -123,7 +123,7 @@ export default function Header() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6">
+          <nav id="main-navigation" className="hidden lg:flex items-center space-x-6" role="navigation" aria-label="Main navigation">
             {navigation.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -174,15 +174,16 @@ export default function Header() {
                 size="icon" 
                 className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full hover:shadow-lg hover:shadow-blue-500/20"
                 data-testid="search-button"
+                aria-label="Search products"
               >
                 <Search className="h-5 w-5" />
               </Button>
             </motion.div>
             {isAuthenticated ? (
               <div className="relative">
-                <Button variant="ghost" size="icon" className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full">
+                <Button variant="ghost" size="icon" className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full" aria-label="User account menu">
                   <User className="h-5 w-5" />
-                  <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full"></span>
+                  <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full" aria-hidden="true"></span>
                 </Button>
                 <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 hidden group-hover:block border border-gray-600">
                   <Link href="/profile" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">
@@ -207,7 +208,7 @@ export default function Header() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)} className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full hover:shadow-lg hover:shadow-blue-500/20">
+                <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)} className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full hover:shadow-lg hover:shadow-blue-500/20" aria-label="Sign in or create account">
                   <User className="h-5 w-5" />
                 </Button>
               </motion.div>
@@ -223,6 +224,7 @@ export default function Header() {
                 className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full hover:shadow-lg hover:shadow-blue-500/20"
                 onClick={() => setIsCartOpen(true)}
                 data-testid="cart-button"
+                aria-label={`Shopping cart ${cart && cart.totalItems > 0 ? `with ${cart.totalItems} items` : '(empty)'}`}
               >
                 <ShoppingCart className="h-5 w-5" />
                 {cart && cart.totalItems > 0 && (
@@ -231,6 +233,7 @@ export default function Header() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 500, damping: 15 }}
+                    aria-hidden="true"
                   >
                     {cart.totalItems}
                   </motion.span>
@@ -259,6 +262,9 @@ export default function Header() {
               size="icon"
               className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-lg hover:shadow-lg hover:shadow-blue-500/20"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
             >
               <motion.div
                 animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
@@ -279,8 +285,11 @@ export default function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="mobile-menu"
             data-testid="mobile-menu"
             className="lg:hidden bg-gray-900/95 backdrop-blur-xl border-t border-gray-700/30 shadow-lg supports-[backdrop-filter]:bg-gray-900/90"
+            role="navigation"
+            aria-label="Mobile navigation"
             initial={{ opacity: 0, height: 0, y: -20 }}
             animate={{ opacity: 1, height: 'auto', y: 0 }}
             exit={{ opacity: 0, height: 0, y: -20 }}
