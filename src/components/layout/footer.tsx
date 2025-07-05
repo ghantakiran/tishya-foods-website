@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Instagram, Facebook, Twitter, Mail, Phone, MapPin } from 'lucide-react'
+import { GuaranteeSection } from '@/components/trust/trust-signals'
 
 const footerSections = [
   {
@@ -43,7 +44,12 @@ const footerSections = [
 
 export default function Footer() {
   return (
-    <footer className="bg-earth-800 text-cream-50">
+    <footer className="bg-gray-800 text-gray-100">
+      {/* Guarantee Section */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <GuaranteeSection />
+      </div>
+      
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
@@ -59,27 +65,27 @@ export default function Footer() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-cream-50 font-bold text-lg font-montserrat">
+                <span className="text-gray-100 font-bold text-lg font-montserrat">
                   Tishya Foods
                 </span>
-                <span className="text-primary-400 text-xs -mt-1">
+                <span className="text-green-400 text-xs -mt-1">
                   Health At Home!
                 </span>
               </div>
             </Link>
-            <p className="text-cream-100 mb-6 max-w-sm">
+            <p className="text-gray-100 mb-6 max-w-sm">
               Where nature&apos;s goodness is lovingly crafted into the purest and most 
               wholesome protein-rich foods. Triple-washed, air-dried, hand-roasted, 
               and finely milled with care.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-cream-200 hover:text-primary-400 transition-colors">
+              <a href="https://instagram.com/tishyafoods" className="text-gray-200 hover:text-green-400 transition-colors" data-testid="social-link" aria-label="Follow us on Instagram">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-cream-200 hover:text-primary-400 transition-colors">
+              <a href="https://facebook.com/tishyafoods" className="text-gray-200 hover:text-green-400 transition-colors" data-testid="social-link" aria-label="Follow us on Facebook">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-cream-200 hover:text-primary-400 transition-colors">
+              <a href="https://twitter.com/tishyafoods" className="text-gray-200 hover:text-green-400 transition-colors" data-testid="social-link" aria-label="Follow us on Twitter">
                 <Twitter className="h-5 w-5" />
               </a>
             </div>
@@ -88,13 +94,13 @@ export default function Footer() {
           {/* Footer Links */}
           {footerSections.map((section) => (
             <div key={section.title}>
-              <h3 className="text-cream-50 font-semibold mb-4">{section.title}</h3>
+              <h3 className="text-gray-50 font-semibold mb-4">{section.title}</h3>
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-cream-200 hover:text-primary-400 transition-colors text-sm"
+                      className="text-gray-200 hover:text-green-400 transition-colors text-sm"
                     >
                       {link.name}
                     </Link>
@@ -106,36 +112,36 @@ export default function Footer() {
         </div>
 
         {/* Contact Info */}
-        <div className="border-t border-earth-600 mt-12 pt-8">
+        <div className="border-t border-gray-600 mt-12 pt-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-center space-x-3">
-              <Mail className="h-5 w-5 text-primary-400" />
-              <span className="text-cream-200">info@tishyafoods.com</span>
+              <Mail className="h-5 w-5 text-green-400" />
+              <span className="text-gray-200">info@tishyafoods.com</span>
             </div>
             <div className="flex items-center space-x-3">
-              <Phone className="h-5 w-5 text-primary-400" />
-              <span className="text-cream-200">+91 12345 67890</span>
+              <Phone className="h-5 w-5 text-green-400" />
+              <span className="text-gray-200">+91 12345 67890</span>
             </div>
             <div className="flex items-center space-x-3">
-              <MapPin className="h-5 w-5 text-primary-400" />
-              <span className="text-cream-200">India</span>
+              <MapPin className="h-5 w-5 text-green-400" />
+              <span className="text-gray-200">India</span>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-earth-600 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-cream-300 text-sm">
+        <div className="border-t border-gray-600 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-300 text-sm">
             © {new Date().getFullYear()} Tishya Foods. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy" className="text-cream-300 hover:text-primary-400 text-sm transition-colors">
+            <Link href="/privacy" className="text-gray-300 hover:text-green-400 text-sm transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-cream-300 hover:text-primary-400 text-sm transition-colors">
+            <Link href="/terms" className="text-gray-300 hover:text-green-400 text-sm transition-colors">
               Terms of Service
             </Link>
-            <Link href="/sitemap" className="text-cream-300 hover:text-primary-400 text-sm transition-colors">
+            <Link href="/sitemap" className="text-gray-300 hover:text-green-400 text-sm transition-colors">
               Sitemap
             </Link>
           </div>
