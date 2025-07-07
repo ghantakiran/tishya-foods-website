@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { Sparkles, Target, Zap, Heart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { products } from '@/lib/products-data'
-import { Product } from '@/types'
+import { Product } from '@/types/product'
 import { formatPrice } from '@/lib/utils'
 
 interface RecommendationEngine {

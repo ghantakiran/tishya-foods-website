@@ -45,10 +45,6 @@ export function BlogList({
     fetchTags()
   }, [fetchCategories, fetchTags])
 
-  useEffect(() => {
-    loadPosts()
-  }, [filters, loadPosts])
-
   const loadPosts = useCallback(async () => {
     try {
       await fetchPosts(filters)
@@ -67,6 +63,10 @@ export function BlogList({
       console.error('Failed to load posts:', error)
     }
   }, [fetchPosts, filters, posts.length, analytics])
+
+  useEffect(() => {
+    loadPosts()
+  }, [filters, loadPosts])
 
   const handleSearch = (searchTerm: string) => {
     setFilters({ ...filters, search: searchTerm, page: 1 })

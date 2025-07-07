@@ -8,8 +8,14 @@ import { SubscriptionPlans } from '@/components/subscription/subscription-plans'
 import { SubscriptionCustomizer } from '@/components/subscription/subscription-customizer'
 import { SubscriptionDashboard } from '@/components/subscription/subscription-dashboard'
 import { useRoutePerformance } from '@/components/performance/performance-init'
-import type { SubscriptionCustomization, SubscriptionState } from '@/types/subscription'
+import type { SubscriptionCustomization } from '@/types/subscription'
 import type { SubscriptionPlan } from '@/components/subscription/subscription-plans'
+
+interface SubscriptionState {
+  selectedPlan?: SubscriptionPlan
+  customization?: SubscriptionCustomization
+  subscriptionId?: string
+}
 
 type SubscriptionFlow = 'plans' | 'customize' | 'dashboard' | 'success'
 
@@ -25,7 +31,7 @@ export default function SubscriptionPage() {
     setCurrentFlow('customize')
   }
 
-  const handleCustomizationComplete = (customization: SubscriptionCustomization) => {
+  const handleCustomizationComplete = (customization: any) => {
     setSubscriptionState(prev => ({ 
       ...prev, 
       customization,

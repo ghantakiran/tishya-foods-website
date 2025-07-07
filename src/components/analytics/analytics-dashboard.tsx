@@ -61,14 +61,6 @@ export function AnalyticsDashboard() {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
   const [timeRange, setTimeRange] = useState('7d')
 
-  useEffect(() => {
-    fetchAnalyticsData()
-    
-    // Auto-refresh every 5 minutes
-    const interval = setInterval(fetchAnalyticsData, 5 * 60 * 1000)
-    return () => clearInterval(interval)
-  }, [timeRange, fetchAnalyticsData])
-
   const fetchAnalyticsData = useCallback(async () => {
     try {
       setLoading(true)
@@ -86,6 +78,14 @@ export function AnalyticsDashboard() {
       setLoading(false)
     }
   }, [timeRange])
+
+  useEffect(() => {
+    fetchAnalyticsData()
+    
+    // Auto-refresh every 5 minutes
+    const interval = setInterval(fetchAnalyticsData, 5 * 60 * 1000)
+    return () => clearInterval(interval)
+  }, [timeRange, fetchAnalyticsData])
 
   const formatNumber = (num: number): string => {
     if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M'
