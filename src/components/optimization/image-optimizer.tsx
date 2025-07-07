@@ -146,7 +146,7 @@ export function OptimizedImage({
       )}
 
       {/* Main Image */}
-      {shouldLoad && <img {...imageProps} />}
+      {shouldLoad && <NextImage {...imageProps} />}
 
       {/* Error State */}
       {isError && (
@@ -322,7 +322,7 @@ export function LazyImage({
   })
 
   return (
-    <div ref={ref as any} className={cn('relative', className)}>
+    <div ref={ref as React.RefObject<HTMLDivElement>} className={cn('relative', className)}>
       {isVisible ? (
         <OptimizedImage src={src} alt={alt} fill className="object-cover" />
       ) : (
@@ -375,11 +375,12 @@ export function ProgressiveImage({
     <div className={cn('relative overflow-hidden', className)}>
       {/* Low resolution image */}
       {lowResLoaded && (
-        <img
+        <NextImage
           src={src.low}
           alt={alt}
+          fill
           className={cn(
-            'absolute inset-0 w-full h-full object-cover transition-opacity duration-300 filter blur-sm scale-105',
+            'object-cover transition-opacity duration-300 filter blur-sm scale-105',
             highResLoaded ? 'opacity-0' : 'opacity-100'
           )}
         />
@@ -387,14 +388,19 @@ export function ProgressiveImage({
 
       {/* High resolution image */}
       {highResLoaded && (
-        <motion.img
-          src={src.high}
-          alt={alt}
-          className="w-full h-full object-cover"
+        <motion.div
+          className="absolute inset-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-        />
+        >
+          <NextImage
+            src={src.high}
+            alt={alt}
+            fill
+            className="object-cover"
+          />
+        </motion.div>
       )}
 
       {/* Loading placeholder */}

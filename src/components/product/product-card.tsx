@@ -47,7 +47,7 @@ export function ProductCard({
   }
 
   const isOutOfStock = product.stock <= 0
-  const isLowStock = product.stock > 0 && product.stock <= 10
+  // const isLowStock = product.stock > 0 && product.stock <= 10  // Not currently used
 
   return (
     <motion.div

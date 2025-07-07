@@ -6,14 +6,12 @@ import {
   X, 
   Plus, 
   Check, 
-  Star, 
   ShoppingCart,
   Scale,
   Zap,
   Heart,
   Award,
   TrendingUp,
-  ArrowRight,
   Info
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -56,10 +54,10 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
     return bestValue !== null && product.nutritionalInfo[metric] === bestValue
   }
 
-  const getDiscountPercentage = (price: number, originalPrice?: number) => {
-    if (!originalPrice) return 0
-    return Math.round(((originalPrice - price) / originalPrice) * 100)
-  }
+  // const getDiscountPercentage = (price: number, originalPrice?: number) => {
+  //   if (!originalPrice) return 0
+  //   return Math.round(((originalPrice - price) / originalPrice) * 100)
+  // }
 
   const allCertifications = [...new Set(products.flatMap(p => p.certifications))]
 
@@ -320,16 +318,16 @@ export function ProductComparisonContainer() {
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([])
   const { addItem } = useCart()
 
-  const addProductToComparison = (product: Product) => {
-    if (selectedProducts.length >= 4) {
-      alert('You can compare up to 4 products at a time')
-      return
-    }
-    
-    if (!selectedProducts.find(p => p.id === product.id)) {
-      setSelectedProducts(prev => [...prev, product])
-    }
-  }
+  // const addProductToComparison = (product: Product) => {
+  //   if (selectedProducts.length >= 4) {
+  //     alert('You can compare up to 4 products at a time')
+  //     return
+  //   }
+  //   
+  //   if (!selectedProducts.find(p => p.id === product.id)) {
+  //     setSelectedProducts(prev => [...prev, product])
+  //   }
+  // }
 
   const removeProductFromComparison = (productId: string) => {
     setSelectedProducts(prev => prev.filter(p => p.id !== productId))

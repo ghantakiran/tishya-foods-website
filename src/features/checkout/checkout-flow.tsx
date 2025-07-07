@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import { CheckCircle, ArrowLeft, ArrowRight, ShoppingBag, CreditCard, MapPin, Package } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useCart } from '@/contexts/cart-context'
@@ -248,9 +249,11 @@ export function CheckoutFlow() {
                     <div className="space-y-4">
                       {cart.items.map((item) => (
                         <div key={item.id} className="flex items-center space-x-4 p-4 border rounded-lg">
-                          <img
+                          <Image
                             src={item.image}
                             alt={item.name}
+                            width={64}
+                            height={64}
                             className="w-16 h-16 object-cover rounded-md"
                           />
                           <div className="flex-1">

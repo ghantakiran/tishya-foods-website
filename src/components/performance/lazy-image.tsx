@@ -26,8 +26,8 @@ export function LazyImage({
   priority = false,
   onLoad,
   onError,
-  sizes,
-  blurDataURL
+  sizes
+  // blurDataURL  // Reserved for future blur functionality
 }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isError, setIsError] = useState(false)
