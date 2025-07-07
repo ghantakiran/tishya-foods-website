@@ -220,7 +220,9 @@ export function OrderCard({ order, onDownloadInvoice, onReorder, onCancel }: Ord
                       <div key={item.id} className="flex items-center space-x-3 bg-earth-800 p-3 rounded-lg">
                         <Image
                           src={item.image}
-                          alt={item.name}\n                          width={64}\n                          height={64}
+                          alt={item.name}
+                          width={64}
+                          height={64}
                           className="w-16 h-16 object-cover rounded-md"
                         />
                         <div className="flex-1">

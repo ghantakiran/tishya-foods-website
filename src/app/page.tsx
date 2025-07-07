@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import HeroSection from '@/components/home/hero-section'
 import ProductCategories from '@/components/home/product-categories'
 import { Skeleton } from '@/components/loading/loading-skeleton'
-import { LazyValuesSection, LazyTestimonials, LazyInstagramFeed } from '@/components/performance/lazy-component'
+import { LazyValuesSection, LazyInstagramFeed } from '@/components/performance/lazy-component'
 import { TrustSignals, SocialProofNumbers, CustomerTestimonials } from '@/components/trust/trust-signals'
 import { RecommendationEngine } from '@/components/personalization/recommendation-engine'
 

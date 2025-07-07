@@ -26,7 +26,7 @@ interface ProductRecommendation {
 }
 
 // Helper function to get recommendation reason
-const getRecommendationReason = (product: any): string => {
+const getRecommendationReason = (product: { isOrganic?: boolean; isVegan?: boolean; featured?: boolean; isGlutenFree?: boolean }): string => {
   if (product.isOrganic && product.isVegan) return "Perfect for health-conscious customers"
   if (product.featured) return "Bestseller - loved by customers"
   if (product.isGlutenFree) return "Great for gluten-sensitive diets"

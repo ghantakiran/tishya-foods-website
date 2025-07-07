@@ -21,7 +21,7 @@ export default function SubscriptionPage() {
   useRoutePerformance('subscription')
 
   const handlePlanSelection = (plan: SubscriptionPlan, frequency: string) => {
-    setSubscriptionState(prev => ({ ...prev, selectedPlan: { ...plan, frequency: frequency as any } }))
+    setSubscriptionState(prev => ({ ...prev, selectedPlan: { ...plan, frequency: frequency as 'weekly' | 'monthly' | 'quarterly' } }))
     setCurrentFlow('customize')
   }
 

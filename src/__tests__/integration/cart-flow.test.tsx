@@ -1,6 +1,8 @@
 import { render, screen, fireEvent, waitFor } from '@/test-utils'
 import { CartDrawer } from '@/features/cart/cart-drawer'
 import { mockProduct, mockCartItem, mockUser } from '@/test-utils'
+import * as CartContext from '@/contexts/cart-context'
+import * as AuthContext from '@/contexts/auth-context'
 
 // Mock the contexts
 const mockCartContext = {
@@ -100,7 +102,7 @@ describe('Cart Flow Integration Tests', () => {
         discount: 10,
       }
       // Swap the mockCartContext for this test
-      jest.spyOn(require('@/contexts/cart-context'), 'useCart').mockReturnValue(discountedCart)
+      jest.spyOn(CartContext, 'useCart').mockReturnValue(discountedCart)
       render(<CartDrawer isOpen={true} onClose={() => {}} />)
       expect(screen.getByText('Discount: ₹399.8')).toBeInTheDocument()
     })
@@ -127,7 +129,7 @@ describe('Cart Flow Integration Tests', () => {
         isAuthenticated: false,
       }
 
-      jest.spyOn(require('@/contexts/auth-context'), 'useAuth').mockReturnValue(unauthenticatedContext)
+      jest.spyOn(AuthContext, 'useAuth').mockReturnValue(unauthenticatedContext)
       
       render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
@@ -143,7 +145,7 @@ describe('Cart Flow Integration Tests', () => {
         totalPrice: 299, // Below minimum threshold
       }
 
-      jest.spyOn(require('@/contexts/cart-context'), 'useCart').mockReturnValue(smallCart)
+      jest.spyOn(CartContext, 'useCart').mockReturnValue(smallCart)
       
       render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
@@ -160,7 +162,7 @@ describe('Cart Flow Integration Tests', () => {
         cart: { items: [], totalItems: 0, totalPrice: 0 },
       }
 
-      jest.spyOn(require('@/contexts/cart-context'), 'useCart').mockReturnValue(emptyCart)
+      jest.spyOn(CartContext, 'useCart').mockReturnValue(emptyCart)
       
       render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
@@ -174,7 +176,7 @@ describe('Cart Flow Integration Tests', () => {
         cart: { items: [], totalItems: 0, totalPrice: 0 },
       }
 
-      jest.spyOn(require('@/contexts/cart-context'), 'useCart').mockReturnValue(emptyCart)
+      jest.spyOn(CartContext, 'useCart').mockReturnValue(emptyCart)
       
       render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
@@ -194,7 +196,7 @@ describe('Cart Flow Integration Tests', () => {
         cart: { items: [outOfStockItem], totalItems: 1, totalPrice: 0 },
       }
 
-      jest.spyOn(require('@/contexts/cart-context'), 'useCart').mockReturnValue(cartWithOutOfStock)
+      jest.spyOn(CartContext, 'useCart').mockReturnValue(cartWithOutOfStock)
       
       render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
@@ -213,7 +215,7 @@ describe('Cart Flow Integration Tests', () => {
         cart: { items: [limitedStockItem], totalItems: 1, totalPrice: 0 },
       }
 
-      jest.spyOn(require('@/contexts/cart-context'), 'useCart').mockReturnValue(cartWithLimitedStock)
+      jest.spyOn(CartContext, 'useCart').mockReturnValue(cartWithLimitedStock)
       
       render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
@@ -269,7 +271,7 @@ describe('Cart Flow Integration Tests', () => {
         user: loyaltyUser,
       }
 
-      jest.spyOn(require('@/contexts/auth-context'), 'useAuth').mockReturnValue(authContextWithLoyalty)
+      jest.spyOn(AuthContext, 'useAuth').mockReturnValue(authContextWithLoyalty)
       
       render(<CartDrawer isOpen={true} onClose={() => {}} />)
       

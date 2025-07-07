@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
@@ -67,9 +67,9 @@ export function AnalyticsDashboard() {
     // Auto-refresh every 5 minutes
     const interval = setInterval(fetchAnalyticsData, 5 * 60 * 1000)
     return () => clearInterval(interval)
-  }, [timeRange])
+  }, [timeRange, fetchAnalyticsData])
 
-  const fetchAnalyticsData = async () => {
+  const fetchAnalyticsData = useCallback(async () => {
     try {
       setLoading(true)
       const response = await fetch(`/api/analytics/dashboard?timeRange=${timeRange}`)
@@ -85,7 +85,7 @@ export function AnalyticsDashboard() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [timeRange])
 
   const formatNumber = (num: number): string => {
     if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M'
