@@ -1,12 +1,10 @@
 import { render, screen, fireEvent, waitFor } from '@/test-utils'
-import { Cart } from '@/features/cart/cart'
+import { CartDrawer } from '@/features/cart/cart-drawer'
 import { mockProduct, mockCartItem, mockUser } from '@/test-utils'
 
 // Mock the contexts
 const mockCartContext = {
-  cart: [mockCartItem],
-  totalItems: 2,
-  totalPrice: 3998,
+  cart: { items: [mockCartItem], totalItems: 2, totalPrice: 3998 },
   addItem: jest.fn(),
   removeItem: jest.fn(),
   updateQuantity: jest.fn(),
@@ -38,7 +36,7 @@ describe('Cart Flow Integration Tests', () => {
 
   describe('Cart Operations', () => {
     it('should display cart items correctly', () => {
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       expect(screen.getByText(mockProduct.name)).toBeInTheDocument()
       expect(screen.getByText('Quantity: 2')).toBeInTheDocument()
@@ -46,29 +44,25 @@ describe('Cart Flow Integration Tests', () => {
     })
 
     it('should update item quantity', async () => {
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       const increaseButton = screen.getByRole('button', { name: /increase quantity/i })
       fireEvent.click(increaseButton)
       
-      await waitFor(() => {
-        expect(mockCartContext.updateQuantity).toHaveBeenCalledWith(mockProduct.id, 3)
-      })
+      await waitFor(() => expect(mockCartContext.updateQuantity).toHaveBeenCalledWith(mockProduct.id, 3))
     })
 
     it('should remove item from cart', async () => {
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       const removeButton = screen.getByRole('button', { name: /remove item/i })
       fireEvent.click(removeButton)
       
-      await waitFor(() => {
-        expect(mockCartContext.removeItem).toHaveBeenCalledWith(mockProduct.id)
-      })
+      await waitFor(() => expect(mockCartContext.removeItem).toHaveBeenCalledWith(mockProduct.id))
     })
 
     it('should clear entire cart', async () => {
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       const clearButton = screen.getByRole('button', { name: /clear cart/i })
       fireEvent.click(clearButton)
@@ -79,22 +73,20 @@ describe('Cart Flow Integration Tests', () => {
       const confirmButton = screen.getByRole('button', { name: /confirm/i })
       fireEvent.click(confirmButton)
       
-      await waitFor(() => {
-        expect(mockCartContext.clearCart).toHaveBeenCalled()
-      })
+      await waitFor(() => expect(mockCartContext.clearCart).toHaveBeenCalled())
     })
   })
 
   describe('Cart Summary', () => {
     it('should display correct totals', () => {
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       expect(screen.getByText('Subtotal: ₹3,998')).toBeInTheDocument()
       expect(screen.getByText('Total Items: 2')).toBeInTheDocument()
     })
 
     it('should calculate shipping costs', () => {
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       // Assuming free shipping threshold is ₹999
       expect(screen.getByText('Shipping: Free')).toBeInTheDocument()
@@ -104,21 +96,19 @@ describe('Cart Flow Integration Tests', () => {
       // Mock a cart with discount
       const discountedCart = {
         ...mockCartContext,
+        cart: { ...mockCartContext.cart, totalPrice: 3598.2 },
         discount: 10,
-        totalPrice: 3598.2,
       }
-
-      jest.mocked(mockCartContext).mockReturnValueOnce(discountedCart)
-      
-      render(<Cart />)
-      
+      // Swap the mockCartContext for this test
+      jest.spyOn(require('@/contexts/cart-context'), 'useCart').mockReturnValue(discountedCart)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       expect(screen.getByText('Discount: ₹399.8')).toBeInTheDocument()
     })
   })
 
   describe('Checkout Process', () => {
     it('should navigate to checkout when user is authenticated', async () => {
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       const checkoutButton = screen.getByRole('button', { name: /proceed to checkout/i })
       fireEvent.click(checkoutButton)
@@ -137,9 +127,9 @@ describe('Cart Flow Integration Tests', () => {
         isAuthenticated: false,
       }
 
-      jest.mocked(mockAuthContext).mockReturnValueOnce(unauthenticatedContext)
+      jest.spyOn(require('@/contexts/auth-context'), 'useAuth').mockReturnValue(unauthenticatedContext)
       
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       const checkoutButton = screen.getByRole('button', { name: /proceed to checkout/i })
       fireEvent.click(checkoutButton)
@@ -153,9 +143,9 @@ describe('Cart Flow Integration Tests', () => {
         totalPrice: 299, // Below minimum threshold
       }
 
-      jest.mocked(mockCartContext).mockReturnValueOnce(smallCart)
+      jest.spyOn(require('@/contexts/cart-context'), 'useCart').mockReturnValue(smallCart)
       
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       const checkoutButton = screen.getByRole('button', { name: /proceed to checkout/i })
       expect(checkoutButton).toBeDisabled()
@@ -167,14 +157,12 @@ describe('Cart Flow Integration Tests', () => {
     it('should show empty cart message when cart is empty', () => {
       const emptyCart = {
         ...mockCartContext,
-        cart: [],
-        totalItems: 0,
-        totalPrice: 0,
+        cart: { items: [], totalItems: 0, totalPrice: 0 },
       }
 
-      jest.mocked(mockCartContext).mockReturnValueOnce(emptyCart)
+      jest.spyOn(require('@/contexts/cart-context'), 'useCart').mockReturnValue(emptyCart)
       
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       expect(screen.getByText(/your cart is empty/i)).toBeInTheDocument()
       expect(screen.getByRole('button', { name: /continue shopping/i })).toBeInTheDocument()
@@ -183,14 +171,12 @@ describe('Cart Flow Integration Tests', () => {
     it('should suggest products when cart is empty', () => {
       const emptyCart = {
         ...mockCartContext,
-        cart: [],
-        totalItems: 0,
-        totalPrice: 0,
+        cart: { items: [], totalItems: 0, totalPrice: 0 },
       }
 
-      jest.mocked(mockCartContext).mockReturnValueOnce(emptyCart)
+      jest.spyOn(require('@/contexts/cart-context'), 'useCart').mockReturnValue(emptyCart)
       
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       expect(screen.getByText(/recommended products/i)).toBeInTheDocument()
     })
@@ -205,12 +191,12 @@ describe('Cart Flow Integration Tests', () => {
       
       const cartWithOutOfStock = {
         ...mockCartContext,
-        cart: [outOfStockItem],
+        cart: { items: [outOfStockItem], totalItems: 1, totalPrice: 0 },
       }
 
-      jest.mocked(mockCartContext).mockReturnValueOnce(cartWithOutOfStock)
+      jest.spyOn(require('@/contexts/cart-context'), 'useCart').mockReturnValue(cartWithOutOfStock)
       
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       expect(screen.getByText(/out of stock/i)).toBeInTheDocument()
     })
@@ -224,12 +210,12 @@ describe('Cart Flow Integration Tests', () => {
       
       const cartWithLimitedStock = {
         ...mockCartContext,
-        cart: [limitedStockItem],
+        cart: { items: [limitedStockItem], totalItems: 1, totalPrice: 0 },
       }
 
-      jest.mocked(mockCartContext).mockReturnValueOnce(cartWithLimitedStock)
+      jest.spyOn(require('@/contexts/cart-context'), 'useCart').mockReturnValue(cartWithLimitedStock)
       
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       const increaseButton = screen.getByRole('button', { name: /increase quantity/i })
       expect(increaseButton).toBeDisabled()
@@ -238,7 +224,7 @@ describe('Cart Flow Integration Tests', () => {
 
   describe('Cart Persistence', () => {
     it('should save cart to localStorage on changes', async () => {
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       const increaseButton = screen.getByRole('button', { name: /increase quantity/i })
       fireEvent.click(increaseButton)
@@ -246,6 +232,7 @@ describe('Cart Flow Integration Tests', () => {
       await waitFor(() => {
         const savedCart = JSON.parse(localStorage.getItem('tishya_cart') || '[]')
         expect(savedCart).toBeDefined()
+        return true
       })
     })
 
@@ -253,7 +240,7 @@ describe('Cart Flow Integration Tests', () => {
       const savedCart = [mockCartItem]
       localStorage.setItem('tishya_cart', JSON.stringify(savedCart))
       
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       expect(screen.getByText(mockProduct.name)).toBeInTheDocument()
     })
@@ -261,15 +248,13 @@ describe('Cart Flow Integration Tests', () => {
 
   describe('Price Updates', () => {
     it('should recalculate totals when quantities change', async () => {
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       // Mock quantity change
       const increaseButton = screen.getByRole('button', { name: /increase quantity/i })
       fireEvent.click(increaseButton)
       
-      await waitFor(() => {
-        expect(mockCartContext.updateQuantity).toHaveBeenCalled()
-      })
+      await waitFor(() => expect(mockCartContext.updateQuantity).toHaveBeenCalled())
     })
 
     it('should apply loyalty discounts for authenticated users', () => {
@@ -284,9 +269,9 @@ describe('Cart Flow Integration Tests', () => {
         user: loyaltyUser,
       }
 
-      jest.mocked(mockAuthContext).mockReturnValueOnce(authContextWithLoyalty)
+      jest.spyOn(require('@/contexts/auth-context'), 'useAuth').mockReturnValue(authContextWithLoyalty)
       
-      render(<Cart />)
+      render(<CartDrawer isOpen={true} onClose={() => {}} />)
       
       expect(screen.getByText(/loyalty discount/i)).toBeInTheDocument()
       expect(screen.getByText('12% OFF')).toBeInTheDocument()

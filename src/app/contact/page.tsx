@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Clock, Send, MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { sanitizeName, sanitizeEmail, sanitizePhone, sanitizeMessage } from '@/lib/security'
 
 const contactInfo = [
   {
@@ -70,23 +71,42 @@ export default function ContactPage() {
   const validateForm = () => {
     const newErrors: {[key: string]: string} = {}
     
-    if (!formData.name.trim()) {
+    // Sanitize and validate name
+    const nameResult = sanitizeName(formData.name)
+    if (!nameResult.isValid) {
+      newErrors.name = nameResult.errors[0] || 'Please enter a valid name'
+    } else if (!nameResult.value.trim()) {
       newErrors.name = 'Full name is required'
     }
     
-    if (!formData.email.trim()) {
+    // Sanitize and validate email
+    const emailResult = sanitizeEmail(formData.email)
+    if (!emailResult.isValid) {
+      newErrors.email = emailResult.errors[0] || 'Please enter a valid email address'
+    } else if (!emailResult.value.trim()) {
       newErrors.email = 'Email address is required'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address'
     }
     
+    // Sanitize and validate phone (optional)
+    if (formData.phone.trim()) {
+      const phoneResult = sanitizePhone(formData.phone)
+      if (!phoneResult.isValid) {
+        newErrors.phone = phoneResult.errors[0] || 'Please enter a valid phone number'
+      }
+    }
+    
+    // Validate subject
     if (!formData.subject) {
       newErrors.subject = 'Please select a subject'
     }
     
-    if (!formData.message.trim()) {
+    // Sanitize and validate message
+    const messageResult = sanitizeMessage(formData.message)
+    if (!messageResult.isValid) {
+      newErrors.message = messageResult.errors[0] || 'Message contains invalid characters'
+    } else if (!messageResult.value.trim()) {
       newErrors.message = 'Message is required'
-    } else if (formData.message.trim().length < 10) {
+    } else if (messageResult.value.trim().length < 10) {
       newErrors.message = 'Message must be at least 10 characters long'
     }
     

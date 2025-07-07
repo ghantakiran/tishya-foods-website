@@ -25,6 +25,31 @@ interface ProductRecommendation {
   image?: string
 }
 
+// Helper function to get recommendation reason
+const getRecommendationReason = (product: any): string => {
+  if (product.isOrganic && product.isVegan) return "Perfect for health-conscious customers"
+  if (product.featured) return "Bestseller - loved by customers"
+  if (product.isGlutenFree) return "Great for gluten-sensitive diets"
+  if (product.isVegan) return "100% plant-based nutrition"
+  return "Highly recommended for you"
+}
+
+// Helper function to get product recommendations
+const getRecommendedProducts = (productIds: string[]): ProductRecommendation[] => {
+  return productIds.map(id => {
+    const product = products.find(p => p.id === id)
+    if (!product) return null
+    return {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      description: product.description,
+      reason: getRecommendationReason(product),
+      image: product.images[0] // Use the first image from images[]
+    }
+  }).filter(Boolean) as ProductRecommendation[]
+}
+
 // Enhanced responses with product recommendations
 const predefinedResponses: Record<string, { content: string; products?: string[] }> = {
   'hello': {
@@ -94,31 +119,6 @@ export default function NutritionAssistant() {
   useEffect(() => {
     scrollToBottom()
   }, [messages])
-
-  // Helper function to get product recommendations
-  const getRecommendedProducts = (productIds: string[]): ProductRecommendation[] => {
-    return productIds.map(id => {
-      const product = products.find(p => p.id === id)
-      if (!product) return null
-      
-      return {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        description: product.description,
-        reason: getRecommendationReason(product),
-        image: product.image
-      }
-    }).filter(Boolean) as ProductRecommendation[]
-  }
-  
-  const getRecommendationReason = (product: any): string => {
-    if (product.isOrganic && product.isVegan) return "Perfect for health-conscious customers"
-    if (product.featured) return "Bestseller - loved by customers"
-    if (product.isGlutenFree) return "Great for gluten-sensitive diets"
-    if (product.isVegan) return "100% plant-based nutrition"
-    return "Highly recommended for you"
-  }
 
   const generateResponse = (userInput: string): { content: string; suggestions?: string[]; productRecommendations?: ProductRecommendation[] } => {
     const input = userInput.toLowerCase()
@@ -226,8 +226,18 @@ export default function NutritionAssistant() {
   const handleAddToCart = async (product: ProductRecommendation) => {
     const fullProduct = products.find(p => p.id === product.id)
     if (fullProduct) {
-      await addItem(fullProduct, 1)
-      
+      await addItem({
+        productId: fullProduct.id,
+        name: fullProduct.name,
+        price: fullProduct.price,
+        image: fullProduct.images[0],
+        quantity: 1,
+        nutritionalInfo: {
+          protein: fullProduct.nutritionalInfo.protein,
+          calories: fullProduct.nutritionalInfo.calories,
+          servingSize: fullProduct.nutritionalInfo.servingSize,
+        },
+      })
       // Add confirmation message
       const confirmationMessage: Message = {
         id: Date.now().toString(),
@@ -236,7 +246,6 @@ export default function NutritionAssistant() {
         timestamp: new Date(),
         suggestions: ["Continue shopping", "View cart", "Checkout now"],
       }
-      
       setMessages(prev => [...prev, confirmationMessage])
     }
   }

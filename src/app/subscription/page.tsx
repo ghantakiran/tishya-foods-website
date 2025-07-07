@@ -8,7 +8,8 @@ import { SubscriptionPlans } from '@/components/subscription/subscription-plans'
 import { SubscriptionCustomizer } from '@/components/subscription/subscription-customizer'
 import { SubscriptionDashboard } from '@/components/subscription/subscription-dashboard'
 import { useRoutePerformance } from '@/components/performance/performance-init'
-import type { SubscriptionPlan, SubscriptionCustomization, SubscriptionState } from '@/types/subscription'
+import type { SubscriptionCustomization, SubscriptionState } from '@/types/subscription'
+import type { SubscriptionPlan } from '@/components/subscription/subscription-plans'
 
 type SubscriptionFlow = 'plans' | 'customize' | 'dashboard' | 'success'
 
@@ -19,8 +20,8 @@ export default function SubscriptionPage() {
   // Performance tracking
   useRoutePerformance('subscription')
 
-  const handlePlanSelection = (plan: SubscriptionPlan) => {
-    setSubscriptionState(prev => ({ ...prev, selectedPlan: plan }))
+  const handlePlanSelection = (plan: SubscriptionPlan, frequency: string) => {
+    setSubscriptionState(prev => ({ ...prev, selectedPlan: { ...plan, frequency: frequency as any } }))
     setCurrentFlow('customize')
   }
 

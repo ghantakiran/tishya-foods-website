@@ -33,6 +33,7 @@ const customRender = (
 
 export * from '@testing-library/react'
 export { customRender as render }
+export { createCartItemFromProduct }
 
 // Test data factories
 export const mockProduct = {
@@ -45,26 +46,48 @@ export const mockProduct = {
   category: {
     id: 'protein',
     name: 'Protein',
-    description: 'Protein products'
+    slug: 'protein',
+    description: 'Protein products',
+    image: '/test-category.jpg',
   },
-  brand: 'Tishya',
-  stock: 10,
-  featured: true,
-  isVegetarian: true,
-  isVegan: false,
-  isGlutenFree: true,
-  isOrganic: true,
+  tags: ['protein', 'fitness', 'nutrition'],
+  ingredients: ['Pea protein', 'Natural flavors'],
   nutritionalInfo: {
+    servingSize: '30g',
+    servingsPerContainer: 30,
     calories: 120,
     protein: 25,
     carbs: 3,
     fat: 2,
     fiber: 1,
-    sugar: 2
+    sugar: 2,
+    sodium: 50,
+    vitaminC: 10,
+    iron: 2,
+    calcium: 20,
+    potassium: 100,
   },
-  ingredients: ['Pea protein', 'Natural flavors'],
-  benefits: ['Muscle building', 'Weight management'],
-  tags: ['protein', 'fitness', 'nutrition']
+  allergens: ['soy'],
+  certifications: ['ISO', 'FSSAI'],
+  isGlutenFree: true,
+  isVegan: false,
+  isOrganic: true,
+  isKeto: false,
+  isDairy: false,
+  stock: 10,
+  featured: true,
+  averageRating: 4.7,
+  reviewCount: 123,
+  variants: [
+    { id: 'v1', name: 'Size', value: '1kg', price: 1999, stock: 5 },
+    { id: 'v2', name: 'Size', value: '500g', price: 1099, stock: 5 },
+  ],
+  preparationTime: '1 min',
+  shelfLife: '12 months',
+  storageInstructions: 'Store in a cool, dry place',
+  servingSuggestions: ['Mix with water', 'Add to smoothie'],
+  createdAt: '2024-01-01T00:00:00Z',
+  updatedAt: '2024-01-10T00:00:00Z',
 }
 
 export const mockUser = {
@@ -100,11 +123,33 @@ export const mockUser = {
 
 export const mockCartItem = {
   id: 'cart_001',
-  product: mockProduct,
+  productId: mockProduct.id,
+  name: mockProduct.name,
+  price: mockProduct.price,
+  image: mockProduct.images[0],
   quantity: 2,
-  selectedSize: 'medium',
-  addedAt: new Date()
-}
+  variant: mockProduct.variants && mockProduct.variants[0] ? { size: mockProduct.variants[0].value } : undefined,
+  nutritionalInfo: {
+    protein: mockProduct.nutritionalInfo.protein,
+    calories: mockProduct.nutritionalInfo.calories,
+    servingSize: mockProduct.nutritionalInfo.servingSize,
+  },
+};
+
+const createCartItemFromProduct = (product, quantity = 1) => ({
+  id: 'cart_' + product.id,
+  productId: product.id,
+  name: product.name,
+  price: product.price,
+  image: product.images[0],
+  quantity,
+  variant: product.variants && product.variants[0] ? { size: product.variants[0].value } : undefined,
+  nutritionalInfo: {
+    protein: product.nutritionalInfo.protein,
+    calories: product.nutritionalInfo.calories,
+    servingSize: product.nutritionalInfo.servingSize,
+  },
+});
 
 export const mockOrder = {
   id: 'order_001',

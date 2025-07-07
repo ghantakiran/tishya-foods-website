@@ -20,66 +20,20 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Product360ViewerTrigger } from './product-360-viewer'
 
-interface ProductImage {
-  id: string
-  url: string
-  alt: string
-  type: 'main' | 'lifestyle' | 'detail' | 'ingredient' | 'nutrition'
-  caption?: string
-}
-
 interface ProductImageGalleryProps {
   productId: string
   productName: string
-  images: ProductImage[]
+  images: string[]
   className?: string
 }
 
-const imageTypes = {
-  main: { label: 'Product', color: 'bg-primary-500' },
-  lifestyle: { label: 'Lifestyle', color: 'bg-fresh-500' },
-  detail: { label: 'Details', color: 'bg-citrus-500' },
-  ingredient: { label: 'Ingredients', color: 'bg-earth-500' },
-  nutrition: { label: 'Nutrition', color: 'bg-berry-500' }
-}
-
 // Sample images for demonstration
-const sampleImages: ProductImage[] = [
-  {
-    id: '1',
-    url: '/images/products/quinoa-mix.jpg',
-    alt: 'Protein Rich Quinoa Mix - Main Product',
-    type: 'main',
-    caption: 'Premium protein-rich quinoa mix with nuts and seeds'
-  },
-  {
-    id: '2',
-    url: '/images/products/quinoa-mix.jpg',
-    alt: 'Quinoa Mix Lifestyle',
-    type: 'lifestyle',
-    caption: 'Perfect for breakfast bowls and healthy snacking'
-  },
-  {
-    id: '3',
-    url: '/images/products/quinoa-mix.jpg',
-    alt: 'Quinoa Mix Close-up',
-    type: 'detail',
-    caption: 'Close-up view showing texture and ingredients'
-  },
-  {
-    id: '4',
-    url: '/images/products/quinoa-mix.jpg',
-    alt: 'Quinoa Mix Ingredients',
-    type: 'ingredient',
-    caption: 'Premium ingredients: quinoa, almonds, walnuts, seeds'
-  },
-  {
-    id: '5',
-    url: '/images/products/quinoa-mix.jpg',
-    alt: 'Nutrition Label',
-    type: 'nutrition',
-    caption: 'Detailed nutrition facts and health benefits'
-  }
+const sampleImages: string[] = [
+  '/images/products/quinoa-mix.jpg',
+  '/images/products/quinoa-mix.jpg',
+  '/images/products/quinoa-mix.jpg',
+  '/images/products/quinoa-mix.jpg',
+  '/images/products/quinoa-mix.jpg',
 ]
 
 export function ProductImageGallery({ 
@@ -93,16 +47,11 @@ export function ProductImageGallery({
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [zoom, setZoom] = useState(1)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [selectedType, setSelectedType] = useState<string | null>(null)
   
-  const slideInterval = useRef<NodeJS.Timeout>()
-  const imageRef = useRef<HTMLImageElement>(null)
+  const slideInterval = useRef<NodeJS.Timeout | null>(null)
+  const imageRef = useRef<HTMLImageElement | null>(null)
 
-  // Filter images by type
-  const filteredImages = selectedType 
-    ? images.filter(img => img.type === selectedType)
-    : images
-
+  const filteredImages = images
   const currentImage = filteredImages[currentIndex] || images[0]
 
   // Auto-play slideshow
@@ -123,11 +72,6 @@ export function ProductImageGallery({
       }
     }
   }, [isPlaying, filteredImages.length])
-
-  // Reset current index when filter changes
-  useEffect(() => {
-    setCurrentIndex(0)
-  }, [selectedType])
 
   const nextImage = () => {
     setCurrentIndex(prev => (prev + 1) % filteredImages.length)
@@ -162,8 +106,8 @@ export function ProductImageGallery({
 
   const downloadImage = () => {
     const link = document.createElement('a')
-    link.href = currentImage.url
-    link.download = `${productName}-${currentImage.type}.jpg`
+    link.href = currentImage
+    link.download = `${productName}.jpg`
     link.click()
   }
 
@@ -172,7 +116,7 @@ export function ProductImageGallery({
       try {
         await navigator.share({
           title: productName,
-          text: currentImage.caption,
+          text: productName,
           url: window.location.href
         })
       } catch (error) {
@@ -185,47 +129,17 @@ export function ProductImageGallery({
     }
   }
 
-  // Get unique image types from images
-  const availableTypes = [...new Set(images.map(img => img.type))]
-
   return (
     <div className={`space-y-4 ${className}`}>
-      {/* Type Filter */}
-      <div className="flex items-center space-x-2 overflow-x-auto pb-2">
-        <Button
-          variant={selectedType === null ? 'default' : 'outline'}
-          size="sm"
-          onClick={() => setSelectedType(null)}
-          className="whitespace-nowrap"
-        >
-          All ({images.length})
-        </Button>
-        {availableTypes.map((type) => {
-          const typeConfig = imageTypes[type as keyof typeof imageTypes]
-          const typeImages = images.filter(img => img.type === type)
-          
-          return (
-            <Button
-              key={type}
-              variant={selectedType === type ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => setSelectedType(type)}
-              className="whitespace-nowrap"
-            >
-              <div className={`w-2 h-2 rounded-full mr-2 ${typeConfig.color}`} />
-              {typeConfig.label} ({typeImages.length})
-            </Button>
-          )
-        })}
-      </div>
+      {/* No type filter; all images are shown */}
 
       {/* Main Image Display */}
       <div className="relative bg-cream-100 rounded-lg overflow-hidden group">
         <div className="aspect-square relative">
           <motion.img
-            key={currentImage.id}
-            src={currentImage.url}
-            alt={currentImage.alt}
+            key={currentImage}
+            src={currentImage}
+            alt={productName}
             className="w-full h-full object-cover cursor-zoom-in"
             onClick={() => openLightbox(currentIndex)}
             initial={{ opacity: 0 }}
@@ -296,11 +210,10 @@ export function ProductImageGallery({
             </div>
           </div>
 
-          {/* Image Type Badge */}
+          {/* No image type badge; just product name */}
           <div className="absolute top-2 left-2">
             <Badge variant="secondary" className="text-xs">
-              <div className={`w-2 h-2 rounded-full mr-1 ${imageTypes[currentImage.type as keyof typeof imageTypes].color}`} />
-              {imageTypes[currentImage.type as keyof typeof imageTypes].label}
+              {productName}
             </Badge>
           </div>
 
@@ -314,12 +227,10 @@ export function ProductImageGallery({
           )}
         </div>
 
-        {/* Image Caption */}
-        {currentImage.caption && (
-          <div className="p-3 bg-cream-200 border-t border-cream-300">
-            <p className="text-sm text-earth-700">{currentImage.caption}</p>
-          </div>
-        )}
+        {/* No caption; just product name */}
+        <div className="p-3 bg-cream-200 border-t border-cream-300">
+          <p className="text-sm text-earth-700">{productName}</p>
+        </div>
       </div>
 
       {/* Thumbnail Strip */}
@@ -327,7 +238,7 @@ export function ProductImageGallery({
         <div className="flex space-x-2 overflow-x-auto pb-2">
           {filteredImages.map((image, index) => (
             <motion.button
-              key={image.id}
+              key={image}
               onClick={() => setCurrentIndex(index)}
               className={`flex-shrink-0 w-16 h-16 rounded-md overflow-hidden border-2 transition-all ${
                 index === currentIndex 
@@ -338,8 +249,8 @@ export function ProductImageGallery({
               whileTap={{ scale: 0.95 }}
             >
               <img
-                src={image.url}
-                alt={image.alt}
+                src={image}
+                alt={productName}
                 className="w-full h-full object-cover"
               />
             </motion.button>
@@ -444,8 +355,8 @@ export function ProductImageGallery({
               <div className="flex items-center justify-center h-full overflow-hidden">
                 <motion.img
                   ref={imageRef}
-                  src={filteredImages[lightboxIndex]?.url}
-                  alt={filteredImages[lightboxIndex]?.alt}
+                  src={filteredImages[lightboxIndex]}
+                  alt={productName}
                   className="max-w-full max-h-full object-contain cursor-move"
                   style={{ transform: `scale(${zoom})` }}
                   drag={zoom > 1}
@@ -461,16 +372,13 @@ export function ProductImageGallery({
               {/* Image Info */}
               <div className="absolute bottom-4 left-4 bg-black/50 text-white p-3 rounded">
                 <div className="flex items-center space-x-2 mb-1">
-                  <Badge className={imageTypes[filteredImages[lightboxIndex]?.type as keyof typeof imageTypes].color}>
-                    {imageTypes[filteredImages[lightboxIndex]?.type as keyof typeof imageTypes].label}
+                  <Badge>
+                    {productName}
                   </Badge>
                   <span className="text-sm">
                     {lightboxIndex + 1} / {filteredImages.length}
                   </span>
                 </div>
-                {filteredImages[lightboxIndex]?.caption && (
-                  <p className="text-sm">{filteredImages[lightboxIndex].caption}</p>
-                )}
               </div>
             </motion.div>
           </motion.div>

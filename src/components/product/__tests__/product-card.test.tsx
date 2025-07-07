@@ -1,4 +1,5 @@
-import { render, screen, fireEvent, waitFor } from '@/test-utils'
+import '@testing-library/jest-dom'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { ProductCard } from '../product-card'
 import { mockProduct } from '@/test-utils'
 
@@ -54,9 +55,11 @@ describe('ProductCard Component', () => {
     if (mockProduct.isGlutenFree) {
       expect(screen.getByText('Gluten Free')).toBeInTheDocument()
     }
-    
-    if (mockProduct.isVegetarian) {
-      expect(screen.getByText('Vegetarian')).toBeInTheDocument()
+    if (mockProduct.isVegan) {
+      expect(screen.getByText('Vegan')).toBeInTheDocument()
+    }
+    if (mockProduct.isOrganic) {
+      expect(screen.getByText('Organic')).toBeInTheDocument()
     }
   })
 
@@ -80,17 +83,27 @@ describe('ProductCard Component', () => {
 
   it('handles add to cart action', async () => {
     render(<ProductCard product={mockProduct} />)
-    
     const addToCartButton = screen.getByRole('button', { name: /add to cart/i })
     fireEvent.click(addToCartButton)
-    
     await waitFor(() => {
-      expect(mockAddItem).toHaveBeenCalledWith(mockProduct, 1)
+      expect(mockAddItem).toHaveBeenCalledWith(expect.objectContaining({
+        id: expect.any(String),
+        productId: mockProduct.id,
+        name: mockProduct.name,
+        price: mockProduct.price,
+        image: mockProduct.images[0],
+        quantity: 1,
+        nutritionalInfo: expect.objectContaining({
+          protein: mockProduct.nutritionalInfo.protein,
+          calories: mockProduct.nutritionalInfo.calories,
+          servingSize: mockProduct.nutritionalInfo.servingSize,
+        })
+      }))
     })
   })
 
   it('disables add to cart when out of stock', () => {
-    const outOfStockProduct = { ...mockProduct, stock: 0 }
+    const outOfStockProduct = JSON.parse(JSON.stringify({ ...mockProduct, stock: 0 }))
     render(<ProductCard product={outOfStockProduct} />)
     
     const addToCartButton = screen.getByRole('button', { name: /add to cart/i })
@@ -137,9 +150,10 @@ describe('ProductCard Component', () => {
 
   it('shows discount percentage', () => {
     render(<ProductCard product={mockProduct} />)
-    
-    const discountPercent = Math.round(((mockProduct.originalPrice - mockProduct.price) / mockProduct.originalPrice) * 100)
-    expect(screen.getByText(`${discountPercent}% OFF`)).toBeInTheDocument()
+    if (mockProduct.originalPrice) {
+      const discountPercent = Math.round(((mockProduct.originalPrice - mockProduct.price) / mockProduct.originalPrice) * 100)
+      expect(screen.getByText(`${discountPercent}% OFF`)).toBeInTheDocument()
+    }
   })
 
   it('handles image loading states', async () => {

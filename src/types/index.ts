@@ -1,36 +1,3 @@
-export interface Product {
-  id: string
-  name: string
-  description: string
-  price: number
-  category: ProductCategory
-  images: string[]
-  ingredients: string[]
-  nutritionalInfo: NutritionalInfo
-  isGlutenFree: boolean
-  isVegan: boolean
-  isOrganic: boolean
-  stock: number
-  featured: boolean
-}
-
-export interface ProductCategory {
-  id: string
-  name: string
-  slug: string
-  description: string
-  image: string
-}
-
-export interface NutritionalInfo {
-  protein: number
-  carbs: number
-  fat: number
-  fiber: number
-  calories: number
-  servingSize: string
-}
-
 export interface Review {
   id: string
   customerName: string

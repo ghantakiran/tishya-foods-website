@@ -103,20 +103,20 @@ export function AnalyticsProvider({ children, config }: AnalyticsProviderProps) 
 
 // Create a safe default analytics object for SSR
 const createSafeAnalytics = (): AnalyticsContextType => ({
-  trackEvent: () => {},
-  trackPageView: () => {},
-  trackEcommerce: () => {},
-  trackUserAction: () => {},
-  trackEngagement: () => {},
-  trackError: () => {},
-  trackPurchase: () => {},
-  trackAddToCart: () => {},
-  trackRemoveFromCart: () => {},
-  trackViewItem: () => {},
-  trackBeginCheckout: () => {},
-  trackSearch: () => {},
-  setUserId: () => {},
-  setUserProperties: () => {}
+  trackEvent: async (_event) => {},
+  trackPageView: async (_pageName, _additionalProperties) => {},
+  trackEcommerce: async (_eventType, _data) => {},
+  trackUserAction: async (_actionType, _data) => {},
+  trackEngagement: async (_engagementType, _data) => {},
+  trackError: async (_errorType, _errorMessage, _additionalData) => {},
+  trackPurchase: async (_transactionId, _value, _items) => {},
+  trackAddToCart: async (_item) => {},
+  trackRemoveFromCart: async (_item) => {},
+  trackViewItem: async (_item) => {},
+  trackBeginCheckout: async (_value, _items) => {},
+  trackSearch: async (_searchTerm, _resultsCount) => {},
+  setUserId: (_userId) => {},
+  setUserProperties: (_properties) => {}
 })
 
 export function useAnalytics(): AnalyticsContextType {

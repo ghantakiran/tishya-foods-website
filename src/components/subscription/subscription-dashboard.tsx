@@ -23,9 +23,9 @@ import {
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Switch } from '@/components/ui/switch'
+// import { Switch } from '@/components/ui/switch' // Commented out: component not found
 import { formatPrice, formatDate, cn } from '@/lib/utils'
-import { Product } from '@/types'
+import { Product } from '@/types/product'
 
 interface Subscription {
   id: string
@@ -42,6 +42,10 @@ interface Subscription {
     city: string
     state: string
     zipCode: string
+    planId: string
+    createdAt: Date
+    updatedAt: Date
+    country: string
   }
   paymentMethod: {
     type: 'card' | 'upi' | 'wallet'
@@ -52,6 +56,7 @@ interface Subscription {
     dietaryRestrictions: string[]
     nutritionGoal: string
     specialInstructions: string
+    allergies: string[]
   }
   createdAt: Date
   upcomingSkips: Date[]
@@ -82,7 +87,11 @@ const mockSubscription: Subscription = {
     street: '123 Main Street',
     city: 'Mumbai',
     state: 'Maharashtra',
-    zipCode: '400001'
+    zipCode: '400001',
+    planId: 'plan_001',
+    createdAt: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000),
+    updatedAt: new Date(Date.now() - 23 * 24 * 60 * 60 * 1000),
+    country: 'India'
   },
   paymentMethod: {
     type: 'card',
@@ -92,7 +101,8 @@ const mockSubscription: Subscription = {
   preferences: {
     dietaryRestrictions: ['vegetarian', 'gluten-free'],
     nutritionGoal: 'maintenance',
-    specialInstructions: 'Please deliver in the morning'
+    specialInstructions: 'Please deliver in the morning',
+    allergies: []
   },
   createdAt: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000),
   upcomingSkips: []

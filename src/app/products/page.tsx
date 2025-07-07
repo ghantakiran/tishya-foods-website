@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { Search, Filter, Grid, List, ShoppingCart, Star, Badge, Plus, Scale, Minus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { products, productCategories } from '@/lib/products-data'
-import { Product } from '@/types'
+import { Product } from '@/types/product'
 import { useCart } from '@/contexts/cart-context'
 import Link from 'next/link'
 
@@ -396,7 +396,19 @@ export default function ProductsPage() {
                   <div className="space-y-3">
                     <div className="flex items-center space-x-2">
                       <Button
-                        onClick={() => addItem(product, 1)}
+                        onClick={() => addItem({
+                          productId: product.id,
+                          name: product.name,
+                          price: product.price,
+                          quantity: 1,
+                          image: product.images[0] || '/images/placeholder.jpg',
+                          variant: undefined,
+                          nutritionalInfo: {
+                            protein: product.nutritionalInfo?.protein || 0,
+                            calories: product.nutritionalInfo?.calories || 0,
+                            servingSize: product.nutritionalInfo?.servingSize || '100g'
+                          }
+                        })}
                         className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
                       >
                         <ShoppingCart className="mr-2 h-4 w-4" />

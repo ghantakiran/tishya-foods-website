@@ -2,22 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { ProductCard } from '@/components/product/product-card'
-
-interface Product {
-  id: string
-  name: string
-  price: number
-  image: string
-  category: string
-  description: string
-  rating: number
-  nutritionInfo: {
-    calories: number
-    protein: number
-    carbs: number
-    fat: number
-  }
-}
+import { Product } from '@/types/product'
 
 interface RecommendationEngineProps {
   userId?: string
@@ -48,42 +33,162 @@ export function RecommendationEngine({
         {
           id: 'protein-bar-1',
           name: 'Natural Protein Bar',
-          price: 45,
-          image: '/products/protein-bar.jpg',
-          category: 'protein-snacks',
           description: 'High-protein natural bar with nuts and seeds',
-          rating: 4.8,
-          nutritionInfo: { calories: 180, protein: 12, carbs: 15, fat: 8 }
+          price: 45,
+          images: ['/products/protein-bar.jpg'],
+          category: {
+            id: 'protein-snacks',
+            name: 'Protein Snacks',
+            slug: 'protein-snacks',
+            description: 'Protein-rich snacks',
+            image: '/categories/protein-snacks.jpg',
+          },
+          tags: ['high-protein', 'snack'],
+          ingredients: ['Nuts', 'Seeds', 'Protein Blend'],
+          nutritionalInfo: {
+            servingSize: '40g',
+            servingsPerContainer: 1,
+            calories: 180,
+            protein: 12,
+            carbs: 15,
+            fat: 8,
+            fiber: 2,
+            sugar: 5,
+            sodium: 50,
+          },
+          allergens: ['nuts'],
+          certifications: ['ISO'],
+          isGlutenFree: true,
+          isVegan: false,
+          isOrganic: false,
+          isKeto: false,
+          isDairy: false,
+          stock: 20,
+          featured: false,
+          averageRating: 4.8,
+          reviewCount: 12,
+          createdAt: '2024-01-01T00:00:00Z',
+          updatedAt: '2024-01-10T00:00:00Z',
         },
         {
           id: 'mixed-nuts-1',
           name: 'Premium Mixed Nuts',
-          price: 299,
-          image: '/products/mixed-nuts.jpg',
-          category: 'natural-foods',
           description: 'Carefully selected and roasted mixed nuts',
-          rating: 4.9,
-          nutritionInfo: { calories: 150, protein: 5, carbs: 6, fat: 13 }
+          price: 299,
+          images: ['/products/mixed-nuts.jpg'],
+          category: {
+            id: 'natural-foods',
+            name: 'Natural Foods',
+            slug: 'natural-foods',
+            description: 'Natural and organic food products',
+            image: '/categories/natural-foods.jpg',
+          },
+          tags: ['natural', 'nuts'],
+          ingredients: ['Nuts'],
+          nutritionalInfo: {
+            servingSize: '100g',
+            servingsPerContainer: 1,
+            calories: 150,
+            protein: 5,
+            carbs: 6,
+            fat: 13,
+            fiber: 3,
+            sugar: 2,
+            sodium: 50,
+          },
+          allergens: ['nuts'],
+          certifications: ['Organic'],
+          isGlutenFree: true,
+          isVegan: true,
+          isOrganic: true,
+          isKeto: false,
+          isDairy: false,
+          stock: 15,
+          featured: true,
+          averageRating: 4.9,
+          reviewCount: 10,
+          createdAt: '2024-01-02T00:00:00Z',
+          updatedAt: '2024-01-09T00:00:00Z',
         },
         {
           id: 'protein-powder-1',
           name: 'Plant Protein Powder',
-          price: 899,
-          image: '/products/protein-powder.jpg',
-          category: 'supplements',
           description: 'Pure plant-based protein powder',
-          rating: 4.7,
-          nutritionInfo: { calories: 120, protein: 25, carbs: 3, fat: 2 }
+          price: 899,
+          images: ['/products/protein-powder.jpg'],
+          category: {
+            id: 'supplements',
+            name: 'Supplements',
+            slug: 'supplements',
+            description: 'Health and wellness supplements',
+            image: '/categories/supplements.jpg',
+          },
+          tags: ['plant-based', 'protein'],
+          ingredients: ['Pea Protein', 'Soy Protein', 'Brown Rice Protein'],
+          nutritionalInfo: {
+            servingSize: '30g',
+            servingsPerContainer: 1,
+            calories: 120,
+            protein: 25,
+            carbs: 3,
+            fat: 2,
+            fiber: 1,
+            sugar: 1,
+            sodium: 100,
+          },
+          allergens: ['pea', 'soy'],
+          certifications: ['Non-GMO'],
+          isGlutenFree: true,
+          isVegan: true,
+          isOrganic: true,
+          isKeto: true,
+          isDairy: false,
+          stock: 10,
+          featured: false,
+          averageRating: 4.7,
+          reviewCount: 8,
+          createdAt: '2024-01-03T00:00:00Z',
+          updatedAt: '2024-01-08T00:00:00Z',
         },
         {
           id: 'health-snack-1',
           name: 'Savory Health Mix',
-          price: 199,
-          image: '/products/health-mix.jpg',
-          category: 'savory-treats',
           description: 'Nutritious savory snack mix',
-          rating: 4.6,
-          nutritionInfo: { calories: 140, protein: 6, carbs: 18, fat: 7 }
+          price: 199,
+          images: ['/products/health-mix.jpg'],
+          category: {
+            id: 'savory-treats',
+            name: 'Savory Treats',
+            slug: 'savory-treats',
+            description: 'Savory and savory snack foods',
+            image: '/categories/savory-treats.jpg',
+          },
+          tags: ['healthy', 'snack'],
+          ingredients: ['Mixed Nuts', 'Dried Fruit', 'Honey'],
+          nutritionalInfo: {
+            servingSize: '20g',
+            servingsPerContainer: 1,
+            calories: 140,
+            protein: 6,
+            carbs: 18,
+            fat: 7,
+            fiber: 2,
+            sugar: 10,
+            sodium: 100,
+          },
+          allergens: ['nuts'],
+          certifications: ['Non-GMO'],
+          isGlutenFree: true,
+          isVegan: true,
+          isOrganic: true,
+          isKeto: false,
+          isDairy: false,
+          stock: 10,
+          featured: false,
+          averageRating: 4.6,
+          reviewCount: 6,
+          createdAt: '2024-01-04T00:00:00Z',
+          updatedAt: '2024-01-07T00:00:00Z',
         }
       ]
 
@@ -99,10 +204,10 @@ export function RecommendationEngine({
       if (userPreferences.dietary) {
         personalizedRecommendations = personalizedRecommendations.filter(product => {
           if (userPreferences.dietary.includes('high-protein')) {
-            return product.nutritionInfo.protein > 10
+            return product.nutritionalInfo.protein > 10
           }
           if (userPreferences.dietary.includes('low-carb')) {
-            return product.nutritionInfo.carbs < 10
+            return product.nutritionalInfo.carbs < 10
           }
           return true
         })
@@ -113,11 +218,11 @@ export function RecommendationEngine({
         personalizedRecommendations.sort((a, b) => {
           const aScore = userInterests.filter((interest: string) => 
             a.name.toLowerCase().includes(interest) || 
-            a.category.includes(interest)
+            a.category.name.includes(interest)
           ).length
           const bScore = userInterests.filter((interest: string) => 
             b.name.toLowerCase().includes(interest) || 
-            b.category.includes(interest)
+            b.category.name.includes(interest)
           ).length
           return bScore - aScore
         })

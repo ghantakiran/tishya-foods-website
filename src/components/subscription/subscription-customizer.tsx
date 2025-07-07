@@ -19,10 +19,10 @@ import {
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Slider } from '@/components/ui/slider'
-import { Switch } from '@/components/ui/switch'
+// import { Slider } from '@/components/ui/slider' // Commented out: component not found
+// import { Switch } from '@/components/ui/switch' // Commented out: component not found
 import { products } from '@/lib/products-data'
-import { Product } from '@/types'
+import { Product } from '@/types/product'
 import { formatPrice, cn } from '@/lib/utils'
 import { SubscriptionPlan } from './subscription-plans'
 
@@ -150,7 +150,6 @@ export function SubscriptionCustomizer({
 
   const getFilteredProducts = () => {
     return products.filter(product => {
-      if (selectedDietaryPrefs.includes('vegetarian') && !product.isVegetarian) return false
       if (selectedDietaryPrefs.includes('vegan') && !product.isVegan) return false
       if (selectedDietaryPrefs.includes('gluten-free') && !product.isGlutenFree) return false
       if (selectedDietaryPrefs.includes('organic') && !product.isOrganic) return false

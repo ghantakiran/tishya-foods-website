@@ -47,6 +47,81 @@ body {
   min-height: 100vh;
 }
 
+/* Shimmer Animation for Image Loading */
+.shimmer {
+  animation: shimmer 2s infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Touch and Mobile Optimizations */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure touch targets are minimum 44px */
+button, 
+a, 
+input, 
+textarea, 
+select {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Improve touch scrolling */
+html {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Prevent zoom on form inputs */
+@media screen and (max-width: 768px) {
+  input, 
+  textarea, 
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* Safe area support for devices with notches */
+.safe-area-top {
+  padding-top: max(1rem, env(safe-area-inset-top));
+}
+
+.safe-area-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.safe-area-left {
+  padding-left: max(1rem, env(safe-area-inset-left));
+}
+
+.safe-area-right {
+  padding-right: max(1rem, env(safe-area-inset-right));
+}
+
+/* Touch feedback animations */
+.touch-feedback {
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+
+.touch-feedback:active {
+  transform: scale(0.98);
+  opacity: 0.8;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

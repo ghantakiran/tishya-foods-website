@@ -20,127 +20,13 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { useCart } from '@/contexts/cart-context'
 import { formatPrice } from '@/lib/utils'
-
-interface Product {
-  id: string
-  name: string
-  description: string
-  image: string
-  price: number
-  originalPrice?: number
-  rating: number
-  reviews: number
-  category: string
-  tags: string[]
-  nutritionalInfo: {
-    protein: number
-    calories: number
-    fat: number
-    carbs: number
-    fiber: number
-    sugar: number
-    sodium: number
-    servingSize: string
-    servingsPerContainer: number
-  }
-  ingredients: string[]
-  benefits: string[]
-  certifications: string[]
-  inStock: boolean
-  isPopular?: boolean
-  isNew?: boolean
-}
+import { Product } from '@/types/product'
 
 interface ComparisonTableProps {
   products: Product[]
   onRemoveProduct: (productId: string) => void
   onAddToCart: (product: Product) => void
 }
-
-const sampleProducts: Product[] = [
-  {
-    id: '1',
-    name: 'Protein Rich Quinoa Mix',
-    description: 'High-protein quinoa blend with nuts and seeds for sustained energy',
-    image: 'https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=80&h=80&fit=crop&crop=center',
-    price: 299,
-    originalPrice: 349,
-    rating: 4.8,
-    reviews: 124,
-    category: 'Breakfast',
-    tags: ['high-protein', 'gluten-free', 'organic'],
-    nutritionalInfo: {
-      protein: 8,
-      calories: 150,
-      fat: 3,
-      carbs: 25,
-      fiber: 4,
-      sugar: 2,
-      sodium: 120,
-      servingSize: '30g',
-      servingsPerContainer: 10
-    },
-    ingredients: ['Quinoa', 'Almonds', 'Walnuts', 'Chia Seeds', 'Pumpkin Seeds', 'Natural Vanilla'],
-    benefits: ['Complete amino acid profile', 'Rich in omega-3', 'Sustained energy release', 'Muscle recovery'],
-    certifications: ['Organic', 'Non-GMO', 'Gluten-Free'],
-    inStock: true,
-    isPopular: true
-  },
-  {
-    id: '2',
-    name: 'Sweet Protein Balls',
-    description: 'Delicious protein-packed energy balls made with natural ingredients',
-    image: 'https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=80&h=80&fit=crop&crop=center',
-    price: 199,
-    rating: 4.6,
-    reviews: 89,
-    category: 'Snacks',
-    tags: ['protein-rich', 'no-added-sugar', 'vegan'],
-    nutritionalInfo: {
-      protein: 6,
-      calories: 120,
-      fat: 4,
-      carbs: 15,
-      fiber: 3,
-      sugar: 8,
-      sodium: 50,
-      servingSize: '25g',
-      servingsPerContainer: 8
-    },
-    ingredients: ['Dates', 'Almonds', 'Protein Powder', 'Coconut', 'Cacao', 'Vanilla Extract'],
-    benefits: ['Quick energy boost', 'Post-workout recovery', 'Natural sweetness', 'Portable nutrition'],
-    certifications: ['Vegan', 'No Added Sugar', 'Raw'],
-    inStock: true,
-    isNew: true
-  },
-  {
-    id: '3',
-    name: 'Nutty Granola Mix',
-    description: 'Crunchy granola with mixed nuts and seeds for breakfast or snacking',
-    image: 'https://images.unsplash.com/photo-1599599810694-57a2ca9f5a94?w=80&h=80&fit=crop&crop=center',
-    price: 249,
-    originalPrice: 279,
-    rating: 4.7,
-    reviews: 156,
-    category: 'Breakfast',
-    tags: ['high-fiber', 'antioxidant-rich', 'crunchy'],
-    nutritionalInfo: {
-      protein: 6,
-      calories: 180,
-      fat: 8,
-      carbs: 22,
-      fiber: 5,
-      sugar: 6,
-      sodium: 80,
-      servingSize: '40g',
-      servingsPerContainer: 12
-    },
-    ingredients: ['Oats', 'Mixed Nuts', 'Honey', 'Coconut Oil', 'Cinnamon', 'Dried Berries'],
-    benefits: ['High in fiber', 'Heart-healthy fats', 'Antioxidant-rich', 'Satisfying crunch'],
-    certifications: ['Natural', 'No Artificial Flavors'],
-    inStock: true
-  }
-]
 
 const nutritionCategories = [
   { key: 'protein', label: 'Protein', unit: 'g', icon: TrendingUp, color: 'text-blue-600' },
@@ -175,14 +61,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
     return Math.round(((originalPrice - price) / originalPrice) * 100)
   }
 
-  const compareFeatures = (products: Product[]) => {
-    const allBenefits = [...new Set(products.flatMap(p => p.benefits))]
-    const allCertifications = [...new Set(products.flatMap(p => p.certifications))]
-    
-    return { allBenefits, allCertifications }
-  }
-
-  const { allBenefits, allCertifications } = compareFeatures(products)
+  const allCertifications = [...new Set(products.flatMap(p => p.certifications))]
 
   if (products.length === 0) {
     return (
@@ -247,12 +126,6 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
                             {product.name.charAt(0)}
                           </span>
                         </div>
-                        {product.isPopular && (
-                          <Badge className="absolute -top-1 -right-1 text-xs px-1">Popular</Badge>
-                        )}
-                        {product.isNew && (
-                          <Badge variant="secondary" className="absolute -top-1 -right-1 text-xs px-1">New</Badge>
-                        )}
                       </div>
 
                       {/* Product Info */}
@@ -260,21 +133,6 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
                         <h3 className="font-semibold text-cream-100 text-sm mb-1">
                           {product.name}
                         </h3>
-                        <div className="flex items-center justify-center space-x-1 mb-2">
-                          <div className="flex items-center">
-                            {[...Array(5)].map((_, i) => (
-                              <Star
-                                key={i}
-                                className={`h-3 w-3 ${
-                                  i < Math.floor(product.rating)
-                                    ? 'text-yellow-400 fill-current'
-                                    : 'text-cream-300'
-                                }`}
-                              />
-                            ))}
-                          </div>
-                          <span className="text-xs text-earth-500">({product.reviews})</span>
-                        </div>
                         
                         {/* Price */}
                         <div className="text-center mb-3">
@@ -282,28 +140,18 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
                             <span className="text-lg font-bold text-primary-600">
                               {formatPrice(product.price)}
                             </span>
-                            {product.originalPrice && (
-                              <span className="text-sm text-earth-500 line-through">
-                                {formatPrice(product.originalPrice)}
-                              </span>
-                            )}
                           </div>
-                          {product.originalPrice && (
-                            <Badge variant="destructive" className="text-xs mt-1">
-                              {getDiscountPercentage(product.price, product.originalPrice)}% OFF
-                            </Badge>
-                          )}
                         </div>
 
                         {/* Add to Cart */}
                         <Button
                           onClick={() => onAddToCart(product)}
-                          disabled={!product.inStock}
+                          disabled={!(product.stock > 0)}
                           size="sm"
                           className="w-full"
                         >
                           <ShoppingCart className="h-3 w-3 mr-1" />
-                          {product.inStock ? 'Add to Cart' : 'Out of Stock'}
+                          {product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
                         </Button>
                       </div>
                     </motion.div>
@@ -360,34 +208,6 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
                       </td>
                     )
                   })}
-                </tr>
-              ))}
-
-              {/* Benefits */}
-              <tr className="border-b bg-earth-900">
-                <td className="p-4 font-medium text-cream-100">
-                  <div className="flex items-center space-x-2">
-                    <Heart className="h-4 w-4 text-green-600" />
-                    <span>Health Benefits</span>
-                  </div>
-                </td>
-                {products.map((product) => (
-                  <td key={product.id} className="p-4"></td>
-                ))}
-              </tr>
-
-              {allBenefits.map((benefit) => (
-                <tr key={benefit} className="border-b hover:bg-earth-900">
-                  <td className="p-4 pl-8 text-sm text-cream-100">{benefit}</td>
-                  {products.map((product) => (
-                    <td key={product.id} className="p-4 text-center">
-                      {product.benefits.includes(benefit) ? (
-                        <Check className="h-4 w-4 text-green-600 mx-auto" />
-                      ) : (
-                        <X className="h-4 w-4 text-cream-300 mx-auto" />
-                      )}
-                    </td>
-                  ))}
                 </tr>
               ))}
 
@@ -491,26 +311,6 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
             )
           })()}
         </div>
-
-        <div className="bg-gradient-to-r from-purple-600 to-purple-700 rounded-lg p-4">
-          <div className="flex items-center space-x-2 mb-2">
-            <Star className="h-5 w-5 text-purple-200" />
-            <h3 className="font-semibold text-white">Top Rated</h3>
-          </div>
-          {(() => {
-            const topRated = products.reduce((prev, current) => 
-              prev.rating > current.rating ? prev : current
-            )
-            return (
-              <div>
-                <p className="text-sm text-purple-200">{topRated.name}</p>
-                <p className="text-lg font-bold text-white">
-                  ⭐ {topRated.rating} ({topRated.reviews} reviews)
-                </p>
-              </div>
-            )
-          })()}
-        </div>
       </div>
     </div>
   )
@@ -518,8 +318,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
 
 export function ProductComparisonContainer() {
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([])
-  const [availableProducts, setAvailableProducts] = useState<Product[]>(sampleProducts)
-  const { addToCart } = useCart()
+  const { addItem } = useCart()
 
   const addProductToComparison = (product: Product) => {
     if (selectedProducts.length >= 4) {
@@ -537,11 +336,11 @@ export function ProductComparisonContainer() {
   }
 
   const handleAddToCart = (product: Product) => {
-    addToCart({
-      id: product.id,
+    addItem({
+      productId: product.id,
       name: product.name,
       price: product.price,
-      image: product.image,
+      image: product.images[0],
       quantity: 1,
       nutritionalInfo: product.nutritionalInfo
     })
@@ -556,39 +355,7 @@ export function ProductComparisonContainer() {
             Add Products to Compare ({selectedProducts.length}/4)
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {availableProducts
-              .filter(product => !selectedProducts.find(p => p.id === product.id))
-              .map((product) => (
-                <motion.div
-                  key={product.id}
-                  whileHover={{ y: -2 }}
-                  className="border rounded-lg p-4 cursor-pointer hover:shadow-md transition-shadow"
-                  onClick={() => addProductToComparison(product)}
-                >
-                  <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary-100 to-primary-200 rounded-md flex items-center justify-center">
-                      <span className="text-sm font-bold text-primary-700">
-                        {product.name.charAt(0)}
-                      </span>
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-medium text-cream-100 text-sm">{product.name}</h4>
-                      <p className="text-xs text-earth-600 mb-1">
-                        {product.nutritionalInfo.protein}g protein • {product.nutritionalInfo.calories} cal
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <span className="font-semibold text-primary-600">
-                          {formatPrice(product.price)}
-                        </span>
-                        <Button size="sm" variant="outline" className="h-6 text-xs px-2">
-                          <Plus className="h-3 w-3 mr-1" />
-                          Compare
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+            {/* sampleProducts removed: use canonical Product type for all product data */}
           </div>
         </div>
       )}

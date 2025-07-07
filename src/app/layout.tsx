@@ -142,14 +142,16 @@ export default function RootLayout({
                           </a>
                           <div className="flex flex-col min-h-screen">
                             <Header />
-                            <main id="main-content" className="flex-1" role="main" tabIndex="-1">
+                            <main id="main-content" className="flex-1" role="main" tabIndex={-1}>
                               {children}
                             </main>
                             <Footer />
                           </div>
                           <NutritionAssistant />
                           <ToastProvider />
-                          <PerformanceInit />
+                          <PerformanceInit>
+                            <></>
+                          </PerformanceInit>
                         </AnalyticsProvider>
                       </LoyaltyProvider>
                     </SubscriptionProvider>

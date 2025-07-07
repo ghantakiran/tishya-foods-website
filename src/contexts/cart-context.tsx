@@ -6,8 +6,12 @@ import { Cart, CartItem, CartState, CartActions } from '@/types/cart'
 import { useAnalytics } from '@/hooks/use-analytics'
 
 type CartContextType = CartState & CartActions
+export type CartContextValue = CartContextType & {
+  isInCart: (productId: string) => boolean;
+  getItemQuantity: (productId: string) => number;
+};
 
-const CartContext = createContext<CartContextType | undefined>(undefined)
+const CartContext = createContext<CartContextValue | undefined>(undefined)
 
 type CartAction =
   | { type: 'SET_LOADING'; payload: boolean }
@@ -198,7 +202,7 @@ function CartProviderInner({ children }: { children: React.ReactNode }) {
     analytics.trackProductAddToCart(
       item.productId,
       item.name,
-      item.category || 'Unknown',
+      'Unknown',
       item.price,
       item.quantity
     )
@@ -216,7 +220,7 @@ function CartProviderInner({ children }: { children: React.ReactNode }) {
       analytics.trackProductRemoveFromCart(
         item.productId,
         item.name,
-        item.category || 'Unknown',
+        'Unknown',
         item.price,
         item.quantity
       )
@@ -292,7 +296,16 @@ function CartProviderInner({ children }: { children: React.ReactNode }) {
     }
   }
 
-  const value: CartContextType = {
+  // Add isInCart and getItemQuantity utilities
+  const isInCart = (productId: string) => {
+    return state.cart?.items.some(item => item.productId === productId) ?? false;
+  };
+
+  const getItemQuantity = (productId: string) => {
+    return state.cart?.items.find(item => item.productId === productId)?.quantity ?? 0;
+  };
+
+  const value: CartContextValue = {
     ...state,
     addItem,
     removeItem,
@@ -301,6 +314,8 @@ function CartProviderInner({ children }: { children: React.ReactNode }) {
     applyCoupon,
     removeCoupon,
     calculateTotals,
+    isInCart,
+    getItemQuantity,
   }
 
   return (
