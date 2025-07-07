@@ -16,8 +16,8 @@ export default function CheckoutError({ error, reset }: CheckoutErrorProps) {
     console.error('Checkout error:', error)
     
     // Track checkout-specific errors - these are critical
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'exception', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'exception', {
         description: `Checkout page: ${error.message}`,
         fatal: true, // Checkout errors are critical
         custom_map: {
@@ -27,7 +27,7 @@ export default function CheckoutError({ error, reset }: CheckoutErrorProps) {
       })
       
       // Track checkout abandonment
-      (window as any).gtag('event', 'checkout_error', {
+      window.gtag('event', 'checkout_error', {
         event_category: 'ecommerce',
         event_label: 'checkout_page_error'
       })
@@ -70,7 +70,7 @@ export default function CheckoutError({ error, reset }: CheckoutErrorProps) {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            We encountered an issue processing your checkout. Don't worry - your cart items are still saved. No payment has been processed.
+            We encountered an issue processing your checkout. Don&apos;t worry - your cart items are still saved. No payment has been processed.
           </motion.p>
 
           {/* Important Notice */}

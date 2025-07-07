@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { 
   ChevronDown, 
   ChevronUp, 
@@ -11,10 +12,7 @@ import {
   X, 
   Package, 
   Truck, 
-  MapPin,
-  Calendar,
-  CreditCard,
-  Eye
+  MapPin
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -128,9 +126,11 @@ export function OrderCard({ order, onDownloadInvoice, onReorder, onCancel }: Ord
           <div className="flex items-center space-x-4">
             {order.items.slice(0, 3).map((item, index) => (
               <div key={item.id} className="flex items-center space-x-2">
-                <img
+                <Image
                   src={item.image}
                   alt={item.name}
+                  width={48}
+                  height={48}
                   className="w-12 h-12 object-cover rounded-md"
                 />
                 <div className="min-w-0">
@@ -218,9 +218,9 @@ export function OrderCard({ order, onDownloadInvoice, onReorder, onCancel }: Ord
                   <div className="space-y-3">
                     {order.items.map((item) => (
                       <div key={item.id} className="flex items-center space-x-3 bg-earth-800 p-3 rounded-lg">
-                        <img
+                        <Image
                           src={item.image}
-                          alt={item.name}
+                          alt={item.name}\n                          width={64}\n                          height={64}
                           className="w-16 h-16 object-cover rounded-md"
                         />
                         <div className="flex-1">

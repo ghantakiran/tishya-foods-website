@@ -1,7 +1,7 @@
 import { Product } from '@/types/product'
-import { CartItem } from '@/types'
+import { CartItem } from '@/types/cart'
 
-export const createCartItemFromProduct = (product: Product, quantity = 1): CartItem => ({
+export const createCartItemFromProduct = (product: Product, quantity = 1): Omit<CartItem, 'id'> => ({
   productId: product.id,
   name: product.name,
   price: product.price,
@@ -23,7 +23,7 @@ export const getCartItemCount = (items: CartItem[]): number => {
   return items.reduce((total, item) => total + item.quantity, 0)
 }
 
-export const findCartItem = (items: CartItem[], productId: string, variant?: any): CartItem | undefined => {
+export const findCartItem = (items: CartItem[], productId: string, variant?: { size?: string; flavor?: string }): CartItem | undefined => {
   return items.find(item => 
     item.productId === productId && 
     JSON.stringify(item.variant) === JSON.stringify(variant)

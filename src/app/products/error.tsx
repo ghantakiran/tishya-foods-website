@@ -16,8 +16,8 @@ export default function ProductsError({ error, reset }: ProductsErrorProps) {
     console.error('Products page error:', error)
     
     // Track product-specific errors
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'exception', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'exception', {
         description: `Products page: ${error.message}`,
         fatal: false,
         custom_map: {
@@ -63,7 +63,7 @@ export default function ProductsError({ error, reset }: ProductsErrorProps) {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            We're having trouble loading our products right now. This could be due to a temporary server issue or connectivity problem.
+            We&apos;re having trouble loading our products right now. This could be due to a temporary server issue or connectivity problem.
           </motion.p>
 
           {/* Suggested Actions */}

@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { BookOpen, RefreshCw, Home, ArrowLeft } from 'lucide-react'
+import { BookOpen, RefreshCw, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
@@ -16,8 +16,8 @@ export default function BlogError({ error, reset }: BlogErrorProps) {
     console.error('Blog page error:', error)
     
     // Track blog-specific errors
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'exception', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'exception', {
         description: `Blog page: ${error.message}`,
         fatal: false,
         custom_map: {
@@ -63,7 +63,7 @@ export default function BlogError({ error, reset }: BlogErrorProps) {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            We're experiencing issues loading our blog content. This might be due to a temporary server problem or content management system issue.
+            We&apos;re experiencing issues loading our blog content. This might be due to a temporary server problem or content management system issue.
           </motion.p>
 
           {/* Suggested Actions */}

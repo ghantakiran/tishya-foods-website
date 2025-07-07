@@ -16,8 +16,8 @@ export default function AdminError({ error, reset }: AdminErrorProps) {
     console.error('Admin panel error:', error)
     
     // Track admin-specific errors
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'exception', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'exception', {
         description: `Admin panel: ${error.message}`,
         fatal: false,
         custom_map: {
@@ -93,7 +93,7 @@ export default function AdminError({ error, reset }: AdminErrorProps) {
             <h3 className="text-sm font-semibold text-gray-200 mb-3">Troubleshooting:</h3>
             <ul className="text-sm text-gray-400 space-y-2">
               <li>• Verify your admin permissions</li>
-              <li>• Check if you're still logged in</li>
+              <li>• Check if you&apos;re still logged in</li>
               <li>• Clear browser cache and cookies</li>
               <li>• Try accessing from a different browser</li>
               <li>• Contact system administrator if needed</li>

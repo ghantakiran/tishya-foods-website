@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { AlertTriangle, RefreshCw, Home, ArrowLeft } from 'lucide-react'
+import { AlertTriangle, RefreshCw, Home } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
@@ -17,8 +17,8 @@ export default function Error({ error, reset }: ErrorProps) {
     console.error('Application error:', error)
     
     // Track error analytics
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'exception', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'exception', {
         description: error.message,
         fatal: false
       })
@@ -61,7 +61,7 @@ export default function Error({ error, reset }: ErrorProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
         >
-          We encountered an unexpected error. Don't worry, our team has been notified and we're working to fix it.
+          We encountered an unexpected error. Don&apos;t worry, our team has been notified and we&apos;re working to fix it.
         </motion.p>
 
         {/* Error Details (Development only) */}
