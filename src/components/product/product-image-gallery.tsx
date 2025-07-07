@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import { 
   ChevronLeft, 
   ChevronRight, 
@@ -248,9 +249,10 @@ export function ProductImageGallery({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <img
+              <Image
                 src={image}
                 alt={productName}
+                fill
                 className="w-full h-full object-cover"
               />
             </motion.button>

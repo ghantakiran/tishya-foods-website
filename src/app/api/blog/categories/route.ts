@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
 
     if (!includePostCount) {
       categories = categories.map((category) => {
-        const { postCount, ...categoryWithoutCount } = category
+        const { postCount: _, ...categoryWithoutCount } = category
         return categoryWithoutCount as BlogCategory
       })
     }

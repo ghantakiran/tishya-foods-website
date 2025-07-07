@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { 
   CheckCircle, 
   Circle, 
@@ -230,9 +231,11 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
         <div className="space-y-4">
           {order.items.map((item) => (
             <div key={item.id} className="flex items-center space-x-4 p-4 border rounded-lg">
-              <img
+              <Image
                 src={item.image}
                 alt={item.name}
+                width={64}
+                height={64}
                 className="w-16 h-16 object-cover rounded-md"
               />
               <div className="flex-1">
