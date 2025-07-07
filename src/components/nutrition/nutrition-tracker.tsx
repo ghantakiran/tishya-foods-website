@@ -115,7 +115,7 @@ export function NutritionTracker() {
     // Load saved data for the selected date
     loadDayData(selectedDate)
     generateWeeklyData()
-  }, [selectedDate])
+  }, [selectedDate, generateWeeklyData])
 
   const loadDayData = (date: string) => {
     // In a real app, this would load from localStorage or API
@@ -174,7 +174,7 @@ export function NutritionTracker() {
     )
 
     return { ...totals, entries: dayEntries }
-  }, [])
+  }, [waterIntake])
 
   const addEntry = (productId: string, servings: number) => {
     const product = sampleProducts.find(p => p.id === productId)
