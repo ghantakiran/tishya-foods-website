@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Search, Filter, Download, Package, Eye, RotateCcw, X } from 'lucide-react'
+import { Search, Filter, Package } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
@@ -47,22 +47,22 @@ export function OrderList() {
     setShowFilters(false)
   }
 
-  const getStatusColor = (status: OrderStatus) => {
-    switch (status) {
-      case OrderStatus.DELIVERED:
-        return 'success'
-      case OrderStatus.SHIPPED:
-      case OrderStatus.OUT_FOR_DELIVERY:
-        return 'default'
-      case OrderStatus.PROCESSING:
-        return 'secondary'
-      case OrderStatus.CANCELLED:
-      case OrderStatus.RETURNED:
-        return 'destructive'
-      default:
-        return 'secondary'
-    }
-  }
+  // const getStatusColor = (status: OrderStatus) => {
+  //   switch (status) {
+  //     case OrderStatus.DELIVERED:
+  //       return 'success'
+  //     case OrderStatus.SHIPPED:
+  //     case OrderStatus.OUT_FOR_DELIVERY:
+  //       return 'default'
+  //     case OrderStatus.PROCESSING:
+  //       return 'secondary'
+  //     case OrderStatus.CANCELLED:
+  //     case OrderStatus.RETURNED:
+  //       return 'destructive'
+  //     default:
+  //       return 'secondary'
+  //   }
+  // }
 
   const getActiveFiltersCount = () => {
     return Object.values(filters).filter(Boolean).length

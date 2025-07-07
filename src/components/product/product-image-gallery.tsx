@@ -12,10 +12,8 @@ import {
   X,
   Play,
   Pause,
-  RotateCw,
   Download,
-  Share2,
-  Move3D
+  Share2
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'

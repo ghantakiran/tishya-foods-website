@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { ProductCard } from '@/components/product/product-card'
 import { Product } from '@/types/product'
 
@@ -20,11 +20,7 @@ export function RecommendationEngine({
   const [recommendations, setRecommendations] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    fetchRecommendations()
-  }, [userId, currentProduct])
-
-  const fetchRecommendations = async () => {
+  const fetchRecommendations = useCallback(async () => {
     try {
       setLoading(true)
       
@@ -238,7 +234,11 @@ export function RecommendationEngine({
     } finally {
       setLoading(false)
     }
-  }
+  }, [userId, currentProduct, maxRecommendations])
+
+  useEffect(() => {
+    fetchRecommendations()
+  }, [fetchRecommendations])
 
   if (loading) {
     return (

@@ -141,7 +141,7 @@ export function VirtualGrid<T>({
       }
     }
     return result
-  }, [items, visibleRowRange, columnsPerRow, itemWidth, itemHeight, gap, rowHeight])
+  }, [items, visibleRowRange, columnsPerRow, itemWidth, gap, rowHeight])
 
   return (
     <div
