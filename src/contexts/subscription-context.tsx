@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useReducer, useEffect, ReactNode } from 'react'
-import { Product } from '@/types'
+import { Product } from '@/types/product'
 
 // Types
 export interface SubscriptionPlan {
@@ -393,7 +393,7 @@ export function SubscriptionProvider({ children }: SubscriptionProviderProps) {
   }
 
   const updatePreferences = async (id: string, preferences: Partial<Subscription['preferences']>) => {
-    await updateSubscription(id, { preferences })
+    await updateSubscription(id, { preferences: preferences as Subscription['preferences'] })
   }
 
   const updateDeliveryAddress = async (id: string, address: Subscription['deliveryAddress']) => {

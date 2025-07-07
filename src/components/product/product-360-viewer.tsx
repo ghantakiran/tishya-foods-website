@@ -104,7 +104,7 @@ export function Product360Viewer({ productId, productName, isOpen, onClose }: Pr
     const preloadImages = async () => {
       const promises = frameImages.map((src, index) => {
         return new Promise<number>((resolve) => {
-          const img = new Image()
+          const img = typeof window !== 'undefined' ? new window.Image() : ({ onload: null, onerror: null, src: '' } as any)
           img.onload = () => resolve(index)
           img.onerror = () => resolve(index)
           img.src = src

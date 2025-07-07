@@ -1,4 +1,5 @@
 // Touch and mobile interaction utilities
+import React from 'react'
 
 export interface TouchGesture {
   startX: number
@@ -220,7 +221,7 @@ export function makeTouchFriendly(element: HTMLElement): void {
   // Add touch feedback
   element.style.touchAction = 'manipulation'
   element.style.userSelect = 'none'
-  element.style.webkitTapHighlightColor = 'transparent'
+  ;(element.style as any).webkitTapHighlightColor = 'transparent'
 
   // Add visual feedback for touch
   element.addEventListener('touchstart', () => {
@@ -288,12 +289,12 @@ export function preventDoubleTabZoom(element: HTMLElement): void {
 
 // Enhanced scroll behavior for mobile
 export function enhanceMobileScroll(element: HTMLElement): void {
-  element.style.webkitOverflowScrolling = 'touch'
+  ;(element.style as any).webkitOverflowScrolling = 'touch'
   element.style.overscrollBehavior = 'contain'
   
   // Add momentum scrolling for iOS
   if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-    element.style.webkitOverflowScrolling = 'touch'
+    ;(element.style as any).webkitOverflowScrolling = 'touch'
   }
 }
 

@@ -2,9 +2,10 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Heart, ShoppingCart, Eye, GitCompare } from 'lucide-react'
+import { ShoppingCart, Eye, GitCompare } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { WishlistButton } from '@/components/ui/wishlist-button'
 import { Product } from '@/types/product'
 import { formatPrice } from '@/lib/utils'
 import { OptimizedImage } from '@/components/optimization/image-optimizer'
@@ -16,7 +17,6 @@ interface ProductCardProps {
   variant?: 'grid' | 'list'
   onQuickView?: (product: Product) => void
   onCompare?: (product: Product) => void
-  onWishlist?: (product: Product) => void
   priority?: boolean
 }
 
@@ -25,7 +25,6 @@ export function ProductCard({
   variant = 'grid',
   onQuickView,
   onCompare,
-  onWishlist,
   priority = false 
 }: ProductCardProps) {
   const [isLoading, setIsLoading] = useState(false)
@@ -129,15 +128,7 @@ export function ProductCard({
             </Button>
           )}
           
-          <Button
-            variant="secondary"
-            size="icon"
-            className="bg-white/90 hover:bg-white text-berry-600 hover:text-berry-700 shadow-lg backdrop-blur-sm"
-            onClick={() => onWishlist?.(product)}
-            aria-label="Add to wishlist"
-          >
-            <Heart className="h-4 w-4" />
-          </Button>
+          <WishlistButton product={product} variant="icon" size="sm" />
         </div>
       </div>
 

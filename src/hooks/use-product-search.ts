@@ -124,8 +124,7 @@ const mockProducts: Product[] = [
       fiber: 5,
       sugar: 3,
       sodium: 200,
-      iron: 3,
-      folate: 40
+      iron: 3
     },
     allergens: [],
     certifications: ['gluten-free'],

@@ -129,7 +129,7 @@ export function checkRateLimit(
 }
 
 export function getClientIdentifier(request: NextRequest): string {
-  const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown'
+  const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
   const userAgent = request.headers.get('user-agent') || 'unknown'
   
   // Create a hash of IP + User Agent for basic identification

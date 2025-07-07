@@ -9,6 +9,8 @@ import { CartProvider } from "@/contexts/cart-context";
 import { AuthProvider } from "@/contexts/auth-context";
 import { PaymentProvider } from "@/contexts/payment-context";
 import { LoadingProvider } from "@/contexts/loading-context";
+import { WishlistProvider } from "@/contexts/wishlist-context";
+import { AddressProvider } from "@/contexts/address-context";
 import { ToastProvider } from "@/components/providers/toast-provider";
 import { ErrorBoundary } from "@/components/error/error-boundary";
 import { PerformanceInit } from "@/components/performance/performance-init";
@@ -101,10 +103,12 @@ export default function RootLayout({
             <LoadingProvider>
               <AuthProvider>
                 <CartProvider>
-                  <PaymentProvider>
-                    <SubscriptionProvider>
-                      <LoyaltyProvider>
-                        <AnalyticsProvider
+                  <WishlistProvider>
+                    <AddressProvider>
+                      <PaymentProvider>
+                        <SubscriptionProvider>
+                          <LoyaltyProvider>
+                            <AnalyticsProvider
                           config={{
                             googleAnalytics: {
                               measurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '',
@@ -152,10 +156,12 @@ export default function RootLayout({
                           <PerformanceInit>
                             <></>
                           </PerformanceInit>
-                        </AnalyticsProvider>
-                      </LoyaltyProvider>
-                    </SubscriptionProvider>
-                  </PaymentProvider>
+                            </AnalyticsProvider>
+                          </LoyaltyProvider>
+                        </SubscriptionProvider>
+                      </PaymentProvider>
+                    </AddressProvider>
+                  </WishlistProvider>
                 </CartProvider>
               </AuthProvider>
             </LoadingProvider>
