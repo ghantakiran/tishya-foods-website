@@ -43,39 +43,39 @@ export const LazyValuesSection = lazy(() =>
 // Blog and content components
 export const LazyBlogList = lazy(() => 
   import('../blog/blog-list').then(module => ({
-    default: module.default
+    default: module.BlogList
   }))
 )
 
 export const LazyBlogComments = lazy(() => 
   import('../blog/blog-comments').then(module => ({
-    default: module.default
+    default: module.BlogComments
   }))
 )
 
 // Product components
 export const LazyProductComparison = lazy(() => 
   import('../product/product-comparison').then(module => ({
-    default: module.default
+    default: module.ProductComparison
   }))
 )
 
 export const LazyProduct360Viewer = lazy(() => 
   import('../product/product-360-viewer').then(module => ({
-    default: module.default
+    default: module.Product360Viewer
   }))
 )
 
 // Analytics and admin components
 export const LazyAnalyticsDashboard = lazy(() => 
   import('../analytics/analytics-dashboard').then(module => ({
-    default: module.default
+    default: module.AnalyticsDashboard
   }))
 )
 
 export const LazyRealTimeMonitor = lazy(() => 
   import('../analytics/real-time-monitor').then(module => ({
-    default: module.default
+    default: module.RealTimeMonitor
   }))
 )
 

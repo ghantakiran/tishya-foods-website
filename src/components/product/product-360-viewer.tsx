@@ -94,7 +94,7 @@ export function Product360Viewer({ productId, productName, isOpen, onClose }: Pr
   
   const containerRef = useRef<HTMLDivElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | null>(null)
   const lastUpdateRef = useRef<number>(0)
 
   const frameImages = generate360Images(productId, 36)
