@@ -111,11 +111,41 @@ export function NutritionTracker() {
   const [waterIntake, setWaterIntake] = useState(0)
   const [weeklyData, setWeeklyData] = useState<{ date: string; calories: number; protein: number }[]>([])
 
-  useEffect(() => {
-    // Load saved data for the selected date
-    loadDayData(selectedDate)
-    generateWeeklyData()
-  }, [selectedDate, generateWeeklyData])
+  const calculateDayTotals = useCallback((dayEntries: NutritionEntry[]): DailyTotals => {
+    const totals = dayEntries.reduce(
+      (acc, entry) => ({
+        calories: acc.calories + entry.calories,
+        protein: acc.protein + entry.protein,
+        carbs: acc.carbs + entry.carbs,
+        fat: acc.fat + entry.fat,
+        fiber: acc.fiber + entry.fiber,
+        water: acc.water + (entry.water || 0)
+      }),
+      { calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0, water: waterIntake }
+    )
+
+    return { ...totals, entries: dayEntries }
+  }, [waterIntake])
+
+  const generateWeeklyData = useCallback(() => {
+    const weekData = []
+    for (let i = 6; i >= 0; i--) {
+      const date = new Date()
+      date.setDate(date.getDate() - i)
+      const dateStr = date.toISOString().split('T')[0]
+      
+      const savedEntries = localStorage.getItem(`nutrition-entries-${dateStr}`)
+      const entries = savedEntries ? JSON.parse(savedEntries) : []
+      
+      const dayTotals = calculateDayTotals(entries)
+      weekData.push({
+        date: dateStr,
+        calories: dayTotals.calories,
+        protein: dayTotals.protein
+      })
+    }
+    setWeeklyData(weekData)
+  }, [calculateDayTotals])
 
   const loadDayData = (date: string) => {
     // In a real app, this would load from localStorage or API
@@ -140,41 +170,11 @@ export function NutritionTracker() {
     localStorage.setItem(`water-intake-${selectedDate}`, newWater.toString())
   }
 
-  const generateWeeklyData = useCallback(() => {
-    const weekData = []
-    for (let i = 6; i >= 0; i--) {
-      const date = new Date()
-      date.setDate(date.getDate() - i)
-      const dateStr = date.toISOString().split('T')[0]
-      
-      const savedEntries = localStorage.getItem(`nutrition-entries-${dateStr}`)
-      const entries = savedEntries ? JSON.parse(savedEntries) : []
-      
-      const dayTotals = calculateDayTotals(entries)
-      weekData.push({
-        date: dateStr,
-        calories: dayTotals.calories,
-        protein: dayTotals.protein
-      })
-    }
-    setWeeklyData(weekData)
-  }, [calculateDayTotals])
-
-  const calculateDayTotals = useCallback((dayEntries: NutritionEntry[]): DailyTotals => {
-    const totals = dayEntries.reduce(
-      (acc, entry) => ({
-        calories: acc.calories + entry.calories,
-        protein: acc.protein + entry.protein,
-        carbs: acc.carbs + entry.carbs,
-        fat: acc.fat + entry.fat,
-        fiber: acc.fiber + entry.fiber,
-        water: acc.water + (entry.water || 0)
-      }),
-      { calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0, water: waterIntake }
-    )
-
-    return { ...totals, entries: dayEntries }
-  }, [waterIntake])
+  useEffect(() => {
+    // Load saved data for the selected date
+    loadDayData(selectedDate)
+    generateWeeklyData()
+  }, [selectedDate, generateWeeklyData])
 
   const addEntry = (productId: string, servings: number) => {
     const product = sampleProducts.find(p => p.id === productId)

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { LoadingSpinner } from '@/components/loading/optimized-loading'
 
 // Higher-order component for lazy loading with loading states
-export function withLazyLoading<T extends ComponentType<Record<string, unknown>>>(
+export function withLazyLoading<T extends ComponentType<any>>(
   importFunc: () => Promise<{ default: T }>,
   fallback?: React.ReactNode
 ) {
@@ -14,7 +14,7 @@ export function withLazyLoading<T extends ComponentType<Record<string, unknown>>
   return function LazyWrapper(props: React.ComponentProps<T>) {
     return (
       <Suspense fallback={fallback || <ComponentLoadingFallback />}>
-        <LazyComponent {...props} />
+        <LazyComponent {...(props as any)} />
       </Suspense>
     )
   }

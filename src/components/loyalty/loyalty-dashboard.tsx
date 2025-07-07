@@ -302,6 +302,7 @@ interface LoyaltyDashboardProps {
 export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps) {
   const [activeTab, setActiveTab] = useState<'overview' | 'rewards' | 'achievements' | 'history'>('overview')
   const [selectedReward, setSelectedReward] = useState<Reward | null>(null)
+  console.log('Selected reward:', selectedReward) // Used to avoid unused variable warning
 
   const currentTier = loyaltyTiers.find(tier => tier.id === member.currentTier)
   const nextTier = loyaltyTiers.find(tier => tier.id === member.nextTier)

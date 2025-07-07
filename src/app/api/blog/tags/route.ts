@@ -80,7 +80,7 @@ export async function GET(request: NextRequest) {
 
     if (!includePostCount) {
       tags = tags.map((tag) => {
-        const { postCount, ...tagWithoutCount } = tag
+        const { postCount: _, ...tagWithoutCount } = tag
         // postCount is intentionally excluded from the response
         return tagWithoutCount as BlogTag
       })
