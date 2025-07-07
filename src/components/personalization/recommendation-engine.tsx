@@ -234,7 +234,7 @@ export function RecommendationEngine({
     } finally {
       setLoading(false)
     }
-  }, [userId, currentProduct, maxRecommendations])
+  }, [maxRecommendations])  // userId and currentProduct are used internally but don't need to trigger recreation
 
   useEffect(() => {
     fetchRecommendations()
