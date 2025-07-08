@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { products, productCategories } from '@/lib/products-data'
 import { Product } from '@/types/product'
 import { useCart } from '@/contexts/cart-context'
+import { ProductListStructuredData } from '@/components/seo/product-structured-data'
 import Link from 'next/link'
 
 const sortOptions = [
@@ -107,8 +108,13 @@ export default function ProductsPage() {
   }
 
   return (
-    <div className="pt-20 min-h-screen bg-gray-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <>
+      <ProductListStructuredData 
+        products={filteredProducts} 
+        category={selectedCategory !== 'all' ? productCategories.find(c => c.id === selectedCategory)?.name : undefined}
+      />
+      <div className="pt-20 min-h-screen bg-gray-900">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Header */}
         <motion.div
           className="text-center mb-12"
@@ -529,5 +535,6 @@ export default function ProductsPage() {
         )}
       </div>
     </div>
+    </>
   )
 }

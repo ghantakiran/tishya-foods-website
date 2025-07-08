@@ -1,5 +1,17 @@
 import { Product, ProductCategory } from '@/types/product'
 
+export function getAllProducts(): Product[] {
+  return products
+}
+
+export function getProductById(id: string): Product | undefined {
+  return products.find(product => product.id === id)
+}
+
+export function getProductsByCategory(categoryId: string): Product[] {
+  return products.filter(product => product.category.id === categoryId)
+}
+
 export const productCategories: ProductCategory[] = [
   {
     id: 'sweet-treats',
@@ -456,9 +468,3 @@ export const products: Product[] = [
 ]
 
 export const getFeaturedProducts = () => products.filter(product => product.featured)
-
-export const getProductsByCategory = (categoryId: string) => 
-  products.filter(product => product.category.id === categoryId)
-
-export const getProductById = (id: string) => 
-  products.find(product => product.id === id)
