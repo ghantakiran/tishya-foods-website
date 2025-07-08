@@ -71,6 +71,17 @@ export interface PaymentActions {
   getPaymentStatus: (paymentId: string) => Promise<PaymentDetails>
 }
 
+export interface PaymentResult {
+  success: boolean
+  transactionId: string
+  amount?: number
+  currency?: string
+  paymentMethod?: PaymentMethod
+  timestamp: string
+  error?: string
+  metadata?: Record<string, string>
+}
+
 export interface CartItem {
   id: string
   productId: string

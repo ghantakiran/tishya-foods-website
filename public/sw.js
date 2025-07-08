@@ -355,3 +355,90 @@ async function cleanupOldCaches() {
     }
   }
 }
+
+// Handle messages from main thread
+self.addEventListener('message', (event) => {
+  console.log('Service Worker received message:', event.data)
+  
+  if (event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting()
+  }
+  
+  if (event.data.type === 'GET_OFFLINE_DATA') {
+    // Send offline data back to main thread
+    getOfflineStats().then(stats => {
+      event.ports[0]?.postMessage({
+        type: 'OFFLINE_DATA',
+        data: stats.data,
+        lastSync: stats.lastSync
+      })
+    })
+  }
+  
+  if (event.data.type === 'SYNC_REQUEST') {
+    // Trigger background sync
+    event.waitUntil(performBackgroundSync())
+  }
+})
+
+// Get offline statistics
+async function getOfflineStats() {
+  try {
+    // Simplified stats for service worker context
+    return {
+      data: {
+        cartItems: await getStoredCount('cart'),
+        favorites: await getStoredCount('favorites'),
+        recentProducts: await getStoredCount('products')
+      },
+      lastSync: await getLastSyncTime()
+    }
+  } catch (error) {
+    console.error('Error getting offline stats:', error)
+    return {
+      data: { cartItems: 0, favorites: 0, recentProducts: 0 },
+      lastSync: null
+    }
+  }
+}
+
+// Helper to get stored item count
+async function getStoredCount(storeName) {
+  try {
+    // In a real implementation, this would open IndexedDB
+    // For now, return mock data
+    return Math.floor(Math.random() * 10)
+  } catch {
+    return 0
+  }
+}
+
+// Helper to get last sync time
+async function getLastSyncTime() {
+  try {
+    // In a real implementation, this would read from IndexedDB
+    return localStorage.getItem('lastSync') || null
+  } catch {
+    return null
+  }
+}
+
+// Perform background sync
+async function performBackgroundSync() {
+  try {
+    console.log('Performing background sync...')
+    
+    // Sync cart data
+    await syncCartData()
+    
+    // Sync order data  
+    await syncOrderData()
+    
+    // Update last sync time
+    localStorage.setItem('lastSync', new Date().toISOString())
+    
+    console.log('Background sync completed')
+  } catch (error) {
+    console.error('Background sync failed:', error)
+  }
+}

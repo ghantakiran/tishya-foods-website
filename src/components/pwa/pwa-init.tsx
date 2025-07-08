@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { initializeOfflineData, syncOfflineData } from '@/lib/indexeddb'
 
 interface PWAInitProps {
   children: React.ReactNode
@@ -38,6 +39,9 @@ export function PWAInit({ children }: PWAInitProps) {
     }
 
     registerSW()
+
+    // Initialize IndexedDB for offline data
+    initializeOfflineData()
 
     // Handle install prompt
     const handleBeforeInstallPrompt = (e: Event) => {
@@ -165,7 +169,11 @@ export function useOfflineStatus() {
   const [isOffline, setIsOffline] = useState(false)
 
   useEffect(() => {
-    const handleOnline = () => setIsOffline(false)
+    const handleOnline = () => {
+      setIsOffline(false)
+      // Sync offline data when coming back online
+      syncOfflineData()
+    }
     const handleOffline = () => setIsOffline(true)
 
     setIsOffline(!navigator.onLine)
