@@ -4,7 +4,7 @@ import { getProductById, getAllProducts } from '@/lib/products-data'
 import ProductDetailPage from '@/components/product/product-detail-page'
 
 interface Props {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 export async function generateStaticParams() {
@@ -16,7 +16,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const product = getProductById(params.id)
+  const { id } = await params
+  const product = getProductById(id)
   
   if (!product) {
     return {
@@ -36,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: product.description,
     keywords: [
       product.name,
-      product.category,
+      product.category.name,
       'protein rich',
       'natural foods',
       'organic',
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${product.name} | Tishya Foods`,
       description: product.description,
-      type: 'product',
+      type: 'website',
       url: `https://tishyafoods.com/products/${product.id}`,
       images: productImages.length > 0 ? productImages : [
         {
@@ -83,16 +84,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     other: {
       'product:price:amount': product.price.toString(),
       'product:price:currency': 'USD',
-      'product:availability': product.inStock ? 'in stock' : 'out of stock',
+      'product:availability': product.stock > 0 ? 'in stock' : 'out of stock',
       'product:condition': 'new',
       'product:brand': 'Tishya Foods',
-      'product:category': product.category,
+      'product:category': product.category.name,
     },
   }
 }
 
-export default function ProductPage({ params }: Props) {
-  const product = getProductById(params.id)
+export default async function ProductPage({ params }: Props) {
+  const { id } = await params
+  const product = getProductById(id)
 
   if (!product) {
     notFound()

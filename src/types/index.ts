@@ -1,3 +1,5 @@
+export * from './product'
+
 export interface Review {
   id: string
   customerName: string

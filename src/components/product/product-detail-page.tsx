@@ -5,9 +5,10 @@ import { motion } from 'framer-motion'
 import { ShoppingCart, Heart, Share2, Star, Plus, Minus, Check, Truck, Shield, RotateCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Product } from '@/types'
+import { Product } from '@/types/product'
 import { useCart } from '@/contexts/cart-context'
 import { useWishlist } from '@/contexts/wishlist-context'
+import { createCartItemFromProduct } from '@/lib/cart-utils'
 import { ProductImageGallery } from './product-image-gallery'
 import ProductNutritionInfo from './product-nutrition-info'
 import ProductReviews from './product-reviews'
@@ -25,7 +26,7 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
 
   const handleAddToCart = () => {
-    addItem(product, quantity)
+    addItem(createCartItemFromProduct(product, quantity))
   }
 
   const handleWishlistToggle = () => {
@@ -70,6 +71,7 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
               <ProductImageGallery 
                 images={product.images || ['/images/products/default.jpg']}
                 productName={product.name}
+                productId={product.id}
               />
             </div>
 
@@ -78,7 +80,7 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <Badge variant="secondary" className="bg-green-900/30 text-green-300">
-                    {product.category}
+                    {product.category.name}
                   </Badge>
                   {product.isOrganic && (
                     <Badge variant="secondary" className="bg-blue-900/30 text-blue-300">
@@ -107,14 +109,14 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
                       <Star
                         key={i}
                         className={`w-5 h-5 ${
-                          i < Math.floor(product.rating || 0)
+                          i < Math.floor(product.averageRating || 0)
                             ? 'text-yellow-400 fill-current'
                             : 'text-gray-600'
                         }`}
                       />
                     ))}
                     <span className="text-gray-400 ml-2">
-                      ({product.rating?.toFixed(1)}) • {product.reviewCount || 0} reviews
+                      ({product.averageRating?.toFixed(1)}) • {product.reviewCount || 0} reviews
                     </span>
                   </div>
                 </div>
@@ -129,10 +131,10 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
                     </span>
                   )}
                   <Badge 
-                    variant={product.inStock ? 'default' : 'destructive'}
-                    className={product.inStock ? 'bg-green-900/30 text-green-300' : ''}
+                    variant={product.stock > 0 ? 'default' : 'destructive'}
+                    className={product.stock > 0 ? 'bg-green-900/30 text-green-300' : ''}
                   >
-                    {product.inStock ? 'In Stock' : 'Out of Stock'}
+                    {product.stock > 0 ? 'In Stock' : 'Out of Stock'}
                   </Badge>
                 </div>
 
@@ -175,7 +177,7 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
                 <div className="flex gap-3">
                   <Button
                     onClick={handleAddToCart}
-                    disabled={!product.inStock}
+                    disabled={product.stock <= 0}
                     className="flex-1 bg-green-600 hover:bg-green-700 text-white"
                   >
                     <ShoppingCart className="w-5 h-5 mr-2" />
@@ -255,7 +257,7 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
               {selectedTab === 'description' && (
                 <div className="prose prose-invert max-w-none">
                   <p className="text-gray-300 leading-relaxed">
-                    {product.longDescription || product.description}
+                    {product.description}
                   </p>
                   {product.benefits && (
                     <div className="mt-6">
@@ -274,7 +276,7 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
               )}
 
               {selectedTab === 'nutrition' && (
-                <ProductNutritionInfo nutrition={product.nutrition} />
+                <ProductNutritionInfo nutrition={product.nutritionalInfo} />
               )}
 
               {selectedTab === 'reviews' && (
@@ -292,7 +294,7 @@ export default function ProductDetailPage({ product }: ProductDetailPageProps) {
           >
             <RelatedProducts 
               currentProduct={product}
-              category={product.category}
+              category={product.category.id}
             />
           </motion.div>
         </div>

@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { Instagram, Facebook, Twitter, Mail, Phone, MapPin } from 'lucide-react'
 import { GuaranteeSection } from '@/components/trust/trust-signals'
+import { AccessibleImage } from '@/components/accessibility/accessible-image'
+import { Landmark } from '@/components/accessibility/landmark'
 
 const footerSections = [
   {
@@ -44,7 +45,8 @@ const footerSections = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-gray-100">
+    <Landmark role="contentinfo">
+      <footer id="footer" className="bg-gray-800 text-gray-100">
       {/* Guarantee Section */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <GuaranteeSection />
@@ -57,7 +59,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center space-x-3 mb-4">
               <div className="relative w-12 h-12">
-                <Image
+                <AccessibleImage
                   src="/logo.png"
                   alt="Tishya Foods Logo"
                   fill
@@ -79,13 +81,28 @@ export default function Footer() {
               and finely milled with care.
             </p>
             <div className="flex space-x-4">
-              <a href="https://instagram.com/tishyafoods" className="text-gray-200 hover:text-green-400 transition-colors" data-testid="social-link" aria-label="Follow us on Instagram">
+              <a 
+                href="https://instagram.com/tishyafoods" 
+                className="text-gray-200 hover:text-green-400 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded-md p-1" 
+                data-testid="social-link" 
+                aria-label="Follow us on Instagram"
+              >
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="https://facebook.com/tishyafoods" className="text-gray-200 hover:text-green-400 transition-colors" data-testid="social-link" aria-label="Follow us on Facebook">
+              <a 
+                href="https://facebook.com/tishyafoods" 
+                className="text-gray-200 hover:text-green-400 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded-md p-1" 
+                data-testid="social-link" 
+                aria-label="Follow us on Facebook"
+              >
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="https://twitter.com/tishyafoods" className="text-gray-200 hover:text-green-400 transition-colors" data-testid="social-link" aria-label="Follow us on Twitter">
+              <a 
+                href="https://twitter.com/tishyafoods" 
+                className="text-gray-200 hover:text-green-400 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded-md p-1" 
+                data-testid="social-link" 
+                aria-label="Follow us on Twitter"
+              >
                 <Twitter className="h-5 w-5" />
               </a>
             </div>
@@ -93,21 +110,21 @@ export default function Footer() {
 
           {/* Footer Links */}
           {footerSections.map((section) => (
-            <div key={section.title}>
-              <h3 className="text-gray-50 font-semibold mb-4">{section.title}</h3>
+            <nav key={section.title} aria-labelledby={`footer-${section.title.toLowerCase()}`}>
+              <h3 id={`footer-${section.title.toLowerCase()}`} className="text-gray-50 font-semibold mb-4">{section.title}</h3>
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-gray-200 hover:text-green-400 transition-colors text-sm"
+                      className="text-gray-200 hover:text-green-400 transition-colors text-sm focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded-md"
                     >
                       {link.name}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
           ))}
         </div>
 
@@ -115,15 +132,25 @@ export default function Footer() {
         <div className="border-t border-gray-600 mt-12 pt-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-center space-x-3">
-              <Mail className="h-5 w-5 text-green-400" />
-              <span className="text-gray-200">info@tishyafoods.com</span>
+              <Mail className="h-5 w-5 text-green-400" aria-hidden="true" />
+              <a 
+                href="mailto:info@tishyafoods.com" 
+                className="text-gray-200 hover:text-green-400 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded-md"
+              >
+                info@tishyafoods.com
+              </a>
             </div>
             <div className="flex items-center space-x-3">
-              <Phone className="h-5 w-5 text-green-400" />
-              <span className="text-gray-200">+91 12345 67890</span>
+              <Phone className="h-5 w-5 text-green-400" aria-hidden="true" />
+              <a 
+                href="tel:+911234567890" 
+                className="text-gray-200 hover:text-green-400 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded-md"
+              >
+                +91 12345 67890
+              </a>
             </div>
             <div className="flex items-center space-x-3">
-              <MapPin className="h-5 w-5 text-green-400" />
+              <MapPin className="h-5 w-5 text-green-400" aria-hidden="true" />
               <span className="text-gray-200">India</span>
             </div>
           </div>
@@ -135,18 +162,19 @@ export default function Footer() {
             © {new Date().getFullYear()} Tishya Foods. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy" className="text-gray-300 hover:text-green-400 text-sm transition-colors">
+            <Link href="/privacy" className="text-gray-300 hover:text-green-400 text-sm transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded-md">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-gray-300 hover:text-green-400 text-sm transition-colors">
+            <Link href="/terms" className="text-gray-300 hover:text-green-400 text-sm transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded-md">
               Terms of Service
             </Link>
-            <Link href="/sitemap" className="text-gray-300 hover:text-green-400 text-sm transition-colors">
+            <Link href="/sitemap" className="text-gray-300 hover:text-green-400 text-sm transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 rounded-md">
               Sitemap
             </Link>
           </div>
         </div>
       </div>
     </footer>
+    </Landmark>
   )
 }

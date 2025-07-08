@@ -17,13 +17,13 @@ export default function RelatedProducts({ currentProduct, category }: RelatedPro
     
     // Filter products by same category, exclude current product
     const categoryProducts = allProducts.filter(
-      product => product.category === category && product.id !== currentProduct.id
+      product => product.category.id === category && product.id !== currentProduct.id
     )
     
     // If we don't have enough products in the same category, add products from other categories
     if (categoryProducts.length < 4) {
       const otherProducts = allProducts.filter(
-        product => product.category !== category && product.id !== currentProduct.id
+        product => product.category.id !== category && product.id !== currentProduct.id
       )
       return [...categoryProducts, ...otherProducts].slice(0, 4)
     }

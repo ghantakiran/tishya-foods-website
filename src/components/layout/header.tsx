@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ShoppingCart, Search, User } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { AccessibleButton, AccessibleIconButton } from '@/components/accessibility/accessible-button'
+import { AccessibleImage } from '@/components/accessibility/accessible-image'
+import { Landmark } from '@/components/accessibility/screen-reader'
 import { cn } from '@/lib/utils'
 import { useCart } from '@/contexts/cart-context'
 import { useAuth } from '@/contexts/auth-context'
@@ -44,7 +45,8 @@ export default function Header() {
   }, [])
 
   return (
-    <motion.header
+    <Landmark role="banner" label="Site header">
+      <motion.header
       data-testid="main-header"
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out',
@@ -91,7 +93,7 @@ export default function Header() {
                 }}
                 transition={{ duration: 0.3 }}
               >
-                <Image
+                <AccessibleImage
                   src="/logo.png"
                   alt="Tishya Foods Logo"
                   fill
@@ -123,7 +125,8 @@ export default function Header() {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav id="main-navigation" className="hidden lg:flex items-center space-x-6" role="navigation" aria-label="Main navigation">
+          <Landmark role="navigation" label="Main navigation">
+            <nav id="main-navigation" className="hidden lg:flex items-center space-x-6">
             {navigation.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -138,7 +141,8 @@ export default function Header() {
                 <Link
                   href={item.href}
                   data-testid={`nav-${item.name.toLowerCase()}`}
-                  className="text-gray-100 hover:text-blue-400 font-medium transition-all duration-300 ease-out relative group px-4 py-2 rounded-xl hover:bg-gray-800/60 hover:backdrop-blur-sm"
+                  className="text-gray-100 hover:text-blue-400 font-medium transition-all duration-300 ease-out relative group px-4 py-2 rounded-xl hover:bg-gray-800/60 hover:backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                  aria-current={typeof window !== 'undefined' && window.location.pathname === item.href ? 'page' : undefined}
                 >
                   <span className="relative z-10">{item.name}</span>
                   <motion.span 
@@ -156,7 +160,8 @@ export default function Header() {
                 </Link>
               </motion.div>
             ))}
-          </nav>
+            </nav>
+          </Landmark>
 
           {/* Desktop Actions */}
           <motion.div 
@@ -169,38 +174,44 @@ export default function Header() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button 
+              <AccessibleIconButton 
                 variant="ghost" 
                 size="icon" 
-                className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full hover:shadow-lg hover:shadow-blue-500/20"
+                className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full hover:shadow-lg hover:shadow-blue-500/20 focus:ring-offset-gray-900"
                 data-testid="search-button"
-                aria-label="Search products"
-              >
-                <Search className="h-5 w-5" />
-              </Button>
+                icon={<Search className="h-5 w-5" />}
+                label="Search products"
+              />
             </motion.div>
             {isAuthenticated ? (
               <div className="relative">
-                <Button variant="ghost" size="icon" className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full" aria-label="User account menu">
-                  <User className="h-5 w-5" />
+                <div className="relative">
+                  <AccessibleIconButton 
+                    variant="ghost" 
+                    size="icon" 
+                    className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full focus:ring-offset-gray-900" 
+                    icon={<User className="h-5 w-5" />}
+                    label="User account menu"
+                  />
                   <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full" aria-hidden="true"></span>
-                </Button>
-                <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 hidden group-hover:block border border-gray-600">
-                  <Link href="/profile" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">
+                </div>
+                <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-50 hidden group-hover:block border border-gray-600" role="menu" aria-label="User account menu">
+                  <Link href="/profile" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700" role="menuitem">
                     Profile & Preferences
                   </Link>
-                  <Link href="/orders" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">
+                  <Link href="/orders" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700" role="menuitem">
                     Orders
                   </Link>
-                  <Link href="/loyalty" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700">
+                  <Link href="/loyalty" className="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700" role="menuitem">
                     Rewards
                   </Link>
-                  <button
+                  <AccessibleButton
                     onClick={logout}
-                    className="block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700"
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 bg-transparent border-none"
+                    role="menuitem"
                   >
                     Sign Out
-                  </button>
+                  </AccessibleButton>
                 </div>
               </div>
             ) : (
@@ -208,9 +219,14 @@ export default function Header() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)} className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full hover:shadow-lg hover:shadow-blue-500/20" aria-label="Sign in or create account">
-                  <User className="h-5 w-5" />
-                </Button>
+                <AccessibleIconButton 
+                  variant="ghost" 
+                  size="icon" 
+                  onClick={() => setIsAuthOpen(true)} 
+                  className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full hover:shadow-lg hover:shadow-blue-500/20 focus:ring-offset-gray-900" 
+                  icon={<User className="h-5 w-5" />}
+                  label="Sign in or create account"
+                />
               </motion.div>
             )}
             <motion.div
@@ -218,35 +234,34 @@ export default function Header() {
               whileTap={{ scale: 0.95 }}
               className="relative"
             >
-              <Button 
+              <AccessibleIconButton 
                 variant="ghost" 
                 size="icon" 
-                className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full hover:shadow-lg hover:shadow-blue-500/20"
+                className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full hover:shadow-lg hover:shadow-blue-500/20 focus:ring-offset-gray-900"
                 onClick={() => setIsCartOpen(true)}
                 data-testid="cart-button"
-                aria-label={`Shopping cart ${cart && cart.totalItems > 0 ? `with ${cart.totalItems} items` : '(empty)'}`}
-              >
-                <ShoppingCart className="h-5 w-5" />
-                {cart && cart.totalItems > 0 && (
-                  <motion.span 
-                    className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 500, damping: 15 }}
-                    aria-hidden="true"
-                  >
-                    {cart.totalItems}
-                  </motion.span>
-                )}
-              </Button>
+                icon={<ShoppingCart className="h-5 w-5" />}
+                label={`Shopping cart ${cart && cart.totalItems > 0 ? `with ${cart.totalItems} items` : '(empty)'}`}
+              />
+              {cart && cart.totalItems > 0 && (
+                <motion.span 
+                  className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 15 }}
+                  aria-hidden="true"
+                >
+                  {cart.totalItems}
+                </motion.span>
+              )}
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Button className="ml-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 shadow-lg hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 ease-out rounded-full px-6 backdrop-blur-sm">
+              <AccessibleButton className="ml-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 shadow-lg hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 ease-out rounded-full px-6 backdrop-blur-sm focus:ring-offset-gray-900">
                 Shop Now
-              </Button>
+              </AccessibleButton>
             </motion.div>
           </motion.div>
 
@@ -256,27 +271,28 @@ export default function Header() {
             whileTap={{ scale: 0.95 }}
             className="lg:hidden"
           >
-            <Button
+            <AccessibleIconButton
               data-testid="mobile-menu-toggle"
               variant="ghost"
               size="icon"
-              className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-lg hover:shadow-lg hover:shadow-blue-500/20"
+              className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-lg hover:shadow-lg hover:shadow-blue-500/20 focus:ring-offset-gray-900"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
-            >
-              <motion.div
-                animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                {isMobileMenuOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <Menu className="h-6 w-6" />
-                )}
-              </motion.div>
-            </Button>
+              icon={
+                <motion.div
+                  animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {isMobileMenuOpen ? (
+                    <X className="h-6 w-6" />
+                  ) : (
+                    <Menu className="h-6 w-6" />
+                  )}
+                </motion.div>
+              }
+            />
           </motion.div>
         </div>
       </div>
@@ -284,12 +300,11 @@ export default function Header() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            id="mobile-menu"
-            data-testid="mobile-menu"
-            className="lg:hidden bg-gray-900/95 backdrop-blur-xl border-t border-gray-700/30 shadow-lg supports-[backdrop-filter]:bg-gray-900/90"
-            role="navigation"
-            aria-label="Mobile navigation"
+          <Landmark role="navigation" label="Mobile navigation">
+            <motion.div
+              id="mobile-menu"
+              data-testid="mobile-menu"
+              className="lg:hidden bg-gray-900/95 backdrop-blur-xl border-t border-gray-700/30 shadow-lg supports-[backdrop-filter]:bg-gray-900/90"
             initial={{ opacity: 0, height: 0, y: -20 }}
             animate={{ opacity: 1, height: 'auto', y: 0 }}
             exit={{ opacity: 0, height: 0, y: -20 }}
@@ -309,8 +324,9 @@ export default function Header() {
                     key={item.name}
                     href={item.href}
                     data-testid={`mobile-nav-${item.name.toLowerCase()}`}
-                    className="text-gray-100 hover:text-blue-400 font-medium py-3 px-4 rounded-lg hover:bg-gray-800/60 transition-all duration-200 ease-out"
+                    className="text-gray-100 hover:text-blue-400 font-medium py-3 px-4 rounded-lg hover:bg-gray-800/60 transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
                     onClick={() => setIsMobileMenuOpen(false)}
+                    aria-current={typeof window !== 'undefined' && window.location.pathname === item.href ? 'page' : undefined}
                   >
                     {item.name}
                   </Link>
@@ -318,39 +334,57 @@ export default function Header() {
               </nav>
               <div className="flex items-center justify-between mt-6 pt-6 border-t border-gray-700">
                 <div className="flex items-center space-x-4">
-                  <Button variant="ghost" size="icon" className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60">
-                    <Search className="h-5 w-5" />
-                  </Button>
-                  {isAuthenticated ? (
-                    <Button variant="ghost" size="icon" className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60">
-                      <User className="h-5 w-5" />
-                      <span className="absolute -top-1 -right-1 bg-fresh-500 w-3 h-3 rounded-full"></span>
-                    </Button>
-                  ) : (
-                    <Button variant="ghost" size="icon" onClick={() => setIsAuthOpen(true)} className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60">
-                      <User className="h-5 w-5" />
-                    </Button>
-                  )}
-                  <Button 
+                  <AccessibleIconButton 
                     variant="ghost" 
                     size="icon" 
-                    className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60"
-                    onClick={() => setIsCartOpen(true)}
-                  >
-                    <ShoppingCart className="h-5 w-5" />
+                    className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 focus:ring-offset-gray-900"
+                    icon={<Search className="h-5 w-5" />}
+                    label="Search products"
+                  />
+                  {isAuthenticated ? (
+                    <div className="relative">
+                      <AccessibleIconButton 
+                        variant="ghost" 
+                        size="icon" 
+                        className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 focus:ring-offset-gray-900"
+                        icon={<User className="h-5 w-5" />}
+                        label="User account"
+                      />
+                      <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full" aria-hidden="true"></span>
+                    </div>
+                  ) : (
+                    <AccessibleIconButton 
+                      variant="ghost" 
+                      size="icon" 
+                      onClick={() => setIsAuthOpen(true)} 
+                      className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 focus:ring-offset-gray-900"
+                      icon={<User className="h-5 w-5" />}
+                      label="Sign in or create account"
+                    />
+                  )}
+                  <div className="relative">
+                    <AccessibleIconButton 
+                      variant="ghost" 
+                      size="icon" 
+                      className="relative text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 focus:ring-offset-gray-900"
+                      onClick={() => setIsCartOpen(true)}
+                      icon={<ShoppingCart className="h-5 w-5" />}
+                      label={`Shopping cart ${cart && cart.totalItems > 0 ? `with ${cart.totalItems} items` : '(empty)'}`}
+                    />
                     {cart && cart.totalItems > 0 && (
-                      <span className="absolute -top-1 -right-1 bg-accent-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                      <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center" aria-hidden="true">
                         {cart.totalItems}
                       </span>
                     )}
-                  </Button>
+                  </div>
                 </div>
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white border-0 shadow-md hover:shadow-lg transition-all duration-200">
+                <AccessibleButton className="bg-blue-600 hover:bg-blue-700 text-white border-0 shadow-md hover:shadow-lg transition-all duration-200 focus:ring-offset-gray-900">
                   Shop Now
-                </Button>
+                </AccessibleButton>
               </div>
             </div>
-          </motion.div>
+            </motion.div>
+          </Landmark>
         )}
       </AnimatePresence>
 
@@ -359,6 +393,7 @@ export default function Header() {
       
       {/* Auth Modal */}
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
-    </motion.header>
+      </motion.header>
+    </Landmark>
   )
 }
