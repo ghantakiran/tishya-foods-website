@@ -12,6 +12,7 @@ import { useCart } from '@/contexts/cart-context'
 import { useAuth } from '@/contexts/auth-context'
 import { CartDrawer } from '@/features/cart/cart-drawer'
 import { AuthModal } from '@/features/auth/auth-modal'
+import { MobileHeader } from '@/components/mobile/mobile-header'
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -45,11 +46,16 @@ export default function Header() {
   }, [])
 
   return (
-    <Landmark role="banner" label="Site header">
+    <>
+      {/* Mobile Header */}
+      <MobileHeader />
+      
+      {/* Desktop Header */}
+      <Landmark role="banner" label="Site header">
       <motion.header
       data-testid="main-header"
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out hidden lg:block',
         isScrolled
           ? 'bg-gray-900/95 backdrop-blur-xl shadow-xl border-b border-gray-700/40 supports-[backdrop-filter]:bg-gray-900/90'
           : 'bg-gray-900/70 backdrop-blur-lg supports-[backdrop-filter]:bg-gray-900/50'
@@ -394,6 +400,7 @@ export default function Header() {
       {/* Auth Modal */}
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
       </motion.header>
-    </Landmark>
+      </Landmark>
+    </>
   )
 }

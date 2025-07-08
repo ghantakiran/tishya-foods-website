@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
+import "../styles/mobile.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import NutritionAssistant from "@/components/ai/nutrition-assistant";
@@ -28,6 +29,7 @@ import { ColorContrastEnhancer } from "@/components/accessibility/color-contrast
 import { FocusManager } from "@/components/accessibility/focus-manager";
 import { KeyboardNavigationEnhancer } from "@/components/accessibility/keyboard-navigation-enhancer";
 import { useAnnouncer } from "@/components/accessibility/announcer";
+import { TouchOptimizer } from "@/components/mobile/touch-optimizer";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -75,8 +77,9 @@ export const metadata: Metadata = {
   viewport: {
     width: "device-width",
     initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
+    maximumScale: 5,
+    userScalable: true,
+    viewportFit: "cover",
   },
   themeColor: "#111827",
   other: {
@@ -136,13 +139,15 @@ export default function RootLayout({
                           <KeyboardNavigationEnhancer>
                             <ColorContrastEnhancer>
                               <FocusManager>
-                                <div className="flex flex-col min-h-screen">
-                                  <Header />
-                                  <main id="main-content" className="flex-1" role="main" tabIndex={-1}>
-                                    {children}
-                                  </main>
-                                  <Footer />
-                                </div>
+                                <TouchOptimizer>
+                                  <div className="flex flex-col min-h-screen">
+                                    <Header />
+                                    <main id="main-content" className="flex-1" role="main" tabIndex={-1}>
+                                      {children}
+                                    </main>
+                                    <Footer />
+                                  </div>
+                                </TouchOptimizer>
                               </FocusManager>
                             </ColorContrastEnhancer>
                           </KeyboardNavigationEnhancer>
