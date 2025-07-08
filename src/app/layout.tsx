@@ -19,6 +19,8 @@ import { LoyaltyProvider } from "@/contexts/loyalty-context";
 import { AnalyticsProvider } from "@/components/analytics/analytics-provider";
 import { PageViewTracker } from "@/components/analytics/page-view-tracker";
 import { PWAInit } from "@/components/pwa/pwa-init";
+import { PWAUpdateNotification } from "@/components/pwa/pwa-update-notification";
+import { OfflineIndicator } from "@/components/pwa/offline-indicator";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -152,6 +154,8 @@ export default function RootLayout({
                             <Footer />
                           </div>
                           <NutritionAssistant />
+                          <PWAUpdateNotification />
+                          <OfflineIndicator />
                           <ToastProvider />
                           <PerformanceInit>
                             <></>

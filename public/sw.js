@@ -11,6 +11,7 @@ const STATIC_ASSETS = [
   '/nutrition',
   '/about',
   '/contact',
+  '/offline',
   '/_next/static/css/',
   '/_next/static/js/',
   '/favicon.ico',
@@ -162,7 +163,38 @@ async function staleWhileRevalidateStrategy(request, cacheName) {
     }
     return networkResponse
   }).catch(() => {
-    // Silently fail background fetch
+    // If network fails and we have no cache, return offline page
+    if (!cachedResponse) {
+      return caches.match('/offline') || new Response(
+        `<!DOCTYPE html>
+        <html>
+          <head>
+            <title>Offline - Tishya Foods</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+              body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: #111827; color: #f3f4f6; }
+              .icon { font-size: 48px; margin-bottom: 20px; }
+              h1 { color: #ffffff; }
+              p { color: #9ca3af; }
+              a { color: #60a5fa; text-decoration: none; }
+            </style>
+          </head>
+          <body>
+            <div class="icon">📱</div>
+            <h1>You're Offline</h1>
+            <p>Please check your internet connection and try again.</p>
+            <a href="/">Go to Homepage</a>
+          </body>
+        </html>`,
+        {
+          headers: {
+            'Content-Type': 'text/html',
+            'Cache-Control': 'no-cache'
+          }
+        }
+      )
+    }
+    return null
   })
   
   // Return cached version immediately if available
