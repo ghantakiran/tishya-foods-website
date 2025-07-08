@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getProductById, getAllProducts } from '@/lib/products-data'
 import ProductDetailPage from '@/components/product/product-detail-page'
+import { ProductSchema } from '@/components/seo/json-ld'
+import { Breadcrumb, generateBreadcrumbs } from '@/components/seo/breadcrumb'
 
 interface Props {
   params: Promise<{ id: string }>
@@ -100,5 +102,19 @@ export default async function ProductPage({ params }: Props) {
     notFound()
   }
 
-  return <ProductDetailPage product={product} />
+  const breadcrumbItems = generateBreadcrumbs.product(
+    product.category.name,
+    product.name,
+    product.id
+  )
+
+  return (
+    <>
+      <ProductSchema product={product} />
+      <div className="container mx-auto px-4 py-8">
+        <Breadcrumb items={breadcrumbItems} className="mb-6" />
+        <ProductDetailPage product={product} />
+      </div>
+    </>
+  )
 }

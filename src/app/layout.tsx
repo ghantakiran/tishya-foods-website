@@ -5,6 +5,7 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import NutritionAssistant from "@/components/ai/nutrition-assistant";
 import { StructuredData } from "@/components/seo/structured-data";
+import { OrganizationSchema, WebsiteSchema } from "@/components/seo/json-ld";
 import { CartProvider } from "@/contexts/cart-context";
 import { AuthProvider } from "@/contexts/auth-context";
 import { PaymentProvider } from "@/contexts/payment-context";
@@ -92,14 +93,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <StructuredData 
-          type="Organization" 
-          data={{}} 
-        />
-        <StructuredData 
-          type="WebSite" 
-          data={{}} 
-        />
+        <OrganizationSchema />
+        <WebsiteSchema />
       </head>
       <body className={`${montserrat.variable} ${inter.variable} font-sans antialiased bg-gray-900 text-gray-100`}>
         <PWAInit>
