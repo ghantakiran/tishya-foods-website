@@ -24,6 +24,10 @@ import { PWAUpdateNotification } from "@/components/pwa/pwa-update-notification"
 import { OfflineIndicator } from "@/components/pwa/offline-indicator";
 import { SkipNavigation } from "@/components/accessibility/skip-link";
 import { AccessibilityChecker } from "@/components/accessibility/accessibility-checker";
+import { ColorContrastEnhancer } from "@/components/accessibility/color-contrast-enhancer";
+import { FocusManager } from "@/components/accessibility/focus-manager";
+import { KeyboardNavigationEnhancer } from "@/components/accessibility/keyboard-navigation-enhancer";
+import { useAnnouncer } from "@/components/accessibility/announcer";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -129,13 +133,19 @@ export default function RootLayout({
                         >
                           <PageViewTracker />
                           <SkipNavigation />
-                          <div className="flex flex-col min-h-screen">
-                            <Header />
-                            <main id="main-content" className="flex-1" role="main" tabIndex={-1}>
-                              {children}
-                            </main>
-                            <Footer />
-                          </div>
+                          <KeyboardNavigationEnhancer>
+                            <ColorContrastEnhancer>
+                              <FocusManager>
+                                <div className="flex flex-col min-h-screen">
+                                  <Header />
+                                  <main id="main-content" className="flex-1" role="main" tabIndex={-1}>
+                                    {children}
+                                  </main>
+                                  <Footer />
+                                </div>
+                              </FocusManager>
+                            </ColorContrastEnhancer>
+                          </KeyboardNavigationEnhancer>
                           <NutritionAssistant />
                           <PWAUpdateNotification />
                           <OfflineIndicator />
