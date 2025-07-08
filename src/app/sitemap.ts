@@ -120,7 +120,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Category pages
     const categories = [...new Set(products.map(p => p.category))]
     const categoryPages = categories.map((category) => ({
-      url: `${baseUrl}/products/category/${encodeURIComponent(category.toLowerCase())}`,
+      url: `${baseUrl}/products/category/${encodeURIComponent(category.slug)}`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
       priority: 0.7,

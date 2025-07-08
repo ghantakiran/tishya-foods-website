@@ -3,12 +3,12 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ShoppingCart, Eye, GitCompare } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { WishlistButton } from '@/components/ui/wishlist-button'
 import { Product } from '@/types/product'
 import { formatPrice } from '@/lib/utils'
-import { OptimizedImage } from '@/components/optimization/image-optimizer'
+import { AccessibleButton, AccessibleIconButton } from '@/components/accessibility/accessible-button'
+import { AccessibleImage } from '@/components/accessibility/accessible-image'
 import { useCart } from '@/contexts/cart-context'
 import { createCartItemFromProduct } from '@/lib/cart-utils'
 
@@ -67,9 +67,9 @@ export function ProductCard({
       }`}>
         <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-fresh-100 opacity-0 group-hover:opacity-20 transition-opacity duration-300 z-10" />
         
-        <OptimizedImage
+        <AccessibleImage
           src={product.images[0]}
-          alt={product.name}
+          alt={`${product.name} - ${product.description}`}
           width={400}
           height={400}
           priority={priority}
@@ -105,27 +105,25 @@ export function ProductCard({
         {/* Quick Actions */}
         <div className="absolute bottom-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 z-20">
           {onQuickView && (
-            <Button
+            <AccessibleIconButton
+              icon={<Eye className="h-4 w-4" />}
+              label={`Quick view ${product.name}`}
               variant="secondary"
               size="icon"
               className="bg-white/90 hover:bg-white text-primary-700 hover:text-primary-800 shadow-lg backdrop-blur-sm"
               onClick={() => onQuickView(product)}
-              aria-label="Quick view"
-            >
-              <Eye className="h-4 w-4" />
-            </Button>
+            />
           )}
           
           {onCompare && (
-            <Button
+            <AccessibleIconButton
+              icon={<GitCompare className="h-4 w-4" />}
+              label={`Add ${product.name} to comparison`}
               variant="secondary"
               size="icon"
               className="bg-white/90 hover:bg-white text-primary-700 hover:text-primary-800 shadow-lg backdrop-blur-sm"
               onClick={() => onCompare(product)}
-              aria-label="Compare"
-            >
-              <GitCompare className="h-4 w-4" />
-            </Button>
+            />
           )}
           
           <WishlistButton product={product} variant="icon" size="sm" />
@@ -194,14 +192,15 @@ export function ProductCard({
         </div>
 
         {/* Cart Status or Add to Cart Button */}
-        <Button
+        <AccessibleButton
           onClick={handleAddToCart}
           disabled={isOutOfStock || isLoading}
           className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-medium py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed group"
+          loadingText={isLoading ? 'Adding to cart...' : undefined}
         >
           <ShoppingCart className="mr-2 h-4 w-4 group-hover:animate-pulse" />
           {isLoading ? 'Adding...' : isOutOfStock ? 'Out of Stock' : 'Add to Cart'}
-        </Button>
+        </AccessibleButton>
       </div>
     </motion.div>
   )

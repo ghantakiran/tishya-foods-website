@@ -25,6 +25,7 @@ export interface Product {
   shelfLife?: string
   storageInstructions?: string
   servingSuggestions?: string[]
+  benefits?: string[]
   createdAt: string
   updatedAt: string
 }

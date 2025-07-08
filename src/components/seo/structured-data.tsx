@@ -161,14 +161,14 @@ export function StructuredData({ type, data }: StructuredDataProps) {
         return {
           '@context': baseContext,
           '@type': 'FAQPage',
-          mainEntity: data.questions?.map((faq: any) => ({
+          mainEntity: Array.isArray((data as any)?.questions) ? (data as any).questions.map((faq: any) => ({
             '@type': 'Question',
             name: faq.question,
             acceptedAnswer: {
               '@type': 'Answer',
               text: faq.answer
             }
-          })) || [],
+          })) : [],
           ...data,
         }
       

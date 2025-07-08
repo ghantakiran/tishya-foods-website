@@ -28,7 +28,7 @@ export function ProductStructuredData({ product }: ProductStructuredDataProps) {
       '@type': 'Offer',
       price: product.price,
       priceCurrency: 'USD',
-      availability: product.inStock 
+      availability: product.stock > 0 
         ? 'https://schema.org/InStock' 
         : 'https://schema.org/OutOfStock',
       seller: {
@@ -38,21 +38,21 @@ export function ProductStructuredData({ product }: ProductStructuredDataProps) {
       url: `https://tishyafoods.com/products/${product.id}`,
       priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
     },
-    aggregateRating: product.rating ? {
+    aggregateRating: product.averageRating ? {
       '@type': 'AggregateRating',
-      ratingValue: product.rating,
+      ratingValue: product.averageRating,
       ratingCount: product.reviewCount || 1,
       bestRating: 5,
       worstRating: 1
     } : undefined,
-    nutrition: product.nutrition ? {
+    nutrition: product.nutritionalInfo ? {
       '@type': 'NutritionInformation',
-      calories: product.nutrition.calories ? `${product.nutrition.calories} calories` : undefined,
-      proteinContent: product.nutrition.protein ? `${product.nutrition.protein}g` : undefined,
-      carbohydrateContent: product.nutrition.carbs ? `${product.nutrition.carbs}g` : undefined,
-      fatContent: product.nutrition.fat ? `${product.nutrition.fat}g` : undefined,
-      fiberContent: product.nutrition.fiber ? `${product.nutrition.fiber}g` : undefined,
-      sugarContent: product.nutrition.sugar ? `${product.nutrition.sugar}g` : undefined
+      calories: product.nutritionalInfo.calories ? `${product.nutritionalInfo.calories} calories` : undefined,
+      proteinContent: product.nutritionalInfo.protein ? `${product.nutritionalInfo.protein}g` : undefined,
+      carbohydrateContent: product.nutritionalInfo.carbs ? `${product.nutritionalInfo.carbs}g` : undefined,
+      fatContent: product.nutritionalInfo.fat ? `${product.nutritionalInfo.fat}g` : undefined,
+      fiberContent: product.nutritionalInfo.fiber ? `${product.nutritionalInfo.fiber}g` : undefined,
+      sugarContent: product.nutritionalInfo.sugar ? `${product.nutritionalInfo.sugar}g` : undefined
     } : undefined,
     additionalProperty: [
       ...(product.isOrganic ? [{
@@ -115,7 +115,7 @@ export function ProductListStructuredData({ products, category }: ProductListStr
           '@type': 'Offer',
           price: product.price,
           priceCurrency: 'USD',
-          availability: product.inStock 
+          availability: product.stock > 0 
             ? 'https://schema.org/InStock' 
             : 'https://schema.org/OutOfStock'
         }
