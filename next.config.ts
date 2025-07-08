@@ -6,12 +6,73 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig: NextConfig = {
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu']
+  },
+  
+  // Server external packages
+  serverExternalPackages: ['sharp'],
+  
+  // Turbopack configuration
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js'
+      }
+    }
+  },
+  
+  // Performance optimizations
+  compress: true,
+  poweredByHeader: false,
+  
+  // Webpack optimizations
+  webpack: (config, { dev, isServer }) => {
+    // Production optimizations
+    if (!dev) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all',
+              priority: 10,
+            },
+            analytics: {
+              test: /[\\/]node_modules[\\/](gtag|ga-gtag|analytics|tracking)[\\/]/,
+              name: 'analytics',
+              chunks: 'all',
+              priority: 20,
+            },
+            ui: {
+              test: /[\\/]node_modules[\\/](@radix-ui|framer-motion|lucide-react)[\\/]/,
+              name: 'ui-libs',
+              chunks: 'all',
+              priority: 15,
+            }
+          }
+        }
+      }
+    }
+    
+    // SVG optimization
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack']
+    })
+    
+    return config
   },
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year cache for images
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     domains: ['localhost', 'tishyafoods.com', 'images.unsplash.com'],
     remotePatterns: [
       {
@@ -101,6 +162,43 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // Cache optimization headers for static assets
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable', // 1 year cache for Next.js static assets
+          },
+        ],
+      },
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=2592000, stale-while-revalidate=86400', // 30 days with 1 day stale
+          },
+        ],
+      },
+      {
+        source: '/fonts/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable', // 1 year cache for fonts
+          },
+        ],
+      },
+      {
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store, no-cache, must-revalidate', // No cache for API routes
+          },
+        ],
+      },
     ];
   },
   async rewrites() {
@@ -111,8 +209,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  poweredByHeader: false,
-  compress: true,
 };
 
 export default withBundleAnalyzer(nextConfig);

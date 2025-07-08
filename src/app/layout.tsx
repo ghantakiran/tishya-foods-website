@@ -32,6 +32,8 @@ import { FocusManager } from "@/components/accessibility/focus-manager";
 import { KeyboardNavigationEnhancer } from "@/components/accessibility/keyboard-navigation-enhancer";
 import { useAnnouncer } from "@/components/accessibility/announcer";
 import { TouchOptimizer } from "@/components/mobile/touch-optimizer";
+import { PerformanceOptimizer } from "@/components/performance/performance-optimizer";
+import { BundleAnalyzer } from "@/components/performance/bundle-analyzer";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -139,6 +141,12 @@ export default function RootLayout({
                           <PageViewTracker />
                           <EnhancedAnalyticsTracker />
                           <EcommerceAnalyticsTracker />
+                          <PerformanceOptimizer 
+                            enablePreloading={true}
+                            enableImageOptimization={true}
+                            enableCodeSplitting={true}
+                            enableResourceHints={true}
+                          />
                           <SkipNavigation />
                           <KeyboardNavigationEnhancer>
                             <ColorContrastEnhancer>
@@ -163,6 +171,7 @@ export default function RootLayout({
                             <></>
                           </PerformanceInit>
                           <AccessibilityChecker />
+                          <BundleAnalyzer />
                             </AnalyticsProvider>
                           </LoyaltyProvider>
                         </SubscriptionProvider>
