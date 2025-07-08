@@ -1,3 +1,5 @@
+import { CartItem } from './cart'
+
 export interface PaymentMethod {
   id: string
   type: 'card' | 'upi' | 'netbanking' | 'wallet' | 'cod'
@@ -80,17 +82,4 @@ export interface PaymentResult {
   timestamp: string
   error?: string
   metadata?: Record<string, string>
-}
-
-export interface CartItem {
-  id: string
-  productId: string
-  name: string
-  price: number
-  quantity: number
-  image: string
-  variant?: {
-    size?: string
-    flavor?: string
-  }
 }

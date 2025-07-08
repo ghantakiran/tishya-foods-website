@@ -59,23 +59,44 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), screen-wake-lock=()'
+            value: 'camera=(), microphone=(), geolocation=(), payment=(self), usb=(), screen-wake-lock=(), accelerometer=(), gyroscope=(), magnetometer=(), bluetooth=(), midi=(), ambient-light-sensor=(), document-domain=()'
+          },
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'unsafe-none'
+          },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin-allow-popups'
+          },
+          {
+            key: 'Cross-Origin-Resource-Policy',
+            value: 'cross-origin'
+          },
+          {
+            key: 'Origin-Agent-Cluster',
+            value: '?1'
           },
           {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://cdnjs.cloudflare.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://cdnjs.cloudflare.com https://js.stripe.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "img-src 'self' data: https://images.unsplash.com https://api.placeholder.com https://via.placeholder.com https://www.googletagmanager.com https://www.google-analytics.com",
-              "font-src 'self' https://fonts.gstatic.com",
-              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://api.placeholder.com",
-              "frame-src 'none'",
+              "img-src 'self' data: blob: https://images.unsplash.com https://api.placeholder.com https://via.placeholder.com https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://q.stripe.com",
+              "font-src 'self' https://fonts.gstatic.com data:",
+              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://api.placeholder.com https://api.stripe.com https://checkout.stripe.com wss: ws:",
+              "frame-src 'self' https://js.stripe.com https://hooks.stripe.com https://checkout.stripe.com",
               "object-src 'none'",
               "base-uri 'self'",
-              "form-action 'self'",
+              "form-action 'self' https://checkout.stripe.com",
               "frame-ancestors 'none'",
-              "upgrade-insecure-requests"
+              "manifest-src 'self'",
+              "media-src 'self' data: blob:",
+              "worker-src 'self' blob:",
+              "child-src 'self' blob:",
+              "upgrade-insecure-requests",
+              "block-all-mixed-content"
             ].join('; ')
           },
         ],

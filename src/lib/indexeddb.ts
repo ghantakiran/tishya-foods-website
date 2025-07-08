@@ -69,8 +69,13 @@ class IndexedDBManager {
   async init(): Promise<IDBDatabase> {
     if (this.db) return this.db
 
+    // Check if IndexedDB is available (browser environment)
+    if (typeof window === 'undefined' || !window.indexedDB) {
+      throw new Error('IndexedDB is not available')
+    }
+
     return new Promise((resolve, reject) => {
-      const request = indexedDB.open(this.dbName, this.version)
+      const request = window.indexedDB.open(this.dbName, this.version)
 
       request.onerror = () => reject(request.error)
       request.onsuccess = () => {
@@ -352,7 +357,7 @@ class IndexedDBManager {
         const items = await this.getAll(storeName)
         for (const item of items) {
           if (item.timestamp < cutoffTime) {
-            await this.delete(storeName, item.id || item.key)
+            await this.delete(storeName, (item as any).id || (item as any).key)
           }
         }
       }

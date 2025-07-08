@@ -20,6 +20,8 @@ import { SubscriptionProvider } from "@/contexts/subscription-context";
 import { LoyaltyProvider } from "@/contexts/loyalty-context";
 import { AnalyticsProvider } from "@/components/analytics/analytics-provider";
 import { PageViewTracker } from "@/components/analytics/page-view-tracker";
+import { EnhancedAnalyticsTracker } from "@/components/analytics/enhanced-analytics-tracker";
+import { EcommerceAnalyticsTracker } from "@/components/analytics/ecommerce-analytics-tracker";
 import { PWAInit } from "@/components/pwa/pwa-init";
 import { PWAUpdateNotification } from "@/components/pwa/pwa-update-notification";
 import { OfflineIndicator } from "@/components/pwa/offline-indicator";
@@ -135,6 +137,8 @@ export default function RootLayout({
                           }}
                         >
                           <PageViewTracker />
+                          <EnhancedAnalyticsTracker />
+                          <EcommerceAnalyticsTracker />
                           <SkipNavigation />
                           <KeyboardNavigationEnhancer>
                             <ColorContrastEnhancer>

@@ -57,6 +57,17 @@ export class PaymentService {
     }
   }
 
+  private static getPaymentMethodIcon(type: string): string {
+    const icons: Record<string, string> = {
+      card: '💳',
+      upi: '📱',
+      netbanking: '🏦',
+      wallet: '👛',
+      cod: '💵'
+    }
+    return icons[type] || '💳'
+  }
+
   private static async mockPaymentProcess(paymentData: PaymentData): Promise<PaymentResult> {
     // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 2000))
@@ -70,7 +81,13 @@ export class PaymentService {
         transactionId: `txn_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
         amount: paymentData.amount,
         currency: paymentData.currency,
-        paymentMethod: paymentData.paymentMethod,
+        paymentMethod: {
+          ...paymentData.paymentMethod,
+          name: `${paymentData.paymentMethod.type.toUpperCase()} Payment`,
+          description: `Payment via ${paymentData.paymentMethod.provider}`,
+          icon: this.getPaymentMethodIcon(paymentData.paymentMethod.type),
+          enabled: true
+        },
         timestamp: new Date().toISOString(),
         metadata: {
           ...paymentData.metadata,
