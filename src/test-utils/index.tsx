@@ -33,7 +33,22 @@ const customRender = (
 
 export * from '@testing-library/react'
 export { customRender as render }
-export { createCartItemFromProduct }
+
+// Helper function to create cart items from products
+export const createCartItemFromProduct = (product: typeof mockProduct, quantity: number = 1) => ({
+  id: `cart_${product.id}`,
+  productId: product.id,
+  name: product.name,
+  price: product.price,
+  originalPrice: product.originalPrice,
+  image: product.images[0],
+  quantity,
+  variant: null,
+  subscription: null,
+  customization: null,
+  addedAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString()
+})
 
 // Test data factories
 export const mockProduct = {

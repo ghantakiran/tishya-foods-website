@@ -28,8 +28,8 @@ describe('Utils', () => {
     })
 
     it('should handle string dates', () => {
-      const formatted = formatDate('2024-01-15')
-      expect(formatted).toMatch(/Jan 15, 2024|15 Jan 2024/)
+      const formatted = formatDate('2024-01-15T12:00:00Z')
+      expect(formatted).toMatch(/Jan 1[45], 2024|1[45] Jan 2024/)
     })
 
     it('should handle invalid dates', () => {

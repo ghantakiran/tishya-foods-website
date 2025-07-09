@@ -6,10 +6,14 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatPrice(price: number): string {
+  // Round to nearest integer for consistent formatting
+  const rounded = Math.round(price)
   return new Intl.NumberFormat('en-IN', {
     style: 'currency',
     currency: 'INR',
-  }).format(price)
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(rounded)
 }
 
 export function truncateText(text: string, maxLength: number): string {
@@ -40,6 +44,8 @@ export function generateSlug(text: string): string {
   return text
     .toLowerCase()
     .trim()
+    .normalize('NFD') // Normalize unicode characters
+    .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
     .replace(/[^\w\s-]/g, '') // Remove special characters
     .replace(/[\s_-]+/g, '-') // Replace spaces, underscores with hyphens
     .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens

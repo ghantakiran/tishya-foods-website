@@ -5,15 +5,23 @@ Object.defineProperties(globalThis, {
   TextEncoder: { value: TextEncoder },
 })
 
-const { Blob, File } = require('buffer')
-const { fetch, Headers, FormData, Request, Response } = require('undici')
+// Mock fetch for tests
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    ok: true,
+    json: () => Promise.resolve({}),
+  })
+)
 
-Object.defineProperties(globalThis, {
-  fetch: { value: fetch, writable: true },
-  Blob: { value: Blob },
-  File: { value: File },
-  Headers: { value: Headers },
-  FormData: { value: FormData },
-  Request: { value: Request },
-  Response: { value: Response },
-})
+// Mock other web APIs as needed
+global.ReadableStream = class ReadableStream {
+  constructor() {}
+}
+
+global.WritableStream = class WritableStream {
+  constructor() {}
+}
+
+global.TransformStream = class TransformStream {
+  constructor() {}
+}
