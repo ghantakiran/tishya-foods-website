@@ -1,25 +1,44 @@
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
+import crypto from 'crypto'
 
 const CSRF_SECRET = process.env.CSRF_SECRET || 'default-csrf-secret-change-in-production'
 const CSRF_TOKEN_NAME = 'csrf-token'
 const CSRF_HEADER_NAME = 'x-csrf-token'
 
-// Generate a CSRF token
+// Generate a CSRF token with HMAC signature
 export function generateCSRFToken(): string {
   const timestamp = Date.now().toString()
-  const randomBytes = crypto.getRandomValues(new Uint8Array(16))
-  const randomString = Array.from(randomBytes, byte => byte.toString(16).padStart(2, '0')).join('')
+  const randomBytes = crypto.randomBytes(16).toString('hex')
+  const tokenData = `${timestamp}.${randomBytes}`
   
-  return `${timestamp}.${randomString}`
+  // Create HMAC signature
+  const hmac = crypto.createHmac('sha256', CSRF_SECRET)
+  hmac.update(tokenData)
+  const signature = hmac.digest('hex')
+  
+  return `${tokenData}.${signature}`
 }
 
-// Validate CSRF token
+// Validate CSRF token with HMAC verification
 export function validateCSRFToken(token: string): boolean {
   if (!token) return false
   
-  const [timestamp, randomString] = token.split('.')
-  if (!timestamp || !randomString) return false
+  const parts = token.split('.')
+  if (parts.length !== 3) return false
+  
+  const [timestamp, randomString, signature] = parts
+  if (!timestamp || !randomString || !signature) return false
+  
+  // Verify HMAC signature
+  const tokenData = `${timestamp}.${randomString}`
+  const hmac = crypto.createHmac('sha256', CSRF_SECRET)
+  hmac.update(tokenData)
+  const expectedSignature = hmac.digest('hex')
+  
+  if (signature !== expectedSignature) {
+    return false
+  }
   
   // Check if token is not older than 1 hour
   const tokenTime = parseInt(timestamp)
@@ -27,11 +46,6 @@ export function validateCSRFToken(token: string): boolean {
   const oneHour = 60 * 60 * 1000
   
   if (now - tokenTime > oneHour) {
-    return false
-  }
-  
-  // Validate format (basic check)
-  if (randomString.length !== 32) {
     return false
   }
   
