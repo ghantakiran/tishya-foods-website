@@ -67,7 +67,7 @@ export function AccessibleImage({
     className: `transition-opacity duration-200 ${className}`,
     priority,
     sizes,
-    loading: loading as any,
+    loading: loading,
     'aria-hidden': ariaHidden,
     ...props
   }
@@ -78,12 +78,14 @@ export function AccessibleImage({
         <Image
           {...imageProps}
           fill
+          alt={imageAlt}
         />
       ) : (
         <Image
           {...imageProps}
           width={width || 400}
           height={height || 300}
+          alt={imageAlt}
         />
       )}
 

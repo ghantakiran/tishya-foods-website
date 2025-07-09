@@ -115,7 +115,6 @@ export function PaymentMethodSelection({
                   disabled={!isAvailable}
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-600 bg-gray-700"
                   aria-describedby={`payment-${method.id}-description ${!isAvailable ? `payment-${method.id}-unavailable` : ''}`}
-                  aria-invalid={!isAvailable ? 'true' : 'false'}
                 />
 
                 <div className="ml-4 flex-1">
