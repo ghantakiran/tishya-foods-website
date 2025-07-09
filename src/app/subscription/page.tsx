@@ -31,7 +31,7 @@ export default function SubscriptionPage() {
     setCurrentFlow('customize')
   }
 
-  const handleCustomizationComplete = (customization: any) => {
+  const handleCustomizationComplete = (customization: SubscriptionCustomization) => {
     setSubscriptionState(prev => ({ 
       ...prev, 
       customization,

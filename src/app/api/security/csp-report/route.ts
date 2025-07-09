@@ -16,6 +16,16 @@ interface CSPReport {
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
+    
+    // Check rate limiting
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: 'Rate limit exceeded' },
+        { status: 429 }
+      )
+    }
+    
     const report: CSPReport = await request.json()
     const violation = report['csp-report']
     

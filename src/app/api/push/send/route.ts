@@ -20,7 +20,7 @@ interface NotificationPayload {
   badge?: string
   image?: string
   tag?: string
-  data?: Record<string, any>
+  data?: Record<string, unknown>
   actions?: Array<{
     action: string
     title: string
@@ -32,7 +32,7 @@ interface NotificationPayload {
 
 interface SendNotificationRequest {
   userId?: string
-  subscription?: any
+  subscription?: webpush.PushSubscription
   notification: NotificationPayload
   scheduledTime?: string
 }
@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { userId, subscription, notification, scheduledTime }: SendNotificationRequest = await request.json()
+    const { userId, subscription, notification }: SendNotificationRequest = await request.json()
 
     if (!notification || !notification.title) {
       return NextResponse.json(
@@ -71,11 +71,11 @@ export async function POST(request: NextRequest) {
       }
     })
 
-    const results: any[] = []
+    const results: Array<{ success: boolean; endpoint?: string; userId?: string; error?: string }> = []
 
     if (subscription) {
       try {
-        const result = await webpush.sendNotification(subscription, payload)
+        await webpush.sendNotification(subscription, payload)
         results.push({ success: true, endpoint: subscription.endpoint })
         console.log('Push notification sent successfully')
       } catch (error) {
@@ -89,7 +89,7 @@ export async function POST(request: NextRequest) {
     } else if (userId && subscriptions.has(userId)) {
       const userSubscription = subscriptions.get(userId)
       try {
-        const result = await webpush.sendNotification(userSubscription, payload)
+        await webpush.sendNotification(userSubscription, payload)
         results.push({ success: true, userId, endpoint: userSubscription.endpoint })
         console.log(`Push notification sent to user: ${userId}`)
       } catch (error) {

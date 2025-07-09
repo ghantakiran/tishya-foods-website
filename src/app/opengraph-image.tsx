@@ -80,7 +80,7 @@ export default async function Image() {
             lineHeight: 1.3,
           }}
         >
-          Where nature's goodness is lovingly crafted into wholesome foods
+          Where nature&apos;s goodness is lovingly crafted into wholesome foods
         </div>
         
         <div

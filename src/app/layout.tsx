@@ -5,7 +5,6 @@ import "../styles/mobile.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import NutritionAssistant from "@/components/ai/nutrition-assistant";
-import { StructuredData } from "@/components/seo/structured-data";
 import { OrganizationSchema, WebsiteSchema } from "@/components/seo/json-ld";
 import { CartProvider } from "@/contexts/cart-context";
 import { AuthProvider } from "@/contexts/auth-context";
@@ -30,7 +29,6 @@ import { AccessibilityChecker } from "@/components/accessibility/accessibility-c
 import { ColorContrastEnhancer } from "@/components/accessibility/color-contrast-enhancer";
 import { FocusManager } from "@/components/accessibility/focus-manager";
 import { KeyboardNavigationEnhancer } from "@/components/accessibility/keyboard-navigation-enhancer";
-import { useAnnouncer } from "@/components/accessibility/announcer";
 import { TouchOptimizer } from "@/components/mobile/touch-optimizer";
 import { PerformanceOptimizer } from "@/components/performance/performance-optimizer";
 import { BundleAnalyzer } from "@/components/performance/bundle-analyzer";
