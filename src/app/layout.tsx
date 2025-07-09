@@ -33,6 +33,7 @@ import { TouchOptimizer } from "@/components/mobile/touch-optimizer";
 import { PerformanceOptimizer } from "@/components/performance/performance-optimizer";
 import { BundleAnalyzer } from "@/components/performance/bundle-analyzer";
 import { PerformanceMonitor } from "@/components/performance/performance-monitor";
+import CookieConsentBanner from "@/components/gdpr/cookie-consent-banner";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -176,6 +177,7 @@ export default function RootLayout({
                           <AccessibilityChecker />
                           <BundleAnalyzer />
                           <PerformanceMonitor />
+                          <CookieConsentBanner />
                             </AnalyticsProvider>
                           </LoyaltyProvider>
                         </SubscriptionProvider>
