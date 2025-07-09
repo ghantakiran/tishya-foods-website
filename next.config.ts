@@ -158,7 +158,7 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://cdnjs.cloudflare.com https://js.stripe.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'nonce-${Math.random().toString(36).substring(2, 15)}' https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://cdnjs.cloudflare.com https://js.stripe.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: blob: https://images.unsplash.com https://api.placeholder.com https://via.placeholder.com https://www.googletagmanager.com https://www.google-analytics.com https://analytics.google.com https://q.stripe.com",
               "font-src 'self' https://fonts.gstatic.com data:",
