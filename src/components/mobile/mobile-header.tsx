@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useCart } from '@/contexts/cart-context'
 import { useAuth } from '@/contexts/auth-context'
-import { AccessibleButton, AccessibleIconButton } from '@/components/accessibility/accessible-button'
+// Unused imports removed for bundle optimization
 import { AccessibleImage } from '@/components/accessibility/accessible-image'
 import { MobileNavigation } from './mobile-navigation'
 import { MobileCart } from './mobile-cart'

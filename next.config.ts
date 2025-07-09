@@ -6,7 +6,11 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig: NextConfig = {
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu']
+    optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+    webpackBuildWorker: true,
+    optimizeCss: true,
+    optimizeServerReact: true,
+    gzipSize: true
   },
   
   // Server external packages
@@ -52,6 +56,18 @@ const nextConfig: NextConfig = {
               name: 'ui-libs',
               chunks: 'all',
               priority: 15,
+            },
+            common: {
+              test: /[\\/]node_modules[\\/](react|react-dom|next)[\\/]/,
+              name: 'common',
+              chunks: 'all',
+              priority: 25,
+            },
+            utilities: {
+              test: /[\\/]src[\\/](lib|utils|hooks)[\\/]/,
+              name: 'utilities',
+              chunks: 'all',
+              priority: 5,
             }
           }
         }

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Package, Star, Heart, ShoppingCart } from 'lucide-react'
+import { Package, Star } from 'lucide-react'
 
 export default function ProductDetailLoading() {
   return (

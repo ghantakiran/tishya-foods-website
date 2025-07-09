@@ -1,377 +1,129 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  Activity, 
-  Zap, 
-  Clock, 
-  Wifi, 
-  AlertTriangle,
-  CheckCircle,
-  X
-} from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { PerformanceMonitor } from '@/utils/performance'
 
 interface PerformanceMetrics {
-  lcp: number | null // Largest Contentful Paint
-  fid: number | null // First Input Delay
-  cls: number | null // Cumulative Layout Shift
-  ttfb: number | null // Time to First Byte
-  fcp: number | null // First Contentful Paint
-  networkType: string
-  effectiveType: string
-  downlink: number
+  fcp?: number // First Contentful Paint
+  lcp?: number // Largest Contentful Paint
+  cls?: number // Cumulative Layout Shift
+  fid?: number // First Input Delay
+  ttfb?: number // Time to First Byte
+  hydrationTime?: number
+  domContentLoaded?: number
+  loadComplete?: number
 }
 
-interface PerformanceMonitorProps {
-  showInProduction?: boolean
-  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
-}
-
-export function PerformanceMonitorWidget({ 
-  showInProduction = false,
-  position = 'bottom-right' 
-}: PerformanceMonitorProps) {
-  const [metrics, setMetrics] = useState<PerformanceMetrics>({
-    lcp: null,
-    fid: null,
-    cls: null,
-    ttfb: null,
-    fcp: null,
-    networkType: 'unknown',
-    effectiveType: 'unknown',
-    downlink: 0
-  })
-  const [isExpanded, setIsExpanded] = useState(false)
-  const [isVisible, setIsVisible] = useState(false)
+export function PerformanceMonitor() {
+  const [metrics, setMetrics] = useState<PerformanceMetrics>({})
 
   useEffect(() => {
-    // Only show in development or if explicitly enabled for production
-    if (process.env.NODE_ENV === 'production' && !showInProduction) {
-      return
-    }
-
-    setIsVisible(true)
-
-    const monitor = PerformanceMonitor.getInstance()
-    monitor.reportWebVitals()
-
-    // Collect performance metrics
-    const collectMetrics = () => {
-      const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming
+    // Monitor Core Web Vitals
+    const measureCoreWebVitals = () => {
+      // First Contentful Paint (FCP)
+      const paintEntries = performance.getEntriesByType('paint') as PerformanceEntry[]
+      const fcpEntry = paintEntries.find(entry => entry.name === 'first-contentful-paint')
       
+      // Time to First Byte (TTFB)
+      const navEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[]
+      const ttfb = navEntries[0]?.responseStart - navEntries[0]?.requestStart
+      
+      // DOM Content Loaded
+      const domContentLoaded = navEntries[0]?.domContentLoadedEventEnd - navEntries[0]?.domContentLoadedEventStart
+      
+      // Load Complete
+      const loadComplete = navEntries[0]?.loadEventEnd - navEntries[0]?.navigationStart
+
       setMetrics(prev => ({
         ...prev,
-        ttfb: navigation ? navigation.responseStart - navigation.requestStart : null,
-        fcp: navigation ? navigation.responseEnd - navigation.responseStart : null
+        fcp: fcpEntry?.startTime,
+        ttfb,
+        domContentLoaded,
+        loadComplete
       }))
+    }
 
-      // Network Information API
-      if ('connection' in navigator) {
-        const connection = (navigator as any).connection
+    // Measure Largest Contentful Paint (LCP)
+    const measureLCP = () => {
+      const observer = new PerformanceObserver((list) => {
+        const entries = list.getEntries()
+        const lastEntry = entries[entries.length - 1] as PerformanceEntry
+        
         setMetrics(prev => ({
           ...prev,
-          networkType: connection?.type || 'unknown',
-          effectiveType: connection?.effectiveType || 'unknown',
-          downlink: connection?.downlink || 0
+          lcp: lastEntry.startTime
         }))
-      }
-    }
-
-    // Web Vitals using PerformanceObserver
-    if ('PerformanceObserver' in window) {
-      // Largest Contentful Paint
+      })
+      
       try {
-        const lcpObserver = new PerformanceObserver((entryList) => {
-          const entries = entryList.getEntries()
-          const lastEntry = entries[entries.length - 1] as any
-          setMetrics(prev => ({ ...prev, lcp: lastEntry.startTime }))
-        })
-        lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true })
+        observer.observe({ entryTypes: ['largest-contentful-paint'] })
       } catch (e) {
-        console.warn('LCP observer not supported')
+        // LCP not supported
       }
+    }
 
-      // First Input Delay
+    // Measure Cumulative Layout Shift (CLS)
+    const measureCLS = () => {
+      let clsValue = 0
+      const observer = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (!(entry as any).hadRecentInput) {
+            clsValue += (entry as any).value
+          }
+        }
+        
+        setMetrics(prev => ({
+          ...prev,
+          cls: clsValue
+        }))
+      })
+      
       try {
-        const fidObserver = new PerformanceObserver((entryList) => {
-          const entries = entryList.getEntries()
-          entries.forEach((entry: any) => {
-            setMetrics(prev => ({ 
-              ...prev, 
-              fid: entry.processingStart - entry.startTime 
-            }))
-          })
-        })
-        fidObserver.observe({ type: 'first-input', buffered: true })
+        observer.observe({ entryTypes: ['layout-shift'] })
       } catch (e) {
-        console.warn('FID observer not supported')
-      }
-
-      // Cumulative Layout Shift
-      try {
-        let clsValue = 0
-        const clsObserver = new PerformanceObserver((entryList) => {
-          const entries = entryList.getEntries()
-          entries.forEach((entry: any) => {
-            if (!entry.hadRecentInput) {
-              clsValue += entry.value
-            }
-          })
-          setMetrics(prev => ({ ...prev, cls: clsValue }))
-        })
-        clsObserver.observe({ type: 'layout-shift', buffered: true })
-      } catch (e) {
-        console.warn('CLS observer not supported')
+        // CLS not supported
       }
     }
 
-    collectMetrics()
+    // Run measurements
+    measureCoreWebVitals()
+    measureLCP()
+    measureCLS()
 
-    // Update metrics periodically
-    const interval = setInterval(collectMetrics, 5000)
-    return () => clearInterval(interval)
-  }, [showInProduction])
-
-  const getScoreColor = (metric: string, value: number | null) => {
-    if (value === null) return 'text-earth-400'
-    
-    switch (metric) {
-      case 'lcp':
-        return value <= 2500 ? 'text-green-500' : value <= 4000 ? 'text-yellow-500' : 'text-red-500'
-      case 'fid':
-        return value <= 100 ? 'text-green-500' : value <= 300 ? 'text-yellow-500' : 'text-red-500'
-      case 'cls':
-        return value <= 0.1 ? 'text-green-500' : value <= 0.25 ? 'text-yellow-500' : 'text-red-500'
-      case 'ttfb':
-        return value <= 600 ? 'text-green-500' : value <= 1000 ? 'text-yellow-500' : 'text-red-500'
-      case 'fcp':
-        return value <= 1800 ? 'text-green-500' : value <= 3000 ? 'text-yellow-500' : 'text-red-500'
-      default:
-        return 'text-earth-400'
+    // Log metrics to console in development
+    if (process.env.NODE_ENV === 'development') {
+      setTimeout(() => {
+        console.group('🚀 Performance Metrics')
+        console.log('First Contentful Paint (FCP):', metrics.fcp ? `${metrics.fcp.toFixed(2)}ms` : 'Not available')
+        console.log('Largest Contentful Paint (LCP):', metrics.lcp ? `${metrics.lcp.toFixed(2)}ms` : 'Not available')
+        console.log('Cumulative Layout Shift (CLS):', metrics.cls ? metrics.cls.toFixed(4) : 'Not available')
+        console.log('Time to First Byte (TTFB):', metrics.ttfb ? `${metrics.ttfb.toFixed(2)}ms` : 'Not available')
+        console.log('DOM Content Loaded:', metrics.domContentLoaded ? `${metrics.domContentLoaded.toFixed(2)}ms` : 'Not available')
+        console.log('Load Complete:', metrics.loadComplete ? `${metrics.loadComplete.toFixed(2)}ms` : 'Not available')
+        console.groupEnd()
+      }, 2000)
     }
-  }
+  }, [])
 
-  const getScoreIcon = (metric: string, value: number | null) => {
-    if (value === null) return <Clock className="h-3 w-3" />
-    
-    const isGood = (() => {
-      switch (metric) {
-        case 'lcp': return value <= 2500
-        case 'fid': return value <= 100
-        case 'cls': return value <= 0.1
-        case 'ttfb': return value <= 600
-        case 'fcp': return value <= 1800
-        default: return false
-      }
-    })()
-
-    return isGood ? 
-      <CheckCircle className="h-3 w-3" /> : 
-      <AlertTriangle className="h-3 w-3" />
-  }
-
-  const formatValue = (metric: string, value: number | null) => {
-    if (value === null) return 'N/A'
-    
-    switch (metric) {
-      case 'cls':
-        return value.toFixed(3)
-      case 'downlink':
-        return `${value.toFixed(1)} Mbps`
-      default:
-        return `${Math.round(value)}ms`
-    }
-  }
-
-  const getPositionClasses = () => {
-    switch (position) {
-      case 'top-left': return 'top-4 left-4'
-      case 'top-right': return 'top-4 right-4'
-      case 'bottom-left': return 'bottom-4 left-4'
-      case 'bottom-right': return 'bottom-4 right-4'
-      default: return 'bottom-4 right-4'
-    }
-  }
-
-  if (!isVisible) return null
-
-  return (
-    <div className={`fixed ${getPositionClasses()} z-50`}>
-      <AnimatePresence>
-        {!isExpanded ? (
-          <motion.button
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
-            onClick={() => setIsExpanded(true)}
-            className="bg-black/80 text-white p-3 rounded-full shadow-lg hover:bg-black/90 transition-colors"
-          >
-            <Activity className="h-5 w-5" />
-          </motion.button>
-        ) : (
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-earth-800/95 backdrop-blur-sm border border-earth-600 rounded-lg shadow-xl p-4 min-w-80"
-          >
-            {/* Header */}
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center space-x-2">
-                <Activity className="h-4 w-4 text-primary-600" />
-                <h3 className="font-semibold text-cream-100 text-sm">Performance</h3>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsExpanded(false)}
-                className="h-6 w-6 p-0"
-              >
-                <X className="h-3 w-3" />
-              </Button>
-            </div>
-
-            {/* Core Web Vitals */}
-            <div className="space-y-2 mb-4">
-              <h4 className="text-xs font-medium text-earth-700 uppercase tracking-wide">
-                Core Web Vitals
-              </h4>
-              
-              {[
-                { key: 'lcp', label: 'LCP', icon: Zap },
-                { key: 'fid', label: 'FID', icon: Clock },
-                { key: 'cls', label: 'CLS', icon: Activity }
-              ].map(({ key, label, icon: Icon }) => (
-                <div key={key} className="flex items-center justify-between text-xs">
-                  <div className="flex items-center space-x-2">
-                    <Icon className="h-3 w-3 text-earth-500" />
-                    <span className="text-earth-700">{label}</span>
-                  </div>
-                  <div className={`flex items-center space-x-1 ${getScoreColor(key, metrics[key as keyof PerformanceMetrics] as number)}`}>
-                    {getScoreIcon(key, metrics[key as keyof PerformanceMetrics] as number)}
-                    <span className="font-mono">
-                      {formatValue(key, metrics[key as keyof PerformanceMetrics] as number)}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Additional Metrics */}
-            <div className="space-y-2 mb-4">
-              <h4 className="text-xs font-medium text-earth-700 uppercase tracking-wide">
-                Loading Performance
-              </h4>
-              
-              {[
-                { key: 'ttfb', label: 'TTFB' },
-                { key: 'fcp', label: 'FCP' }
-              ].map(({ key, label }) => (
-                <div key={key} className="flex items-center justify-between text-xs">
-                  <span className="text-earth-700">{label}</span>
-                  <span className={`font-mono ${getScoreColor(key, metrics[key as keyof PerformanceMetrics] as number)}`}>
-                    {formatValue(key, metrics[key as keyof PerformanceMetrics] as number)}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Network Info */}
-            <div className="space-y-2 border-t pt-3">
-              <div className="flex items-center space-x-2">
-                <Wifi className="h-3 w-3 text-earth-500" />
-                <h4 className="text-xs font-medium text-earth-700 uppercase tracking-wide">
-                  Network
-                </h4>
-              </div>
-              
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-earth-700">Connection</span>
-                <Badge variant="outline" className="text-xs">
-                  {metrics.effectiveType}
-                </Badge>
-              </div>
-              
-              {metrics.downlink > 0 && (
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-earth-700">Speed</span>
-                  <span className="font-mono text-cream-100">
-                    {formatValue('downlink', metrics.downlink)}
-                  </span>
-                </div>
-              )}
-            </div>
-
-            {/* Quick Actions */}
-            <div className="flex space-x-2 mt-3 pt-3 border-t">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => window.location.reload()}
-                className="text-xs h-6 px-2"
-              >
-                Refresh
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  const monitor = PerformanceMonitor.getInstance()
-                  monitor.clearMetrics()
-                  console.log('Performance metrics cleared')
-                }}
-                className="text-xs h-6 px-2"
-              >
-                Clear
-              </Button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  )
+  // Don't render anything visible, this is just for monitoring
+  return null
 }
 
-// Hook for custom performance tracking
-export function usePerformanceTracking() {
-  const monitor = PerformanceMonitor.getInstance()
-
-  const trackPageLoad = (pageName: string) => {
-    monitor.startTiming(`page-load-${pageName}`)
-    
-    return () => {
-      const duration = monitor.endTiming(`page-load-${pageName}`)
-      console.log(`Page ${pageName} loaded in ${duration.toFixed(2)}ms`)
-    }
-  }
-
-  const trackComponentRender = (componentName: string) => {
-    monitor.startTiming(`component-render-${componentName}`)
-    
-    return () => {
-      const duration = monitor.endTiming(`component-render-${componentName}`)
-      console.log(`Component ${componentName} rendered in ${duration.toFixed(2)}ms`)
-    }
-  }
-
-  const trackApiCall = (apiName: string) => {
-    monitor.startTiming(`api-call-${apiName}`)
-    
-    return () => {
-      const duration = monitor.endTiming(`api-call-${apiName}`)
-      console.log(`API call ${apiName} completed in ${duration.toFixed(2)}ms`)
-    }
-  }
-
-  return {
-    trackPageLoad,
-    trackComponentRender,
-    trackApiCall,
-    getMetrics: monitor.getMetrics.bind(monitor),
-    getAverageTime: monitor.getAverageTime.bind(monitor)
+// Performance thresholds (in milliseconds)
+export const PERFORMANCE_THRESHOLDS = {
+  FCP: {
+    good: 1800,
+    needsImprovement: 3000
+  },
+  LCP: {
+    good: 2500,
+    needsImprovement: 4000
+  },
+  CLS: {
+    good: 0.1,
+    needsImprovement: 0.25
+  },
+  TTFB: {
+    good: 800,
+    needsImprovement: 1800
   }
 }

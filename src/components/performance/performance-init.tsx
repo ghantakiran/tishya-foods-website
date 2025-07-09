@@ -7,7 +7,7 @@ import {
   preloadRouteComponents,
   prefetchLikelyPages 
 } from '@/components/optimization/bundle-optimizer'
-import { PerformanceMonitorWidget } from './performance-monitor'
+import { PerformanceMonitor } from './performance-monitor'
 
 interface PerformanceInitProps {
   children: React.ReactNode
@@ -36,7 +36,7 @@ export function PerformanceInit({
   return (
     <>
       {children}
-      {showMonitor && <PerformanceMonitorWidget />}
+      {showMonitor && <PerformanceMonitor />}
     </>
   )
 }
