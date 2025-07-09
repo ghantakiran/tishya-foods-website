@@ -273,7 +273,7 @@ function CartProviderInner({ children }: { children: React.ReactNode }) {
         
         return false
       }
-    } catch (error) {
+    } catch {
       toast.error('Failed to apply coupon')
       return false
     } finally {

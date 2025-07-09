@@ -314,7 +314,7 @@ export function SubscriptionProvider({ children }: SubscriptionProviderProps) {
       subscriptions.push(newSubscription)
       localStorage.setItem('tishya_subscriptions', JSON.stringify(subscriptions))
       
-    } catch (error) {
+    } catch {
       dispatch({ type: 'SET_ERROR', payload: 'Failed to create subscription' })
     }
   }
@@ -337,7 +337,7 @@ export function SubscriptionProvider({ children }: SubscriptionProviderProps) {
         localStorage.setItem('tishya_subscriptions', JSON.stringify(subscriptions))
       }
       
-    } catch (error) {
+    } catch {
       dispatch({ type: 'SET_ERROR', payload: 'Failed to update subscription' })
     }
   }
@@ -358,7 +358,7 @@ export function SubscriptionProvider({ children }: SubscriptionProviderProps) {
         localStorage.setItem('tishya_subscriptions', JSON.stringify(subscriptions))
       }
       
-    } catch (error) {
+    } catch {
       dispatch({ type: 'SET_ERROR', payload: 'Failed to delete subscription' })
     }
   }
@@ -428,7 +428,7 @@ export function SubscriptionProvider({ children }: SubscriptionProviderProps) {
       
       dispatch({ type: 'SET_SUBSCRIPTIONS', payload: subscriptions })
       
-    } catch (error) {
+    } catch {
       dispatch({ type: 'SET_ERROR', payload: 'Failed to fetch subscriptions' })
     }
   }

@@ -71,7 +71,7 @@ export function PerformanceMonitorWidget({
 
       // Network Information API
       if ('connection' in navigator) {
-        const connection = (navigator as any).connection
+        const connection = (navigator as { connection?: { type?: string; effectiveType?: string; downlink?: number } }).connection
         setMetrics(prev => ({
           ...prev,
           networkType: connection?.type || 'unknown',
@@ -87,11 +87,11 @@ export function PerformanceMonitorWidget({
       try {
         const lcpObserver = new PerformanceObserver((entryList) => {
           const entries = entryList.getEntries()
-          const lastEntry = entries[entries.length - 1] as any
+          const lastEntry = entries[entries.length - 1] as PerformanceEntry & { startTime: number }
           setMetrics(prev => ({ ...prev, lcp: lastEntry.startTime }))
         })
         lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true })
-      } catch (e) {
+      } catch {
         console.warn('LCP observer not supported')
       }
 
@@ -99,7 +99,7 @@ export function PerformanceMonitorWidget({
       try {
         const fidObserver = new PerformanceObserver((entryList) => {
           const entries = entryList.getEntries()
-          entries.forEach((entry: any) => {
+          entries.forEach((entry: PerformanceEntry & { processingStart: number; startTime: number }) => {
             setMetrics(prev => ({ 
               ...prev, 
               fid: entry.processingStart - entry.startTime 
@@ -107,7 +107,7 @@ export function PerformanceMonitorWidget({
           })
         })
         fidObserver.observe({ type: 'first-input', buffered: true })
-      } catch (e) {
+      } catch {
         console.warn('FID observer not supported')
       }
 
@@ -116,7 +116,7 @@ export function PerformanceMonitorWidget({
         let clsValue = 0
         const clsObserver = new PerformanceObserver((entryList) => {
           const entries = entryList.getEntries()
-          entries.forEach((entry: any) => {
+          entries.forEach((entry: PerformanceEntry & { value: number; hadRecentInput: boolean }) => {
             if (!entry.hadRecentInput) {
               clsValue += entry.value
             }
@@ -124,7 +124,7 @@ export function PerformanceMonitorWidget({
           setMetrics(prev => ({ ...prev, cls: clsValue }))
         })
         clsObserver.observe({ type: 'layout-shift', buffered: true })
-      } catch (e) {
+      } catch {
         console.warn('CLS observer not supported')
       }
     }

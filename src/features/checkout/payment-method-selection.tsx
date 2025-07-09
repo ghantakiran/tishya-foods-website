@@ -20,7 +20,7 @@ export function PaymentMethodSelection({
   onSelect,
   orderTotal
 }: PaymentMethodSelectionProps) {
-  const [expandedMethod, setExpandedMethod] = useState<string | null>(null)
+  const [expandedMethod] = useState<string | null>(null)
 
   const getMethodIcon = (type: PaymentMethod['type']) => {
     switch (type) {
@@ -85,7 +85,6 @@ export function PaymentMethodSelection({
         {methods.map((method) => {
           const isAvailable = isMethodAvailable(method)
           const isSelected = selectedMethod === method.id
-          const isExpanded = expandedMethod === method.id
 
           return (
             <motion.div

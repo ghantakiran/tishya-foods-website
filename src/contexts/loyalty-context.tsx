@@ -469,7 +469,7 @@ export function LoyaltyProvider({ children }: LoyaltyProviderProps) {
       loadAchievements(userId)
       loadReferrals(userId)
       
-    } catch (error) {
+    } catch {
       dispatch({ type: 'SET_ERROR', payload: 'Failed to initialize loyalty member' })
     }
   }

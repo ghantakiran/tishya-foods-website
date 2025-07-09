@@ -12,8 +12,6 @@ interface RecommendationEngineProps {
 }
 
 export function RecommendationEngine({ 
-  userId, 
-  currentProduct, 
   maxRecommendations = 4,
   className = ""
 }: RecommendationEngineProps) {

@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
     let tags = [...mockTags]
 
     if (!includePostCount) {
-      tags = tags.map(({ postCount, ...tag }) => tag) as BlogTag[]
+      tags = tags.map(({ postCount: _, ...tag }) => tag) as BlogTag[]
     }
 
     // Sort by post count (descending) if popular, otherwise by name

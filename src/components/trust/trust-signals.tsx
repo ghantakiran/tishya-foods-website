@@ -167,7 +167,7 @@ export function GuaranteeSection() {
           🌿 100% Natural Guarantee
         </h3>
         <p className="text-gray-300 mb-4">
-          We stand behind the quality of our products. If you're not completely satisfied 
+          We stand behind the quality of our products. If you&apos;re not completely satisfied 
           with your purchase, return it within 30 days for a full refund - no questions asked.
         </p>
         <div className="flex justify-center items-center space-x-6 text-sm text-gray-400">
@@ -231,7 +231,7 @@ export function CustomerTestimonials() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial) => (
             <div 
               key={testimonial.id}
               className="bg-gray-800 rounded-lg p-6 border border-gray-700"
@@ -243,7 +243,7 @@ export function CustomerTestimonials() {
                 ))}
               </div>
               <p className="text-gray-300 mb-4 italic">
-                "{testimonial.text}"
+                &ldquo;{testimonial.text}&rdquo;
               </p>
               <div className="flex items-center">
                 <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center mr-3">

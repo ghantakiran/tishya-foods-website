@@ -227,7 +227,7 @@ export function OrderConfirmation({
         <div className="space-y-2 text-left">
           <div className="flex items-center space-x-3">
             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-            <p className="text-sm text-blue-800">We'll send you an email confirmation with tracking details</p>
+            <p className="text-sm text-blue-800">We&apos;ll send you an email confirmation with tracking details</p>
           </div>
           <div className="flex items-center space-x-3">
             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
@@ -235,7 +235,7 @@ export function OrderConfirmation({
           </div>
           <div className="flex items-center space-x-3">
             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-            <p className="text-sm text-blue-800">You'll receive SMS updates about your delivery status</p>
+            <p className="text-sm text-blue-800">You&apos;ll receive SMS updates about your delivery status</p>
           </div>
           <div className="flex items-center space-x-3">
             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>

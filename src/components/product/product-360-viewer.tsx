@@ -48,7 +48,7 @@ const generate360Images = (productId: string, count: number = 36): string[] => {
   
   // In a real implementation, these would be actual 360° product images
   // For demo purposes, we'll simulate with the same image
-  return Array.from({ length: count }, (_, i) => baseImage)
+  return Array.from({ length: count }, () => baseImage)
 }
 
 const hotspots = [
@@ -78,7 +78,7 @@ const hotspots = [
   }
 ]
 
-export function Product360Viewer({ productId, productName, images, isOpen, onClose }: Product360ViewerProps) {
+export function Product360Viewer({ productId, productName, isOpen, onClose }: Product360ViewerProps) {
   const [controls, setControls] = useState<ViewerControls>({
     isPlaying: false,
     currentFrame: 0,

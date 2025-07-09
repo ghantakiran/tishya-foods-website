@@ -204,7 +204,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       localStorage.removeItem('tishya-auth-token')
       dispatch({ type: 'SET_USER', payload: null })
       toast.success('Logged out successfully')
-    } catch (error) {
+    } catch {
       toast.error('Logout failed')
     } finally {
       dispatch({ type: 'SET_LOADING', payload: false })
@@ -220,7 +220,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       
       dispatch({ type: 'UPDATE_USER', payload: { ...data, updatedAt: new Date().toISOString() } })
       toast.success('Profile updated successfully')
-    } catch (error) {
+    } catch {
       toast.error('Failed to update profile')
     } finally {
       dispatch({ type: 'SET_LOADING', payload: false })
@@ -242,14 +242,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         } 
       })
       toast.success('Preferences updated successfully')
-    } catch (error) {
+    } catch {
       toast.error('Failed to update preferences')
     } finally {
       dispatch({ type: 'SET_LOADING', payload: false })
     }
   }
 
-  const sendPasswordReset = async (email: string) => {
+  const sendPasswordReset = async () => {
     dispatch({ type: 'SET_LOADING', payload: true })
     
     try {
@@ -257,14 +257,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await new Promise(resolve => setTimeout(resolve, 1500))
       
       toast.success('Password reset email sent!')
-    } catch (error) {
+    } catch {
       toast.error('Failed to send password reset email')
     } finally {
       dispatch({ type: 'SET_LOADING', payload: false })
     }
   }
 
-  const verifyEmail = async (token: string) => {
+  const verifyEmail = async () => {
     dispatch({ type: 'SET_LOADING', payload: true })
     
     try {
@@ -273,7 +273,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       
       dispatch({ type: 'UPDATE_USER', payload: { emailVerified: true } })
       toast.success('Email verified successfully!')
-    } catch (error) {
+    } catch {
       toast.error('Email verification failed')
     } finally {
       dispatch({ type: 'SET_LOADING', payload: false })

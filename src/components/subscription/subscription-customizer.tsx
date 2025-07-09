@@ -135,7 +135,7 @@ export function SubscriptionCustomizer({
   const [selectedNutritionGoal, setSelectedNutritionGoal] = useState('')
   const [deliveryDate, setDeliveryDate] = useState(new Date())
   const [specialInstructions, setSpecialInstructions] = useState('')
-  const [skipDates, setSkipDates] = useState<Date[]>([])
+  const [skipDates] = useState<Date[]>([])
 
   const steps = [
     { name: 'Preferences', icon: User },
@@ -336,7 +336,7 @@ export function SubscriptionCustomizer({
               transition={{ duration: 0.3 }}
             >
               <h3 className="text-xl font-bold text-earth-800 mb-4">
-                What's Your Nutrition Goal?
+                What&apos;s Your Nutrition Goal?
               </h3>
               <p className="text-earth-600 mb-6">
                 Tell us your primary nutrition goal so we can tailor your subscription.

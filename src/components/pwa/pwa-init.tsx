@@ -7,7 +7,7 @@ interface PWAInitProps {
 }
 
 export function PWAInit({ children }: PWAInitProps) {
-  const [isReady, setIsReady] = useState(false)
+  const [, setIsReady] = useState(false)
   const [installPrompt, setInstallPrompt] = useState<unknown>(null)
 
   useEffect(() => {
