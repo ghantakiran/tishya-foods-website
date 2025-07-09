@@ -6,10 +6,6 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Card } from '@/components/ui/card'
 import { User, Settings, Heart, Zap, Target, Trophy } from 'lucide-react'
 
-interface UserPreferencesProps {
-  onSave?: (preferences: any) => void
-}
-
 interface Preferences {
   dietary: string[]
   goals: string[]
@@ -24,6 +20,10 @@ interface Preferences {
     layout: string
     fontSize: string
   }
+}
+
+interface UserPreferencesProps {
+  onSave?: (preferences: Preferences) => void
 }
 
 const dietaryOptions = [

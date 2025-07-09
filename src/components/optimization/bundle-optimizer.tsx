@@ -123,7 +123,11 @@ export function addCriticalResourceHints() {
       if (key === 'crossOrigin') {
         link.crossOrigin = value as string
       } else if (key === 'onload') {
-        link.onload = new Function(value as string) as any
+        if (typeof value === 'function') {
+          link.onload = value as (this: GlobalEventHandlers, ev: Event) => void
+        } else if (typeof value === 'string') {
+          link.setAttribute('onload', value)
+        }
       } else {
         link.setAttribute(key, value as string)
       }

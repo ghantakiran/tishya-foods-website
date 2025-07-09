@@ -57,26 +57,6 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
     { id: 'muscle-building', label: 'Muscle Building', description: 'High protein content' },
   ]
 
-  const allergens = [
-    { id: 'nuts', label: 'Tree Nuts' },
-    { id: 'peanuts', label: 'Peanuts' },
-    { id: 'dairy', label: 'Dairy' },
-    { id: 'eggs', label: 'Eggs' },
-    { id: 'soy', label: 'Soy' },
-    { id: 'wheat', label: 'Wheat/Gluten' },
-    { id: 'shellfish', label: 'Shellfish' },
-    { id: 'sesame', label: 'Sesame' },
-  ]
-
-  const certifications = [
-    { id: 'organic', label: 'USDA Organic' },
-    { id: 'non-gmo', label: 'Non-GMO' },
-    { id: 'fair-trade', label: 'Fair Trade' },
-    { id: 'kosher', label: 'Kosher' },
-    { id: 'halal', label: 'Halal' },
-    { id: 'brc', label: 'BRC Certified' },
-  ]
-
   const handleDietaryChange = (restriction: string) => {
     const current = filters.dietaryRestrictions
     const updated = current.includes(restriction)
@@ -91,22 +71,6 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
       ? current.filter(g => g !== goal)
       : [...current, goal]
     updateFilters({ nutritionalGoals: updated })
-  }
-
-  const handleAllergenChange = (allergen: string) => {
-    const current = filters.allergens
-    const updated = current.includes(allergen)
-      ? current.filter(a => a !== allergen)
-      : [...current, allergen]
-    updateFilters({ allergens: updated })
-  }
-
-  const handleCertificationChange = (cert: string) => {
-    const current = filters.certifications
-    const updated = current.includes(cert)
-      ? current.filter(c => c !== cert)
-      : [...current, cert]
-    updateFilters({ certifications: updated })
   }
 
   const handlePriceChange = (index: number, value: number) => {
@@ -421,7 +385,7 @@ export function ProductFilters({ isOpen, onClose }: ProductFiltersProps) {
                             type="radio"
                             name="availability"
                             checked={filters.availability === option.value}
-                            onChange={() => updateFilters({ availability: option.value as any })}
+                            onChange={() => updateFilters({ availability: option.value as 'all' | 'in-stock' | 'out-of-stock' })}
                             className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-earth-600"
                           />
                           <span className="text-sm">{option.label}</span>

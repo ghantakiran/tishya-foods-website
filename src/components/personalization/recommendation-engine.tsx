@@ -2,22 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { ProductCard } from '@/components/product/product-card'
-
-interface Product {
-  id: string
-  name: string
-  price: number
-  image: string
-  category: string
-  description: string
-  rating: number
-  nutritionInfo: {
-    calories: number
-    protein: number
-    carbs: number
-    fat: number
-  }
-}
+import type { Product, ProductCategory } from '@/types/product'
 
 interface RecommendationEngineProps {
   userId?: string
@@ -35,74 +20,199 @@ export function RecommendationEngine({
   const [recommendations, setRecommendations] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    fetchRecommendations()
-  }, [userId, currentProduct])
-
   const fetchRecommendations = async () => {
     try {
       setLoading(true)
       
-      // Simulate recommendation engine with mock data
-      const mockRecommendations: Product[] = [
+      // Define mock ProductCategory objects
+      const proteinSnacksCategory: ProductCategory = {
+        id: 'protein-snacks',
+        name: 'Protein Snacks',
+        slug: 'protein-snacks',
+        description: 'High-protein snacks for fitness and health',
+        image: '/images/categories/protein-snacks.png',
+      }
+      const nutsCategory: ProductCategory = {
+        id: 'nuts',
+        name: 'Nuts',
+        slug: 'nuts',
+        description: 'Healthy nuts and seeds',
+        image: '/images/categories/nuts.png',
+      }
+      const supplementsCategory: ProductCategory = {
+        id: 'supplements',
+        name: 'Supplements',
+        slug: 'supplements',
+        description: 'Supplements for nutrition and wellness',
+        image: '/images/categories/supplements.png',
+      }
+      const savorySnacksCategory: ProductCategory = {
+        id: 'savory-snacks',
+        name: 'Savory Snacks',
+        slug: 'savory-snacks',
+        description: 'Savory and nutritious snack mixes',
+        image: '/images/categories/savory-snacks.png',
+      }
+
+      // Update mock products to use ProductCategory and full NutritionalInfo
+      const mockProducts: Product[] = [
         {
-          id: 'protein-bar-1',
-          name: 'Natural Protein Bar',
-          price: 45,
-          image: '/products/protein-bar.jpg',
-          category: 'protein-snacks',
+          id: 'prod-1',
+          name: 'Protein Bar',
           description: 'High-protein natural bar with nuts and seeds',
-          rating: 4.8,
-          nutritionInfo: { calories: 180, protein: 12, carbs: 15, fat: 8 }
-        },
-        {
-          id: 'mixed-nuts-1',
-          name: 'Premium Mixed Nuts',
-          price: 299,
-          image: '/products/mixed-nuts.jpg',
-          category: 'natural-foods',
-          description: 'Carefully selected and roasted mixed nuts',
-          rating: 4.9,
-          nutritionInfo: { calories: 150, protein: 5, carbs: 6, fat: 13 }
-        },
-        {
-          id: 'protein-powder-1',
-          name: 'Plant Protein Powder',
-          price: 899,
-          image: '/products/protein-powder.jpg',
-          category: 'supplements',
-          description: 'Pure plant-based protein powder',
-          rating: 4.7,
-          nutritionInfo: { calories: 120, protein: 25, carbs: 3, fat: 2 }
-        },
-        {
-          id: 'health-snack-1',
-          name: 'Savory Health Mix',
           price: 199,
-          image: '/products/health-mix.jpg',
-          category: 'savory-treats',
+          originalPrice: 249,
+          images: ['/images/products/protein-bar.png'],
+          category: proteinSnacksCategory,
+          tags: ['protein', 'snack', 'healthy'],
+          ingredients: ['Nuts', 'Seeds', 'Honey'],
+          nutritionalInfo: {
+            servingSize: '1 bar',
+            servingsPerContainer: 1,
+            calories: 180,
+            protein: 12,
+            carbs: 15,
+            fat: 8,
+            fiber: 5,
+            sugar: 6,
+            sodium: 80,
+          },
+          allergens: ['nuts'],
+          certifications: ['gluten-free'],
+          isGlutenFree: true,
+          isVegan: false,
+          isOrganic: true,
+          isKeto: false,
+          isDairy: false,
+          stock: 100,
+          featured: true,
+          averageRating: 4.8,
+          reviewCount: 120,
+          createdAt: '2023-01-01T00:00:00Z',
+          updatedAt: '2023-01-01T00:00:00Z',
+        },
+        {
+          id: 'prod-2',
+          name: 'Roasted Mixed Nuts',
+          description: 'Carefully selected and roasted mixed nuts',
+          price: 299,
+          originalPrice: 349,
+          images: ['/images/products/roasted-nuts.png'],
+          category: nutsCategory,
+          tags: ['nuts', 'snack', 'healthy'],
+          ingredients: ['Almonds', 'Cashews', 'Pistachios'],
+          nutritionalInfo: {
+            servingSize: '30g',
+            servingsPerContainer: 10,
+            calories: 150,
+            protein: 5,
+            carbs: 6,
+            fat: 13,
+            fiber: 3,
+            sugar: 2,
+            sodium: 50,
+          },
+          allergens: ['nuts'],
+          certifications: ['organic'],
+          isGlutenFree: true,
+          isVegan: true,
+          isOrganic: true,
+          isKeto: true,
+          isDairy: false,
+          stock: 80,
+          featured: false,
+          averageRating: 4.9,
+          reviewCount: 90,
+          createdAt: '2023-01-01T00:00:00Z',
+          updatedAt: '2023-01-01T00:00:00Z',
+        },
+        {
+          id: 'prod-3',
+          name: 'Plant Protein Powder',
+          description: 'Pure plant-based protein powder',
+          price: 499,
+          originalPrice: 599,
+          images: ['/images/products/plant-protein.png'],
+          category: supplementsCategory,
+          tags: ['protein', 'supplement', 'vegan'],
+          ingredients: ['Pea Protein', 'Brown Rice Protein'],
+          nutritionalInfo: {
+            servingSize: '30g',
+            servingsPerContainer: 20,
+            calories: 120,
+            protein: 25,
+            carbs: 3,
+            fat: 2,
+            fiber: 2,
+            sugar: 1,
+            sodium: 40,
+          },
+          allergens: [],
+          certifications: ['vegan'],
+          isGlutenFree: true,
+          isVegan: true,
+          isOrganic: false,
+          isKeto: true,
+          isDairy: false,
+          stock: 60,
+          featured: true,
+          averageRating: 4.7,
+          reviewCount: 75,
+          createdAt: '2023-01-01T00:00:00Z',
+          updatedAt: '2023-01-01T00:00:00Z',
+        },
+        {
+          id: 'prod-4',
+          name: 'Savory Snack Mix',
           description: 'Nutritious savory snack mix',
-          rating: 4.6,
-          nutritionInfo: { calories: 140, protein: 6, carbs: 18, fat: 7 }
-        }
+          price: 149,
+          originalPrice: 199,
+          images: ['/images/products/savory-mix.png'],
+          category: savorySnacksCategory,
+          tags: ['snack', 'savory', 'mix'],
+          ingredients: ['Chickpeas', 'Spices', 'Lentils'],
+          nutritionalInfo: {
+            servingSize: '25g',
+            servingsPerContainer: 8,
+            calories: 140,
+            protein: 6,
+            carbs: 18,
+            fat: 7,
+            fiber: 2,
+            sugar: 1,
+            sodium: 60,
+          },
+          allergens: [],
+          certifications: ['gluten-free'],
+          isGlutenFree: true,
+          isVegan: true,
+          isOrganic: false,
+          isKeto: false,
+          isDairy: false,
+          stock: 120,
+          featured: false,
+          averageRating: 4.6,
+          reviewCount: 60,
+          createdAt: '2023-01-01T00:00:00Z',
+          updatedAt: '2023-01-01T00:00:00Z',
+        },
       ]
 
       // Apply personalization logic
-      let personalizedRecommendations = [...mockRecommendations]
+      let personalizedRecommendations = [...mockProducts]
 
       // Get user preferences from localStorage
       const userPreferences = JSON.parse(localStorage.getItem('user_preferences') || '{}')
       const userInterests = JSON.parse(localStorage.getItem('user_interests') || '[]')
-      const browsingHistory = JSON.parse(localStorage.getItem('browsing_history') || '[]')
 
       // Filter based on dietary preferences
       if (userPreferences.dietary) {
         personalizedRecommendations = personalizedRecommendations.filter(product => {
           if (userPreferences.dietary.includes('high-protein')) {
-            return product.nutritionInfo.protein > 10
+            return product.nutritionalInfo.protein > 10
           }
           if (userPreferences.dietary.includes('low-carb')) {
-            return product.nutritionInfo.carbs < 10
+            return product.nutritionalInfo.carbs < 10
           }
           return true
         })
@@ -113,11 +223,11 @@ export function RecommendationEngine({
         personalizedRecommendations.sort((a, b) => {
           const aScore = userInterests.filter((interest: string) => 
             a.name.toLowerCase().includes(interest) || 
-            a.category.includes(interest)
+            a.category.name.includes(interest)
           ).length
           const bScore = userInterests.filter((interest: string) => 
             b.name.toLowerCase().includes(interest) || 
-            b.category.includes(interest)
+            b.category.name.includes(interest)
           ).length
           return bScore - aScore
         })
@@ -134,6 +244,10 @@ export function RecommendationEngine({
       setLoading(false)
     }
   }
+
+  useEffect(() => {
+    fetchRecommendations()
+  }, [fetchRecommendations])
 
   if (loading) {
     return (

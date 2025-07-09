@@ -20,12 +20,12 @@ import {
   XCircle,
   RefreshCw
 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Switch } from '@/components/ui/switch'
+// import { Button } from '@/components/ui/button'
+// import { Card } from '@/components/ui/card'
+// import { Badge } from '@/components/ui/badge'
+// import { Switch } from '@/components/ui/switch'
 import { formatPrice, formatDate, cn } from '@/lib/utils'
-import { Product } from '@/types'
+import { Product } from '@/types/product'
 
 interface Subscription {
   id: string
@@ -131,7 +131,6 @@ export function SubscriptionDashboard({
   onCancel 
 }: SubscriptionDashboardProps) {
   const [activeTab, setActiveTab] = useState<'overview' | 'products' | 'schedule' | 'history'>('overview')
-  const [isManaging, setIsManaging] = useState(false)
   const [showCancelDialog, setShowCancelDialog] = useState(false)
 
   const getStatusIcon = (status: string) => {
@@ -207,35 +206,33 @@ export function SubscriptionDashboard({
           </h1>
           <div className="flex items-center space-x-3">
             {getStatusIcon(subscription.status)}
-            <Badge className={getStatusColor(subscription.status)}>
+            <div className={getStatusColor(subscription.status)}>
               {subscription.status.charAt(0).toUpperCase() + subscription.status.slice(1)}
-            </Badge>
+            </div>
             <span className="text-earth-600">{subscription.planName}</span>
           </div>
         </div>
         
         <div className="flex space-x-2 mt-4 sm:mt-0">
-          <Button variant="outline" onClick={onEdit}>
+          <button onClick={onEdit}>
             <Edit3 className="h-4 w-4 mr-2" />
             Edit Subscription
-          </Button>
-          <Button 
-            variant="outline" 
+          </button>
+          <button 
             onClick={() => setShowCancelDialog(true)}
             className="text-red-600 hover:text-red-700"
           >
             <Trash2 className="h-4 w-4 mr-2" />
             Cancel
-          </Button>
+          </button>
         </div>
       </div>
 
       {/* Quick Actions */}
-      <Card className="p-6">
+      <div className="p-6">
         <h3 className="text-lg font-semibold text-earth-800 mb-4">Quick Actions</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Button
-            variant="outline"
+          <button
             onClick={handlePauseToggle}
             className="flex items-center justify-center space-x-2 h-16"
           >
@@ -250,27 +247,25 @@ export function SubscriptionDashboard({
                 <span>Resume Subscription</span>
               </>
             )}
-          </Button>
+          </button>
           
-          <Button
-            variant="outline"
+          <button
             onClick={handleSkipNext}
             className="flex items-center justify-center space-x-2 h-16"
           >
             <SkipForward className="h-5 w-5" />
             <span>Skip Next Delivery</span>
-          </Button>
+          </button>
           
-          <Button
-            variant="outline"
-            onClick={() => setIsManaging(true)}
+          <button
+            onClick={() => setActiveTab('schedule')}
             className="flex items-center justify-center space-x-2 h-16"
           >
             <Settings className="h-5 w-5" />
             <span>Manage Settings</span>
-          </Button>
+          </button>
         </div>
-      </Card>
+      </div>
 
       {/* Tabs */}
       <div className="border-b border-earth-600">
@@ -280,7 +275,7 @@ export function SubscriptionDashboard({
             return (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id as 'overview' | 'products' | 'schedule' | 'history')}
                 className={cn(
                   'flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm transition-colors',
                   activeTab === tab.id
@@ -309,7 +304,7 @@ export function SubscriptionDashboard({
             className="grid grid-cols-1 lg:grid-cols-2 gap-6"
           >
             {/* Next Delivery */}
-            <Card className="p-6">
+            <div className="p-6">
               <h3 className="text-lg font-semibold text-earth-800 mb-4 flex items-center">
                 <Truck className="h-5 w-5 mr-2" />
                 Next Delivery
@@ -334,10 +329,10 @@ export function SubscriptionDashboard({
                   </span>
                 </div>
               </div>
-            </Card>
+            </div>
 
             {/* Payment Method */}
-            <Card className="p-6">
+            <div className="p-6">
               <h3 className="text-lg font-semibold text-earth-800 mb-4 flex items-center">
                 <CreditCard className="h-5 w-5 mr-2" />
                 Payment Method
@@ -349,14 +344,14 @@ export function SubscriptionDashboard({
                   </div>
                   <span>•••• •••• •••• {subscription.paymentMethod.last4}</span>
                 </div>
-                <Button variant="outline" size="sm">
+                <button className="text-earth-800">
                   Update Payment Method
-                </Button>
+                </button>
               </div>
-            </Card>
+            </div>
 
             {/* Delivery Address */}
-            <Card className="p-6">
+            <div className="p-6">
               <h3 className="text-lg font-semibold text-earth-800 mb-4">
                 Delivery Address
               </h3>
@@ -365,14 +360,14 @@ export function SubscriptionDashboard({
                 <p>
                   {subscription.deliveryAddress.city}, {subscription.deliveryAddress.state} {subscription.deliveryAddress.zipCode}
                 </p>
-                <Button variant="outline" size="sm" className="mt-3">
+                <button className="text-earth-800">
                   Update Address
-                </Button>
+                </button>
               </div>
-            </Card>
+            </div>
 
             {/* Preferences */}
-            <Card className="p-6">
+            <div className="p-6">
               <h3 className="text-lg font-semibold text-earth-800 mb-4">
                 Preferences
               </h3>
@@ -381,9 +376,9 @@ export function SubscriptionDashboard({
                   <span className="text-earth-600 text-sm">Dietary Restrictions:</span>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {subscription.preferences.dietaryRestrictions.map((restriction) => (
-                      <Badge key={restriction} variant="secondary" className="text-xs">
+                      <div key={restriction} className="text-xs">
                         {restriction}
-                      </Badge>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -398,7 +393,7 @@ export function SubscriptionDashboard({
                   </div>
                 )}
               </div>
-            </Card>
+            </div>
           </motion.div>
         )}
 
@@ -411,15 +406,14 @@ export function SubscriptionDashboard({
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <Card className="p-6">
+            <div className="p-6">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-lg font-semibold text-earth-800">
                   Subscription Products
                 </h3>
-                <Button variant="outline">
-                  <Edit3 className="h-4 w-4 mr-2" />
+                <button className="text-earth-800">
                   Modify Products
-                </Button>
+                </button>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -435,14 +429,14 @@ export function SubscriptionDashboard({
                       <span className="font-bold text-earth-800">
                         {formatPrice(item.product.price * item.quantity)}
                       </span>
-                      <Button variant="ghost" size="sm">
+                      <button className="text-earth-800">
                         <Edit3 className="h-3 w-3" />
-                      </Button>
+                      </button>
                     </div>
                   </div>
                 ))}
               </div>
-            </Card>
+            </div>
           </motion.div>
         )}
 
@@ -455,7 +449,7 @@ export function SubscriptionDashboard({
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <Card className="p-6">
+            <div className="p-6">
               <h3 className="text-lg font-semibold text-earth-800 mb-6">
                 Delivery Schedule
               </h3>
@@ -466,14 +460,16 @@ export function SubscriptionDashboard({
                   <h4 className="font-medium text-earth-800 mb-3">Delivery Frequency</h4>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {['weekly', 'biweekly', 'monthly', 'quarterly'].map((freq) => (
-                      <Button
+                      <button
                         key={freq}
-                        variant={subscription.frequency === freq ? "default" : "outline"}
+                        className={cn(
+                          'capitalize',
+                          subscription.frequency === freq ? 'font-bold' : 'text-earth-500'
+                        )}
                         onClick={() => handleUpdateFrequency(freq)}
-                        className="capitalize"
                       >
                         {freq}
-                      </Button>
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -494,17 +490,17 @@ export function SubscriptionDashboard({
                               {i === 0 ? '(Next)' : ''}
                             </span>
                           </div>
-                          <Button variant="ghost" size="sm">
+                          <button className="text-earth-800">
                             <SkipForward className="h-4 w-4 mr-1" />
                             Skip
-                          </Button>
+                          </button>
                         </div>
                       )
                     })}
                   </div>
                 </div>
               </div>
-            </Card>
+            </div>
           </motion.div>
         )}
 
@@ -517,7 +513,7 @@ export function SubscriptionDashboard({
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <Card className="p-6">
+            <div className="p-6">
               <h3 className="text-lg font-semibold text-earth-800 mb-6">
                 Delivery History
               </h3>
@@ -527,9 +523,9 @@ export function SubscriptionDashboard({
                   <div key={delivery.id} className="border rounded-lg p-4">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center space-x-3">
-                        <Badge className={getDeliveryStatusColor(delivery.status)}>
+                        <div className={getDeliveryStatusColor(delivery.status)}>
                           {delivery.status.charAt(0).toUpperCase() + delivery.status.slice(1)}
-                        </Badge>
+                        </div>
                         <span className="font-medium">{formatDate(delivery.deliveryDate)}</span>
                       </div>
                       <span className="font-bold">{formatPrice(delivery.totalPrice)}</span>
@@ -542,17 +538,17 @@ export function SubscriptionDashboard({
                     )}
                     
                     <div className="flex space-x-2 mt-3">
-                      <Button variant="outline" size="sm">
+                      <button className="text-earth-800">
                         View Details
-                      </Button>
-                      <Button variant="outline" size="sm">
+                      </button>
+                      <button className="text-earth-800">
                         Reorder
-                      </Button>
+                      </button>
                     </div>
                   </div>
                 ))}
               </div>
-            </Card>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -581,15 +577,13 @@ export function SubscriptionDashboard({
                 Are you sure you want to cancel your subscription? This action cannot be undone.
               </p>
               <div className="flex space-x-3">
-                <Button
-                  variant="outline"
+                <button
                   onClick={() => setShowCancelDialog(false)}
                   className="flex-1"
                 >
                   Keep Subscription
-                </Button>
-                <Button
-                  variant="destructive"
+                </button>
+                <button
                   onClick={() => {
                     onCancel?.()
                     setShowCancelDialog(false)
@@ -597,7 +591,7 @@ export function SubscriptionDashboard({
                   className="flex-1"
                 >
                   Cancel Subscription
-                </Button>
+                </button>
               </div>
             </motion.div>
           </motion.div>

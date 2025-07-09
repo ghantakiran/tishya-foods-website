@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence, PanInfo } from 'framer-motion'
+import Image from 'next/image'
 import { 
   RotateCcw, 
   Play, 
@@ -93,7 +94,7 @@ export function Product360Viewer({ productId, productName, images, isOpen, onClo
   
   const containerRef = useRef<HTMLDivElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number>(0)
   const lastUpdateRef = useRef<number>(0)
 
   const frameImages = generate360Images(productId, 36)
@@ -275,10 +276,11 @@ export function Product360Viewer({ productId, productName, images, isOpen, onClo
                 rotate: controls.rotation
               }}
             >
-              <img
+              <Image
                 ref={imageRef}
                 src={frameImages[controls.currentFrame]}
                 alt={`${productName} - View ${controls.currentFrame + 1}`}
+                fill
                 className="max-w-full max-h-full object-contain select-none"
                 draggable={false}
               />

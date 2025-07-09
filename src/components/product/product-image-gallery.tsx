@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import { 
   ChevronLeft, 
   ChevronRight, 
@@ -11,10 +12,8 @@ import {
   X,
   Play,
   Pause,
-  RotateCw,
   Download,
-  Share2,
-  Move3D
+  Share2
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -95,7 +94,7 @@ export function ProductImageGallery({
   const [isPlaying, setIsPlaying] = useState(false)
   const [selectedType, setSelectedType] = useState<string | null>(null)
   
-  const slideInterval = useRef<NodeJS.Timeout>()
+  const slideInterval = useRef<NodeJS.Timeout | null>(null)
   const imageRef = useRef<HTMLImageElement>(null)
 
   // Filter images by type
@@ -337,9 +336,10 @@ export function ProductImageGallery({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <img
+              <Image
                 src={image.url}
                 alt={image.alt}
+                fill
                 className="w-full h-full object-cover"
               />
             </motion.button>

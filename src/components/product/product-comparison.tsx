@@ -13,7 +13,6 @@ import {
   Heart,
   Award,
   TrendingUp,
-  ArrowRight,
   Info
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -518,8 +517,7 @@ export function ProductComparison({ products, onRemoveProduct, onAddToCart }: Co
 
 export function ProductComparisonContainer() {
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([])
-  const [availableProducts, setAvailableProducts] = useState<Product[]>(sampleProducts)
-  const { addToCart } = useCart()
+  const { addItem } = useCart()
 
   const addProductToComparison = (product: Product) => {
     if (selectedProducts.length >= 4) {
@@ -537,13 +535,13 @@ export function ProductComparisonContainer() {
   }
 
   const handleAddToCart = (product: Product) => {
-    addToCart({
-      id: product.id,
+    addItem({
+      productId: product.id,
       name: product.name,
       price: product.price,
       image: product.image,
       quantity: 1,
-      nutritionalInfo: product.nutritionalInfo
+      nutritionalInfo: product.nutritionalInfo,
     })
   }
 
@@ -556,7 +554,7 @@ export function ProductComparisonContainer() {
             Add Products to Compare ({selectedProducts.length}/4)
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {availableProducts
+            {sampleProducts
               .filter(product => !selectedProducts.find(p => p.id === product.id))
               .map((product) => (
                 <motion.div

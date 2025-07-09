@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { BlogPostCard } from './blog-post-card'
 import { BlogFilters } from './blog-filters'
 import { BlogSearch } from './blog-search'
@@ -40,16 +40,7 @@ export function BlogList({
   const [showFiltersPanel, setShowFiltersPanel] = useState(false)
   const [hasMore, setHasMore] = useState(true)
 
-  useEffect(() => {
-    fetchCategories()
-    fetchTags()
-  }, [fetchCategories, fetchTags])
-
-  useEffect(() => {
-    loadPosts()
-  }, [filters])
-
-  const loadPosts = async () => {
+  const loadPosts = useCallback(async () => {
     try {
       await fetchPosts(filters)
       
@@ -66,7 +57,16 @@ export function BlogList({
     } catch (error) {
       console.error('Failed to load posts:', error)
     }
-  }
+  }, [filters, fetchPosts, posts.length, analytics])
+
+  useEffect(() => {
+    fetchCategories()
+    fetchTags()
+  }, [fetchCategories, fetchTags])
+
+  useEffect(() => {
+    loadPosts()
+  }, [loadPosts])
 
   const handleSearch = (searchTerm: string) => {
     setFilters({ ...filters, search: searchTerm, page: 1 })

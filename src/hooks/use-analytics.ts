@@ -75,14 +75,14 @@ export function useAnalytics() {
   }, [analytics])
 
   // Track user engagement
-  const trackScrollDepth = useCallback((percentage: number, pagePath?: string) => {
+  const trackScrollDepth = useCallback((percentage: number) => {
     analytics.trackEngagement('scroll_depth', {
       percentage,
       value: percentage
     })
   }, [analytics])
 
-  const trackTimeOnPage = useCallback((duration: number, pagePath?: string) => {
+  const trackTimeOnPage = useCallback((duration: number) => {
     analytics.trackEngagement('time_on_page', {
       duration,
       value: duration

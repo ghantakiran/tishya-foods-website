@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { 
   Target, 
-  TrendingUp, 
-  Calendar, 
   Plus, 
   Minus, 
   Coffee, 
@@ -14,9 +12,7 @@ import {
   Apple,
   Droplets,
   Flame,
-  Activity,
-  Award,
-  BarChart3
+  Activity
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -106,17 +102,52 @@ const mealTypes = [
   { id: 'snack', label: 'Snack', icon: Apple, color: 'bg-green-500' }
 ]
 
+const calculateDayTotals = (dayEntries: NutritionEntry[]): DailyTotals => {
+  const totals = dayEntries.reduce(
+    (acc, entry) => ({
+      calories: acc.calories + entry.calories,
+      protein: acc.protein + entry.protein,
+      carbs: acc.carbs + entry.carbs,
+      fat: acc.fat + entry.fat,
+      fiber: acc.fiber + entry.fiber,
+      water: acc.water + (entry.water || 0)
+    }),
+    { calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0, water: 0 }
+  )
+
+  return { ...totals, entries: dayEntries }
+}
+
+const generateWeeklyData = () => {
+  const weekData = []
+  for (let i = 6; i >= 0; i--) {
+    const date = new Date()
+    date.setDate(date.getDate() - i)
+    const dateStr = date.toISOString().split('T')[0]
+    
+    const savedEntries = localStorage.getItem(`nutrition-entries-${dateStr}`)
+    const entries = savedEntries ? JSON.parse(savedEntries) : []
+    
+    const dayTotals = calculateDayTotals(entries)
+    weekData.push({
+      date: dateStr,
+      calories: dayTotals.calories,
+      protein: dayTotals.protein
+    })
+  }
+  return weekData
+}
+
 export function NutritionTracker() {
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0])
-  const [goals, setGoals] = useState<DailyGoals>(defaultGoals)
+  const [goals] = useState<DailyGoals>(defaultGoals)
   const [entries, setEntries] = useState<NutritionEntry[]>([])
   const [isAddingEntry, setIsAddingEntry] = useState(false)
   const [selectedMeal, setSelectedMeal] = useState<'breakfast' | 'lunch' | 'dinner' | 'snack'>('breakfast')
   const [waterIntake, setWaterIntake] = useState(0)
-  const [weeklyData, setWeeklyData] = useState<{ date: string; calories: number; protein: number }[]>([])
+  const [weeklyData] = useState<{ date: string; calories: number; protein: number }[]>([])
 
   useEffect(() => {
-    // Load saved data for the selected date
     loadDayData(selectedDate)
     generateWeeklyData()
   }, [selectedDate])
@@ -142,42 +173,6 @@ export function NutritionTracker() {
   const saveDayData = (newEntries: NutritionEntry[], newWater: number) => {
     localStorage.setItem(`nutrition-entries-${selectedDate}`, JSON.stringify(newEntries))
     localStorage.setItem(`water-intake-${selectedDate}`, newWater.toString())
-  }
-
-  const generateWeeklyData = () => {
-    const weekData = []
-    for (let i = 6; i >= 0; i--) {
-      const date = new Date()
-      date.setDate(date.getDate() - i)
-      const dateStr = date.toISOString().split('T')[0]
-      
-      const savedEntries = localStorage.getItem(`nutrition-entries-${dateStr}`)
-      const entries = savedEntries ? JSON.parse(savedEntries) : []
-      
-      const dayTotals = calculateDayTotals(entries)
-      weekData.push({
-        date: dateStr,
-        calories: dayTotals.calories,
-        protein: dayTotals.protein
-      })
-    }
-    setWeeklyData(weekData)
-  }
-
-  const calculateDayTotals = (dayEntries: NutritionEntry[]): DailyTotals => {
-    const totals = dayEntries.reduce(
-      (acc, entry) => ({
-        calories: acc.calories + entry.calories,
-        protein: acc.protein + entry.protein,
-        carbs: acc.carbs + entry.carbs,
-        fat: acc.fat + entry.fat,
-        fiber: acc.fiber + entry.fiber,
-        water: acc.water + (entry.water || 0)
-      }),
-      { calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0, water: waterIntake }
-    )
-
-    return { ...totals, entries: dayEntries }
   }
 
   const addEntry = (productId: string, servings: number) => {
@@ -218,25 +213,8 @@ export function NutritionTracker() {
 
   const dayTotals = calculateDayTotals(entries)
 
-  const getProgressColor = (current: number, target: number) => {
-    const percentage = (current / target) * 100
-    if (percentage >= 100) return 'bg-green-500'
-    if (percentage >= 80) return 'bg-yellow-500'
-    return 'bg-blue-500'
-  }
-
   const getMealEntries = (mealType: string) => {
     return entries.filter(entry => entry.meal === mealType)
-  }
-
-  const getMealIcon = (mealType: string) => {
-    const meal = mealTypes.find(m => m.id === mealType)
-    return meal ? meal.icon : Apple
-  }
-
-  const getMealColor = (mealType: string) => {
-    const meal = mealTypes.find(m => m.id === mealType)
-    return meal ? meal.color : 'bg-earth-9000'
   }
 
   return (
@@ -387,7 +365,7 @@ export function NutritionTracker() {
         </div>
         
         <div className="h-64 flex items-end justify-between space-x-2">
-          {weeklyData.map((day, index) => {
+          {weeklyData.map((day) => {
             const calorieHeight = (day.calories / Math.max(...weeklyData.map(d => d.calories), 1)) * 200
             const proteinHeight = (day.protein / Math.max(...weeklyData.map(d => d.protein), 1)) * 200
             
@@ -445,7 +423,7 @@ export function NutritionTracker() {
                   variant="ghost"
                   size="sm"
                   onClick={() => {
-                    setSelectedMeal(mealType.id as any)
+                    setSelectedMeal(mealType.id as 'breakfast' | 'lunch' | 'dinner' | 'snack')
                     setIsAddingEntry(true)
                   }}
                   className="h-8 w-8 p-0"

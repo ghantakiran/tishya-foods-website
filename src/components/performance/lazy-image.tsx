@@ -14,7 +14,6 @@ interface LazyImageProps {
   onLoad?: () => void
   onError?: () => void
   sizes?: string
-  blurDataURL?: string
 }
 
 export function LazyImage({
@@ -26,8 +25,7 @@ export function LazyImage({
   priority = false,
   onLoad,
   onError,
-  sizes,
-  blurDataURL
+  sizes
 }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isError, setIsError] = useState(false)

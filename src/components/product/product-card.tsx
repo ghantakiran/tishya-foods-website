@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { Heart, ShoppingCart, Eye, GitCompare } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Product } from '@/types'
+import type { Product } from '@/types/product'
 import { formatPrice } from '@/lib/utils'
 import { OptimizedImage } from '@/components/optimization/image-optimizer'
 import { useCart } from '@/contexts/cart-context'
@@ -29,14 +29,25 @@ export function ProductCard({
 }: ProductCardProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
-  const { addItem, isInCart, getItemQuantity } = useCart()
+  const { addItem } = useCart()
 
   const handleAddToCart = async () => {
     if (product.stock <= 0) return
     
     setIsLoading(true)
     try {
-      await addItem(product, 1)
+      await addItem({
+        productId: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.images[0],
+        quantity: 1,
+        nutritionalInfo: {
+          protein: product.nutritionalInfo.protein,
+          calories: product.nutritionalInfo.calories,
+          servingSize: product.nutritionalInfo.servingSize,
+        },
+      })
     } finally {
       setIsLoading(false)
     }
@@ -47,12 +58,9 @@ export function ProductCard({
   }
 
   const isOutOfStock = product.stock <= 0
-  const isLowStock = product.stock > 0 && product.stock <= 10
-  const itemQuantity = getItemQuantity(product.id)
-  const inCart = isInCart(product.id)
 
-  // Calculate discount percentage
-  const discountPercent = product.originalPrice 
+  // Calculate discount percentage only if product.originalPrice exists
+  const discountPercent = product.originalPrice !== undefined
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0
 
@@ -76,7 +84,7 @@ export function ProductCard({
         <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-fresh-100 opacity-0 group-hover:opacity-20 transition-opacity duration-300 z-10" />
         
         <OptimizedImage
-          src={product.image}
+          src={product.images[0]}
           alt={product.name}
           width={400}
           height={400}
@@ -167,7 +175,7 @@ export function ProductCard({
             <div className="text-2xl font-bold text-primary-700 mb-1">
               {formatPrice(product.price)}
             </div>
-            {product.originalPrice && (
+            {product.originalPrice !== undefined && (
               <div className="text-sm text-earth-500 line-through">
                 {formatPrice(product.originalPrice)}
               </div>
@@ -201,11 +209,6 @@ export function ProductCard({
               Vegan
             </Badge>
           )}
-          {product.isVegetarian && (
-            <Badge className="bg-gradient-to-r from-secondary-100 to-secondary-200 text-secondary-800 font-medium px-2 py-1 text-xs border border-secondary-300">
-              Vegetarian
-            </Badge>
-          )}
         </div>
 
         {/* Stock Status */}
@@ -229,30 +232,14 @@ export function ProductCard({
         </div>
 
         {/* Cart Status or Add to Cart Button */}
-        {inCart ? (
-          <div className="flex items-center justify-between">
-            <span className="text-primary-700 font-medium text-sm">
-              {itemQuantity} in cart
-            </span>
-            <Button
-              onClick={handleAddToCart}
-              disabled={isOutOfStock || isLoading}
-              className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-medium px-4 py-2 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <ShoppingCart className="mr-2 h-4 w-4" />
-              Add More
-            </Button>
-          </div>
-        ) : (
-          <Button
-            onClick={handleAddToCart}
-            disabled={isOutOfStock || isLoading}
-            className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-medium py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed group"
-          >
-            <ShoppingCart className="mr-2 h-4 w-4 group-hover:animate-pulse" />
-            {isLoading ? 'Adding...' : isOutOfStock ? 'Out of Stock' : 'Add to Cart'}
-          </Button>
-        )}
+        <Button
+          onClick={handleAddToCart}
+          disabled={isOutOfStock || isLoading}
+          className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-medium py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed group"
+        >
+          <ShoppingCart className="mr-2 h-4 w-4 group-hover:animate-pulse" />
+          {isLoading ? 'Adding...' : isOutOfStock ? 'Out of Stock' : 'Add to Cart'}
+        </Button>
       </div>
     </motion.div>
   )

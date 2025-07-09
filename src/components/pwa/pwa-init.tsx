@@ -8,7 +8,7 @@ interface PWAInitProps {
 
 export function PWAInit({ children }: PWAInitProps) {
   const [isReady, setIsReady] = useState(false)
-  const [installPrompt, setInstallPrompt] = useState<any>(null)
+  const [installPrompt, setInstallPrompt] = useState<unknown>(null)
 
   useEffect(() => {
     // Register service worker
@@ -63,10 +63,8 @@ export function PWAInit({ children }: PWAInitProps) {
 
   // Install PWA function
   const installPWA = async () => {
-    if (installPrompt) {
-      const result = await installPrompt.prompt()
-      console.log('Install prompt result:', result)
-      setInstallPrompt(null)
+    if (installPrompt && typeof (installPrompt as { prompt?: () => void }).prompt === 'function') {
+      (installPrompt as { prompt: () => void }).prompt()
     }
   }
 

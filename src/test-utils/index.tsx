@@ -45,26 +45,48 @@ export const mockProduct = {
   category: {
     id: 'protein',
     name: 'Protein',
-    description: 'Protein products'
+    slug: 'protein',
+    description: 'Protein products',
+    image: '/test-category.jpg',
   },
-  brand: 'Tishya',
-  stock: 10,
-  featured: true,
-  isVegetarian: true,
-  isVegan: false,
-  isGlutenFree: true,
-  isOrganic: true,
+  tags: ['protein', 'fitness', 'nutrition'],
+  ingredients: ['Pea protein', 'Natural flavors'],
   nutritionalInfo: {
+    servingSize: '30g',
+    servingsPerContainer: 30,
     calories: 120,
     protein: 25,
     carbs: 3,
     fat: 2,
     fiber: 1,
-    sugar: 2
+    sugar: 2,
+    sodium: 50,
+    vitaminC: 10,
+    iron: 2,
+    calcium: 20,
+    potassium: 100,
   },
-  ingredients: ['Pea protein', 'Natural flavors'],
-  benefits: ['Muscle building', 'Weight management'],
-  tags: ['protein', 'fitness', 'nutrition']
+  allergens: ['soy'],
+  certifications: ['ISO', 'FSSAI'],
+  isGlutenFree: true,
+  isVegan: false,
+  isOrganic: true,
+  isKeto: false,
+  isDairy: false,
+  stock: 10,
+  featured: true,
+  averageRating: 4.7,
+  reviewCount: 123,
+  variants: [
+    { id: 'v1', name: 'Size', value: '1kg', price: 1999, stock: 5 },
+    { id: 'v2', name: 'Size', value: '500g', price: 1099, stock: 5 },
+  ],
+  preparationTime: '1 min',
+  shelfLife: '12 months',
+  storageInstructions: 'Store in a cool, dry place',
+  servingSuggestions: ['Mix with water', 'Add to smoothie'],
+  createdAt: '2024-01-01T00:00:00Z',
+  updatedAt: '2024-01-10T00:00:00Z',
 }
 
 export const mockUser = {
@@ -218,5 +240,21 @@ export const customMatchers = {
           : `expected element to be in the document`,
       pass,
     }
+  }
+}
+
+// Utility to create a canonical CartItem from a Product
+export function createCartItemFromProduct(product, quantity = 1) {
+  return {
+    productId: product.id,
+    name: product.name,
+    price: product.price,
+    image: product.images[0],
+    quantity,
+    nutritionalInfo: {
+      protein: product.nutritionalInfo.protein,
+      calories: product.nutritionalInfo.calories,
+      servingSize: product.nutritionalInfo.servingSize,
+    },
   }
 }

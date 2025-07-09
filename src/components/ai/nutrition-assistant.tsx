@@ -6,6 +6,7 @@ import { MessageCircle, X, Send, Bot, User, ShoppingCart, Star, ArrowRight } fro
 import { Button } from '@/components/ui/button'
 import { useCart } from '@/contexts/cart-context'
 import { products } from '@/lib/products-data'
+import type { Product } from '@/types/product'
 
 interface Message {
   id: string
@@ -70,6 +71,31 @@ const quickSuggestions = [
   "What's on sale today?",
 ]
 
+// Move getRecommendedProducts function above its first usage (before the NutritionAssistant component)
+const getRecommendedProducts = (productIds: string[]): ProductRecommendation[] => {
+  return productIds.map(id => {
+    const product = products.find(p => p.id === id)
+    if (!product) return null
+    
+    return {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      description: product.description,
+      reason: getRecommendationReason(product),
+      image: product.images[0]
+    }
+  }).filter(Boolean) as ProductRecommendation[]
+}
+
+const getRecommendationReason = (product: Product): string => {
+  if (product.isOrganic && product.isVegan) return "Perfect for health-conscious customers"
+  if (product.featured) return "Bestseller - loved by customers"
+  if (product.isGlutenFree) return "Great for gluten-sensitive diets"
+  if (product.isVegan) return "100% plant-based nutrition"
+  return "Highly recommended for you"
+}
+
 export default function NutritionAssistant() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
@@ -94,31 +120,6 @@ export default function NutritionAssistant() {
   useEffect(() => {
     scrollToBottom()
   }, [messages])
-
-  // Helper function to get product recommendations
-  const getRecommendedProducts = (productIds: string[]): ProductRecommendation[] => {
-    return productIds.map(id => {
-      const product = products.find(p => p.id === id)
-      if (!product) return null
-      
-      return {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        description: product.description,
-        reason: getRecommendationReason(product),
-        image: product.image
-      }
-    }).filter(Boolean) as ProductRecommendation[]
-  }
-  
-  const getRecommendationReason = (product: any): string => {
-    if (product.isOrganic && product.isVegan) return "Perfect for health-conscious customers"
-    if (product.featured) return "Bestseller - loved by customers"
-    if (product.isGlutenFree) return "Great for gluten-sensitive diets"
-    if (product.isVegan) return "100% plant-based nutrition"
-    return "Highly recommended for you"
-  }
 
   const generateResponse = (userInput: string): { content: string; suggestions?: string[]; productRecommendations?: ProductRecommendation[] } => {
     const input = userInput.toLowerCase()
@@ -226,7 +227,20 @@ export default function NutritionAssistant() {
   const handleAddToCart = async (product: ProductRecommendation) => {
     const fullProduct = products.find(p => p.id === product.id)
     if (fullProduct) {
-      await addItem(fullProduct, 1)
+      // Use createCartItemFromProduct if available, otherwise construct CartItem
+      const cartItem = {
+        productId: fullProduct.id,
+        name: fullProduct.name,
+        price: fullProduct.price,
+        image: fullProduct.images[0],
+        quantity: 1,
+        nutritionalInfo: {
+          protein: fullProduct.nutritionalInfo.protein,
+          calories: fullProduct.nutritionalInfo.calories,
+          servingSize: fullProduct.nutritionalInfo.servingSize,
+        },
+      }
+      await addItem(cartItem)
       
       // Add confirmation message
       const confirmationMessage: Message = {

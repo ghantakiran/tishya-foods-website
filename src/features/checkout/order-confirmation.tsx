@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { CheckCircle, Package, MapPin, CreditCard, Calendar, Truck, Download, Share2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -145,9 +146,11 @@ export function OrderConfirmation({
         <div className="space-y-4">
           {cart.items.map((item) => (
             <div key={item.id} className="flex items-center space-x-4 pb-4 border-b last:border-b-0">
-              <img
+              <Image
                 src={item.image}
                 alt={item.name}
+                width={64}
+                height={64}
                 className="w-16 h-16 object-cover rounded-md"
               />
               <div className="flex-1">

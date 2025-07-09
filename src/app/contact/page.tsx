@@ -120,7 +120,7 @@ export default function ContactPage() {
         message: '',
       })
       setErrors({})
-    } catch (error) {
+    } catch {
       setSubmitMessage('There was an error sending your message. Please try again.')
     } finally {
       setIsSubmitting(false)
@@ -292,7 +292,7 @@ export default function ContactPage() {
                           aria-describedby="phone-help"
                         />
                         <p id="phone-help" className="mt-1 text-xs text-gray-400">
-                          We'll use this for urgent matters or follow-up calls
+                          We&apos;ll use this for urgent matters or follow-up calls
                         </p>
                       </div>
                       <div>

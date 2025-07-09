@@ -6,23 +6,20 @@ import {
   Plus, 
   Minus, 
   Calendar, 
-  Settings, 
   User, 
   Target,
-  Utensils,
-  Clock,
   Package2,
   ChevronRight,
   X,
   Check
 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Slider } from '@/components/ui/slider'
-import { Switch } from '@/components/ui/switch'
+// import { Button } from '@/components/ui/button'
+// import { Card } from '@/components/ui/card'
+// import { Badge } from '@/components/ui/badge'
+// import { Slider } from '@/components/ui/slider'
+// import { Switch } from '@/components/ui/switch'
 import { products } from '@/lib/products-data'
-import { Product } from '@/types'
+import { Product } from '@/types/product'
 import { formatPrice, cn } from '@/lib/utils'
 import { SubscriptionPlan } from './subscription-plans'
 
@@ -150,7 +147,6 @@ export function SubscriptionCustomizer({
 
   const getFilteredProducts = () => {
     return products.filter(product => {
-      if (selectedDietaryPrefs.includes('vegetarian') && !product.isVegetarian) return false
       if (selectedDietaryPrefs.includes('vegan') && !product.isVegan) return false
       if (selectedDietaryPrefs.includes('gluten-free') && !product.isGlutenFree) return false
       if (selectedDietaryPrefs.includes('organic') && !product.isOrganic) return false
@@ -287,7 +283,7 @@ export function SubscriptionCustomizer({
       </div>
 
       {/* Step Content */}
-      <Card className="p-6">
+      <div className="p-6">
         <AnimatePresence mode="wait">
           {/* Step 0: Dietary Preferences */}
           {currentStep === 0 && (
@@ -361,8 +357,8 @@ export function SubscriptionCustomizer({
                     <h4 className="font-semibold text-earth-800 mb-2">{goal.name}</h4>
                     <p className="text-sm text-earth-600 mb-3">{goal.description}</p>
                     <div className="flex space-x-4 text-xs">
-                      <Badge variant="outline">{goal.targetCalories} cal/day</Badge>
-                      <Badge variant="outline">{goal.targetProtein}g protein/day</Badge>
+                      <span>{goal.targetCalories} cal/day</span>
+                      <span>{goal.targetProtein}g protein/day</span>
                     </div>
                   </div>
                 ))}
@@ -396,29 +392,26 @@ export function SubscriptionCustomizer({
                       <div key={item.product.id} className="flex items-center justify-between">
                         <span className="text-sm text-earth-700">{item.product.name}</span>
                         <div className="flex items-center space-x-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
+                          <button
+                            type="button"
                             onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
                           >
                             <Minus className="h-3 w-3" />
-                          </Button>
+                          </button>
                           <span className="w-8 text-center text-sm">{item.quantity}</span>
-                          <Button
-                            variant="outline"
-                            size="sm"
+                          <button
+                            type="button"
                             onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
                             disabled={getTotalProducts() >= plan.maxProducts}
                           >
                             <Plus className="h-3 w-3" />
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
+                          </button>
+                          <button
+                            type="button"
                             onClick={() => removeProduct(item.product.id)}
                           >
                             <X className="h-3 w-3" />
-                          </Button>
+                          </button>
                         </div>
                       </div>
                     ))}
@@ -450,14 +443,13 @@ export function SubscriptionCustomizer({
                       <p className="text-sm text-earth-600 mb-3 line-clamp-2">{product.description}</p>
                       <div className="flex items-center justify-between">
                         <span className="font-bold text-earth-800">{formatPrice(product.price)}</span>
-                        <Button
-                          variant={isSelected ? "default" : "outline"}
-                          size="sm"
+                        <button
+                          type="button"
                           onClick={() => addProduct(product)}
                           disabled={!isSelected && getTotalProducts() >= plan.maxProducts}
                         >
                           {isSelected ? `Added (${selectedItem.quantity})` : 'Add'}
-                        </Button>
+                        </button>
                       </div>
                     </div>
                   )
@@ -563,9 +555,9 @@ export function SubscriptionCustomizer({
                     {selectedDietaryPrefs.map((prefId) => {
                       const pref = dietaryPreferences.find(p => p.id === prefId)
                       return (
-                        <Badge key={prefId} variant="secondary">
+                        <span key={prefId} className="text-sm text-earth-600">
                           {pref?.icon} {pref?.name}
-                        </Badge>
+                        </span>
                       )
                     })}
                   </div>
@@ -585,23 +577,23 @@ export function SubscriptionCustomizer({
 
         {/* Navigation Buttons */}
         <div className="flex justify-between mt-8">
-          <Button
-            variant="outline"
+          <button
+            type="button"
             onClick={currentStep === 0 ? onBack : prevStep}
           >
             {currentStep === 0 ? 'Back to Plans' : 'Previous'}
-          </Button>
+          </button>
           
-          <Button
+          <button
             onClick={currentStep === steps.length - 1 ? handleComplete : nextStep}
             disabled={!canProceed()}
             className="bg-earth-800 hover:bg-earth-900"
           >
             {currentStep === steps.length - 1 ? 'Complete Subscription' : 'Next'}
             {currentStep < steps.length - 1 && <ChevronRight className="ml-2 h-4 w-4" />}
-          </Button>
+          </button>
         </div>
-      </Card>
+      </div>
     </div>
   )
 }

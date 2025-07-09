@@ -2,12 +2,13 @@
 
 import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { Search, Filter, Grid, List, ShoppingCart, Star, Badge, Plus, Scale, Minus } from 'lucide-react'
+import { Search, Filter, Grid, List, ShoppingCart, Plus, Scale, Minus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { products, productCategories } from '@/lib/products-data'
 import { Product } from '@/types'
 import { useCart } from '@/contexts/cart-context'
 import Link from 'next/link'
+import { createCartItemFromProduct } from '@/test-utils'
 
 const sortOptions = [
   { value: 'name', label: 'Name A-Z' },
@@ -49,7 +50,7 @@ export default function ProductsPage() {
 
   // Filter and sort products
   const filteredProducts = useMemo(() => {
-    let result = products.filter((product) => {
+    const result = products.filter((product) => {
       const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            product.description.toLowerCase().includes(searchTerm.toLowerCase())
       const matchesCategory = selectedCategory === 'all' || product.category.id === selectedCategory
@@ -396,7 +397,7 @@ export default function ProductsPage() {
                   <div className="space-y-3">
                     <div className="flex items-center space-x-2">
                       <Button
-                        onClick={() => addItem(product, 1)}
+                        onClick={() => addItem(createCartItemFromProduct(product, 1))}
                         className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
                       >
                         <ShoppingCart className="mr-2 h-4 w-4" />

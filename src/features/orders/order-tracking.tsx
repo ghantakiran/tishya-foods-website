@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { 
   CheckCircle, 
@@ -46,7 +47,7 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
         } else {
           setError('Order not found')
         }
-      } catch (err) {
+      } catch {
         setError('Failed to load order details')
       } finally {
         setIsLoading(false)
@@ -230,9 +231,11 @@ export function OrderTracking({ orderId }: OrderTrackingProps) {
         <div className="space-y-4">
           {order.items.map((item) => (
             <div key={item.id} className="flex items-center space-x-4 p-4 border rounded-lg">
-              <img
+              <Image
                 src={item.image}
                 alt={item.name}
+                width={64}
+                height={64}
                 className="w-16 h-16 object-cover rounded-md"
               />
               <div className="flex-1">

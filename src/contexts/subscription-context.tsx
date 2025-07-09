@@ -217,15 +217,19 @@ function subscriptionReducer(state: SubscriptionState, action: SubscriptionActio
     }
 
     case 'UPDATE_PREFERENCES':
+      // Ensure preferences object includes all required fields
+      const completePreferences = {
+        dietaryRestrictions: action.payload.preferences.dietaryRestrictions || [],
+        nutritionGoal: action.payload.preferences.nutritionGoal || '',
+        specialInstructions: action.payload.preferences.specialInstructions || '',
+        allergies: action.payload.preferences.allergies || [],
+      }
       return subscriptionReducer(state, {
         type: 'UPDATE_SUBSCRIPTION',
         payload: { 
           id: action.payload.id, 
           updates: { 
-            preferences: { 
-              ...state.subscriptions.find(s => s.id === action.payload.id)?.preferences,
-              ...action.payload.preferences 
-            } 
+            preferences: completePreferences 
           } 
         }
       })
@@ -393,7 +397,14 @@ export function SubscriptionProvider({ children }: SubscriptionProviderProps) {
   }
 
   const updatePreferences = async (id: string, preferences: Partial<Subscription['preferences']>) => {
-    await updateSubscription(id, { preferences })
+    // Ensure preferences object includes all required fields
+    const completePreferences = {
+      dietaryRestrictions: preferences.dietaryRestrictions || [],
+      nutritionGoal: preferences.nutritionGoal || '',
+      specialInstructions: preferences.specialInstructions || '',
+      allergies: preferences.allergies || [],
+    }
+    await updateSubscription(id, { preferences: completePreferences })
   }
 
   const updateDeliveryAddress = async (id: string, address: Subscription['deliveryAddress']) => {

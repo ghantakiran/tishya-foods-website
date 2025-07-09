@@ -519,7 +519,6 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
                     'p-6 transition-all duration-200 cursor-pointer hover:shadow-lg',
                     canRedeemReward(reward) ? 'border-green-200' : 'border-earth-200 opacity-75'
                   )}
-                  onClick={() => setSelectedReward(reward)}
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center space-x-2">

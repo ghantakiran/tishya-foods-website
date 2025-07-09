@@ -198,7 +198,7 @@ function CartProviderInner({ children }: { children: React.ReactNode }) {
     analytics.trackProductAddToCart(
       item.productId,
       item.name,
-      item.category || 'Unknown',
+      '',
       item.price,
       item.quantity
     )
@@ -216,7 +216,7 @@ function CartProviderInner({ children }: { children: React.ReactNode }) {
       analytics.trackProductRemoveFromCart(
         item.productId,
         item.name,
-        item.category || 'Unknown',
+        '',
         item.price,
         item.quantity
       )

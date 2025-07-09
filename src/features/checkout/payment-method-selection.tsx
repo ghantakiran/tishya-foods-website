@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { CreditCard, Smartphone, Building2, Wallet, Truck, Shield, Clock } from 'lucide-react'
 import { PaymentMethod } from '@/types/payment'
 import { formatPrice } from '@/lib/utils'
@@ -186,10 +187,10 @@ export function PaymentMethodSelection({
                         Accepted cards: Visa, Mastercard, American Express, RuPay
                       </p>
                       <div className="flex space-x-2">
-                        <img src="/icons/payment/visa.svg" alt="Visa" className="h-6" />
-                        <img src="/icons/payment/mastercard.svg" alt="Mastercard" className="h-6" />
-                        <img src="/icons/payment/amex.svg" alt="American Express" className="h-6" />
-                        <img src="/icons/payment/rupay.svg" alt="RuPay" className="h-6" />
+                        <Image src="/icons/payment/visa.svg" alt="Visa" width={24} height={24} className="h-6" />
+                        <Image src="/icons/payment/mastercard.svg" alt="Mastercard" width={24} height={24} className="h-6" />
+                        <Image src="/icons/payment/amex.svg" alt="American Express" width={24} height={24} className="h-6" />
+                        <Image src="/icons/payment/rupay.svg" alt="RuPay" width={24} height={24} className="h-6" />
                       </div>
                     </div>
                   )}
@@ -201,10 +202,10 @@ export function PaymentMethodSelection({
                         Pay using any UPI app on your phone
                       </p>
                       <div className="flex space-x-2">
-                        <img src="/icons/payment/gpay.svg" alt="Google Pay" className="h-6" />
-                        <img src="/icons/payment/phonepe.svg" alt="PhonePe" className="h-6" />
-                        <img src="/icons/payment/paytm.svg" alt="Paytm" className="h-6" />
-                        <img src="/icons/payment/bhim.svg" alt="BHIM" className="h-6" />
+                        <Image src="/icons/payment/gpay.svg" alt="Google Pay" width={24} height={24} className="h-6" />
+                        <Image src="/icons/payment/phonepe.svg" alt="PhonePe" width={24} height={24} className="h-6" />
+                        <Image src="/icons/payment/paytm.svg" alt="Paytm" width={24} height={24} className="h-6" />
+                        <Image src="/icons/payment/bhim.svg" alt="BHIM" width={24} height={24} className="h-6" />
                       </div>
                     </div>
                   )}
@@ -225,9 +226,9 @@ export function PaymentMethodSelection({
                         Pay using your digital wallet balance
                       </p>
                       <div className="flex space-x-2">
-                        <img src="/icons/payment/paytm.svg" alt="Paytm" className="h-6" />
-                        <img src="/icons/payment/phonepe.svg" alt="PhonePe" className="h-6" />
-                        <img src="/icons/payment/amazon-pay.svg" alt="Amazon Pay" className="h-6" />
+                        <Image src="/icons/payment/paytm.svg" alt="Paytm" width={24} height={24} className="h-6" />
+                        <Image src="/icons/payment/phonepe.svg" alt="PhonePe" width={24} height={24} className="h-6" />
+                        <Image src="/icons/payment/amazon-pay.svg" alt="Amazon Pay" width={24} height={24} className="h-6" />
                       </div>
                     </div>
                   )}

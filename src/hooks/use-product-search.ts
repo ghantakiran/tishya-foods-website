@@ -125,7 +125,6 @@ const mockProducts: Product[] = [
       sugar: 3,
       sodium: 200,
       iron: 3,
-      folate: 40
     },
     allergens: [],
     certifications: ['gluten-free'],
@@ -148,7 +147,7 @@ const mockProducts: Product[] = [
 ]
 
 export function useProductSearch() {
-  const [products, setProducts] = useState<Product[]>(mockProducts)
+  const [products] = useState<Product[]>(mockProducts)
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(mockProducts)
   const [isLoading, setIsLoading] = useState(false)
   const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([])

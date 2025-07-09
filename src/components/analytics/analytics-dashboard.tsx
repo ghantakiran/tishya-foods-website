@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
@@ -57,21 +57,12 @@ interface AnalyticsData {
 
 export function AnalyticsDashboard() {
   const [data, setData] = useState<AnalyticsData | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [loading] = useState(true)
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
   const [timeRange, setTimeRange] = useState('7d')
 
-  useEffect(() => {
-    fetchAnalyticsData()
-    
-    // Auto-refresh every 5 minutes
-    const interval = setInterval(fetchAnalyticsData, 5 * 60 * 1000)
-    return () => clearInterval(interval)
-  }, [timeRange])
-
-  const fetchAnalyticsData = async () => {
+  const fetchAnalyticsData = useCallback(async () => {
     try {
-      setLoading(true)
       const response = await fetch(`/api/analytics/dashboard?timeRange=${timeRange}`)
       if (response.ok) {
         const analyticsData = await response.json()
@@ -82,10 +73,14 @@ export function AnalyticsDashboard() {
       }
     } catch (error) {
       console.error('Error fetching analytics:', error)
-    } finally {
-      setLoading(false)
     }
-  }
+  }, [timeRange])
+
+  useEffect(() => {
+    fetchAnalyticsData()
+    const interval = setInterval(fetchAnalyticsData, 5 * 60 * 1000)
+    return () => clearInterval(interval)
+  }, [fetchAnalyticsData])
 
   const formatNumber = (num: number): string => {
     if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M'

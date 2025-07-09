@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { 
-  Clock, 
   Package, 
   Truck, 
   Gift, 
@@ -251,9 +251,10 @@ export function SubscriptionPlans({ onSelectPlan }: SubscriptionPlansProps) {
                 {/* Plan Image */}
                 {plan.image && (
                   <div className="relative h-48 overflow-hidden">
-                    <img 
+                    <Image 
                       src={plan.image} 
                       alt={plan.name}
+                      fill
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />

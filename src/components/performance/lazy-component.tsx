@@ -4,9 +4,9 @@ import React, { Suspense, lazy } from 'react'
 import { PageLoadingSkeleton } from '../loading/loading-skeleton'
 
 interface LazyComponentProps {
-  Component: React.LazyExoticComponent<React.ComponentType<any>>
+  Component: React.LazyExoticComponent<React.ComponentType<unknown>>
   fallback?: React.ReactNode
-  [key: string]: any
+  [key: string]: unknown
 }
 
 export default function LazyComponent({ 
@@ -16,7 +16,7 @@ export default function LazyComponent({
 }: LazyComponentProps) {
   return (
     <Suspense fallback={fallback}>
-      <Component {...props} />
+      <Component {...(props as Record<string, unknown>)} />
     </Suspense>
   )
 }

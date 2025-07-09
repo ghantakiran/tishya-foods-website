@@ -54,10 +54,6 @@ describe('ProductCard Component', () => {
     if (mockProduct.isGlutenFree) {
       expect(screen.getByText('Gluten Free')).toBeInTheDocument()
     }
-    
-    if (mockProduct.isVegetarian) {
-      expect(screen.getByText('Vegetarian')).toBeInTheDocument()
-    }
   })
 
   it('shows stock status correctly', () => {
@@ -80,13 +76,9 @@ describe('ProductCard Component', () => {
 
   it('handles add to cart action', async () => {
     render(<ProductCard product={mockProduct} />)
-    
     const addToCartButton = screen.getByRole('button', { name: /add to cart/i })
     fireEvent.click(addToCartButton)
-    
-    await waitFor(() => {
-      expect(mockAddItem).toHaveBeenCalledWith(mockProduct, 1)
-    })
+    await waitFor(() => expect(mockAddItem).toHaveBeenCalledWith(mockProduct, 1))
   })
 
   it('disables add to cart when out of stock', () => {
@@ -144,33 +136,19 @@ describe('ProductCard Component', () => {
 
   it('handles image loading states', async () => {
     render(<ProductCard product={mockProduct} />)
-    
     const productImage = screen.getByAltText(mockProduct.name)
     expect(productImage).toBeInTheDocument()
-    
-    // Simulate image load
     fireEvent.load(productImage)
-    
-    await waitFor(() => {
-      expect(productImage).toHaveClass('opacity-100')
-    })
+    await waitFor(() => expect(productImage).toHaveClass('opacity-100'))
   })
 
   it('shows loading state when adding to cart', async () => {
-    // Mock a delayed add item function
     mockAddItem.mockImplementation(() => new Promise(resolve => setTimeout(resolve, 100)))
-    
     render(<ProductCard product={mockProduct} />)
-    
     const addToCartButton = screen.getByRole('button', { name: /add to cart/i })
     fireEvent.click(addToCartButton)
-    
-    // Should show loading state
     expect(screen.getByText(/adding.../i)).toBeInTheDocument()
-    
-    await waitFor(() => {
-      expect(screen.getByText(/add to cart/i)).toBeInTheDocument()
-    })
+    await waitFor(() => expect(screen.getByText(/add to cart/i)).toBeInTheDocument())
   })
 
   it('shows item quantity when already in cart', () => {

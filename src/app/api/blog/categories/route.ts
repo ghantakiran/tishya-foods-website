@@ -53,7 +53,7 @@ export async function GET(request: NextRequest) {
     let categories = [...mockCategories]
 
     if (!includePostCount) {
-      categories = categories.map(({ postCount: _, ...category }) => category) as BlogCategory[]
+      categories = categories.map(({ postCount, ...category }) => category) as BlogCategory[]
     }
 
     // Sort by post count (descending) or name
