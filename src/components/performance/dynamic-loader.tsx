@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, lazy, Suspense, ComponentType } from 'react'
+import { useState, useEffect, Suspense, ComponentType } from 'react'
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer'
 
 interface DynamicLoaderProps {

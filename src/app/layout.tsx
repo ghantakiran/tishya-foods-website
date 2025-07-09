@@ -32,17 +32,22 @@ import { KeyboardNavigationEnhancer } from "@/components/accessibility/keyboard-
 import { TouchOptimizer } from "@/components/mobile/touch-optimizer";
 import { PerformanceOptimizer } from "@/components/performance/performance-optimizer";
 import { BundleAnalyzer } from "@/components/performance/bundle-analyzer";
+import { PerformanceMonitor } from "@/components/performance/performance-monitor";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
+  fallback: ["system-ui", "Arial", "sans-serif"],
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
+  fallback: ["system-ui", "Arial", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -170,6 +175,7 @@ export default function RootLayout({
                           </PerformanceInit>
                           <AccessibilityChecker />
                           <BundleAnalyzer />
+                          <PerformanceMonitor />
                             </AnalyticsProvider>
                           </LoyaltyProvider>
                         </SubscriptionProvider>
