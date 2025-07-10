@@ -6,23 +6,26 @@ import { PaymentProvider } from '@/contexts/payment-context'
 import { LoadingProvider } from '@/contexts/loading-context'
 import { SubscriptionProvider } from '@/contexts/subscription-context'
 import { LoyaltyProvider } from '@/contexts/loyalty-context'
+import { AnalyticsProvider } from '@/components/analytics/analytics-provider'
 
 // Create a custom render function that includes providers
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   return (
-    <LoadingProvider>
-      <AuthProvider>
-        <CartProvider>
-          <PaymentProvider>
-            <SubscriptionProvider>
-              <LoyaltyProvider>
-                {children}
-              </LoyaltyProvider>
-            </SubscriptionProvider>
-          </PaymentProvider>
-        </CartProvider>
-      </AuthProvider>
-    </LoadingProvider>
+    <AnalyticsProvider>
+      <LoadingProvider>
+        <AuthProvider>
+          <CartProvider>
+            <PaymentProvider>
+              <SubscriptionProvider>
+                <LoyaltyProvider>
+                  {children}
+                </LoyaltyProvider>
+              </SubscriptionProvider>
+            </PaymentProvider>
+          </CartProvider>
+        </AuthProvider>
+      </LoadingProvider>
+    </AnalyticsProvider>
   )
 }
 
@@ -151,20 +154,7 @@ export const mockCartItem = {
   },
 };
 
-const createCartItemFromProduct = (product, quantity = 1) => ({
-  id: 'cart_' + product.id,
-  productId: product.id,
-  name: product.name,
-  price: product.price,
-  image: product.images[0],
-  quantity,
-  variant: product.variants && product.variants[0] ? { size: product.variants[0].value } : undefined,
-  nutritionalInfo: {
-    protein: product.nutritionalInfo.protein,
-    calories: product.nutritionalInfo.calories,
-    servingSize: product.nutritionalInfo.servingSize,
-  },
-});
+// Removed duplicate function - using the exported version above
 
 export const mockOrder = {
   id: 'order_001',
