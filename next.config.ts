@@ -6,11 +6,60 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig: NextConfig = {
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+    optimizePackageImports: [
+      'lucide-react', 
+      'framer-motion', 
+      '@radix-ui/react-dialog', 
+      '@radix-ui/react-dropdown-menu',
+      '@radix-ui/react-accordion',
+      '@radix-ui/react-alert-dialog',
+      '@radix-ui/react-avatar',
+      '@radix-ui/react-checkbox',
+      '@radix-ui/react-popover',
+      '@radix-ui/react-progress',
+      '@radix-ui/react-radio-group',
+      '@radix-ui/react-select',
+      '@radix-ui/react-separator',
+      '@radix-ui/react-slider',
+      '@radix-ui/react-switch',
+      '@radix-ui/react-tabs',
+      '@radix-ui/react-toast',
+      '@radix-ui/react-tooltip',
+      '@radix-ui/react-label',
+      'recharts',
+      'react-hook-form',
+      'react-hot-toast',
+      'react-intersection-observer',
+      'use-debounce',
+      'cmdk',
+      'date-fns',
+      'fuse.js',
+      'zustand'
+    ],
     webpackBuildWorker: true,
     optimizeCss: true,
     optimizeServerReact: true,
-    gzipSize: true
+    gzipSize: true,
+    // Development performance optimizations
+    ...(process.env.NODE_ENV === 'development' && {
+      turbopack: true,
+      webVitalsAttribution: ['CLS', 'LCP'],
+      optimisticClientCache: true,
+      forceSwcTransforms: true,
+      swcTraceProfiling: true,
+      instrumentationHook: true,
+      typedRoutes: true,
+      esmExternals: 'loose',
+      // Enable faster refresh
+      adjustFontFallbacks: false,
+      // Reduce build time
+      cacheLife: {
+        default: {
+          stale: 300,
+          revalidate: 900
+        }
+      }
+    })
   },
   
   // Server external packages
@@ -32,18 +81,61 @@ const nextConfig: NextConfig = {
   
   // Webpack optimizations
   webpack: (config, { dev, isServer }) => {
-    // Production optimizations
-    if (!dev) {
+    // Development optimizations
+    if (dev) {
+      // Faster development builds
+      config.cache = {
+        type: 'filesystem',
+        buildDependencies: {
+          config: [__filename],
+        },
+      }
+      
+      // Faster transpilation in development
+      config.optimization = {
+        ...config.optimization,
+        usedExports: false,
+        sideEffects: false,
+        removeAvailableModules: false,
+        removeEmptyChunks: false,
+        splitChunks: false,
+      }
+      
+      // Disable source maps in development for faster builds
+      config.devtool = false
+      
+      // Faster TypeScript checking
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'react/jsx-runtime': require.resolve('react/jsx-runtime'),
+      }
+      
+      // Enable webpack build profiling
+      if (process.env.WEBPACK_PROFILE) {
+        const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
+        const smp = new SpeedMeasurePlugin()
+        return smp.wrap(config)
+      }
+    } else {
+      // Production optimizations
       config.optimization = {
         ...config.optimization,
         splitChunks: {
           chunks: 'all',
+          maxInitialRequests: 30,
+          maxAsyncRequests: 30,
           cacheGroups: {
+            default: {
+              minChunks: 2,
+              priority: -20,
+              reuseExistingChunk: true,
+            },
             vendor: {
               test: /[\\/]node_modules[\\/]/,
               name: 'vendors',
               chunks: 'all',
               priority: 10,
+              enforce: true,
             },
             analytics: {
               test: /[\\/]node_modules[\\/](gtag|ga-gtag|analytics|tracking)[\\/]/,
@@ -57,9 +149,15 @@ const nextConfig: NextConfig = {
               chunks: 'all',
               priority: 15,
             },
-            common: {
-              test: /[\\/]node_modules[\\/](react|react-dom|next)[\\/]/,
-              name: 'common',
+            react: {
+              test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+              name: 'react',
+              chunks: 'all',
+              priority: 30,
+            },
+            next: {
+              test: /[\\/]node_modules[\\/]next[\\/]/,
+              name: 'next',
               chunks: 'all',
               priority: 25,
             },
@@ -68,9 +166,18 @@ const nextConfig: NextConfig = {
               name: 'utilities',
               chunks: 'all',
               priority: 5,
+            },
+            styles: {
+              test: /\.(css|scss|sass)$/,
+              name: 'styles',
+              chunks: 'all',
+              priority: 20,
+              enforce: true,
             }
           }
-        }
+        },
+        moduleIds: 'deterministic',
+        chunkIds: 'deterministic',
       }
     }
     
@@ -79,6 +186,15 @@ const nextConfig: NextConfig = {
       test: /\.svg$/,
       use: ['@svgr/webpack']
     })
+    
+    // Add performance budgets for production
+    if (!dev) {
+      config.performance = {
+        maxAssetSize: 512000, // 500KB
+        maxEntrypointSize: 512000, // 500KB
+        hints: 'warning'
+      }
+    }
     
     return config
   },

@@ -1,0 +1,24 @@
+# Snyk (https://snyk.io) policy file
+version: v1.0.0
+
+# Patches applied by Snyk
+patches: {}
+
+# Security policies
+ignore:
+  # Prototype pollution in lodash (if not exploitable in our context)
+  # SNYK-JS-LODASH-567746:
+  #   - '*':
+  #       reason: Not exploitable in our Next.js SSR context
+  #       expires: '2024-12-31T23:59:59.999Z'
+
+# Language settings
+language-settings:
+  javascript:
+    # Ignore dev dependencies in production builds
+    ignore-dev-deps: true
+
+# Default severities to monitor
+# high: fail the build
+# medium: warn but don't fail
+# low: ignore in CI but track

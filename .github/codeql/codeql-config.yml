@@ -1,0 +1,50 @@
+name: "CodeQL Config"
+
+# Disable default queries and packs
+disable-default-queries: false
+
+# Additional queries to run
+queries:
+  - name: security-extended
+    uses: security-extended
+  - name: security-and-quality
+    uses: security-and-quality
+
+# Query filters
+query-filters:
+  - exclude:
+      id: js/unused-local-variable
+  - exclude:
+      id: js/debugger-statement
+
+# Path filters
+paths-ignore:
+  - "**/*.test.js"
+  - "**/*.test.ts"
+  - "**/*.test.tsx"
+  - "**/test/**"
+  - "**/tests/**"
+  - "**/__tests__/**"
+  - "**/node_modules/**"
+  - "**/.next/**"
+  - "**/coverage/**"
+  - "**/build/**"
+  - "**/dist/**"
+  - "**/public/**"
+  - "**/*.config.js"
+  - "**/*.config.ts"
+
+paths:
+  - "src/**"
+  - "app/**"
+  - "pages/**"
+  - "components/**"
+  - "lib/**"
+  - "utils/**"
+  - "hooks/**"
+  - "contexts/**"
+
+# Pack filters for advanced security analysis
+packs:
+  - security-extended
+  - security-and-quality

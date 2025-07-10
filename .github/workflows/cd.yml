@@ -1,0 +1,344 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches: [main]
+  workflow_run:
+    workflows: ["Continuous Integration"]
+    types: [completed]
+    branches: [main]
+
+env:
+  NODE_VERSION: '20'
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # Deploy to staging first (for validation)
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'push'
+    environment:
+      name: staging
+      url: ${{ steps.deploy-staging.outputs.url }}
+    outputs:
+      staging-url: ${{ steps.deploy-staging.outputs.url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+          SKIP_ENV_VALIDATION: true
+
+      - name: Deploy to Vercel (Staging)
+        id: deploy-staging
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+
+      - name: Run staging smoke tests
+        run: npm run test:smoke
+        env:
+          BASE_URL: ${{ steps.deploy-staging.outputs.preview-url }}
+
+  # Build and push Docker image
+  build-docker:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    needs: [deploy-staging]
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image: ${{ steps.image.outputs.image }}
+      digest: ${{ steps.build.outputs.digest }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build and push Docker image
+        id: build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Output image
+        id: image
+        run: |
+          echo "image=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest" >> $GITHUB_OUTPUT
+
+  # Production deployment with approval gate
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [deploy-staging, build-docker]
+    environment:
+      name: production
+      url: https://tishyafoods.com
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application for production
+        run: npm run build
+        env:
+          NODE_ENV: production
+          NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.PRODUCTION_GA_MEASUREMENT_ID }}
+          NEXT_PUBLIC_APP_URL: https://tishyafoods.com
+
+      - name: Deploy to Vercel (Production)
+        id: deploy-production
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          working-directory: ./
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+
+      - name: Update production database
+        run: |
+          npx prisma migrate deploy
+        env:
+          DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
+
+      - name: Run production smoke tests
+        run: npm run test:smoke
+        env:
+          BASE_URL: https://tishyafoods.com
+
+      - name: Notify Slack on success
+        if: success()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: success
+          text: |
+            🚀 Production deployment successful!
+            
+            📊 Deployment Details:
+            • Version: ${{ github.sha }}
+            • Branch: ${{ github.ref_name }}
+            • Environment: Production
+            • URL: https://tishyafoods.com
+            
+            🔗 View deployment: ${{ steps.deploy-production.outputs.preview-url }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Notify Slack on failure
+        if: failure()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: failure
+          text: |
+            ❌ Production deployment failed!
+            
+            📊 Deployment Details:
+            • Version: ${{ github.sha }}
+            • Branch: ${{ github.ref_name }}
+            • Environment: Production
+            
+            🔗 View logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  # Post-deployment monitoring and validation
+  post-deployment:
+    name: Post-deployment Validation
+    runs-on: ubuntu-latest
+    needs: [deploy-production]
+    steps:
+      - name: Wait for deployment to stabilize
+        run: sleep 30
+
+      - name: Health check
+        run: |
+          for i in {1..10}; do
+            if curl -f --max-time 30 https://tishyafoods.com/api/health; then
+              echo "Health check passed"
+              break
+            fi
+            echo "Health check attempt $i failed, retrying in 10s..."
+            sleep 10
+          done
+
+      - name: Performance validation
+        run: |
+          npm install -g lighthouse
+          lighthouse https://tishyafoods.com \
+            --output json \
+            --output-path lighthouse-prod.json \
+            --chrome-flags="--headless" \
+            --preset=desktop
+          
+          # Extract performance score
+          PERF_SCORE=$(node -e "
+            const fs = require('fs');
+            const report = JSON.parse(fs.readFileSync('lighthouse-prod.json'));
+            console.log(Math.round(report.lhr.categories.performance.score * 100));
+          ")
+          
+          echo "Performance Score: $PERF_SCORE"
+          
+          # Fail if performance is below threshold
+          if [ $PERF_SCORE -lt 80 ]; then
+            echo "Performance score ($PERF_SCORE) is below threshold (80)"
+            exit 1
+          fi
+
+      - name: Security headers check
+        run: |
+          curl -I https://tishyafoods.com | grep -E "(X-Frame-Options|X-Content-Type-Options|Strict-Transport-Security)" || {
+            echo "Missing security headers"
+            exit 1
+          }
+
+      - name: SSL certificate check
+        run: |
+          echo | openssl s_client -servername tishyafoods.com -connect tishyafoods.com:443 2>/dev/null | openssl x509 -noout -dates
+
+      - name: Monitor uptime
+        run: |
+          # Setup uptime monitoring (example with UptimeRobot)
+          if [ -n "${{ secrets.UPTIMEROBOT_API_KEY }}" ]; then
+            curl -X POST "https://api.uptimerobot.com/v2/newMonitor" \
+              -H "Content-Type: application/x-www-form-urlencoded" \
+              -d "api_key=${{ secrets.UPTIMEROBOT_API_KEY }}" \
+              -d "format=json" \
+              -d "type=1" \
+              -d "url=https://tishyafoods.com" \
+              -d "friendly_name=Tishya Foods Production" \
+              -d "interval=300" || echo "Uptime monitor setup skipped"
+          fi
+
+      - name: Performance monitoring alert
+        if: failure()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: failure
+          text: |
+            ⚠️ Post-deployment validation failed!
+            
+            The production deployment was successful, but validation checks failed.
+            Please investigate immediately.
+            
+            🔗 View logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+  # Create GitHub release
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [post-deployment]
+    if: success()
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          # Get the latest tag
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          
+          if [ -z "$LATEST_TAG" ]; then
+            # First release
+            CHANGELOG=$(git log --oneline --format="* %s" HEAD)
+          else
+            # Generate changelog since last tag
+            CHANGELOG=$(git log --oneline --format="* %s" ${LATEST_TAG}..HEAD)
+          fi
+          
+          # Save changelog to file
+          echo "$CHANGELOG" > CHANGELOG.md
+          
+          # Set output
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: Release v${{ github.run_number }}
+          body: |
+            ## What's Changed
+            
+            ${{ steps.changelog.outputs.changelog }}
+            
+            ## Deployment Information
+            
+            - **Environment**: Production
+            - **URL**: https://tishyafoods.com
+            - **Commit**: ${{ github.sha }}
+            - **Date**: ${{ github.event.head_commit.timestamp }}
+            
+            ## Docker Image
+            
+            ```bash
+            docker pull ghcr.io/${{ github.repository }}:latest
+            ```
+          draft: false
+          prerelease: false

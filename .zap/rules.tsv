@@ -1,0 +1,45 @@
+# OWASP ZAP Rules Configuration
+# Format: RULE_ID	THRESHOLD	[IGNORE|WARN|FAIL]
+
+# Ignore common false positives for Next.js applications
+10021	IGNORE	# X-Content-Type-Options header missing (handled by Next.js)
+10020	IGNORE	# X-Frame-Options header missing (handled by Next.js)
+10016	IGNORE	# Web Browser XSS Protection Not Enabled (handled by CSP)
+
+# Content Security Policy
+10038	WARN	# Content Security Policy (CSP) Header Not Set
+10055	WARN	# CSP Scanner
+
+# Authentication and Session Management
+10040	FAIL	# Secure Pages Include Mixed Content
+10041	FAIL	# HTTP to HTTPS Insecure Transition in Form Post
+10042	FAIL	# HTTPS to HTTP Insecure Transition in Form Post
+10043	FAIL	# User Controllable JavaScript Event (XSS)
+
+# Input Validation
+40012	FAIL	# Cross Site Scripting (Reflected)
+40013	FAIL	# Cross Site Scripting (Persistent)
+40014	FAIL	# Cross Site Scripting (Persistent) - Prime
+40015	FAIL	# Cross Site Scripting (Persistent) - Spider
+40016	FAIL	# Cross Site Scripting (Persistent) - OTG-INPVAL-002
+40017	FAIL	# Cross Site Scripting (DOM Based)
+40018	FAIL	# SQL Injection
+40019	FAIL	# SQL Injection - MySQL
+40020	FAIL	# SQL Injection - Hypersonic SQL
+40021	FAIL	# SQL Injection - Oracle
+40022	FAIL	# SQL Injection - PostgreSQL
+
+# Information Disclosure
+10095	WARN	# Backup File Disclosure
+10096	WARN	# Timestamp Disclosure
+10097	WARN	# Hash Disclosure
+10098	WARN	# Cross-Domain Misconfiguration
+
+# Server Configuration
+10017	WARN	# Cross-Domain JavaScript Source File Inclusion
+10015	WARN	# Incomplete or No Cache-control and Pragma HTTP Header Set
+10019	WARN	# Content-Type Header Missing
+
+# Specific to development environment
+10109	IGNORE	# Modern Web Application (ignore in development)
+10049	IGNORE	# Non-Storable Content (ignore for API responses)
