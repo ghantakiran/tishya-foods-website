@@ -21,7 +21,7 @@ export const getStripePublishableKey = () => {
 }
 
 export const formatAmountForStripe = (amount: number, currency: string): number => {
-  let numberFormat = new Intl.NumberFormat(['en-US'], {
+  const numberFormat = new Intl.NumberFormat(['en-US'], {
     style: 'currency',
     currency: currency,
     currencyDisplay: 'symbol',
