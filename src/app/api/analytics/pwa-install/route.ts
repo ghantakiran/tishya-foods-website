@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
       timestamp: timestamp || Date.now(),
       userAgent,
       platform,
-      ip: request.ip || 'unknown',
+      ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown',
       headers: {
         'user-agent': request.headers.get('user-agent'),
         'referer': request.headers.get('referer')

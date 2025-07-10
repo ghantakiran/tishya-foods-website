@@ -452,8 +452,6 @@ export const useContrastTesting = () => {
 }
 
 export {
-  ColorContrastChecker,
-  AccessibleColorPalette,
   HighContrastToggle,
   ColorBlindnessSimulator,
   ColorBlindnessTestControls,

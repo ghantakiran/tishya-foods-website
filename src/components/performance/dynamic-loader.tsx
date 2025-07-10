@@ -81,8 +81,8 @@ export function DynamicLoader({
     if ((priority === 'high' || preload) && COMPONENT_REGISTRY[componentName]) {
       const loadComponent = async () => {
         try {
-          const module = await COMPONENT_REGISTRY[componentName]()
-          setDynamicComponent(() => module.default)
+          const componentModule = await COMPONENT_REGISTRY[componentName]()
+          setDynamicComponent(() => componentModule.default)
         } catch (err) {
           console.warn(`Failed to preload component ${componentName}:`, err)
         }
@@ -103,8 +103,8 @@ export function DynamicLoader({
             throw new Error(`Component "${componentName}" not found in registry`)
           }
           
-          const module = await COMPONENT_REGISTRY[componentName]()
-          setDynamicComponent(() => module.default)
+          const componentModule = await COMPONENT_REGISTRY[componentName]()
+          setDynamicComponent(() => componentModule.default)
           setError(null)
         } catch (err) {
           setError(err as Error)
@@ -187,8 +187,8 @@ export function useDynamicImport<T = ComponentType<any>>(
     setError(null)
 
     try {
-      const module = await COMPONENT_REGISTRY[componentName]()
-      setComponent(module.default as T)
+      const componentModule = await COMPONENT_REGISTRY[componentName]()
+      setComponent(componentModule.default as T)
     } catch (err) {
       setError(err as Error)
     } finally {

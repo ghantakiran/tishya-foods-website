@@ -22,6 +22,7 @@ import { products } from '@/lib/products-data'
 import { Product } from '@/types/product'
 import { formatPrice, cn } from '@/lib/utils'
 import { SubscriptionPlan } from './subscription-plans'
+import type { SubscriptionCustomization } from '@/types/subscription'
 
 interface DietaryPreference {
   id: string
@@ -107,16 +108,6 @@ const nutritionGoals: NutritionGoal[] = [
     targetProtein: 180
   }
 ]
-
-interface SubscriptionCustomization {
-  plan: SubscriptionPlan
-  selectedProducts: Array<{ product: Product; quantity: number }>
-  dietaryPreferences: string[]
-  nutritionGoal: string
-  deliveryDate: Date
-  specialInstructions: string
-  skipDates: Date[]
-}
 
 interface SubscriptionCustomizerProps {
   plan: SubscriptionPlan
@@ -207,13 +198,35 @@ export function SubscriptionCustomizer({
 
   const handleComplete = () => {
     const customization: SubscriptionCustomization = {
-      plan,
-      selectedProducts,
-      dietaryPreferences: selectedDietaryPrefs,
-      nutritionGoal: selectedNutritionGoal,
-      deliveryDate,
-      specialInstructions,
-      skipDates
+      selectedProducts: selectedProducts.map(item => ({
+        id: item.product.id,
+        name: item.product.name,
+        quantity: item.quantity,
+        price: item.product.price
+      })),
+      deliveryDate: deliveryDate.toISOString(),
+      deliveryFrequency: plan.frequency,
+      preferences: {
+        dietaryRestrictions: selectedDietaryPrefs,
+        allergies: [], // TODO: Add allergy selection in UI
+        goals: selectedNutritionGoal ? [selectedNutritionGoal] : []
+      },
+      shippingAddress: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        line1: '',
+        city: '',
+        state: '',
+        postalCode: '',
+        country: 'India'
+      },
+      paymentMethod: {
+        id: 'default',
+        type: 'card'
+      },
+      specialInstructions
     }
     onComplete?.(customization)
   }
