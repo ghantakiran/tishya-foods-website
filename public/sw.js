@@ -335,4 +335,333 @@ setInterval(async () => {
   }
 }, 60 * 60 * 1000) // Every hour
 
-console.log('[SW] Service worker script loaded')
+// Push notification event handlers
+self.addEventListener('push', (event) => {
+  console.log('[SW] Push message received')
+  
+  let notificationData = {
+    title: 'Tishya Foods',
+    body: 'You have a new notification',
+    icon: '/icons/icon-192x192.png',
+    badge: '/icons/icon-96x96.png',
+    tag: 'default',
+    requireInteraction: false,
+    actions: []
+  }
+  
+  if (event.data) {
+    try {
+      const payload = event.data.json()
+      notificationData = {
+        ...notificationData,
+        ...payload,
+        actions: payload.actions || []
+      }
+    } catch (error) {
+      console.error('[SW] Error parsing push payload:', error)
+      notificationData.body = event.data.text() || notificationData.body
+    }
+  }
+  
+  event.waitUntil(
+    self.registration.showNotification(notificationData.title, {
+      body: notificationData.body,
+      icon: notificationData.icon,
+      badge: notificationData.badge,
+      tag: notificationData.tag,
+      requireInteraction: notificationData.requireInteraction,
+      actions: notificationData.actions,
+      data: notificationData.data || {},
+      timestamp: Date.now(),
+      silent: false,
+      vibrate: [200, 100, 200]
+    })
+  )
+})
+
+// Notification click event handler
+self.addEventListener('notificationclick', (event) => {
+  console.log('[SW] Notification click received')
+  
+  event.notification.close()
+  
+  const notification = event.notification
+  const action = event.action
+  const data = notification.data || {}
+  
+  event.waitUntil(
+    handleNotificationClick(action, data, notification)
+  )
+})
+
+// Notification close event handler
+self.addEventListener('notificationclose', (event) => {
+  console.log('[SW] Notification closed')
+  
+  // Track notification dismissal
+  const notification = event.notification
+  const data = notification.data || {}
+  
+  // Send analytics if needed
+  if (data.trackDismissal) {
+    sendAnalyticsEvent('notification_dismissed', {
+      tag: notification.tag,
+      title: notification.title
+    })
+  }
+})
+
+// Handle notification click actions
+async function handleNotificationClick(action, data, notification) {
+  const clients = await self.clients.matchAll({
+    type: 'window',
+    includeUncontrolled: true
+  })
+  
+  let targetUrl = '/'
+  
+  // Determine target URL based on action or data
+  if (action) {
+    switch (action) {
+      case 'view_order':
+        targetUrl = `/orders/${data.orderId || ''}`
+        break
+      case 'view_product':
+        targetUrl = `/products/${data.productId || ''}`
+        break
+      case 'view_cart':
+        targetUrl = '/cart'
+        break
+      case 'track_order':
+        targetUrl = `/orders/${data.orderId || ''}/track`
+        break
+      default:
+        targetUrl = data.url || '/'
+    }
+  } else if (data.url) {
+    targetUrl = data.url
+  }
+  
+  // Focus existing tab or open new one
+  for (const client of clients) {
+    if (client.url.includes(targetUrl) && 'focus' in client) {
+      return client.focus()
+    }
+  }
+  
+  // Open new tab if no existing tab found
+  if (clients.openWindow) {
+    return clients.openWindow(targetUrl)
+  }
+}
+
+// Enhanced background sync with specific sync tags
+self.addEventListener('sync', (event) => {
+  console.log('[SW] Background sync event:', event.tag)
+  
+  switch (event.tag) {
+    case 'background-sync':
+      event.waitUntil(doBackgroundSync())
+      break
+    case 'cart-sync':
+      event.waitUntil(syncCartData())
+      break
+    case 'order-sync':
+      event.waitUntil(syncOrderData())
+      break
+    case 'user-preferences-sync':
+      event.waitUntil(syncUserPreferences())
+      break
+    case 'analytics-sync':
+      event.waitUntil(syncAnalyticsData())
+      break
+    default:
+      event.waitUntil(doBackgroundSync())
+  }
+})
+
+// Sync cart data when back online
+async function syncCartData() {
+  try {
+    const db = await openIndexedDB()
+    const tx = db.transaction(['cart'], 'readonly')
+    const store = tx.objectStore('cart')
+    const cartData = await store.getAll()
+    
+    if (cartData.length > 0) {
+      const response = await fetch('/api/cart/sync', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ cartData })
+      })
+      
+      if (response.ok) {
+        console.log('[SW] Cart data synced successfully')
+        // Clear synced data from IndexedDB
+        const clearTx = db.transaction(['cart'], 'readwrite')
+        const clearStore = clearTx.objectStore('cart')
+        await clearStore.clear()
+      }
+    }
+  } catch (error) {
+    console.error('[SW] Cart sync failed:', error)
+  }
+}
+
+// Sync order data when back online
+async function syncOrderData() {
+  try {
+    const db = await openIndexedDB()
+    const tx = db.transaction(['orders'], 'readonly')
+    const store = tx.objectStore('orders')
+    const orderData = await store.getAll()
+    
+    for (const order of orderData) {
+      if (order.status === 'pending_sync') {
+        try {
+          const response = await fetch('/api/orders', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(order)
+          })
+          
+          if (response.ok) {
+            console.log('[SW] Order synced successfully:', order.id)
+            // Update order status in IndexedDB
+            const updateTx = db.transaction(['orders'], 'readwrite')
+            const updateStore = updateTx.objectStore('orders')
+            order.status = 'submitted'
+            await updateStore.put(order)
+          }
+        } catch (error) {
+          console.error('[SW] Order sync failed:', order.id, error)
+        }
+      }
+    }
+  } catch (error) {
+    console.error('[SW] Order sync failed:', error)
+  }
+}
+
+// Sync user preferences when back online
+async function syncUserPreferences() {
+  try {
+    const db = await openIndexedDB()
+    const tx = db.transaction(['user_preferences'], 'readonly')
+    const store = tx.objectStore('user_preferences')
+    const preferences = await store.getAll()
+    
+    if (preferences.length > 0) {
+      const response = await fetch('/api/user/preferences', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ preferences })
+      })
+      
+      if (response.ok) {
+        console.log('[SW] User preferences synced successfully')
+      }
+    }
+  } catch (error) {
+    console.error('[SW] User preferences sync failed:', error)
+  }
+}
+
+// Sync analytics data when back online
+async function syncAnalyticsData() {
+  try {
+    const db = await openIndexedDB()
+    const tx = db.transaction(['analytics'], 'readonly')
+    const store = tx.objectStore('analytics')
+    const analyticsData = await store.getAll()
+    
+    if (analyticsData.length > 0) {
+      const response = await fetch('/api/analytics/sync', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ events: analyticsData })
+      })
+      
+      if (response.ok) {
+        console.log('[SW] Analytics data synced successfully')
+        // Clear synced data from IndexedDB
+        const clearTx = db.transaction(['analytics'], 'readwrite')
+        const clearStore = clearTx.objectStore('analytics')
+        await clearStore.clear()
+      }
+    }
+  } catch (error) {
+    console.error('[SW] Analytics sync failed:', error)
+  }
+}
+
+// IndexedDB helper
+async function openIndexedDB() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open('TishyaFoodsDB', 1)
+    
+    request.onerror = () => reject(request.error)
+    request.onsuccess = () => resolve(request.result)
+    
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result
+      
+      // Create object stores if they don't exist
+      if (!db.objectStoreNames.contains('cart')) {
+        db.createObjectStore('cart', { keyPath: 'id' })
+      }
+      if (!db.objectStoreNames.contains('orders')) {
+        db.createObjectStore('orders', { keyPath: 'id' })
+      }
+      if (!db.objectStoreNames.contains('user_preferences')) {
+        db.createObjectStore('user_preferences', { keyPath: 'key' })
+      }
+      if (!db.objectStoreNames.contains('analytics')) {
+        db.createObjectStore('analytics', { keyPath: 'id' })
+      }
+    }
+  })
+}
+
+// Send analytics event
+async function sendAnalyticsEvent(eventName, data) {
+  try {
+    await fetch('/api/analytics/event', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        event: eventName,
+        data,
+        timestamp: Date.now(),
+        source: 'service-worker'
+      })
+    })
+  } catch (error) {
+    console.error('[SW] Analytics event failed:', error)
+  }
+}
+
+// Message event handler for communication with main thread
+self.addEventListener('message', (event) => {
+  console.log('[SW] Message received:', event.data)
+  
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting()
+  }
+  
+  if (event.data && event.data.type === 'GET_CLIENT_ID') {
+    event.ports[0].postMessage({ clientId: event.source.id })
+  }
+})
+
+console.log('[SW] Service worker script loaded with enhanced PWA features')
