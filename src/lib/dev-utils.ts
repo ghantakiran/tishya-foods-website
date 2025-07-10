@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import * as React from 'react'
 
 // Development-only utilities for debugging and development assistance
 const isDevelopment = process.env.NODE_ENV === 'development'
@@ -93,12 +94,13 @@ export const logger = new DevLogger()
 
 // React development helpers
 export function useDevLog(componentName: string, props?: any) {
-  if (!isDevelopment) return
-
   React.useEffect(() => {
+    if (!isDevelopment) return
+
     logger.debug(`Component mounted: ${componentName}`, props)
     
     return () => {
+      if (!isDevelopment) return
       logger.debug(`Component unmounted: ${componentName}`)
     }
   }, [componentName, props])
@@ -297,14 +299,3 @@ export function interceptFetch() {
   }
 }
 
-// React import (conditional to avoid SSR issues)
-let React: any
-if (typeof window !== 'undefined') {
-  try {
-    React = require('react')
-  } catch {
-    // React not available, hooks won't work
-  }
-}
-
-export { React }
