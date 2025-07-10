@@ -13,6 +13,7 @@ import { useAuth } from '@/contexts/auth-context'
 import { CartDrawer } from '@/features/cart/cart-drawer'
 import { AuthModal } from '@/features/auth/auth-modal'
 import { MobileHeader } from '@/components/mobile/mobile-header'
+import { GlobalSearchModal } from '@/components/search/global-search-modal'
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -32,6 +33,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isAuthOpen, setIsAuthOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const { cart } = useCart()
   const { isAuthenticated, logout } = useAuth()
 
@@ -43,6 +45,20 @@ export default function Header() {
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Handle global keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Cmd/Ctrl + K to open search
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        setIsSearchOpen(true)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
   }, [])
 
   return (
@@ -183,10 +199,11 @@ export default function Header() {
               <AccessibleIconButton 
                 variant="ghost" 
                 size="icon" 
+                onClick={() => setIsSearchOpen(true)}
                 className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 transition-all duration-200 ease-out rounded-full hover:shadow-lg hover:shadow-blue-500/20 focus:ring-offset-gray-900"
                 data-testid="search-button"
                 icon={<Search className="h-5 w-5" />}
-                label="Search products"
+                label="Search products, blog posts, and recipes"
               />
             </motion.div>
             {isAuthenticated ? (
@@ -343,9 +360,10 @@ export default function Header() {
                   <AccessibleIconButton 
                     variant="ghost" 
                     size="icon" 
+                    onClick={() => setIsSearchOpen(true)}
                     className="text-gray-300 hover:text-blue-400 hover:bg-gray-800/60 focus:ring-offset-gray-900"
                     icon={<Search className="h-5 w-5" />}
-                    label="Search products"
+                    label="Search products, blog posts, and recipes"
                   />
                   {isAuthenticated ? (
                     <div className="relative">
@@ -394,6 +412,9 @@ export default function Header() {
         )}
       </AnimatePresence>
 
+      {/* Global Search Modal */}
+      <GlobalSearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+      
       {/* Cart Drawer */}
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       
