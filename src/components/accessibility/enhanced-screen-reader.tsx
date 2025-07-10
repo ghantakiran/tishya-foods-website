@@ -56,7 +56,7 @@ export const LiveRegion = ({
   children,
   priority = 'polite',
   atomic = false,
-  relevant = 'additions text',
+  relevant = 'all',
   className
 }: LiveRegionProps) => {
   return (
@@ -546,17 +546,4 @@ export const AccessibleStatusMessage = ({
       )}
     </div>
   )
-}
-
-export {
-  ScreenReaderOnly,
-  VisuallyHidden,
-  LiveRegion,
-  EnhancedProductDescription,
-  EnhancedImage,
-  AccessibleTable,
-  AccessibleBreadcrumb,
-  AccessibleProgress,
-  AccessibleFormSection,
-  AccessibleStatusMessage
 }

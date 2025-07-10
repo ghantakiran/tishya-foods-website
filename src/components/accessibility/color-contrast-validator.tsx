@@ -420,8 +420,10 @@ export const useContrastTesting = () => {
       const background = styles.backgroundColor
       
       // Convert RGB to hex for ratio calculation
-      const fgHex = rgbToHex(...foreground.match(/\d+/g)?.map(Number) || [0, 0, 0])
-      const bgHex = rgbToHex(...background.match(/\d+/g)?.map(Number) || [255, 255, 255])
+      const fgNumbers = foreground.match(/\d+/g)?.map(Number) || [0, 0, 0]
+      const bgNumbers = background.match(/\d+/g)?.map(Number) || [255, 255, 255]
+      const fgHex = rgbToHex(fgNumbers[0], fgNumbers[1], fgNumbers[2])
+      const bgHex = rgbToHex(bgNumbers[0], bgNumbers[1], bgNumbers[2])
       
       const ratio = getContrastRatio(fgHex, bgHex)
       const fontSize = parseInt(styles.fontSize)
@@ -451,11 +453,4 @@ export const useContrastTesting = () => {
   }
 }
 
-export {
-  HighContrastToggle,
-  ColorBlindnessSimulator,
-  ColorBlindnessTestControls,
-  useContrastTesting,
-  getContrastRatio,
-  getWCAGLevel
-}
+// Exports are already declared inline above

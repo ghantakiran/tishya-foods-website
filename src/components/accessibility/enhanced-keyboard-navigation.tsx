@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Enter, Escape } from 'lucide-react'
+import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from 'lucide-react'
 
 interface KeyboardNavigationProps {
   children: React.ReactNode
