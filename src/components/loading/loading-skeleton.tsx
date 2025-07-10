@@ -12,7 +12,7 @@ export function Skeleton({ className, animate = true }: SkeletonProps) {
   return (
     <motion.div
       className={cn(
-        'bg-cream-200 rounded-md',
+        'bg-gray-700 rounded-md',
         animate && 'animate-pulse',
         className
       )}
@@ -33,7 +33,7 @@ export function Skeleton({ className, animate = true }: SkeletonProps) {
 // Product Card Skeleton
 export function ProductCardSkeleton() {
   return (
-    <div className="bg-earth-800 rounded-lg shadow-sm border p-4 space-y-4">
+    <div className="bg-gray-800 rounded-lg shadow-sm border border-gray-600 p-4 space-y-4">
       <Skeleton className="w-full h-48 rounded-lg" />
       <div className="space-y-2">
         <Skeleton className="h-4 w-3/4" />
@@ -106,7 +106,7 @@ export function ProductDetailsSkeleton() {
 // Cart Item Skeleton
 export function CartItemSkeleton() {
   return (
-    <div className="flex items-center space-x-3 p-3 bg-earth-900 rounded-lg">
+    <div className="flex items-center space-x-3 p-3 bg-gray-900 rounded-lg">
       <Skeleton className="w-16 h-16 rounded-md" />
       <div className="flex-1 space-y-2">
         <Skeleton className="h-4 w-3/4" />
@@ -128,7 +128,7 @@ export function CartItemSkeleton() {
 // Header Skeleton
 export function HeaderSkeleton() {
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-earth-800 border-b">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-gray-800 border-b border-gray-600">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <div className="flex items-center space-x-3">
@@ -160,7 +160,7 @@ export function HeaderSkeleton() {
 // Page Loading Skeleton
 export function PageLoadingSkeleton() {
   return (
-    <div className="min-h-screen bg-earth-900">
+    <div className="min-h-screen bg-gray-900">
       <HeaderSkeleton />
       <div className="pt-20 pb-12">
         <div className="container mx-auto px-4">
@@ -240,7 +240,7 @@ export function LoadingSpinner({ size = 'md', className }: { size?: 'sm' | 'md' 
   return (
     <motion.div
       className={cn(
-        'border-2 border-earth-600 border-t-primary-500 rounded-full',
+        'border-2 border-gray-600 border-t-green-500 rounded-full',
         sizeClasses[size],
         className
       )}
@@ -257,12 +257,12 @@ export function LoadingSpinner({ size = 'md', className }: { size?: 'sm' | 'md' 
 // Full Page Loading Component
 export function FullPageLoading() {
   return (
-    <div className="fixed inset-0 bg-earth-800/80 backdrop-blur-sm z-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-gray-800/80 backdrop-blur-sm z-50 flex items-center justify-center">
       <div className="text-center space-y-4">
         <LoadingSpinner size="lg" />
         <div className="space-y-2">
-          <p className="text-lg font-medium text-cream-100">Loading...</p>
-          <p className="text-sm text-earth-500">Please wait while we prepare your content</p>
+          <p className="text-lg font-medium text-gray-100">Loading...</p>
+          <p className="text-sm text-gray-400">Please wait while we prepare your content</p>
         </div>
       </div>
     </div>
