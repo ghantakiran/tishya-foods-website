@@ -104,6 +104,9 @@ model User {
   firstName         String?
   lastName          String?
   phone             String?
+  password          String?            // Hashed password for authentication
+  emailVerified     Boolean            @default(false)
+  role              UserRole           @default(CUSTOMER)
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt
   
@@ -222,4 +225,10 @@ enum OrderStatus {
   SHIPPED
   DELIVERED
   CANCELLED
+}
+
+enum UserRole {
+  CUSTOMER
+  ADMIN
+  MODERATOR
 }
