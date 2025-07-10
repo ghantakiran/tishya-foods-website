@@ -98,26 +98,6 @@ model Recipe {
   @@map("recipes")
 }
 
-model User {
-  id                String             @id @default(cuid())
-  email             String             @unique
-  firstName         String?
-  lastName          String?
-  phone             String?
-  password          String?            // Hashed password for authentication
-  emailVerified     Boolean            @default(false)
-  role              UserRole           @default(CUSTOMER)
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
-  
-  // Relations
-  orders            Order[]
-  cart              Cart?
-  aiRecommendations AIRecommendation[]
-  contactSubmissions ContactSubmission[]
-
-  @@map("users")
-}
 
 model Cart {
   id        String     @id @default(cuid())
@@ -227,8 +207,334 @@ enum OrderStatus {
   CANCELLED
 }
 
+// ===============================
+// CMS Models
+// ===============================
+
+model ContentType {
+  id          String         @id @default(cuid())
+  name        String         @unique // "product", "blog_post", "recipe", "page"
+  displayName String         // "Products", "Blog Posts", "Recipes", "Pages"
+  description String?
+  schema      Json           // JSON schema definition for content fields
+  apiEndpoint String?        // Custom API endpoint if needed
+  isSystem    Boolean        @default(false) // System types can't be deleted
+  contents    Content[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@map("content_types")
+}
+
+model Content {
+  id              String             @id @default(cuid())
+  title           String
+  slug            String
+  excerpt         String?
+  content         Json               // Rich content data (varies by content type)
+  metaTitle       String?
+  metaDescription String?
+  metaKeywords    String[]
+  featuredImage   String?
+  images          String[]
+  status          ContentStatus      @default(DRAFT)
+  publishedAt     DateTime?
+  scheduledAt     DateTime?
+  contentTypeId   String
+  contentType     ContentType        @relation(fields: [contentTypeId], references: [id])
+  authorId        String
+  author          User               @relation(fields: [authorId], references: [id])
+  categories      CategoryContent[]
+  tags            TagContent[]
+  versions        ContentVersion[]
+  analytics       ContentAnalytics[]
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  @@unique([slug, contentTypeId])
+  @@map("contents")
+}
+
+model ContentVersion {
+  id        String   @id @default(cuid())
+  contentId String
+  content   Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  version   Int
+  title     String
+  data      Json     // Snapshot of content data at this version
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+  note      String?  // Version change note
+  createdAt DateTime @default(now())
+
+  @@unique([contentId, version])
+  @@map("content_versions")
+}
+
+model Category {
+  id          String            @id @default(cuid())
+  name        String
+  slug        String            @unique
+  description String?
+  image       String?
+  parentId    String?
+  parent      Category?         @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children    Category[]        @relation("CategoryHierarchy")
+  contents    CategoryContent[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@map("categories")
+}
+
+model Tag {
+  id          String       @id @default(cuid())
+  name        String       @unique
+  slug        String       @unique
+  description String?
+  color       String?      // Hex color for UI
+  contents    TagContent[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@map("tags")
+}
+
+model CategoryContent {
+  id         String   @id @default(cuid())
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  contentId  String
+  content    Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@unique([categoryId, contentId])
+  @@map("category_content")
+}
+
+model TagContent {
+  id        String   @id @default(cuid())
+  tagId     String
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  contentId String
+  content   Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([tagId, contentId])
+  @@map("tag_content")
+}
+
+model Media {
+  id            String      @id @default(cuid())
+  filename      String
+  originalName  String
+  mimeType      String
+  size          Int         // File size in bytes
+  width         Int?        // For images
+  height        Int?        // For images
+  url           String      // Public URL
+  alt           String?     // Alt text for accessibility
+  caption       String?
+  description   String?
+  metadata      Json?       // Additional metadata (EXIF, etc.)
+  uploadedBy    String
+  uploader      User        @relation(fields: [uploadedBy], references: [id])
+  mediaFolder   String?     // Organizational folder
+  tags          String[]    // Media tags for search
+  status        MediaStatus @default(ACTIVE)
+  usageCount    Int         @default(0) // How many times it's used
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@map("media")
+}
+
+model ContentAnalytics {
+  id          String   @id @default(cuid())
+  contentId   String
+  content     Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  views       Int      @default(0)
+  uniqueViews Int      @default(0)
+  likes       Int      @default(0)
+  shares      Int      @default(0)
+  comments    Int      @default(0)
+  engagement  Float    @default(0) // Calculated engagement score
+  date        DateTime @default(now()) // Analytics date (daily aggregation)
+
+  @@unique([contentId, date])
+  @@map("content_analytics")
+}
+
+model Comment {
+  id        String        @id @default(cuid())
+  contentId String?       // Optional: for content comments
+  parentId  String?       // For nested comments
+  parent    Comment?      @relation("CommentReplies", fields: [parentId], references: [id])
+  replies   Comment[]     @relation("CommentReplies")
+  authorId  String?       // Optional: for anonymous comments
+  author    User?         @relation(fields: [authorId], references: [id])
+  name      String        // Name (for anonymous or display)
+  email     String        // Email (for notifications)
+  website   String?       // Optional website
+  content   String        // Comment content
+  status    CommentStatus @default(PENDING)
+  isSpam    Boolean       @default(false)
+  likes     Int           @default(0)
+  ipAddress String?       // For spam detection
+  userAgent String?       // For spam detection
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@map("comments")
+}
+
+model Setting {
+  id          String   @id @default(cuid())
+  key         String   @unique // Setting key (e.g., "site_title", "logo_url")
+  value       Json     // Setting value (can be string, number, object, etc.)
+  type        String   // "string", "number", "boolean", "json", "image", "rich_text"
+  group       String   @default("general") // Settings group (general, seo, appearance, etc.)
+  label       String   // Human-readable label
+  description String?  // Help text
+  isPublic    Boolean  @default(false) // Whether setting is exposed in public API
+  validation  Json?    // Validation rules
+  updatedBy   String
+  updater     User     @relation(fields: [updatedBy], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("settings")
+}
+
+model FormSubmission {
+  id        String           @id @default(cuid())
+  formType  String           // "contact", "newsletter", "quote", etc.
+  data      Json             // Form data
+  email     String?          // Primary email for follow-up
+  name      String?          // Primary name
+  status    SubmissionStatus @default(NEW)
+  notes     String?          // Admin notes
+  handled   Boolean          @default(false)
+  handledBy String?
+  handler   User?            @relation(fields: [handledBy], references: [id])
+  ipAddress String?
+  userAgent String?
+  referrer  String?
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@map("form_submissions")
+}
+
+model ActivityLog {
+  id          String           @id @default(cuid())
+  userId      String?
+  user        User?            @relation(fields: [userId], references: [id])
+  action      String           // "create", "update", "delete", "publish", etc.
+  entityType  String           // "content", "user", "media", etc.
+  entityId    String           // ID of the affected entity
+  entityTitle String?          // Title/name of the entity for display
+  details     Json?            // Additional details about the action
+  ipAddress   String?
+  userAgent   String?
+  level       ActivityLevel    @default(INFO)
+  createdAt   DateTime         @default(now())
+
+  @@map("activity_logs")
+}
+
+// ===============================
+// Extended User Relations for CMS
+// ===============================
+
+model User {
+  id                String             @id @default(cuid())
+  email             String             @unique
+  firstName         String?
+  lastName          String?
+  phone             String?
+  password          String?            // Hashed password for authentication
+  emailVerified     Boolean            @default(false)
+  role              UserRole           @default(CUSTOMER)
+  avatar            String?            // Profile picture
+  bio               String?            // User bio
+  socialLinks       Json?              // Social media links
+  isActive          Boolean            @default(true)
+  lastLoginAt       DateTime?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  
+  // E-commerce Relations
+  orders            Order[]
+  cart              Cart?
+  aiRecommendations AIRecommendation[]
+  contactSubmissions ContactSubmission[]
+  
+  // CMS Relations
+  contents          Content[]          // Content authored by user
+  contentVersions   ContentVersion[]   // Content versions created by user
+  mediaUploads      Media[]            // Media uploaded by user
+  comments          Comment[]          // Comments made by user
+  settingsUpdated   Setting[]          // Settings updated by user
+  handledSubmissions FormSubmission[]  // Form submissions handled by user
+  activityLogs      ActivityLog[]      // Activities performed by user
+
+  @@map("users")
+}
+
+// ===============================
+// Enums
+// ===============================
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  SCHEDULED
+  ARCHIVED
+  TRASH
+}
+
+enum MediaStatus {
+  ACTIVE
+  DELETED
+  PROCESSING
+}
+
+enum CommentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  SPAM
+}
+
+enum SubmissionStatus {
+  NEW
+  IN_PROGRESS
+  RESOLVED
+  SPAM
+}
+
+enum ActivityLevel {
+  DEBUG
+  INFO
+  WARNING
+  ERROR
+  CRITICAL
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
 enum UserRole {
   CUSTOMER
   ADMIN
   MODERATOR
+  EDITOR
+  AUTHOR
 }
