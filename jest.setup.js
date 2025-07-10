@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom'
 import { TextEncoder, TextDecoder } from 'util'
+import { randomUUID } from 'crypto'
 
 // Polyfill for Node.js
 if (typeof global.TextEncoder === 'undefined') {
@@ -7,6 +8,14 @@ if (typeof global.TextEncoder === 'undefined') {
 }
 if (typeof global.TextDecoder === 'undefined') {
   global.TextDecoder = TextDecoder
+}
+
+// Mock crypto.randomUUID for Jest environment
+if (typeof global.crypto === 'undefined') {
+  global.crypto = {}
+}
+if (typeof global.crypto.randomUUID === 'undefined') {
+  global.crypto.randomUUID = randomUUID
 }
 
 // Mock IntersectionObserver

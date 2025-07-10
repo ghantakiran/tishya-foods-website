@@ -23,14 +23,46 @@ const customJestConfig = {
     '!src/**/*.stories.{js,jsx,ts,tsx}',
     '!src/app/layout.tsx',
     '!src/app/globals.css',
+    '!src/app/**/loading.{js,jsx,ts,tsx}',
+    '!src/app/**/error.{js,jsx,ts,tsx}',
+    '!src/app/**/not-found.{js,jsx,ts,tsx}',
+    '!src/test-utils/**/*',
+    '!src/**/*.config.{js,jsx,ts,tsx}',
+  ],
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
+  coverageReporters: [
+    'text',
+    'text-summary',
+    'lcov',
+    'html',
+    'json'
   ],
   coverageThreshold: {
     global: {
+      branches: 60,
+      functions: 60,
+      lines: 60,
+      statements: 60,
+    },
+    './src/contexts/': {
+      branches: 75,
+      functions: 75,
+      lines: 75,
+      statements: 75,
+    },
+    './src/lib/': {
       branches: 70,
       functions: 70,
       lines: 70,
       statements: 70,
     },
+    './src/components/ui/': {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
+    }
   },
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
