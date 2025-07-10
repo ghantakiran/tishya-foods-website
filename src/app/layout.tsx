@@ -13,7 +13,8 @@ import { LoadingProvider } from "@/contexts/loading-context";
 import { WishlistProvider } from "@/contexts/wishlist-context";
 import { AddressProvider } from "@/contexts/address-context";
 import { ToastProvider } from "@/components/providers/toast-provider";
-import { ErrorBoundary } from "@/components/error/error-boundary";
+import { CriticalErrorBoundary } from "@/components/error/error-boundary";
+import { NetworkStatusNotification } from "@/components/error/network-status-notification";
 import { PerformanceInit } from "@/components/performance/performance-init";
 import { SubscriptionProvider } from "@/contexts/subscription-context";
 import { LoyaltyProvider } from "@/contexts/loyalty-context";
@@ -113,7 +114,7 @@ export default function RootLayout({
       </head>
       <body className={`${montserrat.variable} ${inter.variable} font-sans antialiased bg-gray-900 text-gray-100`}>
         <PWAInit>
-          <ErrorBoundary>
+          <CriticalErrorBoundary>
             <LoadingProvider>
               <AuthProvider>
                 <CartProvider>
@@ -187,7 +188,8 @@ export default function RootLayout({
                 </CartProvider>
               </AuthProvider>
             </LoadingProvider>
-          </ErrorBoundary>
+          </CriticalErrorBoundary>
+          <NetworkStatusNotification />
         </PWAInit>
       </body>
     </html>
