@@ -1,32 +1,120 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, ChevronRight, Home, ShoppingBag, User, Search, Heart } from 'lucide-react'
+import { 
+  Menu, 
+  X, 
+  ChevronRight, 
+  Home, 
+  ShoppingBag, 
+  User, 
+  Search, 
+  Heart,
+  FileText,
+  ChefHat,
+  Gift,
+  Info,
+  MessageCircle,
+  Zap
+} from 'lucide-react'
 import Link from 'next/link'
 import { useTouchGestures } from '@/lib/touch'
 import { useCart } from '@/contexts/cart-context'
 import { useAuth } from '@/contexts/auth-context'
+import { MobileQuickActions } from './mobile-quick-actions'
 
 interface MobileNavigationProps {
   isOpen: boolean
   onClose: () => void
+  onSearchClick?: () => void
+  onCartClick?: () => void
 }
 
 const navigationItems = [
-  { name: 'Home', href: '/', icon: Home },
-  { name: 'Products', href: '/products', icon: ShoppingBag },
-  { name: 'Compare', href: '/compare', icon: Search },
-  { name: 'Subscription', href: '/subscription', icon: Heart },
-  { name: 'Rewards', href: '/loyalty', icon: Heart },
-  { name: 'Blog', href: '/blog', icon: Search },
-  { name: 'Nutrition', href: '/nutrition', icon: Heart },
-  { name: 'About', href: '/about', icon: User },
-  { name: 'Contact', href: '/contact', icon: User },
+  { 
+    name: 'Home', 
+    href: '/', 
+    icon: Home, 
+    description: 'Homepage and featured products',
+    category: 'main'
+  },
+  { 
+    name: 'Products', 
+    href: '/products', 
+    icon: ShoppingBag, 
+    description: 'Browse our health food catalog',
+    category: 'main'
+  },
+  { 
+    name: 'Compare', 
+    href: '/compare', 
+    icon: Zap, 
+    description: 'Compare product features',
+    category: 'tools'
+  },
+  { 
+    name: 'Recipes', 
+    href: '/recipes', 
+    icon: ChefHat, 
+    description: 'Healthy recipe collection',
+    category: 'content'
+  },
+  { 
+    name: 'Blog', 
+    href: '/blog', 
+    icon: FileText, 
+    description: 'Health tips and articles',
+    category: 'content'
+  },
+  { 
+    name: 'Nutrition', 
+    href: '/nutrition', 
+    icon: Heart, 
+    description: 'Track your nutrition goals',
+    category: 'tools'
+  },
+  { 
+    name: 'Subscription', 
+    href: '/subscription', 
+    icon: Gift, 
+    description: 'Monthly health food delivery',
+    category: 'services'
+  },
+  { 
+    name: 'Rewards', 
+    href: '/loyalty', 
+    icon: Gift, 
+    description: 'Earn points and rewards',
+    category: 'services'
+  },
+  { 
+    name: 'About', 
+    href: '/about', 
+    icon: Info, 
+    description: 'Our story and mission',
+    category: 'info'
+  },
+  { 
+    name: 'Contact', 
+    href: '/contact', 
+    icon: MessageCircle, 
+    description: 'Get in touch with us',
+    category: 'info'
+  },
 ]
 
-export function MobileNavigation({ isOpen, onClose }: MobileNavigationProps) {
+const categoryLabels = {
+  main: 'Main',
+  tools: 'Tools & Features',
+  content: 'Content & Recipes',
+  services: 'Services',
+  info: 'Information'
+}
+
+export function MobileNavigation({ isOpen, onClose, onSearchClick, onCartClick }: MobileNavigationProps) {
   const [activeItem, setActiveItem] = useState<string | null>(null)
+  const [expandedCategory, setExpandedCategory] = useState<string | null>('main')
   const menuRef = useRef<HTMLDivElement>(null)
   const { cart } = useCart()
   const { isAuthenticated, user } = useAuth()
@@ -60,12 +148,43 @@ export function MobileNavigation({ isOpen, onClose }: MobileNavigationProps) {
     }
   }, [isOpen])
 
-  const handleItemClick = (itemName: string) => {
+  const handleItemClick = useCallback((itemName: string) => {
     setActiveItem(itemName)
+    // Add haptic feedback for supported devices
+    if ('vibrate' in navigator) {
+      navigator.vibrate(50)
+    }
     setTimeout(() => {
       onClose()
     }, 200)
-  }
+  }, [onClose])
+
+  const toggleCategory = useCallback((category: string) => {
+    setExpandedCategory(expandedCategory === category ? null : category)
+  }, [expandedCategory])
+
+  // Group navigation items by category
+  const groupedItems = navigationItems.reduce((acc, item) => {
+    if (!acc[item.category]) {
+      acc[item.category] = []
+    }
+    acc[item.category].push(item)
+    return acc
+  }, {} as Record<string, typeof navigationItems>)
+
+  // Handle escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose()
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleKeyDown)
+      return () => document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isOpen, onClose])
 
   return (
     <AnimatePresence>
@@ -147,33 +266,92 @@ export function MobileNavigation({ isOpen, onClose }: MobileNavigationProps) {
               </div>
             )}
 
-            {/* Navigation Items */}
-            <div className="py-4">
-              {navigationItems.map((item, index) => {
-                const Icon = item.icon
-                return (
-                  <motion.div
-                    key={item.name}
+            {/* Navigation Items - Categorized */}
+            <div className="py-4 flex-1 overflow-y-auto">
+              {Object.entries(groupedItems).map(([category, items], categoryIndex) => (
+                <div key={category} className="mb-6">
+                  {/* Category Header */}
+                  <motion.button
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
+                    transition={{ delay: categoryIndex * 0.1 }}
+                    onClick={() => toggleCategory(category)}
+                    className="w-full flex items-center justify-between px-6 py-3 text-gray-400 hover:text-gray-300 transition-colors"
                   >
-                    <Link
-                      href={item.href}
-                      onClick={() => handleItemClick(item.name)}
-                      className={`flex items-center justify-between px-6 py-4 text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-200 ${
-                        activeItem === item.name ? 'bg-gray-800 text-white' : ''
-                      }`}
+                    <span className="text-sm font-semibold uppercase tracking-wider">
+                      {categoryLabels[category as keyof typeof categoryLabels]}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: expandedCategory === category ? 90 : 0 }}
+                      transition={{ duration: 0.2 }}
                     >
-                      <div className="flex items-center space-x-3">
-                        <Icon size={20} />
-                        <span className="font-medium">{item.name}</span>
-                      </div>
-                      <ChevronRight size={16} className="text-gray-500" />
-                    </Link>
-                  </motion.div>
-                )
-              })}
+                      <ChevronRight size={14} />
+                    </motion.div>
+                  </motion.button>
+
+                  {/* Category Items */}
+                  <AnimatePresence>
+                    {expandedCategory === category && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {items.map((item, itemIndex) => {
+                          const Icon = item.icon
+                          const isActive = activeItem === item.name
+                          
+                          return (
+                            <motion.div
+                              key={item.name}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: itemIndex * 0.05 }}
+                            >
+                              <Link
+                                href={item.href}
+                                onClick={() => handleItemClick(item.name)}
+                                className={`flex items-center justify-between px-6 py-4 ml-4 mr-2 rounded-lg transition-all duration-200 group ${
+                                  isActive 
+                                    ? 'bg-blue-600 text-white shadow-lg' 
+                                    : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
+                                }`}
+                              >
+                                <div className="flex items-center space-x-3">
+                                  <div className={`p-2 rounded-lg transition-colors ${
+                                    isActive 
+                                      ? 'bg-blue-500/20' 
+                                      : 'bg-gray-800/50 group-hover:bg-gray-700/50'
+                                  }`}>
+                                    <Icon size={18} />
+                                  </div>
+                                  <div className="flex flex-col items-start">
+                                    <span className="font-medium">{item.name}</span>
+                                    <span className={`text-xs ${
+                                      isActive 
+                                        ? 'text-blue-100' 
+                                        : 'text-gray-500 group-hover:text-gray-400'
+                                    }`}>
+                                      {item.description}
+                                    </span>
+                                  </div>
+                                </div>
+                                <ChevronRight 
+                                  size={16} 
+                                  className={`transition-transform group-hover:translate-x-1 ${
+                                    isActive ? 'text-blue-200' : 'text-gray-500'
+                                  }`} 
+                                />
+                              </Link>
+                            </motion.div>
+                          )
+                        })}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
             </div>
 
             {/* Auth Section */}
@@ -198,8 +376,20 @@ export function MobileNavigation({ isOpen, onClose }: MobileNavigationProps) {
               </div>
             )}
 
+            {/* Quick Actions */}
+            <MobileQuickActions
+              onSearchClick={() => {
+                onSearchClick?.()
+                onClose()
+              }}
+              onCartClick={() => {
+                onCartClick?.()
+                onClose()
+              }}
+            />
+
             {/* Footer */}
-            <div className="p-6 border-t border-gray-700 mt-auto">
+            <div className="p-6 border-t border-gray-700">
               <div className="text-center text-gray-400 text-sm">
                 <p>© 2024 Tishya Foods</p>
                 <p className="mt-1">Health At Home!</p>

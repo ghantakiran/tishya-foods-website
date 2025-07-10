@@ -11,6 +11,8 @@ import { useAuth } from '@/contexts/auth-context'
 import { AccessibleImage } from '@/components/accessibility/accessible-image'
 import { MobileNavigation } from './mobile-navigation'
 import { MobileCart } from './mobile-cart'
+import { GlobalSearchModal } from '@/components/search/global-search-modal'
+import { useMobilePerformance, useMobileEvents, useMobileKeyboard } from '@/hooks/use-mobile-performance'
 
 interface MobileHeaderProps {
   showBackButton?: boolean
@@ -29,20 +31,35 @@ export function MobileHeader({
   const [showSearch, setShowSearch] = useState(false)
   const [showNavigation, setShowNavigation] = useState(false)
   const [showCart, setShowCart] = useState(false)
+  const [showGlobalSearch, setShowGlobalSearch] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   
   const router = useRouter()
   const { cart } = useCart()
   const { isAuthenticated } = useAuth()
 
+  // Mobile performance optimizations
+  const { optimizeScroll } = useMobilePerformance({
+    enableTouchCallouts: false,
+    enableUserSelect: false,
+    enableScrollBounce: false,
+    enableZoom: false
+  })
+  useMobileEvents()
+  useMobileKeyboard()
+
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
+      optimizeScroll(() => {
+        const currentScrollY = window.scrollY
+        setScrollY(currentScrollY)
+        setIsScrolled(currentScrollY > 20)
+      })
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [optimizeScroll])
 
   const handleBack = () => {
     if (onBack) {
@@ -138,9 +155,9 @@ export function MobileHeader({
             <div className="flex items-center space-x-2">
               <motion.button
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setShowSearch(true)}
+                onClick={() => setShowGlobalSearch(true)}
                 className="p-2 rounded-lg bg-gray-800/50 text-gray-300 hover:text-white hover:bg-gray-700/50 transition-colors"
-                aria-label="Search products"
+                aria-label="Search products, blog posts, and recipes"
               >
                 <Search size={20} />
               </motion.button>
@@ -224,12 +241,20 @@ export function MobileHeader({
       <MobileNavigation
         isOpen={showNavigation}
         onClose={() => setShowNavigation(false)}
+        onSearchClick={() => setShowGlobalSearch(true)}
+        onCartClick={() => setShowCart(true)}
       />
 
       {/* Mobile Cart */}
       <MobileCart
         isOpen={showCart}
         onClose={() => setShowCart(false)}
+      />
+
+      {/* Global Search Modal */}
+      <GlobalSearchModal
+        isOpen={showGlobalSearch}
+        onClose={() => setShowGlobalSearch(false)}
       />
     </>
   )
