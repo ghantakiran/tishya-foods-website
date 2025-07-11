@@ -43,7 +43,6 @@ export function rateLimit(config: RateLimitConfig) {
     const key = `${clientIp}:${req.nextUrl.pathname}`
     
     const now = Date.now()
-    const windowStart = now - windowMs
     
     // Initialize or get existing rate limit data
     if (!rateLimitStore[key] || rateLimitStore[key].resetTime < now) {

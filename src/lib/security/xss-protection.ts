@@ -3,7 +3,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { sanitizeXss, sanitizeHtml } from './input-sanitizer'
+import { sanitizeXss } from './input-sanitizer'
 
 // XSS Protection configuration
 interface XSSProtectionConfig {
