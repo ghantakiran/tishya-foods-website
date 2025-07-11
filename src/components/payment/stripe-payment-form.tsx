@@ -196,3 +196,5 @@ export function StripePaymentForm(props: PaymentFormProps) {
     </Elements>
   )
 }
+
+export default StripePaymentForm

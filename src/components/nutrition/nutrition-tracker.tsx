@@ -526,3 +526,5 @@ export function NutritionTracker() {
     </div>
   )
 }
+
+export default NutritionTracker

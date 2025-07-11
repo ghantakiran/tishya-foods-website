@@ -616,3 +616,5 @@ export function SubscriptionDashboard({
     </div>
   )
 }
+
+export default SubscriptionDashboard

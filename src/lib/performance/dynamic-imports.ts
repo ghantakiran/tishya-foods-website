@@ -13,9 +13,9 @@ export const LazySubscriptionDashboard = lazy(
   () => import('@/components/subscription/subscription-dashboard')
 )
 
-export const LazyCheckoutForm = lazy(
-  () => import('@/features/checkout/checkout-form')
-)
+// export const LazyCheckoutForm = lazy(
+//   () => import('@/features/checkout/checkout-form')
+// )
 
 export const LazyNutritionTracker = lazy(
   () => import('@/components/nutrition/nutrition-tracker')
@@ -38,7 +38,7 @@ export const preloadComponents = {
   '/dashboard': [LazyAnalyticsDashboard],
   '/products/compare': [LazyProductComparison],
   '/subscription': [LazySubscriptionDashboard],
-  '/checkout': [LazyCheckoutForm, LazyPaymentForm],
+  '/checkout': [LazyPaymentForm],
   '/nutrition': [LazyNutritionTracker],
   '/loyalty': [LazyLoyaltyDashboard],
   '/products/[id]': [LazyProduct360Viewer]
@@ -50,8 +50,13 @@ export const preloadComponent = (componentName: keyof typeof preloadComponents) 
   if (components) {
     components.forEach(component => {
       // Force webpack to preload the component
-      if (typeof component === 'function') {
-        component()
+      if (typeof component === 'object' && component && (component as any)._payload) {
+        // React.lazy component - trigger the import
+        try {
+          (component as any)._payload._status = 0
+        } catch (e) {
+          // Ignore preload errors
+        }
       }
     })
   }
@@ -63,7 +68,7 @@ export const getDynamicComponent = (componentName: string): ComponentType<any> |
     'analytics-dashboard': LazyAnalyticsDashboard,
     'product-comparison': LazyProductComparison,
     'subscription-dashboard': LazySubscriptionDashboard,
-    'checkout-form': LazyCheckoutForm,
+    // 'checkout-form': LazyCheckoutForm,
     'nutrition-tracker': LazyNutritionTracker,
     'loyalty-dashboard': LazyLoyaltyDashboard,
     'product-360-viewer': LazyProduct360Viewer,

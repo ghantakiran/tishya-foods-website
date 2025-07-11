@@ -111,7 +111,7 @@ function getClientIp(req: NextRequest): string {
     return clientIp
   }
   
-  return req.ip || '127.0.0.1'
+  return (req as any).ip || req.headers.get('x-forwarded-for') || '127.0.0.1'
 }
 
 // Predefined rate limit configs

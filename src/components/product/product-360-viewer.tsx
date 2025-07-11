@@ -510,3 +510,5 @@ export function Product360ViewerTrigger({
     </>
   )
 }
+
+export default Product360Viewer

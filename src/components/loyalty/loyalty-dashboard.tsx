@@ -671,3 +671,5 @@ export function LoyaltyDashboard({ member = mockMember }: LoyaltyDashboardProps)
     </div>
   )
 }
+
+export default LoyaltyDashboard

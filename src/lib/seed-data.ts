@@ -95,12 +95,12 @@ export async function seedDatabase() {
             isOrganic: product.isOrganic,
             stock: Math.floor(Math.random() * 100) + 10, // Random stock between 10-110
             featured: product.featured,
-            protein: product.nutrition.protein,
-            carbs: product.nutrition.carbs,
-            fat: product.nutrition.fat,
-            fiber: product.nutrition.fiber,
-            calories: product.nutrition.calories,
-            servingSize: product.nutrition.servingSize
+            protein: (product as any).nutrition?.protein || 0,
+            carbs: (product as any).nutrition?.carbs || 0,
+            fat: (product as any).nutrition?.fat || 0,
+            fiber: (product as any).nutrition?.fiber || 0,
+            calories: (product as any).nutrition?.calories || 0,
+            servingSize: (product as any).nutrition?.servingSize || '100g'
           }
         })
       )

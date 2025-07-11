@@ -11,7 +11,7 @@ import { AnalyticsProvider } from '@/components/analytics/analytics-provider'
 // Create a custom render function that includes providers
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   return (
-    <AnalyticsProvider>
+    <AnalyticsProvider config={{ enableConsoleLogging: false }}>
       <LoadingProvider>
         <AuthProvider>
           <CartProvider>

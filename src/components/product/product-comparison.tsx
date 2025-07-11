@@ -367,3 +367,5 @@ export function ProductComparisonContainer() {
     </div>
   )
 }
+
+export default ProductComparisonContainer
