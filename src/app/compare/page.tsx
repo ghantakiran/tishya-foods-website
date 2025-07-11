@@ -9,11 +9,12 @@ import {
   Award,
   ArrowRight,
   CheckCircle,
-  Target
+  Target,
+  Plus
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { ProductComparisonContainer } from '@/components/product/product-comparison'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 const benefits = [
   {
@@ -28,291 +29,182 @@ const benefits = [
   },
   {
     icon: Target,
-    title: 'Value Assessment',
-    description: 'Find the best protein-to-price ratio and overall value for your goals'
+    title: 'Personalized Recommendations',
+    description: 'Get suggestions based on your dietary preferences and health goals'
   },
   {
-    icon: CheckCircle,
-    title: 'Certification Check',
-    description: 'Compare organic, vegan, and other certifications across products'
+    icon: Heart,
+    title: 'Health Impact Analysis',
+    description: 'Understand how each product fits into your wellness journey'
   }
 ]
 
-const comparisonTips = [
+// Mock comparison data
+const mockProducts = [
   {
-    title: 'Protein Content',
-    description: 'Look for products with higher protein per serving to support muscle growth and satiety',
-    icon: '💪'
+    id: '1',
+    name: 'Premium Mixed Nuts',
+    price: 299,
+    image: '/products/mixed-nuts.jpg',
+    category: 'Natural Foods',
+    nutritionalInfo: {
+      protein: 15,
+      calories: 250,
+      carbs: 8,
+      fat: 20,
+      fiber: 5
+    },
+    rating: 4.8
   },
   {
-    title: 'Ingredient Quality',
-    description: 'Choose products with natural, recognizable ingredients and minimal processing',
-    icon: '🌱'
-  },
-  {
-    title: 'Certifications',
-    description: 'Consider organic, non-GMO, and other certifications that align with your values',
-    icon: '✅'
-  },
-  {
-    title: 'Value for Money',
-    description: 'Compare protein per rupee to find the best value for your budget',
-    icon: '💰'
+    id: '2',
+    name: 'Natural Protein Bar',
+    price: 45,
+    image: '/products/protein-bar.jpg',
+    category: 'Protein Snacks',
+    nutritionalInfo: {
+      protein: 12,
+      calories: 180,
+      carbs: 15,
+      fat: 8,
+      fiber: 2
+    },
+    rating: 4.6
   }
 ]
 
 export default function ComparePage() {
   return (
-    <div className="min-h-screen bg-earth-900">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-earth-800 to-earth-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center"
-          >
-            <div className="flex items-center justify-center mb-4">
-              <Scale className="h-12 w-12 text-yellow-400 mr-3" />
-              <h1 className="text-4xl md:text-5xl font-bold text-cream-100">
+    <div className="pt-16 lg:pt-20 bg-gray-900 min-h-screen">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto">
+          {/* Hero Section */}
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                  <Scale className="h-8 w-8 text-white" />
+                </div>
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
                 Product Comparison
               </h1>
-            </div>
-            <p className="text-xl md:text-2xl text-cream-200 mb-8 max-w-3xl mx-auto">
-              Make informed decisions with our comprehensive product comparison tool. 
-              Compare nutrition, ingredients, and value across our protein-rich product range.
-            </p>
-            <div className="flex items-center justify-center space-x-4">
-              <Badge className="text-sm px-3 py-1 bg-primary-500 text-earth-100 border-primary-400">
-                Nutrition Analysis
-              </Badge>
-              <Badge className="text-sm px-3 py-1 bg-primary-500 text-earth-100 border-primary-400">
-                Smart Highlighting
-              </Badge>
-              <Badge className="text-sm px-3 py-1 bg-primary-500 text-earth-100 border-primary-400">
-                Value Assessment
-              </Badge>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Benefits Section */}
-        <div className="mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-cream-100 mb-4">
-              Why Compare Products?
-            </h2>
-            <p className="text-lg text-earth-600 max-w-2xl mx-auto">
-              Our comparison tool helps you make data-driven decisions to find the perfect products for your health and fitness goals.
-            </p>
+              <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                Make informed decisions with our advanced comparison tool. 
+                Analyze nutrition facts, ingredients, and benefits side by side.
+              </p>
+            </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          {/* Benefits Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={benefit.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="text-center"
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <div className="flex items-center justify-center w-12 h-12 bg-primary-100 rounded-full mx-auto mb-4">
-                  <benefit.icon className="h-6 w-6 text-primary-600" />
-                </div>
-                <h3 className="text-lg font-semibold text-cream-100 mb-2">{benefit.title}</h3>
-                <p className="text-earth-600">{benefit.description}</p>
+                <Card className="bg-gray-800 border-gray-700 text-center h-full">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <benefit.icon className="h-6 w-6 text-blue-400" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-white mb-2">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm">
+                      {benefit.description}
+                    </p>
+                  </CardContent>
+                </Card>
               </motion.div>
             ))}
           </div>
-        </div>
 
-        {/* Comparison Tips */}
-        <div className="mb-16">
-          <div className="bg-earth-800 rounded-lg p-8 border">
-            <h3 className="text-2xl font-bold text-cream-100 mb-6 text-center">
-              Smart Comparison Tips
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {comparisonTips.map((tip, index) => (
-                <motion.div
-                  key={tip.title}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-start space-x-3 bg-earth-800 rounded-lg p-4 shadow-sm"
-                >
-                  <div className="text-2xl">{tip.icon}</div>
-                  <div>
-                    <h4 className="font-semibold text-cream-100 mb-1">{tip.title}</h4>
-                    <p className="text-sm text-earth-600">{tip.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* How It Works */}
-        <div className="mb-16">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-cream-100 mb-4">
-              How Product Comparison Works
-            </h3>
-            <p className="text-lg text-earth-600">
-              Follow these simple steps to compare products effectively
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-blue-600">1</span>
+          {/* Sample Comparison */}
+          <Card className="bg-gray-800 border-gray-700 mb-8">
+            <CardHeader>
+              <CardTitle className="text-white text-center">
+                Sample Product Comparison
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-700">
+                      <th className="text-left py-3 px-4 text-gray-300">Feature</th>
+                      {mockProducts.map((product) => (
+                        <th key={product.id} className="text-center py-3 px-4 text-white">
+                          <div className="space-y-2">
+                            <div className="w-16 h-16 bg-gray-700 rounded-lg mx-auto flex items-center justify-center">
+                              <Award className="h-8 w-8 text-gray-500" />
+                            </div>
+                            <p className="font-semibold">{product.name}</p>
+                            <p className="text-blue-400 font-bold">₹{product.price}</p>
+                          </div>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-gray-700">
+                      <td className="py-3 px-4 text-gray-300">Protein (g)</td>
+                      {mockProducts.map((product) => (
+                        <td key={product.id} className="text-center py-3 px-4 text-white">
+                          {product.nutritionalInfo.protein}g
+                        </td>
+                      ))}
+                    </tr>
+                    <tr className="border-b border-gray-700">
+                      <td className="py-3 px-4 text-gray-300">Calories</td>
+                      {mockProducts.map((product) => (
+                        <td key={product.id} className="text-center py-3 px-4 text-white">
+                          {product.nutritionalInfo.calories}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr className="border-b border-gray-700">
+                      <td className="py-3 px-4 text-gray-300">Rating</td>
+                      {mockProducts.map((product) => (
+                        <td key={product.id} className="text-center py-3 px-4 text-white">
+                          ⭐ {product.rating}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4 text-gray-300">Action</td>
+                      {mockProducts.map((product) => (
+                        <td key={product.id} className="text-center py-3 px-4">
+                          <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+                            Add to Cart
+                          </Button>
+                        </td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <h4 className="text-lg font-semibold text-cream-100 mb-2">Select Products</h4>
-              <p className="text-earth-600">
-                Choose up to 4 products from our range to compare side by side
-              </p>
-            </div>
+            </CardContent>
+          </Card>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-green-600">2</span>
-              </div>
-              <h4 className="text-lg font-semibold text-cream-100 mb-2">Analyze Data</h4>
-              <p className="text-earth-600">
-                Review nutrition facts, ingredients, benefits, and certifications
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-purple-600">3</span>
-              </div>
-              <h4 className="text-lg font-semibold text-cream-100 mb-2">Make Decision</h4>
-              <p className="text-earth-600">
-                Use highlighted best values and summaries to choose the right product
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Key Metrics Explanation */}
-        <div className="mb-16">
-          <div className="bg-earth-800 rounded-lg shadow-sm border p-8">
-            <h3 className="text-2xl font-bold text-cream-100 mb-6">
-              Understanding Key Metrics
-            </h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <TrendingUp className="h-5 w-5 text-blue-600" />
-                  <h4 className="font-semibold text-cream-100">Protein Content</h4>
-                </div>
-                <p className="text-sm text-earth-600">
-                  Higher protein content supports muscle growth, recovery, and satiety. 
-                  Look for products with 6g+ protein per serving.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <Zap className="h-5 w-5 text-orange-600" />
-                  <h4 className="font-semibold text-cream-100">Calories</h4>
-                </div>
-                <p className="text-sm text-earth-600">
-                  Consider your caloric goals. Lower calories for weight loss, 
-                  moderate for maintenance, higher for muscle gain.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <Heart className="h-5 w-5 text-green-600" />
-                  <h4 className="font-semibold text-cream-100">Fiber Content</h4>
-                </div>
-                <p className="text-sm text-earth-600">
-                  Higher fiber aids digestion, promotes satiety, and supports 
-                  heart health. Aim for 3g+ per serving.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <Award className="h-5 w-5 text-purple-600" />
-                  <h4 className="font-semibold text-cream-100">Certifications</h4>
-                </div>
-                <p className="text-sm text-earth-600">
-                  Organic, Non-GMO, and other certifications indicate quality 
-                  standards and production methods.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <Scale className="h-5 w-5 text-indigo-600" />
-                  <h4 className="font-semibold text-cream-100">Value Ratio</h4>
-                </div>
-                <p className="text-sm text-earth-600">
-                  Compare protein per rupee to find the best value for your budget 
-                  without compromising quality.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-5 w-5 text-red-600" />
-                  <h4 className="font-semibold text-cream-100">Sugar Content</h4>
-                </div>
-                <p className="text-sm text-earth-600">
-                  Lower sugar content is generally better for blood sugar control 
-                  and overall health. Natural sugars are preferred.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Comparison Tool */}
-        <div className="bg-earth-800 rounded-lg shadow-sm border overflow-hidden">
-          <div className="p-6 border-b bg-earth-900">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-2xl font-bold text-cream-100">Interactive Product Comparison</h2>
-                <p className="text-earth-600">Select products below to start comparing</p>
-              </div>
-              <Badge variant="outline" className="text-sm">
-                Compare up to 4 products
-              </Badge>
-            </div>
-          </div>
-          
-          <div className="p-6">
-            <ProductComparisonContainer />
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="mt-16 text-center">
-          <div className="bg-earth-800 rounded-lg p-8 border">
-            <h3 className="text-2xl font-bold text-cream-100 mb-4">
-              Found Your Perfect Products?
-            </h3>
-            <p className="text-lg text-cream-200 mb-6 max-w-2xl mx-auto">
-              Use our comparison insights to make the best choice for your health goals. 
-              All our products are crafted with premium ingredients for optimal nutrition.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="outline" size="lg" className="px-8">
-                Shop All Products
-                <ArrowRight className="h-4 w-4 ml-2" />
+          {/* CTA Section */}
+          <div className="text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg">
+                <Plus className="mr-2 h-5 w-5" />
+                Start Comparing Products
               </Button>
-              <Button variant="outline" size="lg" className="px-8">
-                Learn About Nutrition
-              </Button>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
