@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { CreditCard, Shield, Lock } from 'lucide-react'
 

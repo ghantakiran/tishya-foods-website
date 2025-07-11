@@ -4,7 +4,6 @@ import "./globals.css";
 import "../styles/mobile.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import NutritionAssistant from "@/components/ai/nutrition-assistant";
 import { OrganizationSchema, WebsiteSchema } from "@/components/seo/json-ld";
 import { CartProvider } from "@/contexts/cart-context";
 import { AuthProvider } from "@/contexts/auth-context";
@@ -20,21 +19,26 @@ import { SubscriptionProvider } from "@/contexts/subscription-context";
 import { LoyaltyProvider } from "@/contexts/loyalty-context";
 import { AnalyticsProvider } from "@/components/analytics/analytics-provider";
 import { PageViewTracker } from "@/components/analytics/page-view-tracker";
-import { EnhancedAnalyticsTracker } from "@/components/analytics/enhanced-analytics-tracker";
-import { EcommerceAnalyticsTracker } from "@/components/analytics/ecommerce-analytics-tracker";
 import { PWAInit } from "@/components/pwa/pwa-init";
-import { PWAUpdateNotification } from "@/components/pwa/pwa-update-notification";
-import { OfflineIndicator } from "@/components/pwa/offline-indicator";
 import { SkipNavigation } from "@/components/accessibility/skip-link";
-import { AccessibilityChecker } from "@/components/accessibility/accessibility-checker";
 import { ColorContrastEnhancer } from "@/components/accessibility/color-contrast-enhancer";
 import { FocusManager } from "@/components/accessibility/focus-manager";
 import { KeyboardNavigationEnhancer } from "@/components/accessibility/keyboard-navigation-enhancer";
 import { TouchOptimizer } from "@/components/mobile/touch-optimizer";
-import { PerformanceOptimizer } from "@/components/performance/performance-optimizer";
-import { BundleAnalyzer } from "@/components/performance/bundle-analyzer";
-import { PerformanceMonitor } from "@/components/performance/performance-monitor";
-import CookieConsentBanner from "@/components/gdpr/cookie-consent-banner";
+
+// Dynamic imports for non-critical components
+import {
+  DynamicNutritionAssistant,
+  DynamicPWAUpdateNotification,
+  DynamicOfflineIndicator,
+  DynamicAccessibilityChecker,
+  DynamicBundleAnalyzer,
+  DynamicPerformanceMonitor,
+  DynamicCookieConsentBanner,
+  DynamicEnhancedAnalyticsTracker,
+  DynamicEcommerceAnalyticsTracker,
+  DynamicPerformanceOptimizer,
+} from "@/components/dynamic/dynamic-imports";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -144,14 +148,9 @@ export default function RootLayout({
                           }}
                         >
                           <PageViewTracker />
-                          <EnhancedAnalyticsTracker />
-                          <EcommerceAnalyticsTracker />
-                          <PerformanceOptimizer 
-                            enablePreloading={true}
-                            enableImageOptimization={true}
-                            enableCodeSplitting={true}
-                            enableResourceHints={true}
-                          />
+                          <DynamicEnhancedAnalyticsTracker />
+                          <DynamicEcommerceAnalyticsTracker />
+                          <DynamicPerformanceOptimizer />
                           <SkipNavigation />
                           <KeyboardNavigationEnhancer>
                             <ColorContrastEnhancer>
@@ -168,17 +167,17 @@ export default function RootLayout({
                               </FocusManager>
                             </ColorContrastEnhancer>
                           </KeyboardNavigationEnhancer>
-                          <NutritionAssistant />
-                          <PWAUpdateNotification />
-                          <OfflineIndicator />
+                          <DynamicNutritionAssistant />
+                          <DynamicPWAUpdateNotification />
+                          <DynamicOfflineIndicator />
                           <ToastProvider />
                           <PerformanceInit>
                             <></>
                           </PerformanceInit>
-                          <AccessibilityChecker />
-                          <BundleAnalyzer />
-                          <PerformanceMonitor />
-                          <CookieConsentBanner />
+                          <DynamicAccessibilityChecker />
+                          <DynamicBundleAnalyzer />
+                          <DynamicPerformanceMonitor />
+                          <DynamicCookieConsentBanner />
                             </AnalyticsProvider>
                           </LoyaltyProvider>
                         </SubscriptionProvider>

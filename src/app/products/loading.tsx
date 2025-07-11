@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { Package, Sparkles } from 'lucide-react'
 

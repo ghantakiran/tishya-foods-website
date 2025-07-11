@@ -7,6 +7,9 @@ import {
   UserRole 
 } from '@prisma/client'
 
+// Re-export Prisma types for use in other files
+export { ContentStatus, MediaStatus, CommentStatus, SubmissionStatus, ActivityLevel, UserRole }
+
 // ===============================
 // Core CMS Types
 // ===============================

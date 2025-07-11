@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { Shield, BarChart, Database, Settings } from 'lucide-react'
 
