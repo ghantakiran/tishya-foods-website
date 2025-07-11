@@ -16,7 +16,7 @@ const Sheet = ({ children, open, onOpenChange }: SheetProps) => {
     <div>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child, { open, onOpenChange })
+          return React.cloneElement(child as any, { open, onOpenChange })
         }
         return child
       })}
@@ -33,7 +33,7 @@ const SheetTrigger = React.forwardRef<
   }
 >(({ className, children, asChild = false, open, onOpenChange, ...props }, ref) => {
   if (asChild) {
-    return React.cloneElement(children as React.ReactElement, {
+    return React.cloneElement(children as any, {
       ref,
       onClick: () => onOpenChange?.(!open),
       ...props,
@@ -76,7 +76,7 @@ const SheetOverlay = React.forwardRef<
           className
         )}
         onClick={() => onOpenChange?.(false)}
-        {...props}
+        {...(props as any)}
       />
     )}
   </AnimatePresence>
@@ -137,7 +137,7 @@ const SheetContent = React.forwardRef<
               sideClasses[side],
               className
             )}
-            {...props}
+            {...(props as any)}
           >
             {children}
             <button
@@ -235,7 +235,7 @@ const SheetClose = React.forwardRef<
   }
 >(({ className, children, asChild = false, onOpenChange, ...props }, ref) => {
   if (asChild) {
-    return React.cloneElement(children as React.ReactElement, {
+    return React.cloneElement(children as any, {
       ref,
       onClick: () => onOpenChange?.(false),
       ...props,

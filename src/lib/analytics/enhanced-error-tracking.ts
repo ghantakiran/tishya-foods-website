@@ -3,6 +3,8 @@
  * Provides comprehensive error monitoring and reporting
  */
 
+import React from 'react'
+
 import { analytics } from './analytics-manager'
 import { analyticsDB, generateEventId } from './analytics-database'
 
@@ -90,7 +92,7 @@ class EnhancedErrorTracker {
             action: 'network_error',
             severity: response.status >= 500 ? 'high' : 'medium',
             extra: {
-              url: typeof args[0] === 'string' ? args[0] : args[0].url,
+              url: typeof args[0] === 'string' ? args[0] : (args[0] as any).href || (args[0] as any).url,
               method: args[1]?.method || 'GET',
               status: response.status,
               statusText: response.statusText
@@ -105,7 +107,7 @@ class EnhancedErrorTracker {
           action: 'network_failure',
           severity: 'high',
           extra: {
-            url: typeof args[0] === 'string' ? args[0] : args[0].url,
+            url: typeof args[0] === 'string' ? args[0] : (args[0] as any).href || (args[0] as any).url,
             method: args[1]?.method || 'GET',
             error: error instanceof Error ? error.stack : error
           }
@@ -158,7 +160,7 @@ class EnhancedErrorTracker {
 
     // Also track in analytics
     if (typeof analytics !== 'undefined') {
-      analytics.trackError(type, message, {
+      (analytics as any).trackError(type, message, {
         error_stack: stack,
         error_fingerprint: fingerprint,
         error_context: context,
@@ -442,7 +444,7 @@ export function useErrorTracking() {
 
 // Error boundary integration
 export function createErrorBoundary() {
-  return class ErrorBoundary extends React.Component {
+  return class ErrorBoundary extends React.Component<{ children: React.ReactNode }> {
     componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
       errorTracker.trackJavaScriptError(error, {
         component: errorInfo.componentStack.split('\n')[1]?.trim() || 'unknown',

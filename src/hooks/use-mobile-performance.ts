@@ -17,7 +17,7 @@ export function useMobilePerformance(options: MobilePerformanceOptions = {}) {
     enableZoom = false
   } = options
 
-  const rafId = useRef<number>()
+  const rafId = useRef<number | undefined>(undefined)
 
   // Optimize scroll performance with requestAnimationFrame
   const optimizeScroll = useCallback((callback: () => void) => {

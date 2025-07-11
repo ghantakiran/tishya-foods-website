@@ -8,7 +8,7 @@ const envSchema = z.object({
   // App configuration
   NEXT_PUBLIC_APP_NAME: z.string().default('Tishya Foods'),
   NEXT_PUBLIC_APP_URL: z.string().url().optional(),
-  PORT: z.string().transform(Number).default(3000),
+  PORT: z.string().transform(Number).default('3000'),
   
   // Database
   DATABASE_URL: z.string().url().optional(),
@@ -46,14 +46,14 @@ const envSchema = z.object({
   
   // Security
   ALLOWED_ORIGINS: z.string().optional(),
-  RATE_LIMIT_MAX: z.string().transform(Number).default(100),
-  RATE_LIMIT_WINDOW: z.string().transform(Number).default(900000), // 15 minutes
+  RATE_LIMIT_MAX: z.string().transform(Number).default('100'),
+  RATE_LIMIT_WINDOW: z.string().transform(Number).default('900000'), // 15 minutes
   
   // Feature Flags
-  NEXT_PUBLIC_ENABLE_ANALYTICS: z.string().transform(val => val === 'true').default(true),
-  NEXT_PUBLIC_ENABLE_PWA: z.string().transform(val => val === 'true').default(true),
-  NEXT_PUBLIC_ENABLE_SUBSCRIPTION: z.string().transform(val => val === 'true').default(true),
-  NEXT_PUBLIC_ENABLE_LOYALTY: z.string().transform(val => val === 'true').default(true),
+  NEXT_PUBLIC_ENABLE_ANALYTICS: z.string().transform(val => val === 'true').default('true'),
+  NEXT_PUBLIC_ENABLE_PWA: z.string().transform(val => val === 'true').default('true'),
+  NEXT_PUBLIC_ENABLE_SUBSCRIPTION: z.string().transform(val => val === 'true').default('true'),
+  NEXT_PUBLIC_ENABLE_LOYALTY: z.string().transform(val => val === 'true').default('true'),
 })
 
 export type Env = z.infer<typeof envSchema>
