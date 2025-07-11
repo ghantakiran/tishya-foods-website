@@ -14,7 +14,7 @@ import {
   CheckCircle,
   XCircle,
   AlertCircle,
-  Refresh
+  RefreshCw
 } from 'lucide-react'
 
 interface PWATestResult {
@@ -612,7 +612,7 @@ export const PWATestingDashboard = () => {
             disabled={isRunning}
             className="flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white rounded-lg transition-colors"
           >
-            <Refresh className={`h-4 w-4 ${isRunning ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`h-4 w-4 ${isRunning ? 'animate-spin' : ''}`} />
             <span>{isRunning ? 'Testing...' : 'Run Tests'}</span>
           </button>
         </div>

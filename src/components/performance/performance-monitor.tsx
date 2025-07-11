@@ -31,7 +31,7 @@ export function PerformanceMonitor() {
       const domContentLoaded = navEntries[0]?.domContentLoadedEventEnd - navEntries[0]?.domContentLoadedEventStart
       
       // Load Complete
-      const loadComplete = navEntries[0]?.loadEventEnd - navEntries[0]?.navigationStart
+      const loadComplete = navEntries[0]?.loadEventEnd - (navEntries[0] as any)?.navigationStart
 
       setMetrics(prev => ({
         ...prev,

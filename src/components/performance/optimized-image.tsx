@@ -263,8 +263,12 @@ export function useImageOptimization() {
 
 // Check image format support
 function checkImageFormatSupport(format: 'webp' | 'avif'): Promise<boolean> {
+  if (typeof window === 'undefined') {
+    return Promise.resolve(false)
+  }
+  
   return new Promise((resolve) => {
-    const img = new Image()
+    const img = window.document.createElement('img') as HTMLImageElement
     
     img.onload = () => resolve(true)
     img.onerror = () => resolve(false)

@@ -199,7 +199,7 @@ export function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModalProps) {
 
   return (
     <AnimatePresence>
-      <Landmark role="dialog" label="Search">
+      <div role="dialog" aria-label="Search">
         <motion.div
           className="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh]"
           initial={{ opacity: 0 }}
@@ -447,7 +447,7 @@ export function GlobalSearchModal({ isOpen, onClose }: GlobalSearchModalProps) {
             </div>
           </motion.div>
         </motion.div>
-      </Landmark>
+      </div>
     </AnimatePresence>
   )
 }

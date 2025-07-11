@@ -14,22 +14,17 @@ interface DynamicLoaderProps {
 }
 
 // Component registry for dynamic imports
-const COMPONENT_REGISTRY: Record<string, () => Promise<{ default: ComponentType<any> }>> = {
-  'analytics-dashboard': () => import('@/components/analytics/dashboard'),
+const COMPONENT_REGISTRY: Record<string, () => Promise<any>> = {
+  'analytics-dashboard': () => import('@/components/analytics/analytics-dashboard'),
   'product-comparison': () => import('@/components/product/product-comparison'),
   'subscription-manager': () => import('@/components/subscription/subscription-dashboard'),
-  'checkout-form': () => import('@/features/checkout/checkout-form'),
+  'checkout-form': () => import('@/features/checkout/checkout-flow'),
   'ar-viewer': () => import('@/components/product/product-360-viewer'),
   'payment-form': () => import('@/components/payment/stripe-payment-form'),
-  'charts': () => import('@/components/analytics/chart-components'),
-  'social-sharing': () => import('@/components/social/social-sharing'),
+  'charts': () => import('@/components/analytics/analytics-dashboard'),
+  'social-sharing': () => import('@/components/social/instagram-feed'),
   'loyalty-dashboard': () => import('@/components/loyalty/loyalty-dashboard'),
-  'recipe-builder': () => import('@/components/recipes/recipe-builder'),
   'nutrition-tracker': () => import('@/components/nutrition/nutrition-tracker'),
-  'live-chat': () => import('@/components/support/live-chat'),
-  'video-player': () => import('@/components/media/video-player'),
-  'map-component': () => import('@/components/location/store-locator'),
-  'calendar': () => import('@/components/subscription/delivery-calendar')
 }
 
 // Loading skeleton components
