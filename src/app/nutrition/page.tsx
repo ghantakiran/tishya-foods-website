@@ -17,7 +17,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { NutritionAssistant } from '@/components/nutrition/nutrition-assistant'
 import { MealPlanner } from '@/components/nutrition/meal-planner'
-import { NutritionTracker } from '@/components/nutrition/nutrition-tracker'
+import NutritionTracker from '@/components/nutrition/nutrition-tracker'
 
 type TabType = 'assistant' | 'tracker' | 'planner'
 
