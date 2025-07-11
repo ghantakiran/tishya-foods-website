@@ -65,7 +65,7 @@ export function PerformanceOptimizer({
       // First Input Delay
       const fidObserver = new PerformanceObserver((entryList) => {
         for (const entry of entryList.getEntries()) {
-          setMetrics(prev => ({ ...prev, fid: entry.processingStart - entry.startTime }))
+          setMetrics(prev => ({ ...prev, fid: (entry as any).processingStart - entry.startTime }))
         }
       })
       fidObserver.observe({ entryTypes: ['first-input'] })
@@ -87,7 +87,7 @@ export function PerformanceOptimizer({
         resourceCount: resourceEntries.length,
         bundleSize: resourceEntries
           .filter(entry => entry.name.includes('.js'))
-          .reduce((total, entry) => total + (entry.transferSize || 0), 0)
+          .reduce((total, entry) => total + ((entry as any).transferSize || 0), 0)
       }))
     }
   }, [])

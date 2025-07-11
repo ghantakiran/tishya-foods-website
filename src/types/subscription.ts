@@ -8,7 +8,7 @@ export interface SubscriptionCustomization {
     price: number
   }>
   deliveryDate: string
-  deliveryFrequency: 'weekly' | 'biweekly' | 'monthly'
+  deliveryFrequency: 'weekly' | 'biweekly' | 'monthly' | 'quarterly'
   preferences: {
     dietaryRestrictions: string[]
     allergies: string[]

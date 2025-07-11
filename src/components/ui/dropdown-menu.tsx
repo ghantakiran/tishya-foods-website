@@ -17,9 +17,8 @@ const DropdownMenuTrigger = React.forwardRef<
 >(({ className, children, asChild = false, ...props }, ref) => {
   if (asChild) {
     return React.cloneElement(children as React.ReactElement, {
-      ref,
       ...props,
-    })
+    } as any)
   }
   
   return (
@@ -61,7 +60,7 @@ const DropdownMenuContent = React.forwardRef<
       style={{
         top: `calc(100% + ${sideOffset}px)`,
       }}
-      {...props}
+      {...(props as any)}
     />
   </AnimatePresence>
 ))
@@ -212,7 +211,7 @@ const DropdownMenuSubContent = React.forwardRef<
       "z-50 min-w-[8rem] overflow-hidden rounded-md border border-gray-200 bg-white p-1 text-gray-950 shadow-lg dark:border-gray-800 dark:bg-gray-950 dark:text-gray-50",
       className
     )}
-    {...props}
+    {...(props as any)}
   />
 ))
 DropdownMenuSubContent.displayName = "DropdownMenuSubContent"
