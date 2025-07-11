@@ -12,9 +12,23 @@ export function PWAInit({ children }: PWAInitProps) {
   const [installPrompt, setInstallPrompt] = useState<any>(null)
 
   useEffect(() => {
-    // Register service worker
+    // Register service worker - TEMPORARILY DISABLED
     const registerSW = async () => {
+      // Unregister existing service workers to fix offline redirect issue
       if ('serviceWorker' in navigator) {
+        try {
+          const registrations = await navigator.serviceWorker.getRegistrations()
+          for (const registration of registrations) {
+            console.log('Unregistering SW:', registration)
+            await registration.unregister()
+          }
+        } catch (error) {
+          console.log('SW unregistration failed: ', error)
+        }
+      }
+      
+      // Temporarily disable service worker registration to fix offline redirect issue
+      if (false && 'serviceWorker' in navigator) {
         try {
           const registration = await navigator.serviceWorker.register('/sw.js')
           console.log('SW registered: ', registration)

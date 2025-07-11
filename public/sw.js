@@ -216,9 +216,14 @@ async function networkFirst(request, cacheName, maxAge, maxEntries) {
       return cachedResponse
     }
     
-    // Return offline page for navigation requests
+    // Return offline page for navigation requests only if there's no cached response
     if (request.mode === 'navigate') {
-      return caches.match('/offline.html') || new Response('Offline', { status: 503 })
+      // Only show offline page if we truly have no cached version
+      const fallbackResponse = await caches.match('/') || await caches.match('/offline.html')
+      if (fallbackResponse) {
+        return fallbackResponse
+      }
+      return new Response('Offline', { status: 503 })
     }
     
     throw error
