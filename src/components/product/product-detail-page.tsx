@@ -6,14 +6,7 @@ import { ShoppingCart, Heart, Share2, Star, Plus, Minus, Check, Truck, Shield, R
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Product } from '@/types/product'
-import { useCart } from '@/contexts/cart-context'
-import { useWishlist } from '@/contexts/wishlist-context'
-import { createCartItemFromProduct } from '@/lib/cart-utils'
-import { ProductImageGallery } from './product-image-gallery'
-import ProductNutritionInfo from './product-nutrition-info'
-import ProductReviews from './product-reviews'
-import RelatedProducts from './related-products'
-import { ProductStructuredData } from '@/components/seo/product-structured-data'
+import Image from 'next/image'
 
 interface ProductDetailPageProps {
   product: Product
@@ -22,283 +15,269 @@ interface ProductDetailPageProps {
 export default function ProductDetailPage({ product }: ProductDetailPageProps) {
   const [quantity, setQuantity] = useState(1)
   const [selectedTab, setSelectedTab] = useState('description')
-  const { addItem } = useCart()
-  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
+  const [isInWishlist, setIsInWishlist] = useState(false)
 
   const handleAddToCart = () => {
-    addItem(createCartItemFromProduct(product, quantity))
+    console.log('Add to cart:', { product: product.name, quantity })
   }
 
   const handleWishlistToggle = () => {
-    if (isInWishlist(product.id)) {
-      removeFromWishlist(product.id)
-    } else {
-      addToWishlist(product)
+    setIsInWishlist(!isInWishlist)
+    console.log(isInWishlist ? 'Removed from wishlist' : 'Added to wishlist', product.name)
+  }
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: product.name,
+        text: product.description,
+        url: window.location.href,
+      })
     }
   }
 
-  const shareProduct = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: product.name,
-          text: product.description,
-          url: window.location.href,
-        })
-      } catch (error) {
-        console.log('Error sharing:', error)
-      }
-    } else {
-      // Fallback: copy to clipboard
-      navigator.clipboard.writeText(window.location.href)
-    }
-  }
+  const increaseQuantity = () => setQuantity(prev => prev + 1)
+  const decreaseQuantity = () => setQuantity(prev => Math.max(1, prev - 1))
 
   return (
-    <>
-      <ProductStructuredData product={product} />
-      
-      <div className="min-h-screen bg-gray-900 text-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
-          >
+    <div className="pt-16 lg:pt-20 bg-gray-900 min-h-screen">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Product Images */}
-            <div className="space-y-4">
-              <ProductImageGallery 
-                images={product.images || ['/images/products/default.jpg']}
-                productName={product.name}
-                productId={product.id}
-              />
-            </div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="aspect-square relative bg-gray-800 rounded-lg overflow-hidden">
+                {product.images && product.images.length > 0 ? (
+                  <Image
+                    src={product.images[0]}
+                    alt={product.name}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <ShoppingCart className="h-24 w-24 text-gray-500" />
+                  </div>
+                )}
+              </div>
+            </motion.div>
 
-            {/* Product Info */}
-            <div className="space-y-6">
+            {/* Product Details */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="space-y-6"
+            >
+              {/* Header */}
               <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <Badge variant="secondary" className="bg-green-900/30 text-green-300">
+                <div className="flex items-center space-x-2 mb-2">
+                  <Badge variant="secondary" className="bg-blue-600 text-white">
                     {product.category.name}
                   </Badge>
-                  {product.isOrganic && (
-                    <Badge variant="secondary" className="bg-blue-900/30 text-blue-300">
-                      Organic
-                    </Badge>
-                  )}
-                  {product.isGlutenFree && (
-                    <Badge variant="secondary" className="bg-purple-900/30 text-purple-300">
-                      Gluten-Free
-                    </Badge>
-                  )}
-                  {product.isVegan && (
-                    <Badge variant="secondary" className="bg-orange-900/30 text-orange-300">
-                      Vegan
+                  {product.featured && (
+                    <Badge variant="secondary" className="bg-green-600 text-white">
+                      Featured
                     </Badge>
                   )}
                 </div>
-                
-                <h1 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-                  {product.name}
-                </h1>
-                
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-5 h-5 ${
-                          i < Math.floor(product.averageRating || 0)
-                            ? 'text-yellow-400 fill-current'
-                            : 'text-gray-600'
-                        }`}
-                      />
-                    ))}
-                    <span className="text-gray-400 ml-2">
-                      ({product.averageRating?.toFixed(1)}) • {product.reviewCount || 0} reviews
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 mb-6">
-                  <span className="text-3xl font-bold text-green-400">
-                    ${product.price}
-                  </span>
-                  {product.originalPrice && product.originalPrice > product.price && (
-                    <span className="text-xl text-gray-500 line-through">
-                      ${product.originalPrice}
-                    </span>
-                  )}
-                  <Badge 
-                    variant={product.stock > 0 ? 'default' : 'destructive'}
-                    className={product.stock > 0 ? 'bg-green-900/30 text-green-300' : ''}
-                  >
-                    {product.stock > 0 ? 'In Stock' : 'Out of Stock'}
-                  </Badge>
-                </div>
-
-                <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-                  {product.description}
-                </p>
+                <h1 className="text-3xl font-bold text-white mb-2">{product.name}</h1>
+                <p className="text-gray-300 text-lg">{product.description}</p>
               </div>
 
-              {/* Quantity and Add to Cart */}
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center border border-gray-600 rounded-lg">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      disabled={quantity <= 1}
-                      className="text-gray-300 hover:text-white hover:bg-gray-700"
-                    >
-                      <Minus className="w-4 h-4" />
-                    </Button>
-                    <span className="px-4 py-2 text-white font-medium">
-                      {quantity}
-                    </span>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setQuantity(quantity + 1)}
-                      className="text-gray-300 hover:text-white hover:bg-gray-700"
-                    >
-                      <Plus className="w-4 h-4" />
-                    </Button>
-                  </div>
-                  
-                  <span className="text-gray-400">
-                    Total: <span className="text-white font-semibold">${(product.price * quantity).toFixed(2)}</span>
-                  </span>
+              {/* Rating */}
+              <div className="flex items-center space-x-2">
+                <div className="flex items-center">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`h-5 w-5 ${
+                        i < Math.floor(product.averageRating)
+                          ? 'text-yellow-400 fill-current'
+                          : 'text-gray-600'
+                      }`}
+                    />
+                  ))}
                 </div>
+                <span className="text-gray-300">
+                  {product.averageRating} ({product.reviewCount} reviews)
+                </span>
+              </div>
 
-                <div className="flex gap-3">
-                  <Button
-                    onClick={handleAddToCart}
-                    disabled={product.stock <= 0}
-                    className="flex-1 bg-green-600 hover:bg-green-700 text-white"
+              {/* Price */}
+              <div className="text-3xl font-bold text-white">
+                ₹{product.price.toLocaleString()}
+              </div>
+
+              {/* Quantity */}
+              <div className="flex items-center space-x-4">
+                <span className="text-gray-300">Quantity:</span>
+                <div className="flex items-center border border-gray-600 rounded-lg">
+                  <button
+                    onClick={decreaseQuantity}
+                    className="p-2 text-gray-300 hover:text-white"
                   >
-                    <ShoppingCart className="w-5 h-5 mr-2" />
-                    Add to Cart
-                  </Button>
-                  
-                  <Button
-                    variant="outline"
-                    onClick={handleWishlistToggle}
-                    className={`border-gray-600 ${
-                      isInWishlist(product.id)
-                        ? 'bg-red-900/30 text-red-300 border-red-600'
-                        : 'text-gray-300 hover:text-white hover:bg-gray-700'
-                    }`}
+                    <Minus className="h-4 w-4" />
+                  </button>
+                  <span className="px-4 py-2 text-white">{quantity}</span>
+                  <button
+                    onClick={increaseQuantity}
+                    className="p-2 text-gray-300 hover:text-white"
                   >
-                    <Heart className={`w-5 h-5 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
-                  </Button>
-                  
-                  <Button
-                    variant="outline"
-                    onClick={shareProduct}
-                    className="border-gray-600 text-gray-300 hover:text-white hover:bg-gray-700"
-                  >
-                    <Share2 className="w-5 h-5" />
-                  </Button>
+                    <Plus className="h-4 w-4" />
+                  </button>
                 </div>
+              </div>
+
+              {/* Actions */}
+              <div className="flex space-x-4">
+                <Button
+                  onClick={handleAddToCart}
+                  className="flex-1 bg-blue-600 hover:bg-blue-700"
+                >
+                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  Add to Cart
+                </Button>
+                <Button
+                  onClick={handleWishlistToggle}
+                  variant="outline"
+                  className={`border-gray-600 ${
+                    isInWishlist ? 'text-red-400 border-red-400' : 'text-gray-300'
+                  }`}
+                >
+                  <Heart className={`h-5 w-5 ${isInWishlist ? 'fill-current' : ''}`} />
+                </Button>
+                <Button
+                  onClick={handleShare}
+                  variant="outline"
+                  className="border-gray-600 text-gray-300"
+                >
+                  <Share2 className="h-5 w-5" />
+                </Button>
               </div>
 
               {/* Features */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-gray-700">
-                <div className="flex items-center gap-3 text-sm">
-                  <Truck className="w-5 h-5 text-green-400" />
-                  <span className="text-gray-300">Free Shipping</span>
+              <div className="grid grid-cols-3 gap-4 pt-6 border-t border-gray-700">
+                <div className="text-center">
+                  <Truck className="h-6 w-6 text-blue-400 mx-auto mb-2" />
+                  <p className="text-sm text-gray-300">Free Shipping</p>
                 </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <Shield className="w-5 h-5 text-blue-400" />
-                  <span className="text-gray-300">Quality Guarantee</span>
+                <div className="text-center">
+                  <Shield className="h-6 w-6 text-green-400 mx-auto mb-2" />
+                  <p className="text-sm text-gray-300">Quality Assured</p>
                 </div>
-                <div className="flex items-center gap-3 text-sm">
-                  <RotateCcw className="w-5 h-5 text-purple-400" />
-                  <span className="text-gray-300">30-Day Returns</span>
+                <div className="text-center">
+                  <RotateCcw className="h-6 w-6 text-yellow-400 mx-auto mb-2" />
+                  <p className="text-sm text-gray-300">Easy Returns</p>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
-          {/* Product Details Tabs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-16"
-          >
+          {/* Product Tabs */}
+          <div className="mt-16">
             <div className="border-b border-gray-700">
               <nav className="flex space-x-8">
-                {[
-                  { id: 'description', label: 'Description' },
-                  { id: 'nutrition', label: 'Nutrition' },
-                  { id: 'reviews', label: 'Reviews' },
-                ].map((tab) => (
+                {['description', 'nutrition', 'reviews'].map((tab) => (
                   <button
-                    key={tab.id}
-                    onClick={() => setSelectedTab(tab.id)}
-                    className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                      selectedTab === tab.id
-                        ? 'border-green-500 text-green-400'
-                        : 'border-transparent text-gray-500 hover:text-gray-300 hover:border-gray-300'
+                    key={tab}
+                    onClick={() => setSelectedTab(tab)}
+                    className={`py-4 px-1 border-b-2 font-medium text-sm capitalize ${
+                      selectedTab === tab
+                        ? 'border-blue-500 text-blue-400'
+                        : 'border-transparent text-gray-500 hover:text-gray-300'
                     }`}
                   >
-                    {tab.label}
+                    {tab}
                   </button>
                 ))}
               </nav>
             </div>
 
-            <div className="py-8">
+            <div className="mt-8">
               {selectedTab === 'description' && (
                 <div className="prose prose-invert max-w-none">
-                  <p className="text-gray-300 leading-relaxed">
-                    {product.description}
-                  </p>
-                  {product.benefits && (
-                    <div className="mt-6">
-                      <h3 className="text-xl font-semibold text-white mb-4">Key Benefits</h3>
-                      <ul className="space-y-2">
-                        {product.benefits.map((benefit, index) => (
-                          <li key={index} className="flex items-start gap-3">
-                            <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-300">{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                  <h3 className="text-xl font-semibold text-white mb-4">Product Description</h3>
+                  <p className="text-gray-300">{product.description}</p>
+                  
+                  <h4 className="text-lg font-semibold text-white mt-6 mb-3">Ingredients</h4>
+                  <ul className="text-gray-300">
+                    {product.ingredients.map((ingredient, index) => (
+                      <li key={index}>• {ingredient}</li>
+                    ))}
+                  </ul>
                 </div>
               )}
 
               {selectedTab === 'nutrition' && (
-                <ProductNutritionInfo nutrition={product.nutritionalInfo} />
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-4">Nutritional Information</h3>
+                  <div className="bg-gray-800 rounded-lg p-6">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-white">{product.nutritionalInfo.calories}</div>
+                        <div className="text-gray-400">Calories</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-white">{product.nutritionalInfo.protein}g</div>
+                        <div className="text-gray-400">Protein</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-white">{product.nutritionalInfo.carbs}g</div>
+                        <div className="text-gray-400">Carbs</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-white">{product.nutritionalInfo.fat}g</div>
+                        <div className="text-gray-400">Fat</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
 
               {selectedTab === 'reviews' && (
-                <ProductReviews productId={product.id} />
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-4">Customer Reviews</h3>
+                  <div className="space-y-6">
+                    <div className="bg-gray-800 rounded-lg p-6">
+                      <div className="flex items-center space-x-4 mb-4">
+                        <div className="flex items-center">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                          ))}
+                        </div>
+                        <span className="text-gray-300">John D.</span>
+                      </div>
+                      <p className="text-gray-300">
+                        Great product! High quality ingredients and excellent taste. 
+                        Would definitely recommend to anyone looking for healthy snack options.
+                      </p>
+                    </div>
+                    <div className="bg-gray-800 rounded-lg p-6">
+                      <div className="flex items-center space-x-4 mb-4">
+                        <div className="flex items-center">
+                          {[...Array(4)].map((_, i) => (
+                            <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                          ))}
+                          <Star className="h-4 w-4 text-gray-600" />
+                        </div>
+                        <span className="text-gray-300">Sarah M.</span>
+                      </div>
+                      <p className="text-gray-300">
+                        Good product overall. The packaging could be improved but the taste is excellent.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               )}
             </div>
-          </motion.div>
-
-          {/* Related Products */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-16"
-          >
-            <RelatedProducts 
-              currentProduct={product}
-              category={product.category.id}
-            />
-          </motion.div>
+          </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
