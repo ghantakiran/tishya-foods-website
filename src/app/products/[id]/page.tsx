@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { getProductById, getAllProducts } from '@/lib/products-data'
 import ProductDetailPage from '@/components/product/product-detail-page'
 import { ProductSchema } from '@/components/seo/json-ld'
-import { Breadcrumb, generateBreadcrumbs } from '@/components/seo/breadcrumb'
+import { Breadcrumb, generateProductBreadcrumbs } from '@/components/seo/breadcrumb'
 
 interface Props {
   params: Promise<{ id: string }>
@@ -102,7 +102,7 @@ export default async function ProductPage({ params }: Props) {
     notFound()
   }
 
-  const breadcrumbItems = generateBreadcrumbs.product(
+  const breadcrumbItems = generateProductBreadcrumbs(
     product.category.name,
     product.name,
     product.id
