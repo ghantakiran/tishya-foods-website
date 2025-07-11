@@ -26,7 +26,6 @@ export const formatAmountForStripe = (amount: number, currency: string): number 
     currency: currency,
     currencyDisplay: 'symbol',
   })
-  const parts = numberFormat.formatToParts(amount)
   let zeroDecimalCurrency = false
   
   // Check for zero decimal currencies

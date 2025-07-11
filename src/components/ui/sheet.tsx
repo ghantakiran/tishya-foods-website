@@ -16,7 +16,7 @@ const Sheet = ({ children, open, onOpenChange }: SheetProps) => {
     <div>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child, { open, onOpenChange } as any)
+          return React.cloneElement(child, { open, onOpenChange })
         }
         return child
       })}
@@ -219,8 +219,8 @@ const SheetPortal = ({ children }: { children: React.ReactNode }) => {
   if (!mounted) return null
 
   if (typeof document !== 'undefined') {
-    const { createPortal } = require('react-dom')
-    return createPortal(children, document.body)
+    const ReactDOM = require('react-dom')
+    return ReactDOM.createPortal(children, document.body)
   }
 
   return <>{children}</>
