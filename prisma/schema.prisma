@@ -522,15 +522,6 @@ enum ActivityLevel {
   CRITICAL
 }
 
-enum OrderStatus {
-  PENDING
-  CONFIRMED
-  PROCESSING
-  SHIPPED
-  DELIVERED
-  CANCELLED
-}
-
 enum UserRole {
   CUSTOMER
   ADMIN

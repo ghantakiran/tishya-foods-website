@@ -18,6 +18,7 @@ interface ResilientImageProps {
   onError?: (error: Error) => void
   retries?: number
   blur?: boolean
+  style?: React.CSSProperties
 }
 
 export function ResilientImage({

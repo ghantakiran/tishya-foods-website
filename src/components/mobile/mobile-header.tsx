@@ -28,6 +28,7 @@ export function MobileHeader({
   onBack 
 }: MobileHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
   const [showSearch, setShowSearch] = useState(false)
   const [showNavigation, setShowNavigation] = useState(false)
   const [showCart, setShowCart] = useState(false)

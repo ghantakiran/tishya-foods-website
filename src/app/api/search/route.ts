@@ -57,8 +57,8 @@ export async function GET(request: NextRequest) {
               type: 'product' as const,
               description: product.description,
               url: `/products/${product.id}`,
-              image: product.image,
-              price: product.price,
+              image: product.images?.[0] || '/images/placeholder-product.jpg',
+              price: `$${(product.price / 100).toFixed(2)}`,
               category: product.category.name,
               tags: product.tags,
               score
@@ -66,7 +66,7 @@ export async function GET(request: NextRequest) {
           }
           return null
         })
-        .filter((result): result is SearchResult => result !== null)
+        .filter((result) => result !== null) as SearchResult[]
 
       allResults.push(...productResults)
     }
@@ -98,7 +98,7 @@ export async function GET(request: NextRequest) {
           }
           return null
         })
-        .filter((result): result is SearchResult => result !== null)
+        .filter((result) => result !== null) as SearchResult[]
 
       allResults.push(...blogResults)
     }
@@ -130,7 +130,7 @@ export async function GET(request: NextRequest) {
           }
           return null
         })
-        .filter((result): result is SearchResult => result !== null)
+        .filter((result) => result !== null) as SearchResult[]
 
       allResults.push(...recipeResults)
     }

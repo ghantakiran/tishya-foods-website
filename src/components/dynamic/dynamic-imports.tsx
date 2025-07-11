@@ -20,7 +20,7 @@ export const DynamicNutritionAssistant = dynamic(
 )
 
 export const DynamicPWAUpdateNotification = dynamic(
-  () => import('@/components/pwa/pwa-update-notification'),
+  () => import('@/components/pwa/pwa-update-notification').then(mod => ({ default: mod.PWAUpdateNotification })),
   {
     loading: () => null, // Silent loading for notifications
     ssr: false,
@@ -28,7 +28,7 @@ export const DynamicPWAUpdateNotification = dynamic(
 )
 
 export const DynamicOfflineIndicator = dynamic(
-  () => import('@/components/pwa/offline-indicator'),
+  () => import('@/components/pwa/offline-indicator').then(mod => ({ default: mod.OfflineIndicator })),
   {
     loading: () => null,
     ssr: false,
@@ -36,7 +36,7 @@ export const DynamicOfflineIndicator = dynamic(
 )
 
 export const DynamicAccessibilityChecker = dynamic(
-  () => import('@/components/accessibility/accessibility-checker'),
+  () => import('@/components/accessibility/accessibility-checker').then(mod => ({ default: mod.AccessibilityChecker })),
   {
     loading: () => null,
     ssr: false,
@@ -44,7 +44,7 @@ export const DynamicAccessibilityChecker = dynamic(
 )
 
 export const DynamicBundleAnalyzer = dynamic(
-  () => import('@/components/performance/bundle-analyzer'),
+  () => import('@/components/performance/bundle-analyzer').then(mod => ({ default: mod.BundleAnalyzer })),
   {
     loading: () => null,
     ssr: false,
@@ -52,7 +52,7 @@ export const DynamicBundleAnalyzer = dynamic(
 )
 
 export const DynamicPerformanceMonitor = dynamic(
-  () => import('@/components/performance/performance-monitor'),
+  () => import('@/components/performance/performance-monitor').then(mod => ({ default: mod.PerformanceMonitor })),
   {
     loading: () => null,
     ssr: false,
@@ -68,7 +68,7 @@ export const DynamicCookieConsentBanner = dynamic(
 )
 
 export const DynamicEnhancedAnalyticsTracker = dynamic(
-  () => import('@/components/analytics/enhanced-analytics-tracker'),
+  () => import('@/components/analytics/enhanced-analytics-tracker').then(mod => ({ default: mod.EnhancedAnalyticsTracker })),
   {
     loading: () => null,
     ssr: false,
@@ -76,7 +76,7 @@ export const DynamicEnhancedAnalyticsTracker = dynamic(
 )
 
 export const DynamicEcommerceAnalyticsTracker = dynamic(
-  () => import('@/components/analytics/ecommerce-analytics-tracker'),
+  () => import('@/components/analytics/ecommerce-analytics-tracker').then(mod => ({ default: mod.EcommerceAnalyticsTracker })),
   {
     loading: () => null,
     ssr: false,
@@ -85,7 +85,7 @@ export const DynamicEcommerceAnalyticsTracker = dynamic(
 
 // Wrapper for performance optimizer with reduced bundle impact
 export const DynamicPerformanceOptimizer = dynamic(
-  () => import('@/components/performance/performance-optimizer'),
+  () => import('@/components/performance/performance-optimizer').then(mod => ({ default: mod.PerformanceOptimizer })),
   {
     loading: () => null,
     ssr: false,
