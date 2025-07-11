@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   FileText,
@@ -140,13 +139,21 @@ export default function AdminDashboard() {
     }, 1000)
   }, [])
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="text-white">Loading dashboard data...</div>
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-white">Dashboard</h1>
-          <p className="text-gray-400">Welcome back! Here's what's happening with your content.</p>
+          <p className="text-gray-400">Welcome back! Here&apos;s what&apos;s happening with your content.</p>
         </div>
         <div className="flex space-x-3">
           <Button>

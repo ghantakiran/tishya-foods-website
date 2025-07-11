@@ -249,7 +249,7 @@ export default function PrivacyPolicyPage() {
                 <div className="bg-gray-700 rounded-lg p-3">
                   <h4 className="font-semibold text-gray-200 mb-2">Access & Portability</h4>
                   <p className="text-sm text-gray-400">
-                    Request a copy of your personal data and information about how it's processed
+                    Request a copy of your personal data and information about how it&apos;s processed
                   </p>
                 </div>
                 
@@ -282,7 +282,7 @@ export default function PrivacyPolicyPage() {
               <h4 className="font-semibold text-orange-400 mb-2">How to Exercise Your Rights</h4>
               <p className="text-sm text-gray-400">
                 Contact us at <a href="mailto:privacy@tishyafoods.com" className="text-orange-400 hover:text-orange-300">privacy@tishyafoods.com</a> to exercise any of these rights. 
-                We'll respond within 30 days and may require identity verification.
+                We&apos;ll respond within 30 days and may require identity verification.
               </p>
             </div>
           </CardContent>
