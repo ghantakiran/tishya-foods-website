@@ -31,7 +31,9 @@ export default function ProductsPage() {
   const [showFilters, setShowFilters] = useState(false)
   const [compareList, setCompareList] = useState<Product[]>([])
   // Simplified - no cart functionality for now
-  const addItem = () => {}
+  const addItem = (item: any) => {
+    console.log('Add to cart:', item)
+  }
 
   // Generate search suggestions
   const suggestions = useMemo(() => {
