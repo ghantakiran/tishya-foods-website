@@ -3,7 +3,8 @@ import { notFound } from 'next/navigation'
 import { getProductById, getAllProducts } from '@/lib/products-data'
 import ProductDetailPage from '@/components/product/product-detail-page'
 import { ProductSchema } from '@/components/seo/json-ld'
-import { Breadcrumb, generateProductBreadcrumbs } from '@/components/seo/breadcrumb'
+import { Breadcrumb } from '@/components/seo/breadcrumb'
+import { generateProductBreadcrumbs } from '@/lib/breadcrumb-utils'
 
 interface Props {
   params: Promise<{ id: string }>
