@@ -62,14 +62,11 @@ export const GET = asyncHandler(async (request: NextRequest) => {
   const { searchParams } = new URL(request.url)
   const includeStats = searchParams.get('includeStats') === 'true'
 
-  const contentTypes = await db.contentType.findMany({
-    orderBy: { displayName: 'asc' },
-    include: includeStats ? {
-      _count: {
-        select: { contents: true }
-      }
-    } : undefined
-  })
+  // Return built-in content types (mock implementation)
+  const contentTypes = Object.values(BUILT_IN_CONTENT_TYPES).map(type => ({
+    ...type,
+    ...(includeStats && { _count: { contents: 0 } })
+  }))
 
   return NextResponse.json({ data: contentTypes })
 })
@@ -81,12 +78,8 @@ export const POST = asyncHandler(async (request: NextRequest) => {
   // Validate input
   const validatedData = createContentTypeSchema.parse(body)
   
-  // Check if content type name already exists
-  const existingContentType = await db.contentType.findUnique({
-    where: { name: validatedData.name }
-  })
-  
-  if (existingContentType) {
+  // Check if content type name already exists in built-in types
+  if (BUILT_IN_CONTENT_TYPES[validatedData.name]) {
     throw new ValidationError('Content type name already exists')
   }
 
@@ -98,28 +91,18 @@ export const POST = asyncHandler(async (request: NextRequest) => {
     throw new ValidationError('Field names must be unique within a content type')
   }
 
-  // Create content type
-  const contentType = await db.contentType.create({
-    data: {
-      name: validatedData.name,
-      displayName: validatedData.displayName,
-      description: validatedData.description,
-      schema: validatedData.schema,
-      apiEndpoint: validatedData.apiEndpoint,
-      isSystem: false, // User-created content types are not system types
-    }
-  })
-
-  // TODO: Log activity when authentication is implemented
-  // await db.activityLog.create({
-  //   data: {
-  //     userId: authorId,
-  //     action: 'create',
-  //     entityType: 'content_type',
-  //     entityId: contentType.id,
-  //     entityTitle: contentType.displayName,
-  //   }
-  // })
+  // Mock content type creation (would normally save to database)
+  const contentType = {
+    id: `custom_${Date.now()}`,
+    name: validatedData.name,
+    displayName: validatedData.displayName,
+    description: validatedData.description,
+    schema: validatedData.schema,
+    apiEndpoint: validatedData.apiEndpoint,
+    isSystem: false,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  }
 
   return NextResponse.json({
     data: contentType,

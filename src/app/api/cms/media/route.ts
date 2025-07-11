@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { asyncHandler, ValidationError } from '@/lib/error-handling'
 import { MediaListParams, CMSResponse } from '@/types/cms'
+import { getMediaFolders, getMediaStats, FOLDERS, STATS } from '@/lib/cms/media-helpers'
 import { z } from 'zod'
 
 // Validation schema for media upload metadata
@@ -171,69 +172,4 @@ export const POST = asyncHandler(async (request: NextRequest) => {
   }, { status: 201 })
 })
 
-// Helper function to get media folders structure
-export async function getMediaFolders() {
-  const folders = await db.media.groupBy({
-    by: ['mediaFolder'],
-    where: {
-      status: 'ACTIVE',
-      mediaFolder: { not: null }
-    },
-    _count: {
-      id: true
-    }
-  })
 
-  return folders.map(folder => ({
-    name: folder.mediaFolder,
-    path: folder.mediaFolder,
-    mediaCount: folder._count.id
-  }))
-}
-
-// GET /api/cms/media/folders - Get media folder structure
-export const FOLDERS = asyncHandler(async (request: NextRequest) => {
-  const folders = await getMediaFolders()
-  return NextResponse.json({ data: folders })
-})
-
-// Helper function to get media stats
-export async function getMediaStats() {
-  const stats = await db.media.aggregate({
-    where: { status: 'ACTIVE' },
-    _count: { id: true },
-    _sum: { size: true }
-  })
-
-  const typeStats = await db.media.groupBy({
-    by: ['mimeType'],
-    where: { status: 'ACTIVE' },
-    _count: { id: true }
-  })
-
-  const folderStats = await db.media.groupBy({
-    by: ['mediaFolder'],
-    where: { status: 'ACTIVE' },
-    _count: { id: true }
-  })
-
-  return {
-    total: stats._count.id || 0,
-    totalSize: stats._sum.size || 0,
-    byType: typeStats.reduce((acc, stat) => {
-      const category = stat.mimeType.split('/')[0] // image, video, application, etc.
-      acc[category] = (acc[category] || 0) + stat._count.id
-      return acc
-    }, {} as Record<string, number>),
-    byFolder: folderStats.reduce((acc, stat) => {
-      acc[stat.mediaFolder || 'root'] = stat._count.id
-      return acc
-    }, {} as Record<string, number>)
-  }
-}
-
-// GET /api/cms/media/stats - Get media statistics
-export const STATS = asyncHandler(async (request: NextRequest) => {
-  const stats = await getMediaStats()
-  return NextResponse.json({ data: stats })
-})
