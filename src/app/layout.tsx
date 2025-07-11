@@ -117,79 +117,13 @@ export default function RootLayout({
         <WebsiteSchema />
       </head>
       <body className={`${montserrat.variable} ${inter.variable} font-sans antialiased bg-gray-900 text-gray-100`}>
-        <PWAInit>
-          <CriticalErrorBoundary>
-            <LoadingProvider>
-              <AuthProvider>
-                <CartProvider>
-                  <WishlistProvider>
-                    <AddressProvider>
-                      <PaymentProvider>
-                        <SubscriptionProvider>
-                          <LoyaltyProvider>
-                            <AnalyticsProvider
-                          config={{
-                            googleAnalytics: {
-                              measurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '',
-                              config: {
-                                anonymize_ip: true,
-                                allow_google_signals: false,
-                                allow_ad_personalization_signals: false
-                              }
-                            },
-                            customAnalytics: {
-                              apiEndpoint: '/api/analytics/events',
-                              config: {
-                                batchSize: 10,
-                                batchTimeout: 5000
-                              }
-                            },
-                            enableConsoleLogging: process.env.NODE_ENV === 'development'
-                          }}
-                        >
-                          <PageViewTracker />
-                          <DynamicEnhancedAnalyticsTracker />
-                          <DynamicEcommerceAnalyticsTracker />
-                          <DynamicPerformanceOptimizer />
-                          <SkipNavigation />
-                          <KeyboardNavigationEnhancer>
-                            <ColorContrastEnhancer>
-                              <FocusManager>
-                                <TouchOptimizer>
-                                  <div className="flex flex-col min-h-screen">
-                                    <Header />
-                                    <main id="main-content" className="flex-1" role="main" tabIndex={-1}>
-                                      {children}
-                                    </main>
-                                    <Footer />
-                                  </div>
-                                </TouchOptimizer>
-                              </FocusManager>
-                            </ColorContrastEnhancer>
-                          </KeyboardNavigationEnhancer>
-                          <DynamicNutritionAssistant />
-                          <DynamicPWAUpdateNotification />
-                          <DynamicOfflineIndicator />
-                          <ToastProvider />
-                          <PerformanceInit>
-                            <></>
-                          </PerformanceInit>
-                          <DynamicAccessibilityChecker />
-                          <DynamicBundleAnalyzer />
-                          <DynamicPerformanceMonitor />
-                          <DynamicCookieConsentBanner />
-                            </AnalyticsProvider>
-                          </LoyaltyProvider>
-                        </SubscriptionProvider>
-                      </PaymentProvider>
-                    </AddressProvider>
-                  </WishlistProvider>
-                </CartProvider>
-              </AuthProvider>
-            </LoadingProvider>
-          </CriticalErrorBoundary>
-          <NetworkStatusNotification />
-        </PWAInit>
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <main id="main-content" className="flex-1" role="main" tabIndex={-1}>
+            {children}
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
