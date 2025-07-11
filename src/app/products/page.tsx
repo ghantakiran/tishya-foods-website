@@ -6,7 +6,6 @@ import { Search, Filter, Grid, List, ShoppingCart, Plus, Scale, Minus } from 'lu
 import { Button } from '@/components/ui/button'
 import { products, productCategories } from '@/lib/products-data'
 import { Product } from '@/types/product'
-import { useCart } from '@/contexts/cart-context'
 import { ProductListStructuredData } from '@/components/seo/product-structured-data'
 import Link from 'next/link'
 
@@ -31,7 +30,8 @@ export default function ProductsPage() {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [showFilters, setShowFilters] = useState(false)
   const [compareList, setCompareList] = useState<Product[]>([])
-  const { addItem } = useCart()
+  // Simplified - no cart functionality for now
+  const addItem = () => {}
 
   // Generate search suggestions
   const suggestions = useMemo(() => {
